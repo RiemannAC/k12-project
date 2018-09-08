@@ -250,7 +250,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bootstrap (~> 4.1.1)
+  bootstrap (~> 4.1.3)
   bootstrap4-kaminari-views
   byebug
   capybara (~> 2.13)

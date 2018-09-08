@@ -58,7 +58,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'ffaker'
 gem 'carrierwave'
-gem 'bootstrap', '~> 4.1.1'
+gem 'bootstrap', '~> 4.1.3'
 gem 'jquery-rails'
 gem 'font-awesome-rails'
 gem 'kaminari'
