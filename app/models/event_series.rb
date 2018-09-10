@@ -2,8 +2,10 @@ class EventSeries < ApplicationRecord
   attr_accessor :title, :description, :commit_button
   
   validates_presence_of :frequency, :period, :starttime, :endtime
-  
+  validates_presence_of :title
+
   belongs_to :users
+  has_many :events, dependent: :destroy
 
   after_create :create_events_until_end_time
   
