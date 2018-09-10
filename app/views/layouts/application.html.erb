@@ -8,19 +8,19 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   
-
   <body>
-
     <%= render partial: "shared/navbar" %>
-    
-    <div class="container">
-      <% if flash[:notice] %>
-        <div class="alert alert-success" role="alert"><%= notice %></div>
-      <% elsif flash[:alert] %>
-        <div class="alert alert-danger" role="alert"><%= alert %></div>
-      <% end %>
 
-      <%= yield %>
-    </div>
+    <% if flash[:notice] %>
+      <div class="alert alert-success" role="alert"><%= notice %></div>
+    <% elsif flash[:alert] %>
+      <div class="alert alert-danger" role="alert"><%= alert %></div>
+    <% end %>
+
+    <%= render partial: "shared/sidebar" %>
+
+    <%= yield %>
+    
+                                              
   </body>
 </html>

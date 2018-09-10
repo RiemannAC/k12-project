@@ -1,0 +1,196 @@
+<style>
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #fff;
+}
+
+p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1em;
+    font-weight: 300;
+    line-height: 1.7em;
+    color: #999;
+}
+
+a, a:hover, a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.wrapper{
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+}
+
+#sidebar {
+    /* don't forget to add all the previously mentioned styles here too */
+    background: #fff;
+    color: #000;
+    transition: all 0.3s;
+    min-width: 200px;
+    max-width: 200px;
+    height: 100vh;
+    border-right:1px solid #ddd;
+}
+
+#sidebar.active{
+  margin-left:-200px; 
+}
+
+#sidebar .sidebar-header {
+  background: #FFFFF0;
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.content{
+  padding: 5px;
+}
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+.dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+.dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+
+#sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+}
+#sidebar ul li a:hover {
+    color: #000;
+    background: #DCDCDC;
+}
+
+#sidebar ul li.active > a, a[aria-expanded="true"] {
+    color: #000;
+    background: #DCDCDC;
+}
+ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+    background: #fff;
+}
+</style>
+
+<!--為了包住 yield，所以class wrapper底下不加上</div>-->
+<div class="wrapper">
+  <nav id="sidebar">
+    <!--user profile-->
+    <div class="sidebar-header">
+      <h3 class="text-center">使用者</h3>
+    </div>
+    
+    <ul class="list-unstyled components">
+      <!--class teaching schdules-->
+      <li>
+        <a href="#classSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">我的科目</a>
+        <ul class="collapse list-unstyled" id="classSubmenu">
+          <li>
+            <a href="#">班級一</a>
+          </li>
+
+          <li>
+            <a href="#">班級二</a>
+          </li>
+          
+          <li>
+            <a href="#">班級三</a>
+          </li>
+        </ul>
+      </li>
+      <!--teaching materials-->       
+      <li>
+        <a href="#materialSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">我的教材</a>
+        <ul class="collapse list-unstyled" id="materialSubmenu">
+          <li>
+            <a href="#">教材一</a>
+          </li>
+
+          <li>
+            <a href="#">教材二</a>
+          </li>
+          
+          <li>
+            <a href="#">教材三</a>
+          </li>
+        </ul>
+      </li>
+      <!--teaching-plans-->
+      <li>
+        <a href="#planSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">我的教案</a>
+        <ul class="collapse list-unstyled" id="planSubmenu">
+          <li>
+            <a href="#">教案一</a>
+          </li>
+
+          <li>
+            <a href="#">教案二</a>
+          </li>
+          
+          <li>
+            <a href="#">教案三</a>
+          </li>
+        </ul>
+      </li>
+      <!--my report of past teaching schedules-->
+      <li>
+        <a href="#reportSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">過往教學進度</a>
+        <ul class="collapse list-unstyled" id="reportSubmenu">
+          <li>
+            <a href="#">數學</a>
+          </li>
+
+          <li>
+            <a href="#">英文</a>
+          </li>                  
+        </ul>
+      </li>
+    </ul>
+  </nav>
+          
+  <!--Menu hamburger icon to on/off sidebar-->
+  <div class="content">
+    <button type="button" id="sidebarCollapse" class="btn btn-info">
+      <i class="fas fa-align-justify"></i> <span>Menu</span>
+    </button>
+  </div>
+
+
+<!--jquery for on/off sidebar-->             
+<script>
+  $(document).ready(function () {
+    $('#sidebarCollapse').on('click', function () {
+        $('#sidebar').toggleClass('active');
+    });
+  });
+</script>

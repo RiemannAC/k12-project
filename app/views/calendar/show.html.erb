@@ -1,20 +1,19 @@
-<div class="row">
-  <div class="col-md-12 text-center">
-    <div class="well controls" style="padding: 10px">
-      <%= link_to calendar_path(date: @date - 1.month), class: "btn btn-default" do %>
-        <%= fa_icon "chevron-left", style: 'color:#A3A3A3' %>
-      <% end %>
-      <%= "#{@date.strftime("%B")} #{@date.year}" %>
-      <%= link_to calendar_path(date: @date + 1.month), class: "btn btn-default" do %>
-        <%= fa_icon "chevron-right", style: 'color:#A3A3A3' %>
-      <% end %>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-12">
-    <%= calendar @date do |date| %>
-      <%= date.day %>
+<div class="col text-center">    
+  <div class="well controls" style="padding: 10px">
+    <%= link_to calendar_path(date: @date - 1.month), class: "btn btn-default" do %>
+      <%= fa_icon "chevron-left", style: 'color:#A3A3A3' %>
+    <% end %>
+    <%= "#{@date.strftime("%B")} #{@date.year}" %>
+    <%= link_to calendar_path(date: @date + 1.month), class: "btn btn-default" do %>
+      <%= fa_icon "chevron-right", style: 'color:#A3A3A3' %>
     <% end %>
   </div>
+
+  <%= calendar @date do |date| %>
+    <%= date.day %>
+  <% end %>
 </div>
+  
+
+  
+      
