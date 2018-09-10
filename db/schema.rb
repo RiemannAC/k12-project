@@ -10,7 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180908062925) do
+ActiveRecord::Schema.define(version: 20180910135431) do
+
+  create_table "event_series", force: :cascade do |t|
+    t.string "type", default: "subject"
+    t.string "title", default: "未分類"
+    t.string "grade", limit: 8, default: "", null: false
+    t.string "class", limit: 8, default: "", null: false
+    t.integer "students", default: 0
+    t.string "color", default: "blue", null: false
+    t.integer "frequency", default: 1
+    t.string "period", default: "monthly"
+    t.datetime "starttime"
+    t.datetime "endtime"
+    t.boolean "all_day", default: false
+    t.integer "users_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["users_id"], name: "index_event_series_on_users_id", unique: true
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
