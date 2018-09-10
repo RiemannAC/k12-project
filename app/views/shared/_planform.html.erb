@@ -1,0 +1,40 @@
+<style>
+  .field{
+    width: 65%;
+    margin: 10px auto;
+  }
+
+  .field.field-category{
+    margin-bottom: -15px;
+  }
+</style>
+
+<% if @plan.errors.any? %>
+  <h2>We have some errors here !</h2>
+  <ul>
+    <% @plan.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %> 
+
+<%= form_for [@plan] do |f| %>
+  <div class="field field-category">
+  <%= f.label :topic_id, "科目" %><br>
+  <%= f.collection_select :topic_id , Topic.all, :id, :name, {prompt: true}, {class: "form-control"}  %><br>
+  </div> 
+
+  <div class="field">
+  <%= f.label :title, "教案資料夾名稱" %><br>
+  <%= f.text_field :title ,class:"form-control"%>
+  </div>
+
+  <div class="field">
+    <%= f.submit%><br>
+  </div>
+    
+<div class="field">
+  <%= link_to 'Index Page',root_path,class:"btn btn-primary form-control" %>
+</div>
+
+<% end %>
