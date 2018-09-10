@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 20180911132743) do
   end
 
   create_table "topics", force: :cascade do |t|
-    t.string "title", limit: 10
+    t.string "name", limit: 10
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
