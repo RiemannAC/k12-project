@@ -48,6 +48,26 @@ ActiveRecord::Schema.define(version: 20180911132743) do
     t.index ["event_series_id"], name: "index_events_on_event_series_id"
   end
 
+  create_table "materials", force: :cascade do |t|
+    t.string "title", limit: 15
+    t.integer "topic_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "plans", force: :cascade do |t|
+    t.string "title", limit: 15
+    t.integer "topic_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "topics", force: :cascade do |t|
+    t.string "title", limit: 10
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
