@@ -32,3 +32,11 @@
       <% end %>
     </div>
   </div>
+
+   <div class="row">
+    <div class="col">
+      <% @materials.each do |material| %>
+        <%= link_to material.title ,material_path(material) %>
+      <% end %>
+    </div>
+  </div>
