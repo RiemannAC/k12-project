@@ -135,13 +135,15 @@ ul ul a {
         <!--submenu_list-->
         <ul class="collapse list-unstyled" id="materialSubmenu">
           <li>
-            <% @materials.each do |material| %>             
-              <a href="#materialTopicmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><%= material.topic.name %></a>
+            <% @topics.each do |topic| %>             
+              <a href="#materialTopicmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><%= topic.name if topic.materials.present? %></a>
               <!--teaching-material topic_list-->
               <ul class="collapse list-unstyled" id="materialTopicmenu">
-                <li>
-                  <%= link_to material.title, material_path(material) %> 
-                </li>
+                <% topic.materials.each do |material| %>
+                  <li>
+                    <%= link_to material.title, material_path(material) %> 
+                  </li>
+                <% end %>
               </ul>
             <% end %>
           </li>
