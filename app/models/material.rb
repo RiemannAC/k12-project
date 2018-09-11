@@ -3,4 +3,6 @@ class Material < ApplicationRecord
   validates :title, length: { maximum: 15, message: "file name could be at most 15 words" }
 
   belongs_to :topic
+
+  has_many :teachingfiles,dependent: :destroy
 end
