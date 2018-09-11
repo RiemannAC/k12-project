@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180910153024) do
+ActiveRecord::Schema.define(version: 20180911075207) do
 
   create_table "event_series", force: :cascade do |t|
-    t.string "type", default: "subject"
+    t.string "event_type", default: "subject"
     t.string "title", default: "未分類"
     t.string "grade", limit: 8, default: "", null: false
-    t.string "class", limit: 8, default: "", null: false
+    t.string "class_name", limit: 8, default: "", null: false
     t.integer "students", default: 0
     t.string "color", default: "blue", null: false
     t.integer "frequency", default: 1
