@@ -102,7 +102,6 @@ ul ul a {
 }
 </style>
 
-<!--為了包住 yield，所以class wrapper底下不加上</div>-->
 <div class="wrapper">
   <nav id="sidebar">
     <!--user profile-->
@@ -128,6 +127,7 @@ ul ul a {
           </li>
         </ul>
       </li>
+
       <!--teaching materials-->       
       <li> 
         <!--mainmenu--> 
@@ -154,25 +154,20 @@ ul ul a {
 
       <!--teaching-plans-->
       <li>
-        <!--mainmenu-->
+        <!--mainmenu--> 
         <a href="#planSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">我的教案</a>
         <!--submenu_list-->
         <ul class="collapse list-unstyled" id="planSubmenu">
           <li>
-            <a href="#planTopicmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">英文</a>
-            <ul class="collapse list-unstyled" id="planTopicmenu">
-              <li><a href="#">現代分詞</a></li>
-              <li><a href="#">現代分詞</a></li>
-              <li><a href="#">現代分詞</a></li>
-            </ul>
-          </li>
-
-          <li>
-            <a href="#">教案二</a>
-          </li>
-          
-          <li>
-            <a href="#">教案三</a>
+            <% @plans.each do |plan| %>             
+              <a href="#planTopicmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><%= plan.topic.name %></a>
+              <!--teaching-plan topic_list-->
+              <ul class="collapse list-unstyled" id="planTopicmenu">
+                <li>
+                  <%= link_to plan.title, plan_path(plan) %> 
+                </li>
+              </ul>
+            <% end %>
           </li>
         </ul>
         <!--adding new teaching-material-->

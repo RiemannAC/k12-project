@@ -1,5 +1,6 @@
 <%= render partial: "shared/sidebar" %>
-  <div class="col text-center">    
+
+<div class="col text-center">    
   <div class="well controls" style="padding: 10px">
     <%= link_to calendar_path(date: @date - 1.month), class: "btn btn-default" do %>
       <%= fa_icon "chevron-left", style: 'color:#A3A3A3' %>
@@ -15,31 +16,3 @@
   <% end %>
 </div>
 
-  
-
-
-  <div class="row">
-    <div class="col-12">
-        <%= link_to "教案頁面",new_plan_path %>  
-        <%= link_to new_material_path do %>
-          <i class="fa fa-plus-circle" style="font-size:20px;color:blue">教材</i>
-        <% end %>
-
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col">
-      <% @plans.each do |plan| %>
-        <%= link_to plan.title ,plan_path(plan) %>
-      <% end %>
-    </div>
-  </div>
-
-   <div class="row">
-    <div class="col">
-      <% @materials.each do |material| %>
-        <%= link_to material.title ,material_path(material) %>
-      <% end %>
-    </div>
-  </div>
