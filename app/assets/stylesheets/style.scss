@@ -2,11 +2,17 @@
   margin-left: 20px;
 }
 
-.weekly_prepare {
+.weekly-prepare {
   border: 2px gray solid;
   margin-top: 20px;
   min-height: 200px;
   padding: 10px;
+}
+
+.sem-prepare {
+  border: 2px gray solid;
+  margin-top: 20px;
+  margin-right: 20px;
 }
 
 .prepare-storage-icon {
@@ -15,4 +21,15 @@
 
 .prepare-storage {
   display: inline-block;
+}
+
+.month-sche {
+  text-align: center;
+  position: relative;
+}
+
+.duplicate-trash {
+  position: absolute;
+  bottom: 0px;
+  left: 40px;
 }
