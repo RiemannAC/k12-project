@@ -159,13 +159,15 @@ ul ul a {
         <!--submenu_list-->
         <ul class="collapse list-unstyled" id="planSubmenu">
           <li>
-            <% @plans.each do |plan| %>             
-              <a href="#planTopicmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><%= plan.topic.name %></a>
+            <% @topics.each do |topic| %>             
+              <a href="#planTopicmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><%= topic.name if topic.plans.present? %></a>
               <!--teaching-plan topic_list-->
               <ul class="collapse list-unstyled" id="planTopicmenu">
-                <li>
-                  <%= link_to plan.title, plan_path(plan) %> 
-                </li>
+                <% topic.plans.each do |plan| %>
+                  <li>
+                    <%= link_to plan.title, plan_path(plan) %> 
+                  </li>
+                <% end %>
               </ul>
             <% end %>
           </li>
