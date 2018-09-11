@@ -4,7 +4,7 @@ class EventSeries < ApplicationRecord
   validates_presence_of :frequency, :period, :starttime, :endtime
   validates_presence_of :title
 
-  belongs_to :users
+  belongs_to :user
   has_many :events, dependent: :destroy
 
   after_create :create_events_until_end_time
