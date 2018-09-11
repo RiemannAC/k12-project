@@ -62,6 +62,13 @@ ActiveRecord::Schema.define(version: 20180911132743) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "teachingfiles", force: :cascade do |t|
+    t.string "filename"
+    t.string "attachment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "topics", force: :cascade do |t|
     t.string "name", limit: 10
     t.datetime "created_at", null: false
