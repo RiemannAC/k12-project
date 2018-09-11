@@ -5,10 +5,16 @@ Rails.application.routes.draw do
   resource :calendar, only: [:show], controller: :calendar
 
   resources :plans
-  resources :materials
+
+  resources :materials do
+    resources :teachingfiles
+  end
+
+  
+
   resources :topics
 
-  resources :teachingfiles
+  
 
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
