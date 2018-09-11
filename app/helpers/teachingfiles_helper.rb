@@ -1,0 +1,2 @@
+module TeachingfilesHelper
+end

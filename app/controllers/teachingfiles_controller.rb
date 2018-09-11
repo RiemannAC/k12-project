@@ -1,0 +1,2 @@
+class TeachingfilesController < ApplicationController
+end
