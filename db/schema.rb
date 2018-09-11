@@ -10,7 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180908062925) do
+ActiveRecord::Schema.define(version: 20180911132743) do
+
+  create_table "event_series", force: :cascade do |t|
+    t.string "event_type", default: "subject"
+    t.string "title", default: "未分類"
+    t.string "grade", limit: 8, default: "", null: false
+    t.string "class_name", limit: 8, default: "", null: false
+    t.integer "students", default: 0
+    t.string "color", default: "blue", null: false
+    t.integer "frequency", default: 1
+    t.string "period", default: "monthly"
+    t.datetime "starttime"
+    t.datetime "endtime"
+    t.boolean "all_day", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_event_series_on_user_id"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string "title", default: "未分類"
+    t.datetime "starttime"
+    t.datetime "endtime"
+    t.boolean "all_day", default: false
+    t.text "description"
+    t.string "image", default: "", null: false
+    t.string "color", default: "green", null: false
+    t.string "rate", default: "fair", null: false
+    t.string "goal", default: "", null: false
+    t.string "feedback_title", default: "", null: false
+    t.text "feedback_comment", default: "", null: false
+    t.integer "event_series_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_series_id"], name: "index_events_on_event_series_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false

@@ -11,6 +11,8 @@ User.create!(
   title: "K-12 Project Developer",
   email: "admin@example.com",
   password: "12345678",
-  role: "admin"
+  role: "admin",
+  website: "www.k12-project.com",
+  share_class_count: [*5..30].sample
   )
 puts "Default admin created!"
