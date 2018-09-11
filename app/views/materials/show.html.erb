@@ -1,3 +1,5 @@
-教材資料夾內容
-<%= @material.topic.name %>
-<%= @material.title %>
+<%= render partial:"shared/sidebar" %>
+<div class="container">
+  <h4>科目: <%= @material.topic.name %></h4>
+  <h4>資料夾名稱: <%= @material.title %></h4>
+</div>

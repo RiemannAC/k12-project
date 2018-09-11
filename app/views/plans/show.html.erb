@@ -1,3 +1,5 @@
-教案資料夾內容
-<%= @plan.topic.name %>
-<%= @plan.title %>
+<%= render partial:"shared/sidebar" %>
+<div class="container">
+  <h4>科目: <%= @plan.topic.name %></h4>
+  <h4>資料夾名稱: <%= @plan.title %></h4>
+</div>
