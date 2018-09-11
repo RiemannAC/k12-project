@@ -8,7 +8,7 @@
         <h4>科目：數學</h4>
         <h4>時間：Mon 9:20-11:10, Thu 第 3-4 節課</h4>
     <!-- 測試先做 4 個 div, 可以用 each do 的時候就能只要一個 div -->
-        <div class="weekly_prepare row">
+        <div class="weekly-prepare row">
           <div class="col-md-11 prepare-detail">
             <h5>Week 1: <i>teaching topic</i></h5>
             <ol>
@@ -17,6 +17,12 @@
               <li>to do 03</li>
               <li>to do 04</li>
               <li>to do 05</li>
+              <li>to do 02</li>
+              <li>to do 03</li>
+              <li>to do 04</li>
+              <li>to do 02</li>
+              <li>to do 03</li>
+              <li>to do 04</li>
             </ol>
           </div>
           <div class="col-md-1 prepare-storage">
@@ -114,7 +120,7 @@
           <h4>
             計劃教學單元
             <%= link_to do %> <!-- 想要讓表格直接變表單，不要跳 modal -->
-              <%= fa_icon "plus-square", style: 'color:blue', alt: 'add'%>
+              <%= fa_icon "edit", style: 'color:blue', alt: 'add'%>
             <% end %>    
             </h4>
           <table class="table">

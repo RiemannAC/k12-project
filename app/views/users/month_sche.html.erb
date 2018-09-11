@@ -1,0 +1,77 @@
+<div class="container">
+  <div class="container_fluid">
+    <div class="row">
+
+      <!--某 user 本週教學計畫 -->
+      <div class="col-md-9">
+        <h2>106 學年度／上學期 1 年 1 班 教學進度表</h2>  
+        <h4>科目：數學</h4>
+        <h4>時間：Mon 9:20-11:10, Thu 第 3-4 節課</h4>
+    <!-- 測試先做 4 個 div, 可以用 each do 的時候就能只要一個 div -->
+        <div class="row">
+          <!--應該要有個方法可以 x6 地輸出一學期的表單 -->
+          <div class="col-md-5 sem-prepare ">
+            <h3>September <%= fa_icon "edit", style: 'color:blue', alt: 'add'%> </h3>
+            <table class="table">
+            <tr>
+              <th>Week 1</th>
+              <td>三角函數</td>
+            </tr>
+            <tr>
+              <th>Week 2</th>
+              <td>四元運算</td>
+            </tr>
+            <tr>
+              <th>Week 3</th>
+              <td>log</td>
+            </tr>
+            <tr>
+              <th>Week 4</th>
+              <td>圓周率</td>
+            </tr>
+          </table>
+          </div>
+
+          <div class="col-md-5 sem-prepare ">
+            <h3>February <%= fa_icon "edit", style: 'color:blue', alt: 'add'%> </h3>
+            <table class="table">
+            <tr>
+              <th>Week 1</th>
+              <td>三角函數</td>
+            </tr>
+            <tr>
+              <th>Week 2</th>
+              <td>四元運算</td>
+            </tr>
+            <tr>
+              <th>Week 3</th>
+              <td>log</td>
+            </tr>
+            <tr>
+              <th>Week 4</th>
+              <td>圓周率</td>
+            </tr>
+          </table>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- mini 計劃教學單元設定／月維度、學期維度轉換 -->
+      <div class="col-md-3 month-sche">
+        <div class="">
+          <%= link_to 'month', root_path, class: 'btn btn-outline-secondary' %>  
+          <%= link_to 'sem', root_path, class: 'btn btn-secondary' %>
+        </div>
+        <h5> 106 學年度／上學期</h5>
+
+        <!-- 請置底 -->
+        <div class="duplicate-trash">
+          <%= fa_icon 'copy 4x' %>
+          <%= fa_icon 'trash 4x' %>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
