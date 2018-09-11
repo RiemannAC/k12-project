@@ -4,7 +4,7 @@ class MaterialsController < ApplicationController
   end
 
   def new
-    @material = Material.new
+    @material = Material.new 
   end
 
   def create
@@ -23,6 +23,7 @@ class MaterialsController < ApplicationController
     @plans = Plan.order(created_at: :desc)
     @materials =Material.order(created_at: :desc)
     @topics = Topic.order(created_at: :desc)
+    @teachingfile = Teachingfile.new 
   end
 
   private

@@ -2,4 +2,33 @@
 <div class="container">
   <h4>科目: <%= @material.topic.name %></h4>
   <h4>資料夾名稱: <%= @material.title %></h4>
+
+
+
+  <% @material.teachingfiles.each do |teachingfile| %>
+    <%= teachingfile.filename %>
+    <%= link_to "download file", teachingfile.attachment_url %>
+  <% end %>
+
+
+
+
+
+
+  
+  
+  <%= form_for [@material,@teachingfile], html:{multipart:true} do |f| %>
+    <div class="form-group">
+      <%= f.label :filename %>
+      <%= f.text_field :filename, class: 'form-control', placeholder: "輸入檔案名稱" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :attachment %>
+      <%= f.file_field :attachment %>
+    </div>
+
+    <%= f.submit "Upload", class:"btn btn-primary" %>
+
+  <% end %>
 </div>

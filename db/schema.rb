@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180911132743) do
+ActiveRecord::Schema.define(version: 20180911140916) do
 
   create_table "event_series", force: :cascade do |t|
     t.string "event_type", default: "subject"
@@ -67,6 +67,8 @@ ActiveRecord::Schema.define(version: 20180911132743) do
     t.string "attachment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "material_id"
+    t.integer "plan_id"
   end
 
   create_table "topics", force: :cascade do |t|
