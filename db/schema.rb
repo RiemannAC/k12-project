@@ -10,18 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180910172740) do
+ActiveRecord::Schema.define(version: 20180911125204) do
 
   create_table "materials", force: :cascade do |t|
     t.string "title", limit: 15
     t.integer "topic_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "filename"
+    t.string "attachment"
   end
 
   create_table "plans", force: :cascade do |t|
     t.string "title", limit: 15
     t.integer "topic_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "teachingfiles", force: :cascade do |t|
+    t.string "filename"
+    t.string "attachment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
