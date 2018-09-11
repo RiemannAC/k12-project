@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :users do
     member do
       get :week_sche
+      get :month_sche
     end
   end
 
