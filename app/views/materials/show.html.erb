@@ -1,7 +1,7 @@
 <%= render partial:"shared/sidebar" %> 
 <div class="container">
-  <h4>科目: <%= @material.topic.name %></h4>
-  <h4>資料夾名稱: <%= @material.title %></h4>
+  <h4>教材科目: <%= @material.topic.name %></h4>
+  <h4>資料夾名稱: <%= @material.title %></h4> 
  
   <table>
     <% @material.teachingfiles.each do |teachingfile| %>

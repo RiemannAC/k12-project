@@ -4,13 +4,13 @@ Rails.application.routes.draw do
   root "calendar#show"
   resource :calendar, only: [:show], controller: :calendar
 
-  resources :plans
+  resources :plans do
+    resources :teachingfiles
+  end
 
   resources :materials do
     resources :teachingfiles
   end
-
-  
 
   resources :topics
 
