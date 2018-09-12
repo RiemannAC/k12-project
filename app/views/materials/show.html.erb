@@ -1,15 +1,20 @@
-<%= render partial:"shared/sidebar" %>
+<%= render partial:"shared/sidebar" %> 
 <div class="container">
   <h4>科目: <%= @material.topic.name %></h4>
   <h4>資料夾名稱: <%= @material.title %></h4>
+ 
+  <table>
+    <% @material.teachingfiles.each do |teachingfile| %>
+    <tr>
+      <td style="padding-right:20px;"><%= teachingfile.filename %></td>
+      <td style="padding-right:20px;"><%= link_to "download file", teachingfile.attachment_url %></td>
+      <td style="padding-right:20px;"><%= link_to 'Edit',edit_material_teachingfile_path(@material,teachingfile) %></td>
+      <td style="padding-right:20px;"> <%= link_to 'Delete', material_teachingfile_path(@material,teachingfile), method: :delete, data: { confirm: "Are you sure to delete ?"} %></td>
+    </tr>
+    <% end %>
+  </table>
 
-  <% @material.teachingfiles.each do |teachingfile| %>
-    <%= teachingfile.filename %>
-    <%= link_to "download file", teachingfile.attachment_url %>
-    <%= link_to 'Delete', material_teachingfile_path(@material,teachingfile), method: :delete, data: { confirm: "Are you sure to delete ?"} %>
-  <% end %>
-
-
+  
   <%= form_for [@material,@teachingfile], html:{multipart:true} do |f| %>
     <div class="form-group">
       <%= f.label :filename %>
