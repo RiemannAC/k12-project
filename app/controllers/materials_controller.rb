@@ -23,7 +23,12 @@ class MaterialsController < ApplicationController
     @plans = Plan.order(created_at: :desc)
     @materials =Material.order(created_at: :desc)
     @topics = Topic.order(created_at: :desc)
-    @teachingfile = Teachingfile.new 
+    
+    if params[:material_id]
+      @teachingfile = @material.teachingfiles.find(params[:id])
+    else
+      @teachingfile = Teachingfile.new
+    end
   end
 
   private

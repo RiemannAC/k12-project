@@ -1,0 +1,14 @@
+<%= form_for [@material,@teachingfile], url: material_teachingfile_path ,html:{multipart:true} do |f| %>
+  <div class="form-group">
+    <%= f.label :filename %>
+    <%= f.text_field :filename, class: 'form-control', placeholder: "輸入檔案名稱" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :attachment %>
+    <%= f.file_field :attachment %>
+  </div>
+
+  <%= f.submit  class:"btn btn-primary" %>
+
+<% end %>
