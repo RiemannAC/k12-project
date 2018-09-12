@@ -102,7 +102,6 @@ ul ul a {
 }
 </style>
 
-<!--為了包住 yield，所以class wrapper底下不加上</div>-->
 <div class="wrapper">
   <nav id="sidebar">
     <!--user profile-->
@@ -128,39 +127,57 @@ ul ul a {
           </li>
         </ul>
       </li>
+
       <!--teaching materials-->       
-      <li>
+      <li> 
+        <!--mainmenu--> 
         <a href="#materialSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">我的教材</a>
+        <!--submenu_list-->
         <ul class="collapse list-unstyled" id="materialSubmenu">
           <li>
-            <a href="#">教材一</a>
-          </li>
-
-          <li>
-            <a href="#">教材二</a>
-          </li>
-          
-          <li>
-            <a href="#">教材三</a>
+            <% @topics.each do |topic| %>             
+              <a href="#materialTopicmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><%= topic.name if topic.materials.present? %></a>
+              <!--teaching-material topic_list-->
+              <ul class="collapse list-unstyled" id="materialTopicmenu">
+                <% topic.materials.each do |material| %>
+                  <li>
+                    <%= link_to material.title, material_path(material) %> 
+                  </li>
+                <% end %>
+              </ul>
+            <% end %>
           </li>
         </ul>
+        <!--adding new teaching-material-->
+        <%= link_to new_material_path do %>
+          <i class="fa fa-plus-circle" style="font-size:20px;color:blue">教材</i>
+        <% end %>
       </li>
+
       <!--teaching-plans-->
       <li>
+        <!--mainmenu--> 
         <a href="#planSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">我的教案</a>
+        <!--submenu_list-->
         <ul class="collapse list-unstyled" id="planSubmenu">
           <li>
-            <a href="#">教案一</a>
-          </li>
-
-          <li>
-            <a href="#">教案二</a>
-          </li>
-          
-          <li>
-            <a href="#">教案三</a>
+            <% @topics.each do |topic| %>             
+              <a href="#planTopicmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><%= topic.name if topic.plans.present? %></a>
+              <!--teaching-plan topic_list-->
+              <ul class="collapse list-unstyled" id="planTopicmenu">
+                <% topic.plans.each do |plan| %>
+                  <li>
+                    <%= link_to plan.title, plan_path(plan) %> 
+                  </li>
+                <% end %>
+              </ul>
+            <% end %>
           </li>
         </ul>
+        <!--adding new teaching-material-->
+        <%= link_to new_plan_path do %>
+          <i class="fa fa-plus-circle" style="font-size:20px;color:blue">教案</i>
+        <% end %>
       </li>
       <!--my report of past teaching schedules-->
       <li>

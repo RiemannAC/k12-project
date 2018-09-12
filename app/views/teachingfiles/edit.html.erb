@@ -1,0 +1,36 @@
+<% if params[:plan_id] %>
+  <%= form_for [@plan,@teachingfile], url: plan_teachingfile_path ,html:{multipart:true} do |f| %>
+    <div class="form-group">
+      <%= f.label :filename %>
+      <%= f.text_field :filename, class: 'form-control', placeholder: "輸入檔案名稱" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :attachment %>
+      <%= f.file_field :attachment %>
+    </div>
+
+    <%= f.submit  class:"btn btn-primary" %>
+    <%= link_to 'Back',plan_path(@teachingfile.plan),class:"btn btn-success"  %>
+  <% end %>
+
+<% elsif params[:material_id] %>
+  <%= form_for [@material,@teachingfile], url: material_teachingfile_path ,html:{multipart:true} do |f| %>
+    <div class="form-group">
+      <%= f.label :filename %>
+      <%= f.text_field :filename, class: 'form-control', placeholder: "輸入檔案名稱" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :attachment %>
+      <%= f.file_field :attachment %>
+    </div>
+
+    <%= f.submit  class:"btn btn-primary" %>
+    <%= link_to 'Back',material_path(@teachingfile.material),class:"btn btn-success"  %>
+  <% end %>
+
+<% end %>
+
+
+

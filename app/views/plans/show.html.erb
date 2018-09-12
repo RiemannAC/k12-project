@@ -1,0 +1,33 @@
+<%= render partial:"shared/sidebar" %>
+<div class="container">
+  <h4>教案科目: <%= @plan.topic.name %></h4>
+  <h4>資料夾名稱: <%= @plan.title %></h4>
+
+  <table>
+    <% @plan.teachingfiles.each do |teachingfile| %>
+    <tr>
+      <td style="padding-right:20px;"><%= teachingfile.filename %></td>
+      <td style="padding-right:20px;"><%= link_to "download file", teachingfile.attachment_url %></td>
+      <td style="padding-right:20px;"><%= link_to 'Edit',edit_plan_teachingfile_path(@plan,teachingfile) %></td>
+      <td style="padding-right:20px;"> <%= link_to 'Delete', plan_teachingfile_path(@plan,teachingfile), method: :delete, data: { confirm: "Are you sure to delete ?"} %></td>
+    </tr>
+    <% end %>
+  </table>
+
+  
+  <%= form_for [@plan,@teachingfile], html:{multipart:true} do |f| %>
+    <div class="form-group">
+      <%= f.label :filename %>
+      <%= f.text_field :filename, class: 'form-control', placeholder: "輸入檔案名稱" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :attachment %>
+      <%= f.file_field :attachment %>
+    </div>
+
+    <%= f.submit "Upload", class:"btn btn-primary" %>
+
+  <% end %>
+
+</div>

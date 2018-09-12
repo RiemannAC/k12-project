@@ -5,6 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+# User
+User.destroy_all
 User.create!(
   name: "admin",
   intro: "Hi, I'm Adimn!",
@@ -16,3 +18,26 @@ User.create!(
   share_class_count: [*5..30].sample
   )
 puts "Default admin created!"
+####################################
+# Topic
+Topic.destroy_all
+topic_list = [
+  { name: "國文" },
+  { name: "英文" },
+  { name: "數學" },
+  { name: "社會" },
+  { name: "自然" },
+  { name: "生活科技" },
+  { name: "藝術" },
+  { name: "音樂" },
+  { name: "體育" },
+  { name: "班級經營" },
+  { name: "家政" },
+  { name: "健康教育" },
+  { name: "其他" }
+]
+
+topic_list.each do |topic|
+  Topic.create!( name: topic[:name] )
+end
+puts "Topic created!"
