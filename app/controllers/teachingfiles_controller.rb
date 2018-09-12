@@ -50,14 +50,14 @@ class TeachingfilesController < ApplicationController
       redirect_back fallback_location: root_path
     else
       flash[:alert] = "檔案刪除失敗"
-      redirect_to :back
+      redirect_back fallback_location: root_path
     end
   end
 
   private
 
   def teachingfile_params
-    params.require(:teachingfile).permit(:filename,:attachment,:material_id)
+    params.require(:teachingfile).permit(:filename,:attachment,:material_id,:plan_id)
   end
 end
 

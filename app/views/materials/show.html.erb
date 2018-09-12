@@ -6,7 +6,7 @@
   <% @material.teachingfiles.each do |teachingfile| %>
     <%= teachingfile.filename %>
     <%= link_to "download file", teachingfile.attachment_url %>
-    <%= link_to 'Delete', material_teachingfile_path(teachingfile), method: :delete, data: { confirm: "Are you sure to delete ?"} %>
+    <%= link_to 'Delete', material_teachingfile_path(@material,teachingfile), method: :delete, data: { confirm: "Are you sure to delete ?"} %>
   <% end %>
 
 
