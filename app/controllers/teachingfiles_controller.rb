@@ -54,7 +54,11 @@ class TeachingfilesController < ApplicationController
 
     if @teachingfile.update(teachingfile_params)
       flash[:notice] = "teachingfile #{@teachingfile.filename} was successfully updated"
-      redirect_to material_path(@teachingfile.material)
+      if params[:material_id]
+        redirect_to material_path(@teachingfile.material)
+      elsif params[:plan_id]
+        redirect_to plan_path(@teachingfile.plan)
+      end
     else
       @teachingfile = Teachingfile.all
       flash[:alert] = "filename cannot be blank"
