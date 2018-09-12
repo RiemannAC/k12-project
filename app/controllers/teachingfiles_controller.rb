@@ -25,22 +25,29 @@ class TeachingfilesController < ApplicationController
       # redirect to the topic after save
       elsif @parent.is_a?(Plan)
         flash[:notice] = '成功新增教案的檔案'
-        edirect_to plan_path(@teachingfile.plan)
+        redirect_to plan_path(@teachingfile.plan)
+      
       end
     end
   end
 
   def destroy
-    teachingfile = Teachingfile.find(params[:id])
+    if params[:material_id]
+      # if it is a material id, set instance of post id as @parent
+      @parent = Material.find(params[:material_id])
+    elsif params[:plan_id]
+      # if it is a plan id, set instance of topic id as @parent
+      @parent = Plan.find(params[:plan_id])
+    end
     # @material = Material.find(params[:material_id])
     # material_teachingfiles = @material.teachingfiles.find(params[:id])
 
     # @plan = Plan.find(params[:plan_id])
     # plan_teachingfiles = @plan.teachingfiles.find(params[:id])
-
-    if teachingfile.destroy
+    @teachingfile = @parent.teachingfiles.find(params[:id])
+    if @teachingfile.destroy
       flash[:notice] = "成功刪除檔案"
-      redirect_to :back
+      redirect_back fallback_location: root_path
     else
       flash[:alert] = "檔案刪除失敗"
       redirect_to :back
