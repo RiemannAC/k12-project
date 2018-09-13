@@ -20,8 +20,6 @@ class MaterialsController < ApplicationController
 
   def show
     @material = Material.find(params[:id])
-    @plans = Plan.order(created_at: :desc)
-    @materials =Material.order(created_at: :desc)
     @topics = Topic.order(created_at: :desc)
     
     if params[:material_id]
