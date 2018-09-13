@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :meetings
   # Singular Resoruce
   root "calendar#show" # 原 lib/calendar.rb 的 calendar struct 與simple_calendar 模組同名，現已更名為，calendar_hand.rb
   resource :calendar, only: [:show], controller: :calendar
