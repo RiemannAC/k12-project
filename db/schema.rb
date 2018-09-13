@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180911140916) do
+ActiveRecord::Schema.define(version: 20180913045430) do
+
+  create_table "classrooms", force: :cascade do |t|
+    t.string "name", limit: 8
+    t.integer "topic_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "event_series", force: :cascade do |t|
     t.string "event_type", default: "subject"
@@ -53,6 +60,8 @@ ActiveRecord::Schema.define(version: 20180911140916) do
     t.integer "topic_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "filename"
+    t.string "attachment"
   end
 
   create_table "plans", force: :cascade do |t|
