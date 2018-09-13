@@ -1,10 +1,20 @@
 <h1>Listing events</h1>
 
 <div id="events_calendar">
+
+  <!-- Add custom partial，可修改 partial 自訂表格型式 -->
+  <%#= calendar partial: 'simple_calendar/calendar' do |date| %> <!-- 這個會 call calendar_helper 待修名稱 -->
+  <%#= month_calendar partial: 'simple_calendar/calendar' do |date| %>
+  <%= week_calendar partial: 'simple_calendar/calendar' do |date| %>
+    <%= date.day %>
+  <% end %>
+
+  <!-- default week_calendar -->
   <%= week_calendar events: @events do |date| %><!-- , events -->
     <%= date.day %>
   <% end %>
 
+  <!-- default month_calendar -->
   <%= month_calendar events: @events do |date, events| %>
     <%= date.day %>
 
@@ -14,7 +24,7 @@
       </div>
     <% end %>
   <% end %>
-  <!-- week_calendar -->
+  <!-- render default week_calendar -->
   <%# render partial: "calendar", locals: {events: @events} %>
   <!-- month_calendar -->
   <%# render partial: "calendar2", locals: {events: @events} %>
