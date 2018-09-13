@@ -1,0 +1,11 @@
+<%= month_calendar events: events do |date, events| %>
+  <%= date.day %>
+
+  <% events.each do |event| %>
+    <div>
+      <%= link_to event, class: "btn btn-default" do %>
+        <%= event.title %>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

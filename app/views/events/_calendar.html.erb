@@ -1,0 +1,17 @@
+<%= week_calendar events: events do |date, events| %>
+  <%# date.day %>
+  <% 0.upto(23).each do |hour| %>
+    <div>
+      <%= Time.parse("#{hour}:00").strftime("%l %P") %>
+    </div>
+  <% end %>
+
+  <%# link_to events_path(event) do %><!-- 事件連結不能用左邊編輯，不解。借用 _edit.html.erb 的路由 -->
+  <% events.each do |event| %>
+    <div>
+      <%= link_to event, class: "btn btn-default" do %>
+        <%= event.title %>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
