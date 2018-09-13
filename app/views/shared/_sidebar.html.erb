@@ -115,18 +115,20 @@ ul ul a {
         <a href="#classSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">我的科目</a>
         <ul class="collapse list-unstyled" id="classSubmenu">
           <li>
-            <a href="#">班級一</a>
-          </li>
-
-          <li>
-            <a href="#">班級二</a>
-          </li>
-          
-          <li>
-            <a href="#">班級三</a>
+            <% @topics.each do |topic| %>             
+              <a href="#classTopicmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><%= topic.name if topic.classrooms.present? %></a>
+              <!--teaching-material topic_list-->
+              <ul class="collapse list-unstyled" id="classTopicmenu">
+                <% topic.classrooms.each do |classroom| %>
+                  <li>
+                    <%= link_to classroom.name, classroom_path(classroom) %> 
+                  </li>
+                <% end %>
+              </ul>
+            <% end %>
           </li>
         </ul>
-         
+
         <%= link_to new_classroom_path do%>
           <i class="fa fa-plus-circle" style="font-size:20px;color:blue">班級</i>
         <% end %> 

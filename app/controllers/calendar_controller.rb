@@ -5,6 +5,7 @@ class CalendarController < ApplicationController
     @plans = Plan.order(created_at: :desc)
     @materials =Material.order(created_at: :desc)
     @topics = Topic.order(created_at: :desc)
+    @classrooms = Classroom.order(created_at: :desc)
   end
 
 end

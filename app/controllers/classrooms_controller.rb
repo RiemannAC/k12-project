@@ -1,5 +1,23 @@
 class ClassroomsController < ApplicationController
   def new
-    
+    @classroom = Classroom.new
+  end
+
+  def create
+    @classroom = Classroom.new(classroom_params)
+    if @classroom.save
+      flash[:notice] = "classroom was successfully created"
+      redirect_to root_path
+    else
+      flash.now[:alert] = "classroom was failed to create"
+      render :new
+    end
+  end
+
+  private
+
+  def classroom_params
+    params.require(:classroom).permit(:name,:topic_id)
   end
 end
+ 
