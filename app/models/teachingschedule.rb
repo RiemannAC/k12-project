@@ -1,0 +1,2 @@
+class Teachingschedule < ApplicationRecord
+end
