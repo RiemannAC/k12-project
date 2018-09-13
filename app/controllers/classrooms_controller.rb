@@ -1,4 +1,9 @@
 class ClassroomsController < ApplicationController
+  def show
+    @classroom = Classroom.find(params[:id])
+    @date = params[:date] ? Date.parse(params[:date]) : Date.today
+  end
+
   def new
     @classroom = Classroom.new
   end

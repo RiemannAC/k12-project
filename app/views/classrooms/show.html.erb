@@ -1,0 +1,154 @@
+
+<div class="container">
+  <div class="container_fluid">
+    <div class="row">
+
+      <!--某 user 本週教學計畫 -->
+      <div class="col-md-9">
+        <h2>106 學年度／上學期 1 年 1 班 教學進度表</h2>  
+        <h4>科目：數學</h4>
+        <h4>時間：Mon 9:20-11:10, Thu 第 3-4 節課</h4>
+    <!-- 測試先做 4 個 div, 可以用 each do 的時候就能只要一個 div -->
+        <div class="weekly-prepare row">
+          <div class="col-md-11 prepare-detail">
+            <h5>Week 1: <i>teaching topic</i></h5>
+            <ol>
+              <li><%= @classroom.name %></li>
+              <li>to do 02</li>
+              <li>to do 03</li>
+              <li>to do 04</li>
+              <li>to do 05</li>
+              <li>to do 02</li>
+              <li>to do 03</li>
+              <li>to do 04</li>
+              <li>to do 02</li>
+              <li>to do 03</li>
+              <li>to do 04</li>
+            </ol>
+          </div>
+          <div class="col-md-1 prepare-storage">
+
+            <!-- 上傳及下載資料的 modal -->
+            <div class="prepare-storage-icon">
+              <div data-toggle="modal" data-target="#exampleModal2">
+                <%= fa_icon "folder-open 2x", style: 'color:skyblue', alt: 'add file'%>
+              </div>
+              <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel2">反思／備註</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <h5>這裡要放已經上傳的檔案</h5>
+                      <%= fa_icon 'download' %>
+                      <%= link_to '點擊可下載' %>
+                      <br>
+                      <button class="button">上傳檔案</button>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- 加號按下去，希望旁邊直接出現一格可以打字的表單 --> 
+            <div class="prepare-storage-icon">
+              <%= fa_icon "plus-square 2x", style: 'color:blue', alt: 'add todo'%>
+            </div>
+            
+
+            <!-- 備註的 modal --> 
+            <div class="prepare-storage-icon">
+              <div data-toggle="modal" data-target="#exampleModal">
+                <%= fa_icon "sticky-note 2x", alt: 'note/memo'%>
+              </div>
+              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">反思／備註</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <h5>這裡要放表單哦</h5>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">cancel</button>
+                      <button type="button" class="btn btn-primary">save record</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+            <!--想要讓 bin 靠右下角 -->
+            <div class="prepare-storage-icon prepare-storage-bin">
+              <%= fa_icon "trash 2x", alt: 'trash'%>
+            </div>
+          </div>
+          
+          
+        </div>
+      </div>
+
+      <!-- mini 計劃教學單元設定／月維度、學期維度轉換 -->
+      <div class="col-md-3 text-center">
+        <div class="">
+          <%= link_to 'month', root_path, class: 'btn btn-secondary' %>  
+          <%= link_to 'sem', root_path, class: 'btn btn-outline-secondary' %>
+        </div>
+        <br>
+        <div style="font-size: 18px">
+          <%= link_to do %>
+            <%= fa_icon "chevron-circle-left" %>
+          <% end %>
+          <%= "#{@date.strftime("%B")}" %>    
+          <%= link_to do %>
+            <%= fa_icon "chevron-circle-right"%>
+          <% end %>
+        </div>
+        <br>
+        <div>
+          <h4>
+            計劃教學單元
+            <%= link_to do %> <!-- 想要讓表格直接變表單，不要跳 modal -->
+              <%= fa_icon "edit", style: 'color:blue', alt: 'add'%>
+            <% end %>    
+            </h4>
+          <table class="table">
+            <tr>
+              <th>Week 1</th>
+              <td>三角函數</td>
+            </tr>
+            <tr>
+              <th>Week 2</th>
+              <td>四元運算</td>
+            </tr>
+            <tr>
+              <th>Week 3</th>
+              <td>log</td>
+            </tr>
+            <tr>
+              <th>Week 4</th>
+              <td>圓周率</td>
+            </tr>
+          </table>
+        </div>
+        
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<%= link_to "新增教學進度表",new_classroom_teachingschedule_path(@classroom) %>
