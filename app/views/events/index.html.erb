@@ -1,0 +1,57 @@
+<h1>Listing events</h1>
+
+<div id="events_calendar">
+
+  <!-- Add custom partial，可修改 partial 自訂表格型式 -->
+  <%#= calendar partial: 'simple_calendar/calendar' do |date| %> <!-- 這個會 call calendar_helper 待修名稱 -->
+  <%#= month_calendar partial: 'simple_calendar/calendar' do |date| %>
+  <%= week_calendar partial: 'simple_calendar/calendar' do |date| %>
+    <%= date.day %>
+  <% end %>
+
+  <!-- default week_calendar -->
+  <%= week_calendar events: @events do |date| %><!-- , events -->
+    <%= date.day %>
+  <% end %>
+
+  <!-- default month_calendar -->
+  <%= month_calendar events: @events do |date, events| %>
+    <%= date.day %>
+
+    <% events.each do |event| %>
+      <div>
+        <%= event.name %>
+      </div>
+    <% end %>
+  <% end %>
+  <!-- render default week_calendar -->
+  <%# render partial: "calendar", locals: {events: @events} %>
+  <!-- month_calendar -->
+  <%# render partial: "calendar2", locals: {events: @events} %>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Start time</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @events.each do |event| %>
+      <tr>
+        <td><%= event.title %></td>
+        <td><%= event.starttime %></td>
+        <td><%= link_to 'Show', event %></td>
+        <td><%= link_to 'Edit', edit_event_path(event) %></td>
+        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Event', new_event_path %>

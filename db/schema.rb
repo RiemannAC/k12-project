@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180911140916) do
+ActiveRecord::Schema.define(version: 20180913183311) do
 
   create_table "event_series", force: :cascade do |t|
     t.string "event_type", default: "subject"
@@ -51,6 +51,14 @@ ActiveRecord::Schema.define(version: 20180911140916) do
   create_table "materials", force: :cascade do |t|
     t.string "title", limit: 15
     t.integer "topic_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "meetings", force: :cascade do |t|
+    t.string "name"
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

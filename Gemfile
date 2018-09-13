@@ -67,6 +67,7 @@ gem 'bootstrap4-kaminari-views'
 gem 'rest-client'               # 串 API
 gem 'ransack'                   # feature/search
 ## 主要功能
+gem "simple_calendar", "~> 2.0"
 gem 'fullcalendar-rails'        # schedule calendar
 gem 'momentjs-rails'            # fullcalendar 搭配需求用來處理日期格式化
 gem 'ice_cube'                  # schedule 循環事件
