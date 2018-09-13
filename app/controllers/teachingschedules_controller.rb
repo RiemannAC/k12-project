@@ -1,0 +1,2 @@
+class TeachingschedulesController < ApplicationController
+end
