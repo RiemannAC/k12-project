@@ -1,8 +1,12 @@
 class Event < ApplicationRecord
   attr_accessor :period, :frequency, :commit_button
-  
+  alias_attribute :start_time, :starttime
+  alias_attribute :end_time, :endtime
+  alias_attribute :name, :title
+
   validates_presence_of :title
-  validate :validate_timings
+  # validate :validate_timings
+  # 現有資料格式套用 simple_calendar，但 simple_calendar view 沒有 endtime 輸入，暫時不用驗證
   
   belongs_to :event_series
   
