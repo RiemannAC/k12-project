@@ -12,7 +12,11 @@ Rails.application.routes.draw do
     resources :teachingfiles
   end
 
-  resources :topics
+  resources :topics do
+    resources :classrooms do
+      resources :teachingschedules
+    end
+  end
 
   
 
