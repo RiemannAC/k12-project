@@ -12,8 +12,10 @@
   <table class="table table-striped">
     <thead>
       <tr>
+        <th>#</th><!-- 不用和 date_range 參在一起做 each do -->
+
         <% date_range.slice(0, 7).each do |day| %>
-          <th><%= t('date.abbr_day_names')[day.wday] %></th>
+          <th><%= t('date.abbr_day_names')[day.wday] %> <%= "#{day.month}" "/" "#{day.day}" %></th>
         <% end %>
       </tr>
     </thead>
@@ -21,6 +23,13 @@
     <tbody>
       <% date_range.each_slice(7) do |week| %>
         <tr>
+          <td class="time_td">
+            <% 0.upto(18).each do |hour| %>
+              <div>
+                <%= Time.parse("#{hour}:00").strftime("%l %P") %>
+              </div>
+            <% end %>
+          </td>
           <% week.each do |day| %>
             <%= content_tag :td, class: calendar.td_classes_for(day) do %>
               <% if defined?(Haml) && respond_to?(:block_is_haml?) && block_is_haml?(block) %>
