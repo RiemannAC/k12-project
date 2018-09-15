@@ -46,7 +46,7 @@ class TeachingschedulesController < ApplicationController
     respond_to do |format|
       format.html{redirect_to classroom_url(@teachingschedule.classroom),notice:"成功刪除一個教學計劃" }
       format.json{head :no_content}  
-      format.js
+      
     end
   end
 

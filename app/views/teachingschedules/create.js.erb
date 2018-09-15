@@ -2,6 +2,7 @@ $('#mynewpost').modal('hide');
 $('.post_theme').val('');
 $('.post_feedback').val('');
 
-$('#container_posts').prepend('<%= j render @teachingschedule  %>');
+$('#container_posts').append('<%= j render @teachingschedule  %>');
 $('#post_<%= @teachingschedule.id %>').hide().fadeIn(3000);
 
+ 

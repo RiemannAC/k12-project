@@ -6,21 +6,21 @@
   <table class="table"> 
               
       <tr>
-        <th><%= @teachingschedule.theme %></th>
-        <th><%= @teachingschedule.feedback %></th>
+        <th><%= teachingschedule.theme %></th>
+        <th><%= teachingschedule.feedback %></th>
         <th>
           <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myupdatepost_<%= @teachingschedule.id  %>">edit</button>
-          <%#= link_to "destroy",  classroom_teachingschedule_path(@classroom,@teachingschedule) ,method: :delete, data: { confirm: "Are you sure?"},class:"btn brn-danger",remote:true %>
+          <%= link_to "destroy",  classroom_teachingschedule_path(@classroom,teachingschedule) ,method: :delete, data: { confirm: "Are you sure?"},class:"btn brn-danger",remote:true %>
         </th>
       </tr>
     
-  </table> 
+  </table>  
 </div>
 
 
 
 <!--modal - update posts-->
-<%= form_for [@classroom,@teachingschedule] ,method: :put ,remote: true do |f| %>
+<%= form_for [@classroom,teachingschedule] ,method: :put ,remote: true do |f| %>
   <div class="modal fade" id="myupdatepost_<%= @teachingschedule.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
