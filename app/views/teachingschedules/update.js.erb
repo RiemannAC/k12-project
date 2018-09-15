@@ -1,0 +1,7 @@
+$("#myupdatepost_<%= @teachingschedule.id %>").modal('hide');
+
+$("#post_<%= @teachingschedule.id %> ").fadeOut(500,function(){
+  $(this).remove();
+  $("#container_posts").prepend('<%= j render @teachingschedule  %>');
+
+});

@@ -15,7 +15,8 @@
             <div class="col-md-11 prepare-detail">
               <h5>
                 <%= teachingschedule.classroom.name %> 
-                <%= teachingschedule.theme %> 
+                <%= teachingschedule.theme %>  <br>
+                <th><%= teachingschedule.feedback %></th> 
               <h5>
 
             </div>
@@ -93,11 +94,26 @@
           <% end %>
 
           
+          <table class="table"> 
+            <% @teachingschedules.each do |teachingschedule|%>    
+            <tr>
+              <th><%= teachingschedule.theme %></th>
+
+              <th>
+                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myupdatepost_<%= @teachingschedule.id  %>">edit</button>
+
+                <%= link_to "destroy",  classroom_teachingschedule_path(@classroom,teachingschedule) ,method: :delete, data: { confirm: "Are you sure?"},class:"btn brn-danger" %>
+              </th>
+            </tr>
+            <% end %>   
+          </table> 
 
   
-          <div class="row" id="container_posts">
-            <%= render @teachingschedule %>
+          <div id="container_posts">
+            <%= render partial:'teachingschedules/teachingschedule'%>
           </div>
+
+
           
           
 

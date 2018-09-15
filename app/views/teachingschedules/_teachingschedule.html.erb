@@ -1,24 +1,27 @@
-<table class="table">
-    <% @classroom.teachingschedules.each do |teachingschedule|%>
+
+
+
+<div id="post_<%= @teachingschedule.id %>">
+
+  <table class="table"> 
+              
+      <tr>
+        <th><%= @teachingschedule.theme %></th>
+        <th><%= @teachingschedule.feedback %></th>
+        <th>
+          <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myupdatepost_<%= @teachingschedule.id  %>">edit</button>
+          <%#= link_to "destroy",  classroom_teachingschedule_path(@classroom,@teachingschedule) ,method: :delete, data: { confirm: "Are you sure?"},class:"btn brn-danger",remote:true %>
+        </th>
+      </tr>
     
-    <div id="post_<%= @teachingschedule.id %>">
+  </table> 
+</div>
 
-    <tr>
-      <th><%= teachingschedule.theme %></th>
-      <th>
-        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myupdatepost_<%= [@classroom ,@teachingschedule] %>">edit</button>
-        <%= link_to "destroy",  classroom_teachingschedule_path(@classroom,teachingschedule) ,method: :delete, data: { confirm: "Are you sure?"},class:"btn brn-danger" %>
-      </th>
-    </tr>
-  </div>
 
-  <% end %> 
-  
-</table> 
 
 <!--modal - update posts-->
-<%= form_for [@classroom,@teachingschedule] ,method: :put do |f| %>
-  <div class="modal fade" id="myupdatepost_<%= [@classroom ,@teachingschedule] %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<%= form_for [@classroom,@teachingschedule] ,method: :put ,remote: true do |f| %>
+  <div class="modal fade" id="myupdatepost_<%= @teachingschedule.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -44,7 +47,7 @@
 
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal" id="mypostclose">close</button>
-            <%= submit_tag "update",class:"btn btn-primary" %>
+            <%= submit_tag "Update",class:"btn btn-primary" %>
           </div>
         </div>
       </div>
