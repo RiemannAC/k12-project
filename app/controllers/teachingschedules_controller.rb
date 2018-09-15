@@ -1,10 +1,6 @@
 class TeachingschedulesController < ApplicationController
 
-  def show
-    @classroom= Classroom.find(params[:classroom_id])
-    @teachingschedule = @classroom.teachingschedules.find(params[:id])
-
-  end
+  
 
   def create
     @classroom= Classroom.find(params[:classroom_id])
@@ -12,8 +8,8 @@ class TeachingschedulesController < ApplicationController
 
     respond_to do |format|
       if @teachingschedule.save
-        #format.html{redirect_to classroom_url(@teachingschedule.classroom),notice:"成功新增一個教學計劃" }
-        #format.json{render :show, status: :created, location: @teachingschedule}
+        format.html{redirect_to classroom_url(@teachingschedule.classroom),notice:"成功新增一個教學計劃" }
+        format.json{render :show, status: :created, location: @teachingschedule}
         format.js
       else
         format.html{render :new}
