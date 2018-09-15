@@ -1,5 +1,5 @@
 <div class="simple-calendar">
-  <div class="calendar-heading">
+  <div class="calendar-heading text-center">
     <%= link_to t('simple_calendar.previous', default: 'Previous'), calendar.url_for_previous_view %>
     <% if calendar.number_of_weeks == 1 %>
       <span class="calendar-title">Week <%= calendar.week_number %></span>
@@ -12,7 +12,7 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>#</th><!-- 不用和 date_range 參在一起做 each do -->
+        <th>#</th><%# "不用和 date_range 參在一起做 each do" %>
 
         <% date_range.slice(0, 7).each do |day| %>
           <th><%= t('date.abbr_day_names')[day.wday] %> <%= "#{day.month}" "/" "#{day.day}" %></th>
@@ -24,8 +24,8 @@
       <% date_range.each_slice(7) do |week| %>
         <tr>
           <td class="time_td">
-            <% 0.upto(18).each do |hour| %>
-              <div>
+            <% 8.upto(18).each do |hour| %>
+              <div class="day_time">
                 <%= Time.parse("#{hour}:00").strftime("%l %P") %>
               </div>
             <% end %>

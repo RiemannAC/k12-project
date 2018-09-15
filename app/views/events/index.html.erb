@@ -1,70 +1,55 @@
-<h1>Listing events</h1>
+<div class="row">
+  <%# 加了跑版待修，layout 不會自動render why? %>
+  <!-- <div class="col-3" style="padding: 0px;"> -->
+    <%#= render partial: "shared/sidebar" %>
+  <!-- </div> -->
+  <div id="events_calendar" class="col-6" style="padding: 0px;">
+    <%= link_to 'Listing events', list_events_path %>
 
-<div id="events_calendar">
-
-  <!-- 9/14 自訂 table_header -->
-  <%#= SimpleCalendar::EventCalendar.new(self, {}).render do |date| %>
-    <%#= date.day %>
-  <%# end %>
-
-  <!-- Add custom partial，可修改 partial 自訂表格型式 -->
-  <%#= calendar partial: 'simple_calendar/calendar' do |date| %> <!-- 這個會 call calendar_helper 待修名稱 -->
-
-  <%#= month_calendar partial: 'simple_calendar/calendar' do |date| %>
-  <!-- 以週曆型式呈現於 view --> <!-- 套用 calendar partial 也可指定自定 partial -->
-  <%= week_calendar partial: 'simple_calendar/calendar' do |date| %>
-    <%= date.day %>
-  <% end %>
-
-  <!-- default week_calendar -->
-  <!-- 但以週曆型式表現 --> <!-- 不指定則套用預設週曆 -->
-  <%= week_calendar events: @events do |date, events| %><!-- , events -->
-    <%#= date.day %>
-    <% events.each do |event| %>
-      <div>
-        <%= event.name %>
+      <div class="row">
+        <div class="col-8 m-auto">
+          <h2 class="text-center">一週課表</h2>
+          <%= week_calendar events: @events do |date, events| %>
+            <% 8.upto(18).each do |hour| %>
+              <div id="hour-<%= hour %>" class="day_time">
+                <% events.each do |event| %>
+                  <%- if event.starttime.hour.between?(hour, hour + 0.9) %>
+                    <%= link_to event_path(event) do %>
+                      <%= event.name %>
+                    <% end %>
+                  <% end -%>
+                <% end %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
       </div>
-    <% end %>
-  <% end %>
-
-  <!-- default month_calendar -->
-  <%= month_calendar events: @events do |date, events| %>
-    <%= date.day %>
-
-    <% events.each do |event| %>
-      <div>
-        <%= event.name %>
+    <div class="pull-right">
+      <%= link_to new_event_path do %>
+        <i class="fa fa-plus-circle" style="font-size: 80px; color: #A3A3A3; margin-right: 100px;"></i>
+      <% end %>
+    </div>
+  </div>
+  <div id="events_calendar_2" class="col-3 ml-auto" style="padding: 0px;">
+    <%# 右上月曆 %>
+    <div class="row">
+      <div class="col-4">
+        <%= month_calendar events: @events do |date, events| %>
+          <%= date.day %>
+        <% end %>
       </div>
-    <% end %>
-  <% end %>
-  <!-- render default week_calendar -->
-  <%# render partial: "calendar", locals: {events: @events} %>
-  <!-- month_calendar -->
-  <%# render partial: "calendar2", locals: {events: @events} %>
+    </div>
+    <%# ToDo List %>
+    <div class="row">
+      <div class="col-4">
+        <h2>今日待辦事項</h2>
+        <%= week_calendar partial: 'simple_calendar/to_do_list' do |date| %>
+          <% 8.upto(18).each do |hour| %>
+            <div id="hour-<%= hour %>" class="day_time">
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Start time</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @events.each do |event| %>
-      <tr>
-        <td><%= event.title %></td>
-        <td><%= event.starttime %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Event', new_event_path %>
