@@ -1,0 +1,7 @@
+$('#mynewpost').modal('hide');
+$('.post_theme').val('');
+$('.post_feedback').val('');
+
+$('#container_posts').prepend('<%= j render @teachingschedule %>');
+$('#post_<%= @teachingschedule.id %>').hide().fadeIn(4000);
+

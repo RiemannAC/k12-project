@@ -1,35 +1,36 @@
 <%= render partial:"shared/sidebar" %>
+
 <div class="container">
   <div class="container_fluid">
     <div class="row">
-
+    <!--row-->
       <!--某 user 本週教學計畫 -->
       <div class="col-md-9">
         <h2>106 學年度／上學期 1 年 1 班 教學進度表</h2>  
         <h4>科目：數學</h4>
         <h4>時間：Mon 9:20-11:10, Thu 第 3-4 節課</h4>
-    <!-- 測試先做 4 個 div, 可以用 each do 的時候就能只要一個 div -->
-          <% @classroom.teachingschedules.each do |teachingschedule| %>
-            <div class="weekly-prepare row">
-              <div class="col-md-11 prepare-detail">
-                <h5>
-                  <%= teachingschedule.classroom.name %> 
-                  <%= teachingschedule.theme %> 
-                <h5>
+        <!--教學進度表-->
+        <% @classroom.teachingschedules.each do |teachingschedule| %>
+          <div class="weekly-prepare row">
+            <div class="col-md-11 prepare-detail">
+              <h5>
+                <%= teachingschedule.classroom.name %> 
+                <%= teachingschedule.theme %> 
+              <h5>
 
-              </div>
+            </div>
 
-              <div class="col-md-1 prepare-storage">
-                <!-- 上傳及下載資料的 modal -->
-                <div class="prepare-storage-icon">
-                  <div data-toggle="modal" data-target="#exampleModal2">
-                    <%= fa_icon "folder-open 2x", style: 'color:skyblue', alt: 'add file'%>
-                  </div>
+            <div class="col-md-1 prepare-storage">
+              <!-- 上傳及下載資料的 modal -->
+              <div class="prepare-storage-icon">
+                <div data-toggle="modal" data-target="#exampleModal2">
+                  <%= fa_icon "folder-open 2x", style: 'color:skyblue', alt: 'add file'%>
                 </div>
-              </div> 
-            </div>          
-          <% end %>
-        </div>
+              </div>
+            </div> 
+          </div>          
+        <% end %>
+      </div>
 
 
       <div class="col-md-3 text-center">  
@@ -57,9 +58,7 @@
             </div>
           </div>  
 
-          
-
-          <%= form_for [@classroom,@teachingschedule] do |f| %>
+          <%= form_for [@classroom,@teachingschedule],remote: true do |f| %>
             <div class="modal fade" id="mynewpost" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
@@ -74,12 +73,12 @@
                     <div class="modal-body">
                       <div class="field">
                         <%= f.label :theme %>
-                        <%= f.text_field :theme, class: 'form-control', placeholder: "輸入教學主題" %>
+                        <%= f.text_field :theme, class: 'form-control post_theme', placeholder: "輸入教學主題" %>
                       </div>
 
                       <div class="field">
                         <%= f.label :feedback %>
-                        <%= f.text_area :feedback, class: 'form-control', placeholder: "輸入教學後的心得＆反思",rows:"6" %>
+                        <%= f.text_area :feedback, class: 'form-control post_feedback', placeholder: "輸入教學後的心得＆反思",rows:"6" %>
                       </div>
 
                     </div>
@@ -93,29 +92,18 @@
               </div>
           <% end %>
 
+          
 
+  
+          <div class="row" id="container_posts">
+            <%= render @teachingschedule %>
+          </div>
+          
+          
 
-          <table class="table">
-            <% @classroom.teachingschedules.each do |teachingschedule| %>
-            <tr>
-              <th><%= teachingschedule.theme %></th>
-            </tr>
-            <% end %>
-
-            <tr>
-              <th>week 1</th>
-            </tr>
-            
-            <tr>
-              <th>week 2</th>
-            </tr>
-
-          </table>
         </div>
-        
-
       </div>
-      
+    <!--row-->
     </div>
   </div>
 </div>

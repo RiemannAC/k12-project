@@ -1,0 +1,55 @@
+<table class="table">
+    <% @classroom.teachingschedules.each do |teachingschedule|%>
+    
+    <div id="post_<%= @teachingschedule.id %>">
+
+    <tr>
+      <th><%= teachingschedule.theme %></th>
+      <th>
+        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myupdatepost_<%= [@classroom ,@teachingschedule] %>">edit</button>
+        <%= link_to "destroy",  classroom_teachingschedule_path(@classroom,teachingschedule) ,method: :delete, data: { confirm: "Are you sure?"},class:"btn brn-danger" %>
+      </th>
+    </tr>
+  </div>
+
+  <% end %> 
+  
+</table> 
+
+<!--modal - update posts-->
+<%= form_for [@classroom,@teachingschedule] ,method: :put do |f| %>
+  <div class="modal fade" id="myupdatepost_<%= [@classroom ,@teachingschedule] %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+
+            <h5 class="modal-title" id="myModalLabel">Edit</h5>
+          </div>
+
+          <div class="modal-body">
+            <div class="field">
+              <%= f.label :theme %>
+              <%= f.text_field :theme, class: 'form-control', placeholder: "輸入教學主題" %>
+            </div>
+
+            <div class="field">
+              <%= f.label :feedback %>
+              <%= f.text_area :feedback, class: 'form-control', placeholder: "輸入教學後的心得＆反思",rows:"6" %>
+            </div>
+
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" id="mypostclose">close</button>
+            <%= submit_tag "update",class:"btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>
+<!--update modal-->
+
+
