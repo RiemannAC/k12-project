@@ -5,6 +5,13 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @events = Event.all
+    @plans = Plan.order(created_at: :desc)
+    @materials =Material.order(created_at: :desc)
+    @topics = Topic.order(created_at: :desc)
+  end
+
+  def list
+    @events = Event.all
   end
 
   # GET /events/1

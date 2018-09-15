@@ -26,9 +26,10 @@
   }
 
   td {
-    padding: 6px;
+    padding: 0px;
+    margin: 0px;
     vertical-align: top;
-    width: 14%;
+    width: 10%;
 
     border: 1px solid #ddd;
     border-top-color: rgb(221, 221, 221);
@@ -43,6 +44,18 @@
     border-left-color: rgb(221, 221, 221);
     border-left-style: solid;
     border-left-width: 1px;
+  }
+
+  .time_td {
+    width: 5%;
+  }
+
+  /*第一個表抓得到，表中表抓不到位置設定最低高度*/
+  .day_time {
+    border: 1px solid #ddd;
+    /*改 0.5 兩線合併為 1 無效*/
+    padding: 0px;
+    min-height: 50px;
   }
 
   .day {
