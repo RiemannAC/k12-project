@@ -29,6 +29,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  validates_presence_of :name
+
   has_many :projects
+
+
+  def admin?
+    self.role == "admin"
+  end
 
 end

@@ -9,10 +9,15 @@
   </head>
 
   <body>
-    <div class="container">
-      <div class="container-fluid">
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
+    <%= render partial: "shared/navbar" %>
+    
+    <div class="container-fluid">
+      <% if flash[:notice] %>
+        <div class="alert alert-success" role="alert"><%= notice %></div>
+      <% elsif flash[:alert] %>
+        <div class="alert alert-danger" role="alert"><%= alert %></div>
+      <% end %>
+      <div class="row">
         <%= yield %>
       </div>
     </div>
