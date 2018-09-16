@@ -10,4 +10,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :materials
+
+  resources :subject_tags
+
 end
