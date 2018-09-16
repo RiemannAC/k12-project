@@ -1,0 +1,2 @@
+class SubjectTag < ApplicationRecord
+end
