@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180916013258) do
+ActiveRecord::Schema.define(version: 20180916014015) do
 
   create_table "materials", force: :cascade do |t|
     t.string "mtrial_folder_name"
@@ -48,6 +48,19 @@ ActiveRecord::Schema.define(version: 20180916013258) do
     t.integer "material_id"
     t.integer "plan_id"
     t.integer "topic_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "topics", force: :cascade do |t|
+    t.string "name"
+    t.datetime "set_week"
+    t.string "aim"
+    t.integer "accessment"
+    t.string "file_upload"
+    t.string "feedback_title"
+    t.text "feedback_content"
+    t.integer "subject_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
