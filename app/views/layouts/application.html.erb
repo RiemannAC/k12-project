@@ -9,7 +9,6 @@
   </head>
 
   <body>
-    <%= render partial: "shared/navbar" %>
     
     <div class="container-fluid">
       <% if flash[:notice] %>
@@ -17,9 +16,11 @@
       <% elsif flash[:alert] %>
         <div class="alert alert-danger" role="alert"><%= alert %></div>
       <% end %>
+
       <div class="row">
         <%= yield %>
       </div>
+
     </div>
   </body>
 </html>
