@@ -1,0 +1,4 @@
+<% html = j( render :partial => "form", :locals => { :aim => @aim } ) %>
+var aim_spans = $("#aim_<%= aim.id %>").children();
+$(aim_spans[1]).html("<%= html %>")
+

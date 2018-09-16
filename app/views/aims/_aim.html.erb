@@ -1,0 +1,5 @@
+<li id="aim_<%= aim.id %>" >
+  <span><%= aim.title %></span>
+  <%= link_to "edit", edit_classroom_teachingschedule_aim_path(aim.teachingschedule.classroom,aim.teachingschedule,aim), class:"btn btn-success" %>
+  <%= link_to "destroy",  classroom_teachingschedule_aim_path(aim.teachingschedule.classroom,aim.teachingschedule,aim) ,method: :delete, data: { confirm: "Are you sure?"},class:"btn btn-danger",remote:true %>
+</li>

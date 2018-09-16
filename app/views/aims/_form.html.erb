@@ -1,0 +1,9 @@
+<%= form_for [@classroom,teachingschedule,aim], remote: true  do |f| %>
+  <div class="field">
+    <%= f.text_area :title, :class => "form-control" %>
+    <div class="field">
+      <%= f.submit "Update", :class => "my-btn my-btn-transparent" %>
+    </div>
+  </div>
+<% end %>
+

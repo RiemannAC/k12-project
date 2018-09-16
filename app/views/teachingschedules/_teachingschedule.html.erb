@@ -10,7 +10,7 @@
             <%= teachingschedule.theme %>  <br>
           <h5>
 
-          <%= form_for [@classroom,teachingschedule,@aim] do |f| %>
+          <%= form_for [@classroom,teachingschedule,@aim],remote: true do |f| %>
 
             <div class="col-md-4">
              <div class="field">
@@ -18,15 +18,18 @@
                 <%= f.text_field :title,class:"form-control" %>
               </div> 
 
-              <%= f.submit class:"actions btn btn-default" %>
+              <%= f.submit class:"label label-primary" %>
             </div> 
           <% end %>
-
-          <% teachingschedule.aims.each do |aim| %>
-            <%= aim.title %>
-          <% end %> 
-
-
+          
+          <div id="aim_posts">
+            <% teachingschedule.aims.each do |aim| %>
+              
+                <%= render :partial => "aims/aim", locals: {aim: aim } %>              
+              
+            <% end %> 
+          </div>
+ 
         </div>
 
         <div class="col-md-2 prepare-storage">

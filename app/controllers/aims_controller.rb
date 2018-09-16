@@ -16,28 +16,35 @@ class AimsController < ApplicationController
     end 
   end
 
+  def edit
+    @classroom = Classroom.find(params[:classroom_id])
+    @teachingschedule= @classroom.teachingschedules.find(params[:teachingschedule_id])
+    @aim = @teachingschedule.aims.find(params[:id]) 
+  end
+
   def update
-    @classroom= Classroom.find(params[:classroom_id])
-    @teachingschedule = @classroom.teachingschedules.find(params[:id])
+    @classroom = Classroom.find(params[:classroom_id])
+    @teachingschedule= @classroom.teachingschedules.find(params[:teachingschedule_id])
+    @aim = @teachingschedule.aims.find(params[:id])
     respond_to do |format|
-      if @teachingschedule.update(teachingschedule_params)
-        format.html{redirect_to classroom_url(@teachingschedule.classroom),notice:"成功更新教學計劃" }
-        format.json{render :show, status: :ok, location: @teachingschedule}  
-        format.js 
+      if @aim.update(aim_params)
+        format.html{redirect_to classroom_url(@aim.teachingschedule.classroom),notice:"成功更新教學計劃" }
+        format.json{render :show, status: :ok, location: @aim}  
+        
       else
         format.html{render :edit}
-        format.json{render json: @teachingschedule.errors,status: :unprocessable_entity} 
-        format.js
+        format.json{render json: @aim.errors,status: :unprocessable_entity} 
+        
       end
     end
   end
 
   def destroy
-    @classroom= Classroom.find(params[:classroom_id])
-    @teachingschedule = @classroom.teachingschedules.find(params[:id])
-    @teachingschedule.destroy
+    @teachingschedule= Teachingschedule.find(params[:teachingschedule_id])
+    @aim = @teachingschedule.aims.find(params[:id])    
+    @aim.destroy
     respond_to do |format|
-      format.html{redirect_to classroom_url(@teachingschedule.classroom),notice:"成功刪除一個教學計劃" }
+      format.html{redirect_to classroom_url(@aim.teachingschedule.classroom),notice:"成功刪除教學目標" }
       format.json{head :no_content}  
       
     end

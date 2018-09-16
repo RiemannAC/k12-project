@@ -1,0 +1,3 @@
+<% html = j( render :partial => "form", :locals => { :aim => @aim } ) %>
+$("#todo-<%= @todo.id %>").html("<%= html %>")
+
