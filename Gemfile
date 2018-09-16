@@ -43,7 +43,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'ffaker'
 gem 'carrierwave'
-gem 'bootstrap', '~> 4.1.1'
+gem 'bootstrap', '~> 4.1.3'
 gem 'jquery-rails'
 gem 'font-awesome-rails'
 gem 'kaminari'
@@ -51,7 +51,5 @@ gem 'bootstrap4-kaminari-views'
 #專案需求
 gem 'rest-client'
 gem 'ransack'
-#課程資料結構
-gem 'nested-form'
 #日曆功能
 gem 'simple_calendar', '~> 2.0'
