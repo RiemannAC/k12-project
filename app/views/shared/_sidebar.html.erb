@@ -7,13 +7,37 @@
   <button class="dropdown-btn">
     <%= '我的科目' %> <%= fa_icon 'caret-down' %>
   </button>
-  <div class="dropdown-container"></div>
+  <div class="dropdown-container">
+    <ul>
+      <li></li>
+    </ul>
+  </div>
   
   <button class="dropdown-btn">
     <%= '我的教材' %>
     <%= fa_icon 'caret-down' %>
   </button>
-  <div class="dropdown-container"></div>
+  <!--mainmenu--> 
+    <!--adding new teaching-material-->
+    <%= link_to "教材" ,new_material_path  %>
+    <!--submenu-->   
+    <ul class="">
+      <li>
+        <% @subject_tags.each do |subject| %>             
+          <%= subject.name if subject.materials.present? %>
+          <!--teaching-material subject_list-->
+          <ul class="">
+            <% subject.materials.each do |material| %>
+              <li>
+                <%= link_to material.title, material_path(material) %> 
+              </li>
+            <% end %>
+          </ul>
+        <% end %>
+      </li>
+    </ul>
+                   
+  
 
   <button class="dropdown-btn">
     <%= '我的教案' %>
