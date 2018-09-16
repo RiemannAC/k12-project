@@ -1,17 +1,16 @@
-class TeachingschedulesController < ApplicationController
-
+class AimsController < ApplicationController
   def create
-    @classroom= Classroom.find(params[:classroom_id])
-    @teachingschedule = @classroom.teachingschedules.new(teachingschedule_params)
+    @teachingschedule= Teachingschedule.find(params[:teachingschedule_id])
+    @aim = @teachingschedule.aims.new(aim_params)
 
     respond_to do |format|
-      if @teachingschedule.save
-        format.html{redirect_to classroom_url(@teachingschedule.classroom),notice:"成功新增一個教學計劃" }
-        format.json{render :show, status: :created, location: @teachingschedule}
+      if @aim.save
+        format.html{redirect_to classroom_url(@aim.teachingschedule.classroom),notice:"成功新增一個教學計劃" }
+        format.json{render :show, status: :created, location: @aim}
         format.js
       else
         format.html{render :new}
-        format.json{render json: @teachingschedule.errors,status: :unprocessable_entity}
+        format.json{render json: @aim.errors,status: :unprocessable_entity}
         format.js
       end
     end 
@@ -45,7 +44,7 @@ class TeachingschedulesController < ApplicationController
   end
 
   private
-  def teachingschedule_params
-    params.require(:teachingschedule).permit(:theme,:classroom_id,:feedback)
+  def aim_params
+    params.require(:aim).permit(:title,:classroom_id,:accessment,:teachingschedule_id)
   end
 end

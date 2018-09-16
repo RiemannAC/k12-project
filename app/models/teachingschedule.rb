@@ -5,8 +5,4 @@ class Teachingschedule < ApplicationRecord
   belongs_to :classroom
 
   has_many :aims
-  accepts_nested_attributes_for :aims, 
-  :allow_destroy => true,
-  :reject_if => :all_blank, 
-  :update_only => true
 end

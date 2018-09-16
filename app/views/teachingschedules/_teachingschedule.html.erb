@@ -10,6 +10,23 @@
             <%= teachingschedule.theme %>  <br>
           <h5>
 
+          <%= form_for [@classroom,teachingschedule,@aim] do |f| %>
+
+            <div class="col-md-4">
+             <div class="field">
+                <%= f.label :title, "教學目標" %>
+                <%= f.text_field :title,class:"form-control" %>
+              </div> 
+
+              <%= f.submit class:"actions btn btn-default" %>
+            </div> 
+          <% end %>
+
+          <% teachingschedule.aims.each do |aim| %>
+            <%= aim.title %>
+          <% end %> 
+
+
         </div>
 
         <div class="col-md-2 prepare-storage">
