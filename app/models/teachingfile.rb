@@ -1,0 +1,2 @@
+class Teachingfile < ApplicationRecord
+end
