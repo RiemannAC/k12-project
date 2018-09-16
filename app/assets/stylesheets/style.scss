@@ -5,3 +5,64 @@
 .user-icon {
   margin: 0 15px 0 15px;
 }
+
+.side-avatar {
+  height: 200px;
+  width: 200px;
+}
+
+/******** sidebar css setting *********/
+
+.sidenav {
+  height: 100%;
+  width: 220px;
+  position: fixed;
+  z-index: -1;
+  top: 68px;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.sidenav a, .dropdown-btn {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #818181;
+  display: block;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  ouline: none;
+  margin: 10px 0;
+}
+
+.sidenav a:hover, .dropdown-btn:hover {
+  color: #f1f1f1;
+}
+
+.active {
+  background-color: green;
+  color: white;
+}
+
+.dropdown-container {
+  display: none;
+  background-color: #262626;
+  padding-left: 8px;
+}
+
+.fa-caret-down {
+  float: right;
+  padding-right: 8px;
+}
+
+.main {
+  margin-left: 220px;
+  padding: 0px 10px;
+}
+
+/*********** sidebar end *********/

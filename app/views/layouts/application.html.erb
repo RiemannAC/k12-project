@@ -20,7 +20,10 @@
       <% end %>
 
       <div class="row">
-        <%= yield %>
+        <%= render partial: "shared/sidebar" %>
+        <div class="main">
+          <%= yield %>
+        </div>
       </div>
 
     </div>
