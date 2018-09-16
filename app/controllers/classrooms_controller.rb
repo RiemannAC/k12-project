@@ -3,7 +3,6 @@ class ClassroomsController < ApplicationController
     @classroom = Classroom.find(params[:id])
     @date = params[:date] ? Date.parse(params[:date]) : Date.today
     @topics = Topic.order(created_at: :desc)
-
     
     @teachingschedule = Teachingschedule.new
   end 

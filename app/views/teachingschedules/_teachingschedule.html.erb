@@ -4,21 +4,26 @@
       <!--教學進度表-->
       
       <div class="weekly-prepare">
-        <div class="col-md-11 prepare-detail">
+        <div class="col-md-9 prepare-detail">
           <h5>
             <%= teachingschedule.classroom.name %> 
             <%= teachingschedule.theme %>  <br>
-            <%= teachingschedule.feedback %>
           <h5>
 
         </div>
 
-        <div class="col-md-1 prepare-storage">
+        <div class="col-md-2 prepare-storage">
           <!-- 上傳及下載資料的 modal -->
           <div class="prepare-storage-icon">
             <div data-toggle="modal" data-target="#exampleModal2">
               <%= fa_icon "folder-open 2x", style: 'color:skyblue', alt: 'add file'%>
             </div>
+          <!--教學回饋-->
+          <div class="feedback">
+            <%= teachingschedule.feedback %>
+          </div>
+
+
           </div>
         </div> 
       </div>

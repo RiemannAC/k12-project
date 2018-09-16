@@ -70,3 +70,4 @@ gem 'ransack'                   # feature/search
 gem 'fullcalendar-rails'        # schedule calendar
 gem 'momentjs-rails'            # fullcalendar 搭配需求用來處理日期格式化
 gem 'ice_cube'                  # schedule 循環事件
+gem 'nested_form'               # 巢狀結構：教學進度表＿每週一個教學主題下面＿給多個教學目標使用

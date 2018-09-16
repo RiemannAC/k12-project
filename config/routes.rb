@@ -13,7 +13,14 @@ Rails.application.routes.draw do
   end
 
   resources :classrooms do
-    resources :teachingschedules
+    resources :teachingschedules do
+      
+      resources :aims do
+        collection do
+          delete :destroy_multiple
+        end
+      end
+    end
   end
 
   resources :topics 
