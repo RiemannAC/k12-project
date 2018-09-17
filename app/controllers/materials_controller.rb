@@ -1,7 +1,4 @@
 class MaterialsController < ApplicationController
-  def index
-    
-  end
   def show
     @subject_tags = SubjectTag.order(created_at: :desc)
     @material = Material.find(params[:id])
