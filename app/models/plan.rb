@@ -13,6 +13,7 @@ class Plan < ApplicationRecord
   #before_action :authenticate_user!
   
   #belongs_to :subject
+  validates_presence_of :plan_folder_name
   belongs_to :subject_tag
   has_many :teachingfiles
 end

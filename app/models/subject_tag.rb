@@ -1,4 +1,4 @@
 class SubjectTag < ApplicationRecord
-  has_many :materials
-  has_many :plans
+  has_many :plans,dependent: :destroy
+  has_many :materials,dependent: :destroy
 end
