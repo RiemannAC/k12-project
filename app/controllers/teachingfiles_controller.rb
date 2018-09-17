@@ -33,6 +33,7 @@ class TeachingfilesController < ApplicationController
 
 
   def edit
+    @subject_tags = SubjectTag.order(created_at: :desc)
     if params[:material_id]
       # if it is a material id, set instance of post id as @parent
       @parent = Material.find(params[:material_id])
