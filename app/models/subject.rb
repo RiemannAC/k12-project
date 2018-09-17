@@ -11,10 +11,12 @@
 #  project_id
 
 class Subject < ApplicationRecord
-  belongs_to :project
+  belongs_to :project, optional: true
+  has_many :topics, dependent: :destroy
+
   has_many :plans
   has_many :materials
-  has_many :topics, dependent: :destroy
+
   attr_accessor :name, :commit_button
 
   # 回呼重覆生成所需 lesson  

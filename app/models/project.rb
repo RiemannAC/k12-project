@@ -11,7 +11,6 @@
 #  user_id    :integer     
 
 class Project < ApplicationRecord
-
-  belongs_to :user
-  has_many :subjects
+  belongs_to :user, optional: true
+  has_many :subjects, dependent: :destroy
 end
