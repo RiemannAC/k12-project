@@ -10,8 +10,9 @@
 #  subject_id       :integer
 
 class Plan < ApplicationRecord
-  before_action :authenticate_user!
+  #before_action :authenticate_user!
   
-  belongs_to :subject
+  #belongs_to :subject
+  belongs_to :subject_tag
   has_many :teachingfiles
 end

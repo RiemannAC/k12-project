@@ -10,6 +10,7 @@
 #  subject_id    :integer
 
 class Material < ApplicationRecord
-  belongs_to :subject
+  #belongs_to :subject
+  belongs_to :subject_tag
   has_many :teachingfiles
 end
