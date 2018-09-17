@@ -14,6 +14,6 @@
 
 class Teachingfile < ApplicationRecord
   belongs_to :plan
-  belongs_to :topic
+  #belongs_to :topic
   belongs_to :material
 end
