@@ -16,7 +16,7 @@ class Teachingfile < ApplicationRecord
   mount_uploader :attachment, AttachmentUploader # Tells rails to use this uploader for this model.
   validates_presence_of :name
 
-  #belongs_to :plan
+  belongs_to :plan, optional: true
   #belongs_to :topic
-  belongs_to :material
+  belongs_to :material, optional: true
 end
