@@ -16,7 +16,7 @@
 #  subject_id        :integer
 
 class Topic < ApplicationRecord
-  belongs_to :subject
-  has_many :teachingfiles
+  belongs_to :subject, optional: true
   has_many :lessons, dependent: :destroy
+  has_many :teachingfiles
 end
