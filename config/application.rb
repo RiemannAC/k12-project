@@ -11,6 +11,10 @@ module K12Project
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
 
+    # Simple_calendar
+    config.time_zone = "Taipei"
+    config.beginning_of_week = :sunday
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
