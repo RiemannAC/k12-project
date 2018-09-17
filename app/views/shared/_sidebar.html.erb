@@ -5,69 +5,46 @@
 
   <hr>
   <button class="dropdown-btn">
-    <%= '我的科目' %> <%= fa_icon 'caret-down' %>
+    <%= '我的科目' %>
+    <%= fa_icon 'caret-down' %>
   </button>
   <div class="dropdown-container">
-    <ul>
-      <li></li>
-    </ul>
+    <%= link_to 'Math' %>
+    <%= link_to 'Chinese' %>  
+    <%= link_to 'Social Study' %>
   </div>
-  
+
+  <!--第一個dropdown-->
   <button class="dropdown-btn">
     <%= '我的教材' %>
     <%= fa_icon 'caret-down' %>
   </button>
-  <!--mainmenu--> 
-    <!--adding new teaching-material-->
-    <%= link_to "教材" ,new_material_path  %>
-    <!--submenu-->   
-    <ul class="">
-      <li>
-        <% @subject_tags.each do |subject| %>             
-          <%= subject.name if subject.materials.present? %>
-          <!--teaching-material subject_list-->
-          <ul class="">
-            <% subject.materials.each do |material| %>
-              <li>
-                <%= link_to material.mtrial_folder_name, material_path(material) %> 
-              </li>
-            <% end %>
-          </ul>
-        <% end %>
-      </li>
-    </ul>
-                   
-  
+  <div class=dropdown-container>
+    <%= link_to "新增教材" ,new_material_path  %>
+    <%= link_to "全部教材", materials_path %>
+  </div>
 
+  <!--mainmenu--> 
+    <!--adding new teaching-material-->  
   <button class="dropdown-btn">
     <%= '我的教案' %>
     <%= fa_icon 'caret-down' %>
   </button>
-  <div class="dropdown-container"></div>
+  <div class="dropdown-container">
+    <%= link_to "新增教案" ,new_plan_path  %>
+    <%= link_to "全部教案", plans_path %>
+  </div>
   <!--mainmenu--> 
     <!--adding new teaching-plan-->
-    <%= link_to "教案" ,new_plan_path  %>
+    
     <!--submenu-->   
-    <ul class="">
-      <li>
-        <% @subject_tags.each do |subject| %>             
-          <%= subject.name if subject.plans.present? %>
-          <!--teaching-plan subject_list-->
-          <ul class="">
-            <% subject.plans.each do |plan| %>
-              <li>
-                <%= link_to plan.plan_folder_name, plan_path(plan) %> 
-              </li>
-            <% end %>
-          </ul>
-        <% end %>
-      </li>
-    </ul>
     
   <button class="dropdown-btn">
     <%= '過往學期教學計畫' %>
     <%= fa_icon 'caret-down' %>
   </button>
-  <div class="dropdown-container"></div>
+  <div class="dropdown-container">
+    
+  </div>
      
 </div>
