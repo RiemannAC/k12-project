@@ -47,6 +47,22 @@
   <!--mainmenu--> 
     <!--adding new teaching-plan-->
     <%= link_to "教案" ,new_plan_path  %>
+    <!--submenu-->   
+    <ul class="">
+      <li>
+        <% @subject_tags.each do |subject| %>             
+          <%= subject.name if subject.plans.present? %>
+          <!--teaching-plan subject_list-->
+          <ul class="">
+            <% subject.plans.each do |plan| %>
+              <li>
+                <%= link_to plan.plan_folder_name, plan_path(plan) %> 
+              </li>
+            <% end %>
+          </ul>
+        <% end %>
+      </li>
+    </ul>
     
   <button class="dropdown-btn">
     <%= '過往學期教學計畫' %>

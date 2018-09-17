@@ -19,12 +19,12 @@ class TeachingfilesController < ApplicationController
       # .is_a? method determines if it is of a certain class.  Here, is @parent
       # of class Post?  Is @parents is the same parent id passed through params?
       if @parent.is_a?(Material) # template error with this included: (== params[:post_id])
-        flash[:notice] = '成功新增教材的檔案 #{@teachingfile.filename}'
+        flash[:notice] = '成功新增教材的檔案 #{@teachingfile.name}'
         redirect_to material_path(@teachingfile.material)
       # if not part of the class Post, is it a Topic?  If so, save here and
       # redirect to the topic after save
       elsif @parent.is_a?(Plan)
-        flash[:notice] = '成功新增教案的檔案 #{@teachingfile.filename}'
+        flash[:notice] = '成功新增教案的檔案 #{@teachingfile.ename}'
         redirect_to plan_path(@teachingfile.plan)
       
       end
