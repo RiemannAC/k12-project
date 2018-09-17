@@ -3,7 +3,14 @@ class MaterialsController < ApplicationController
     
   end
   def show
+    @subject_tags = SubjectTag.order(created_at: :desc)
+    @material = Material.find(params[:id])
     
+    if params[:material_id]
+      @teachingfile = @material.teachingfiles.find(params[:id])
+    else
+      @teachingfile = Teachingfile.new
+    end
   end
 
   def new
