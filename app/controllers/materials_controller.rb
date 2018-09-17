@@ -12,7 +12,7 @@ class MaterialsController < ApplicationController
 
   def new
     @material = Material.new 
-  end
+  end 
 
   def create
     @material = Material.new(material_params)
