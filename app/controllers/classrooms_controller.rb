@@ -6,18 +6,14 @@ class ClassroomsController < ApplicationController
     
     if params[:classroom_id]
       @teachingschedule = @classroom.teachingschedules.find(params[:id]) 
-            
+      if params[:teachingschedule_id]
+        @aim = @teachingschedule.aims.find(params[:id])
+      end    
     else
       @teachingschedule = Teachingschedule.new
-      @aim = Aim.new
     end
 
-    if params[:teachingschedule_id]
-      @aim = @teachingschedule.aims.find(params[:id])
-    end
-
-
-
+    
   end 
 
   def new

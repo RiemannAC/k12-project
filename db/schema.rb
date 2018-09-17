@@ -68,16 +68,6 @@ ActiveRecord::Schema.define(version: 20180916095518) do
     t.integer "topic_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "filename"
-    t.string "attachment"
-  end
-
-  create_table "meetings", force: :cascade do |t|
-    t.string "name"
-    t.datetime "start_time"
-    t.datetime "end_time"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "plans", force: :cascade do |t|

@@ -10,7 +10,7 @@
             <%= teachingschedule.theme %>  <br>
           <h5>
 
-          <%= form_for [@classroom,teachingschedule,@aim],remote: true do |f| %>
+          <%= form_for [@classroom,teachingschedule,Aim.new],remote: true do |f| %>
 
             <div class="col-md-4">
              <div class="field">
@@ -24,9 +24,7 @@
           
           <div id="aim_posts">
             <% teachingschedule.aims.each do |aim| %>
-              
                 <%= render :partial => "aims/aim", locals: {aim: aim } %>              
-              
             <% end %> 
           </div>
  

@@ -27,6 +27,7 @@ class MaterialsController < ApplicationController
     else
       @teachingfile = Teachingfile.new
     end
+    
   end
 
   private
