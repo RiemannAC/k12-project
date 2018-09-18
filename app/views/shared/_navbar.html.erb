@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+<nav class="navbar fixed-top navbar-expand-lg">
   
   <%= link_to root_path, class: "navbar-brand" do %>
     <%= image_tag "temp-k12-logo.png", width:'55', height:'42', alt:'首頁'%>    
@@ -29,13 +29,13 @@
             <%= current_user.email.split('@').first %>
           </a>
           <%= link_to do %>
-            <li class="user-icon"><%= fa_icon "user 2x", style: 'color:green' %></li>
+            <li class="user-icon"><%= fa_icon "user 2x", style: 'color:white' %></li>
           <% end %>
         </li>
       </ul>
     <% else %>
       <ul class="navbar-nav navbar-right">
-        <li><%= link_to('Sign up', new_user_registration_path) %> or <%= link_to('Log in', new_user_session_path) %></li>
+        <li class='navbar-nav-li'><%= link_to('Sign up', new_user_registration_path) %> or <%= link_to('Log in', new_user_session_path) %></li>
         <li></li>
       </ul>
     <% end %>
