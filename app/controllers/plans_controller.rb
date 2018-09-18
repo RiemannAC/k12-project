@@ -1,6 +1,6 @@
 class PlansController < ApplicationController
   def index
-    @subject_tags = SubjectTag.order(created_at: :desc)
+    
   end
 
   def new
@@ -19,7 +19,7 @@ class PlansController < ApplicationController
   end
 
   def show
-    @subject_tags = SubjectTag.order(created_at: :desc)
+    
     @plan = Plan.find(params[:id])
      
     if params[:plan_id]
