@@ -16,7 +16,7 @@
   color: #fff;
 }
 
-.navbar-nav-li a {
+.navbar-nav-li a, .nav-item a {
   color: #fff;
   font-weight: 800;
 }
@@ -83,11 +83,13 @@
   margin: 150px auto;
 }
 
-.devise-log {
+.devise-card {
   box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2), 0 4px 20px 0 rgba(0,0,0,0.19);
   margin-top: 30px;
 }
-
+.devise-panel {
+  padding: 50px 0 30px 30px;
+}
 .login-container:after, .login-container:before {
   content: "";
   display:table;
