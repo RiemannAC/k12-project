@@ -1,4 +1,7 @@
-<%= render partial:"shared/sidebar" %> 
+<%= content_for(:sidebar) do %>
+  <%= render partial: "shared/sidebar" %>
+<% end %>
+
 <div class="container">
   <h4>教案科目: <%= @plan.subject_tag.name %></h4>
   <h4>資料夾名稱: <%= @plan.plan_folder_name %></h4> 
