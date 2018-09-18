@@ -19,12 +19,12 @@
         <div class="alert alert-danger" role="alert"><%= alert %></div>
       <% end %>
       
-      <% if signed_in? %>
-        <%= render partial: "shared/sidebar" %>
-        <div class="main row">
-          <%= yield %>
-        </div>
-      <% end %>
+      
+      <%= render partial: "shared/sidebar" %>
+      <div class="main">
+        <%= yield %>
+      </div>
+
       
     </div>
     <script>
