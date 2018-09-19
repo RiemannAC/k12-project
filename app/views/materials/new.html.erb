@@ -10,32 +10,40 @@
 </style>
 
 
-<% if @material.errors.any? %>
-  <h2>We have some errors here !</h2>
-  <ul>
-    <% @material.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-  </ul>
-<% end %> 
-
-<%= form_for [@material] do |f| %>
-  <div class="field field-category">
-  <%= f.label :subject_tag_id, "科目" %><br>
-  <%= f.collection_select :subject_tag_id , SubjectTag.all, :id, :name, {prompt: true}, {class: "form-control"}  %><br>
-  </div> 
-
-  <div class="field">
-  <%= f.label :mtrial_folder_name, "教材資料夾名稱" %><br>
-  <%= f.text_field :mtrial_folder_name ,class:"form-control"%>
+<div class="main-frame">
+  <div class="new-file-head">
+    <h1>新增教材</h1>
+    <hr class="blue-hr">
   </div>
 
-  <div class="field">
-    <%= f.submit%><br>
-  </div>
-    
-<div class="field">
-  <%= link_to 'Index Page',root_path,class:"btn btn-primary form-control" %>
+  <% if @material.errors.any? %>
+    <h2>We have some errors here !</h2>
+    <ul>
+      <% @material.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %> 
+
+  <%= form_for [@material] do |f| %>
+    <div class="field field-category">
+    <%= f.label :subject_tag_id, "科目" %><br>
+    <%= f.collection_select :subject_tag_id , SubjectTag.all, :id, :name, {prompt: true}, {class: "form-control"}  %><br>
+    </div> 
+
+    <div class="field">
+    <%= f.label :mtrial_folder_name, "教材資料夾名稱" %><br>
+    <%= f.text_field :mtrial_folder_name ,class:"form-control"%>
+    </div>
+
+    <div class="field">
+      <%= f.submit 'Create folder', class: 'btn btn-info' %>
+    </div>
+
+    <br>
+      
+    <div class="field">
+      <%= link_to '<< Index Page',root_path %>
+    </div>
+  <% end %>
 </div>
-
-<% end %>
