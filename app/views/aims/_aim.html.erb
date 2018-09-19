@@ -1,6 +1,19 @@
-<li id="post_<%= aim.id %>" >
-  <span><%= aim.title %></span>
-  <span><%= link_to "edit", edit_classroom_teachingschedule_aim_path(aim.teachingschedule.classroom,aim.teachingschedule,aim), remote:true, class:"btn btn-success" %></span>
-  <span><%= link_to "destroy",  classroom_teachingschedule_aim_path(aim.teachingschedule.classroom,aim.teachingschedule,aim) ,remote:true, method: :delete, data: { confirm: "Are you sure?"},class:"btn btn-danger",remote:true %></span> 
-</li>
+
+
+  <li id="post_<%= aim.id %>" >
+
+    
+  
+
+
+    <span><%= check_box_tag "aim_ids[]", aim.id %></span>
+    <span><%= aim.title %></span>
+    <span><%= link_to "edit", edit_classroom_teachingschedule_aim_path(aim.teachingschedule.classroom,aim.teachingschedule,aim), remote:true, class:"btn btn-success" %></span>
+    <span><%= link_to "destroy",  classroom_teachingschedule_aim_path(aim.teachingschedule.classroom,aim.teachingschedule,aim) ,remote:true, method: :delete, data: { confirm: "Are you sure?"},class:"btn btn-danger",remote:true %></span> 
+
+ 
+
+  </li>
+
+
  

@@ -50,6 +50,15 @@ class AimsController < ApplicationController
     end
   end
 
+  def destroy_multiple
+    Aim.destroy(params[:aim_ids]) unless params[:aim_ids].blank?
+
+    respond_to do |formad|
+      format.html { redirect_to root_path,notice:"成功批次刪除教學目標" }
+      format.json { head :no_content }
+    end
+  end
+
   private
   def aim_params
     params.require(:aim).permit(:title,:classroom_id,:accessment,:teachingschedule_id)

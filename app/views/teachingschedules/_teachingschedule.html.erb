@@ -22,14 +22,19 @@
             </div> 
           <% end %>
           
+          
+          <%= form_tag destroy_multiple_classroom_teachingschedule_aims_path(@classroom,teachingschedule,@aim) ,  method: :delete do %>
+          <%= submit_tag "刪除選中", class:"btn btn-primary" %>
+          <input type="checkbox" onclick="toggle_checkall('aim', this.checked);" />
+
           <div id="aim_posts">
-            <% teachingschedule.aims.each do |aim| %>
-              
+            <% teachingschedule.aims.each do |aim| %> 
               <%= render :partial => 'aims/aim', locals: {aim: aim } %>               
-            <% end %> 
-          </div>
- 
-        </div>
+            <% end %>
+          </div> 
+          <% end %>
+           
+        </div> 
 
         <div class="col-md-2 prepare-storage">
           <!-- 上傳及下載資料的 modal -->
@@ -105,5 +110,19 @@
     </div>
 <% end %>
 <!--update modal-->
+
+
+<script>
+function toggle_checkall(field_name, state) {
+  var checkboxes = document.getElementsByTagName('input');
+  var count = checkboxes.length;
+  for (var i = 0; i < count; i++) {
+    if (checkboxes[i].type == "checkbox"
+        && checkboxes[i].name == field_name + "_ids[]") {
+      checkboxes[i].checked = state;
+    }
+  }
+}
+</script>
 
 

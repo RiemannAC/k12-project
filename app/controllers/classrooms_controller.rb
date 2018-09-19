@@ -5,7 +5,11 @@ class ClassroomsController < ApplicationController
     @topics = Topic.order(created_at: :desc)
   
     @teachingschedule = Teachingschedule.new
-    
+
+    if params[:classroom_id]
+      @teachingschedule= @classroom.teachingschedules.find(params[:teachingschedule_id])
+      @aim = @teachingschedule.aims.find(params[:id])     
+    end
   end 
 
   def new
