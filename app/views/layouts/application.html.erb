@@ -13,12 +13,9 @@
     <%= render partial: "shared/navbar" %>
     
     <div class="container-fluid">
-      <% if flash[:notice] %>
-        <div class="alert alert-success" role="alert"><%= notice %></div>
-      <% elsif flash[:alert] %>
-        <div class="alert alert-danger" role="alert"><%= alert %></div>
-      <% end %>
-      
+
+      <%= render partial: "shared/alert" %>
+            
       
       <%= render partial: "shared/sidebar" %>
       <div class="main">

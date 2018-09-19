@@ -15,3 +15,24 @@ body {
 .theme-font {
   color: #5e5f5f!important;
 }
+
+.blue-hr {
+  height:10px;
+  border:none;
+  border-top:10px groove skyblue;
+}
+
+.red-hr {
+  height: 10px;
+  border: none;
+  border-top:10px #9a3c4e #e86dd4;
+}
+
+.main-frame {
+  padding-top: 25px;
+}
+
+.alert {
+  float: right;
+  margin: 2rem;
+}

@@ -1,25 +1,16 @@
-<div class="container">
-  <h4>教材科目: <%= @material.subject_tag.name %></h4>
-  <h4>資料夾名稱: <%= @material.mtrial_folder_name %></h4> 
- 
-  <table>
-    <% @material.teachingfiles.each do |teachingfile| %>
-    <tr>
-      <td style="padding-right:20px;"><%= teachingfile.name %></td>
-      <td style="padding-right:20px;"><%= link_to "download file", teachingfile.attachment_url %></td>
-      <td style="padding-right:20px;"><%= link_to 'Edit',edit_material_teachingfile_path(@material,teachingfile) %></td>
-      <td style="padding-right:20px;"> <%= link_to 'Delete', material_teachingfile_path(@material,teachingfile), method: :delete, data: { confirm: "Are you sure to delete ?"} %></td>
-    </tr>
-    <% end %>
-  </table> 
-
-
-
+<div class="main-frame">
   
+  <%= link_to '編輯資料夾設定', edit_material_path(@plan), class: 'btn btn-outline-primary btn-sm' %>
+  <br><br>
+  <h4 style="color:#9d586a">教材科目: <%= @material.subject_tag.name %></h4>
+  <h4 style="color:#9d586a">資料夾名稱: <%= @material.mtrial_folder_name %></h4>
+  <%= link_to '<< Index Page',root_path %>
+  <hr class="blue-hr">
+ 
   <%= form_for [@material,@teachingfile], html:{multipart:true} do |f| %>
     <div class="form-group">
       <%= f.label :name %>
-      <%= f.text_field :name, class: 'form-control', placeholder: "輸入檔案名稱" %>
+      <%= f.text_field :name, class: 'form-control', placeholder: "自訂檔案名稱" %>
     </div>
 
     <div class="form-group">
@@ -30,4 +21,20 @@
     <%= f.submit "Upload", class:"btn btn-primary" %>
 
   <% end %>
+  
+  <br>
+
+  <table class="table table-hover">
+    <h3 style="color:#894355">Folder Content</h3>
+    <% @material.teachingfiles.each do |teachingfile| %>
+    <tr>
+      <td style="padding-right:20px;"><%= teachingfile.name %></td>
+      <td style="padding-right:20px;"><%= link_to "download file", teachingfile.attachment_url %></td>
+      <td style="padding-right:20px;"><%= link_to 'Edit',edit_material_teachingfile_path(@material,teachingfile) %></td>
+      <td style="padding-right:20px;"> <%= link_to 'Delete', material_teachingfile_path(@material,teachingfile), method: :delete, data: { confirm: "Are you sure to delete ?"} %></td>
+    </tr>
+    <% end %>
+  </table> 
+
+  
 </div>

@@ -1,6 +1,6 @@
 <div class="main-frame">
-  <h1>新增教案</h1>
-  <hr class="blue-hr">
+  <h1>編輯教案</h1>
+  <hr class="red-hr">
   
   <% if @plan.errors.any? %>
     <h2>We have some errors here !</h2>
@@ -10,6 +10,7 @@
       <% end %>
     </ul>
   <% end %>
+  
+  <%= render partial: 'shared/edit-plan' %>    
 
-  <%= render partial: 'shared/edit-plan' %>
 </div>
