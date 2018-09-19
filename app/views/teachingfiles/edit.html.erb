@@ -23,7 +23,8 @@
 
     <div class="form-group">
       <%= f.label :attachment %>
-      <%= f.file_field :attachment %>
+      <%= f.file_field :attachment %><br>
+      <%= '【現有檔案：'+ @teachingfile.attachment.file.filename+'】' if @teachingfile.attachment? %>
     </div>
 
     <%= f.submit  class:"btn btn-primary" %>
