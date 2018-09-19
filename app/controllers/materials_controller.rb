@@ -51,6 +51,6 @@ class MaterialsController < ApplicationController
   end
 
   def set_material
-    @material = Material.find(params[:id])
+    @material = Material.find_by(params[:material_id])
   end
 end

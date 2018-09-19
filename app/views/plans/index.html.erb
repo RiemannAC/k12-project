@@ -16,7 +16,7 @@
         <h4><i><%= subject.name %></i></h4>
         <% subject.plans.each do |plan| %>
 
-          <%= link_to plan_path(subject.plans) do %>
+          <%= link_to plan_path(plan) do %>
             <div class="folder-block">      
               <%= fa_icon 'folder-open 4x', style: 'color:skyblue;' %>
               <p><%= plan.plan_folder_name %></p>

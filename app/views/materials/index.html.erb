@@ -16,7 +16,7 @@
         <h4><i><%= subject.name %></i></h4>
         <% subject.materials.each do |material| %>
 
-          <%= link_to material_path(subject.materials) do %>
+          <%= link_to material_path(material) do %>
             <div class="folder-block">      
               <%= fa_icon 'folder-open 4x', style: 'color:skyblue;' %>
               <p><%= material.mtrial_folder_name %></p>
