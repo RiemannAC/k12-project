@@ -2,7 +2,7 @@
 
   <h4 style="color:#9d586a">教材科目: <%= @material.subject_tag.name %></h4>
   <h4 style="color:#9d586a">資料夾名稱: <%= @material.mtrial_folder_name %></h4>
-  <%= link_to '<< Index Page',root_path %>s
+  <%= link_to '<< Index Page',root_path %>
   <hr class="blue-hr">
  
   <%= form_for [@material,@teachingfile], html:{multipart:true} do |f| %>

@@ -83,7 +83,7 @@ class TeachingfilesController < ApplicationController
     # plan_teachingfiles = @plan.teachingfiles.find(params[:id])
     @teachingfile = @parent.teachingfiles.find(params[:id])
     if @teachingfile.destroy
-      flash[:notice] = "成功刪除檔案"
+      flash[:alert] = "成功刪除檔案"
       redirect_back fallback_location: root_path
     else
       flash[:alert] = "檔案刪除失敗"
