@@ -1,9 +1,11 @@
-<%= form_for [@classroom,teachingschedule,aim], remote: true  do |f| %>
-  <div class="field">
+<%= form_for [@classroom,@teachingschedule,@aim], remote: true  do |f| %>
+  <div class="input-group">
     <%= f.text_area :title, :class => "form-control" %>
-    <div class="field">
-      <%= f.submit "Update", :class => "my-btn my-btn-transparent" %>
+    <div class="input-group-addon">
+      <%= f.submit "Update", :class => "btn btn-warning" %>
+
     </div>
   </div>
 <% end %>
 
+ 

@@ -30,11 +30,11 @@ class AimsController < ApplicationController
       if @aim.update(aim_params)
         format.html{redirect_to classroom_url(@aim.teachingschedule.classroom),notice:"成功更新教學計劃" }
         format.json{render :show, status: :ok, location: @aim}  
-        
+        format.js
       else
         format.html{render :edit}
         format.json{render json: @aim.errors,status: :unprocessable_entity} 
-        
+        format.js
       end
     end
   end
