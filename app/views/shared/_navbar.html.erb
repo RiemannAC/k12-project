@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar fixed-top navbar-expand-lg">
   
   <%= link_to root_path, class: "navbar-brand" do %>
     <%= image_tag "temp-k12-logo.png", width:'55', height:'42', alt:'首頁'%>    
@@ -14,28 +14,28 @@
       
       <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
       </form>
       <ul class="navbar-nav nav-user">        
         
         <li class="nav-item dropdown">
           
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <%= link_to('Edit Profile', edit_user_registration_path, class: 'dropdown-item') %>
+            <%= link_to('Edit Profile', edit_user_registration_path, class: 'dropdown-item theme-font') %>
             <div class="dropdown-divider"></div>
-            <%= link_to('Log out', destroy_user_session_path, method: :delete, class: "dropdown-item") %>
+            <%= link_to('Log out', destroy_user_session_path, method: :delete, class: "dropdown-item theme-font") %>
           </div>
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <%= current_user.email.split('@').first %>
           </a>
           <%= link_to do %>
-            <li class="user-icon"><%= fa_icon "user 2x", style: 'color:green' %></li>
+            <li class="user-icon"><%= fa_icon "user 2x", style: 'color:white' %></li>
           <% end %>
         </li>
       </ul>
     <% else %>
       <ul class="navbar-nav navbar-right">
-        <li><%= link_to('Sign up', new_user_registration_path) %> or <%= link_to('Log in', new_user_session_path) %></li>
+        <li class='navbar-nav-li'><%= link_to('Sign up', new_user_registration_path) %> or <%= link_to('Log in', new_user_session_path) %></li>
         <li></li>
       </ul>
     <% end %>

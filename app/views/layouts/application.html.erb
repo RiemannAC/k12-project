@@ -18,11 +18,13 @@
       <% elsif flash[:alert] %>
         <div class="alert alert-danger" role="alert"><%= alert %></div>
       <% end %>
-
       
-        <div class="main row">
-          <%= yield %>
-        </div>
+      
+      <%= render partial: "shared/sidebar" %>
+      <div class="main">
+        <%= yield %>
+      </div>
+
       
     </div>
     <script>

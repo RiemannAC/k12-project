@@ -1,6 +1,6 @@
 class MaterialsController < ApplicationController
   def show
-    @subject_tags = SubjectTag.order(created_at: :desc)
+    
     @material = Material.find(params[:id])
     
     if params[:material_id]
