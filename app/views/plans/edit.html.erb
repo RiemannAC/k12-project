@@ -2,15 +2,6 @@
   <h1>編輯教案</h1>
   <hr class="red-hr">
   
-  <% if @plan.errors.any? %>
-    <h2>We have some errors here !</h2>
-    <ul>
-      <% @plan.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
-  <% end %>
-  
   <%= render partial: 'shared/edit-plan' %>    
 
 </div>
