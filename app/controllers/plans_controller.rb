@@ -40,7 +40,9 @@ class PlansController < ApplicationController
   end
 
   def destroy
-    
+    @plan.destroy
+    redirect_to plans_path
+    flash[:alert] = "#{@plan.plan_folder_name}資料夾已刪除"
   end
 
 

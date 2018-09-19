@@ -26,7 +26,6 @@ class MaterialsController < ApplicationController
   end
 
   def update
-    
     if @material.update(material_params)
       flash[:notice] = "更新教案資料夾設定"
       redirect_to material_path(@material)
@@ -34,7 +33,12 @@ class MaterialsController < ApplicationController
       flash.now[:alert] = "未能成功更新"
       render :edit
     end
-  
+  end
+
+  def destroy
+    @material.destroy
+    redirect_to materials_path
+    flash[:alert] = "#{@material.mtrial_folder_name}資料夾已刪除"
   end
 
   private
