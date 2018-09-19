@@ -1,7 +1,8 @@
 <% if signed_in? %>
   <div class="sidenav">
-    <div class="side-avatar">
-      <h1>使用者頭像</h1>  
+    <div class="dropdown-btn text-center">
+      <%= image_tag 'admin.jpg', class: 'img-fluid' %>
+      <h2><%= current_user.name %></h2>
     </div>
 
     <hr>
