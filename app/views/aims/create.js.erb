@@ -1,4 +1,4 @@
-$("#aim_posts").append('<%= j render partial: @aim %>');
-
-
+$('.post_aim').val('');
+$('#aim_posts').append('<%= j render @aim %>');
+$('#post_<%= @aim.id %>').hide().fadeIn(500);
   

@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-9">
       <!--教學進度表-->
-      
+       
       <div class="weekly-prepare">
         <div class="col-md-9 prepare-detail">
           <h5>
@@ -11,11 +11,11 @@
           <h5>
 
           <%= form_for [@classroom,teachingschedule,Aim.new],remote: true do |f| %>
-
+ 
             <div class="col-md-4">
              <div class="field">
                 <%= f.label :title, "教學目標" %>
-                <%= f.text_field :title,class:"form-control" %>
+                <%= f.text_field :title,class:"form-control post_aim" %>
               </div> 
 
               <%= f.submit class:"label label-primary" %>
@@ -25,8 +25,7 @@
           <div id="aim_posts">
             <% teachingschedule.aims.each do |aim| %>
               
-                <%= render :partial => "aims/aim", locals: {aim: aim } %>              
-              
+              <%= render :partial => 'aims/aim', locals: {aim: aim } %>               
             <% end %> 
           </div>
  

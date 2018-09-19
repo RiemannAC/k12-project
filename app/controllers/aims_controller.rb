@@ -7,11 +7,11 @@ class AimsController < ApplicationController
       if @aim.save
         format.html{redirect_to classroom_url(@aim.teachingschedule.classroom),notice:"成功新增一個教學計劃" }
         format.json{render :show, status: :created, location: @aim}
-        
+        format.js
       else
         format.html{render :new}
         format.json{render json: @aim.errors,status: :unprocessable_entity}
-        
+        format.js
       end
     end 
   end
@@ -46,7 +46,7 @@ class AimsController < ApplicationController
     respond_to do |format|
       format.html{redirect_to classroom_url(@aim.teachingschedule.classroom),notice:"成功刪除教學目標" }
       format.json{head :no_content}  
-      
+      format.js
     end
   end
 

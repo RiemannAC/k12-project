@@ -3,21 +3,9 @@ class ClassroomsController < ApplicationController
     @classroom = Classroom.find(params[:id])
     @date = params[:date] ? Date.parse(params[:date]) : Date.today
     @topics = Topic.order(created_at: :desc)
+  
+    @teachingschedule = Teachingschedule.new
     
-    if params[:classroom_id]
-      @teachingschedule = @classroom.teachingschedules.find(params[:id]) 
-            
-    else
-      @teachingschedule = Teachingschedule.new
-      @aim = Aim.new
-    end
-
-    if params[:teachingschedule_id]
-      @aim = @teachingschedule.aims.find(params[:id])
-    end
-
-
-
   end 
 
   def new
