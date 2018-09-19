@@ -33,12 +33,16 @@
     <% @plan.teachingfiles.each do |teachingfile| %>
     <tr>
       <td style="padding-right:20px;"><%= teachingfile.name %></td>
-      <td style="padding-right:20px;"><%= link_to "download file", teachingfile.attachment_url %></td>
+      <td style="padding-right:20px;">
+        <%= link_to teachingfile.attachment_url do%>
+          <%= fa_icon 'download 2x', class: 'theme-font' %>
+        <% end %>
+        <%= teachingfile.attachment.file.filename %>
+      </td>
       <td style="padding-right:20px;"><%= link_to 'Edit',edit_plan_teachingfile_path(@plan,teachingfile) %></td>
       <td style="padding-right:20px;"> <%= link_to 'Delete', plan_teachingfile_path(@plan,teachingfile), method: :delete, data: { confirm: "Are you sure?"} %></td>
       
     </tr>
     <% end %>
   </table>
-
 </div>
