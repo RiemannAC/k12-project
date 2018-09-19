@@ -1,1 +1,30 @@
-<h1>這裡放上傳的plan file</h1>
+<div class="main-frame">
+  <div >
+    <h1>
+      教案資料夾
+      <%= link_to new_plan_path do %>
+        <%= fa_icon 'plus-circle', style: 'color:#02f78e', alt: '新增資料夾' %>
+      <% end %>
+    </h1>
+    
+  </div>
+  
+  <hr>
+  <div>
+    <% @subject_tags.each do |subject| %>
+      <% if subject.plans.present? %>
+        <h4><i><%= subject.name %></i></h4>
+        <% subject.plans.each do |plan| %>
+
+          <%= link_to plan_path(subject.plans) do %>
+            <div class="folder-block">      
+              <%= fa_icon 'folder-open 4x', style: 'color:skyblue;' %>
+              <p><%= plan.plan_folder_name %></p>
+            </div>
+          <% end %> 
+        <% end %>
+
+      <% end %>
+    <% end %>
+  </div>
+</div>
