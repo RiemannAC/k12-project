@@ -10,11 +10,9 @@
 </style>
 
 <div class="main-frame">
-  <div class="new-file-head">
-    <h1>新增教案</h1>
-    <hr class="blue-hr">
-  </div>
-
+  <h1>新增教案</h1>
+  <hr class="blue-hr">
+  
   <% if @plan.errors.any? %>
     <h2>We have some errors here !</h2>
     <ul>
@@ -31,7 +29,7 @@
     </div> 
 
     <div class="field">
-    <%= f.label :plan_folder_name, "教案資料夾名稱" %><br>
+    <%= f.label :plan_folder_name, "資料夾名稱" %><br>
     <%= f.text_field :plan_folder_name ,class: "form-control"%>
     </div>
 
@@ -46,6 +44,4 @@
     </div>
 
   <% end %>
-
 </div>
-

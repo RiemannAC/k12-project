@@ -9,12 +9,9 @@
   }
 </style>
 
-
 <div class="main-frame">
-  <div class="new-file-head">
-    <h1>新增教材</h1>
-    <hr class="blue-hr">
-  </div>
+  <h1>新增教材</h1>
+  <hr class="blue-hr">
 
   <% if @material.errors.any? %>
     <h2>We have some errors here !</h2>
@@ -32,7 +29,7 @@
     </div> 
 
     <div class="field">
-    <%= f.label :mtrial_folder_name, "教材資料夾名稱" %><br>
+    <%= f.label :mtrial_folder_name, "資料夾名稱" %><br>
     <%= f.text_field :mtrial_folder_name ,class:"form-control"%>
     </div>
 

@@ -1,21 +1,10 @@
-<div class="container">
-  <h4>教案科目: <%= @plan.subject_tag.name %></h4>
-  <h4>資料夾名稱: <%= @plan.plan_folder_name %></h4> 
- 
-  <table>
-    <% @plan.teachingfiles.each do |teachingfile| %>
-    <tr>
-      <td style="padding-right:20px;"><%= teachingfile.name %></td>
-      <td style="padding-right:20px;"><%= link_to "download file", teachingfile.attachment_url %></td>
-      <td style="padding-right:20px;"><%= link_to 'Edit',edit_plan_teachingfile_path(@plan,teachingfile) %></td>
-      <td style="padding-right:20px;"> <%= link_to 'Delete', plan_teachingfile_path(@plan,teachingfile), method: :delete, data: { confirm: "Are you sure to delete ?"} %></td>
-    </tr>
-    <% end %>
-  </table> 
+<div class="main-frame">
 
-
-
-  
+  <h4 style="color:#55a578">教案科目: <%= @plan.subject_tag.name %></h4>
+  <h4 style="color:#55a578">資料夾名稱: <%= @plan.plan_folder_name %></h4> 
+  <%= link_to '<< Index Page',root_path %>
+  <hr class="blue-hr">
+   
   <%= form_for [@plan,@teachingfile], html:{multipart:true} do |f| %>
     <div class="form-group">
       <%= f.label :name %>
@@ -30,4 +19,22 @@
     <%= f.submit "Upload", class:"btn btn-primary" %>
 
   <% end %>
+
+  <br>
+
+  <table>
+    <h3 style="color:#45785b">Folder Content</h3>
+    <% @plan.teachingfiles.each do |teachingfile| %>
+    <tr>
+      <td style="padding-right:20px;">
+          <li><%= teachingfile.name %></li>
+      </td>
+      <td style="padding-right:20px;"><%= link_to "download file", teachingfile.attachment_url %></td>
+      <td style="padding-right:20px;"><%= link_to 'Edit',edit_plan_teachingfile_path(@plan,teachingfile) %></td>
+      <td style="padding-right:20px;"> <%= link_to 'Delete', plan_teachingfile_path(@plan,teachingfile), method: :delete, data: { confirm: "Are you sure to delete ?"} %></td>
+      
+    </tr>
+    <% end %>
+  </table>
+
 </div>
