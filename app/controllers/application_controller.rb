@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   private
 
   def call_subject_tags
-     @subject_tags = SubjectTag.order(created_at: :desc)
+     @subject_tags = SubjectTag.order(name: :desc)
   end
 
   protected

@@ -33,6 +33,7 @@ body {
 }
 
 .alert {
-  float: right;
-  margin: 2rem;
+  position: absolute;
+  margin-top: 1.5rem;
+  margin-left: 65%;
 }

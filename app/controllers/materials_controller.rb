@@ -1,6 +1,9 @@
 class MaterialsController < ApplicationController
   before_action :set_material, only: [:edit, :show, :update, :destroy]
   
+  def index
+  end
+
   def show
     
     if params[:material_id]
@@ -18,7 +21,7 @@ class MaterialsController < ApplicationController
     @material = Material.new(material_params)
     if @material.save
       flash[:notice] = "teaching-material file was successfully created"
-      redirect_to root_path
+      redirect_to materials_path
     else
       flash.now[:alert] = "teaching-material file was failed to create"
       render :new

@@ -2,7 +2,7 @@ class PlansController < ApplicationController
   before_action :set_plan, only: [:edit, :show, :update, :destroy]
 
   def index
-    
+    @plans = Plan.order(:created_at).page(params[:page]).per(15)
   end
 
   def new

@@ -1,0 +1,30 @@
+<div class="main-frame">
+  <div >
+    <h1>
+      教材資料夾
+      <%= link_to new_material_path do %>
+        <%= fa_icon 'plus-circle', style: 'color:#02f78e', alt: '新增資料夾' %>
+      <% end %>
+    </h1>
+    
+  </div>
+  
+  <hr>
+  <div>
+    <% @subject_tags.each do |subject| %>
+      <% if subject.materials.present? %>
+        <h4><i><%= subject.name %></i></h4>
+        <% subject.materials.each do |material| %>
+
+          <%= link_to material_path(subject.materials) do %>
+            <div class="folder-block">      
+              <%= fa_icon 'folder-open 4x', style: 'color:skyblue;' %>
+              <p><%= material.mtrial_folder_name %></p>
+            </div>
+          <% end %> 
+        <% end %>
+
+      <% end %>
+    <% end %>
+  </div>
+</div>

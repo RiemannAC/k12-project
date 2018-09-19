@@ -1,9 +1,9 @@
 <div class="main-frame">
   <div class="">
     <%= link_to '編輯資料夾設定', edit_material_path(@material), class: 'btn btn-outline-primary btn-sm' %>
-    <%= link_to '刪除資料夾', material_path(@material), class: 'btn btn-danger btn-sm pull-right', method: :delete, data: {confirm: "Are you sure?"} %>
+    <%= link_to '刪除資料夾', material_path(@material), class: 'btn btn-danger btn-sm pull-right', method: :delete, data: {confirm: "資料夾裡的檔案也會一併刪除，你確定嗎？"} %>
   </div>
-  <br><br>
+  <br>
   <h4 style="color:#9d586a">教材科目: <%= @material.subject_tag.name %></h4>
   <h4 style="color:#9d586a">資料夾名稱: <%= @material.mtrial_folder_name %></h4>
   <%= link_to '<< 全部資料夾', materials_path %>
