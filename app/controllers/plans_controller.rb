@@ -2,7 +2,16 @@ class PlansController < ApplicationController
   before_action :set_plan, only: [:edit, :show, :update, :destroy]
 
   def index
-    
+    @plans = Plan.all
+  end
+
+  def show
+  
+    if params[:plan_id]
+      @teachingfile = @plan.teachingfiles.find(params[:id])
+    else
+      @teachingfile = Teachingfile.new
+    end  
   end
 
   def new
@@ -20,15 +29,6 @@ class PlansController < ApplicationController
     end
   end
 
-  def show
-  
-    if params[:plan_id]
-      @teachingfile = @plan.teachingfiles.find(params[:id])
-    else
-      @teachingfile = Teachingfile.new
-    end  
-  end
-
   def update
     if @plan.update(plan_params)
       flash[:notice] = "更新教案資料夾設定"
@@ -40,9 +40,10 @@ class PlansController < ApplicationController
   end
 
   def destroy
-    
+    @plan.destroy
+    redirect_to plans_path
+    flash[:alert] = "#{@plan.plan_folder_name}資料夾已刪除"
   end
-
 
   private
 

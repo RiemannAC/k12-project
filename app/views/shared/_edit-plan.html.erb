@@ -8,6 +8,16 @@
     margin-bottom: -15px;
   }
 </style>
+
+<% if @plan.errors.any? %>
+  <h2>We have some errors here !</h2>
+  <ul>
+    <% @plan.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+  
 <%= form_for [@plan] do |f| %>
   <div class="field field-category">
   <%= f.label :subject_tag_id, "科目" %><br>
