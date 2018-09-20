@@ -1,6 +1,21 @@
+<style>
+  .undone{
+    color: blue;
+    font-size: 30px;
+  }  
+</style>
+
 <%= form_for [@classroom,@teachingschedule,@aim], remote: true  do |f| %>
   <div class="input-group">
     <%= f.text_area :title, :class => "form-control" %>
+
+    <div class="contol-group">
+      <%= f.label "Status" %>
+      <div class="controls">
+        <%= f.select(:status, options_for_select([['未開始','未開始', {class: 'undone'}],['進行中','進行中'],['已完成','已完成']]) ,{ include_blank: true })%>
+      </div>
+    </div>
+
     <div class="input-group-addon">
       <%= f.submit "Update", :class => "btn btn-warning" %>
 

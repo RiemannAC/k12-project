@@ -52,6 +52,6 @@ class AimsController < ApplicationController
 
   private
   def aim_params
-    params.require(:aim).permit(:title,:classroom_id,:accessment,:teachingschedule_id)
+    params.require(:aim).permit(:title,:classroom_id,:status,:teachingschedule_id)
   end
 end
