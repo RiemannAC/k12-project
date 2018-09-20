@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180916095518) do
+ActiveRecord::Schema.define(version: 20180920024221) do
 
   create_table "aims", force: :cascade do |t|
     t.string "title"
-    t.integer "accessment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "teachingschedule_id"
+    t.string "status"
   end
 
   create_table "classrooms", force: :cascade do |t|
