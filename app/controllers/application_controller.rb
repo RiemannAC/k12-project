@@ -18,6 +18,12 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: [:name])
   end
 
-  
+  def authenticate_author
+    unless @user = current_user
+      flach[:alert] = "Not Allow!"
+      redirect_to user_lessons_path
+    end
+  end
+
 end
  
