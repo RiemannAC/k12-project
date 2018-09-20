@@ -57,7 +57,6 @@
                   
           <tr>
             <th><%= teachingschedule.theme %></th>
-            <th><%= teachingschedule.feedback %></th>
             <th>
               <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myupdatepost_<%= teachingschedule.id  %>">edit</button>
               <%= link_to "destroy",  classroom_teachingschedule_path(@classroom,teachingschedule) ,method: :delete, data: { confirm: "Are you sure?"},class:"btn brn-danger",remote:true %>
@@ -107,7 +106,7 @@
 <!--modal - update feedback posts -->
 <%= form_for [@classroom,teachingschedule] ,method: :put ,remote: true do |f| %>
   <div class="modal fade" id="myupdatefeedback_<%= teachingschedule.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
+      <div class="modal-dialog modal-md modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -121,7 +120,7 @@
 
             <div class="field">
               <%= f.label :feedback %>
-              <%= f.text_area :feedback, class: 'form-control', placeholder: "輸入教學後的心得＆反思",rows:"6" %>
+              <%= f.trix_editor :feedback, placeholder: "輸入教學後的心得＆反思" %>
             </div>
 
           </div>
@@ -153,6 +152,9 @@ function toggle_checkall(field_name, state) {
     }
   }
 }
+
+$('trix-editor').css("min-height", "350px");
 </script>
+
 
 

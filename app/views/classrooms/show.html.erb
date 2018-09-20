@@ -66,16 +66,18 @@
           </div>
 
           <div class="modal-body">
+            <!--輸入教學主題-->
             <div class="field">
               <%= f.label :theme %>
               <%= f.text_field :theme, class: 'form-control post_theme', placeholder: "輸入教學主題" %>
             </div>
-
-            <div class="field">
-              <%= f.label :feedback %>
-              <%= f.text_area :feedback, class: 'form-control post_feedback', placeholder: "輸入教學後的心得＆反思",rows:"6" %>
-            </div>
-
+            
+            <!--輸入教學後的心得＆反思-->
+            <!-- <div class="field"> -->
+              <%#= f.label :feedback %>
+              <%#= f.text_area :feedback, class: 'form-control post_feedback', placeholder: "輸入教學後的心得＆反思",rows:"6" %>
+            <!-- </div> -->
+            
           </div>
 
           <div class="modal-footer">

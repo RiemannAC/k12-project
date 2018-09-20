@@ -70,3 +70,4 @@ gem 'ransack'                   # feature/search
 gem 'fullcalendar-rails'        # schedule calendar
 gem 'momentjs-rails'            # fullcalendar 搭配需求用來處理日期格式化
 gem 'ice_cube'                  # schedule 循環事件
+gem 'trix'
