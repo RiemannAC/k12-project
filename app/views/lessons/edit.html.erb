@@ -1,6 +1,28 @@
-<h1>Editing lesson</h1>
+<div class="row">
+  <%= render 'shared/msg' %>
 
-<%= render 'form' %>
+  <div class="col-12">
+    <h1>編輯課程</h1>
+    <%= render 'edit_form' %>
+  </div>
+  <br/>
 
-<%= link_to 'Show', @lesson %> |
-<%= link_to 'Back', lessons_path %>
+  <%# buttons %>
+  <ul class="nav nav-pills">
+    <li class="nav-item">
+      <%= link_to 'Show', user_lesson_path(@user, @lesson), class: "nav-link bg-light" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'Destroy', user_lesson_path(@user, @lesson), method: :delete, data: { confirm: 'Are you sure?' }, class: "nav-link bg-light" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'Back', user_lessons_path, class: "nav-link bg-light" %>
+    </li>
+  </ul>
+
+</div>
+
+
+
+
+

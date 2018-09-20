@@ -1,5 +1,10 @@
-<h1>New lesson</h1>
+<div class="row">
+  <%= render 'shared/msg' %>
 
-<%= render 'form' %>
-
-<%= link_to 'Back', lessons_path %>
+  <div class="col-12">
+    <h1>新增課程</h1>
+    <%= render 'form' %>
+    <br/>
+    <%= link_to 'Back', user_lessons_path %>
+  </div>
+</div>

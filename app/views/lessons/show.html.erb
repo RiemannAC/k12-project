@@ -1,15 +1,29 @@
+<div class="row">
+  <div class="col-12">
+    <%= render 'shared/msg' %>
 
-<p id="notice"><%= notice %></p>
+    <div class="form-group">
+      <h1><%= @lesson.name %></h1>
+    </div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @lesson.name %>
-</p>
+    <p>
+      <strong>Start time:</strong>
+      <%= @lesson.start_time %>
+    </p>
 
-<p>
-  <strong>Start time:</strong>
-  <%= @lesson.start_time %>
-</p>
+    
+    <%# buttons %>
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        <%= link_to 'Edit', edit_user_lesson_path(@user, @lesson), class: "nav-link bg-light" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Destroy', user_lesson_path(@user, @lesson), method: :delete, data: { confirm: 'Are you sure?' }, class: "nav-link bg-light" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Back', user_lessons_path, class: "nav-link bg-light" %>
+      </li>
+    </ul>
 
-<%= link_to 'Edit', edit_lesson_path(@lesson) %> |
-<%= link_to 'Back', lessons_path %>
+  </div>
+</div>

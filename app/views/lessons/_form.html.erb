@@ -1,26 +1,34 @@
+<%= form_for [@user, @lesson], url: {action: "create"} do |f| %>
 
-<%= form_for(@lesson) do |f| %>
-  <% if @lesson.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
-
-      <ul>
-      <% @lesson.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  <div class="form-group">
+    <%=f.label :name %>
+    <br/>
+    <%=f.text_field :name, class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :start_time %><br>
-    <%= f.datetime_select :start_time %>
+
+  <div class="form-group">
+    <%=f.label :start_time, 'Start Time' %>
+    <br/>
+    <%=f.datetime_select :start_time %>
   </div>
+
+  <div class="form-group">
+    <%=f.label :all_day %>
+    <%=f.check_box :all_day %>
+  </div>
+
+  <div class="form-group">
+    <%=f.label :period, "Repeats" %>
+    <%=f.select :period, Lesson::REPEATS,{} %>
+  </div>
+
+  <div class="form-group" id="frequency">
+    <%=f.label :frequency, "Repeat every" %>
+    <%=f.select :frequency, (1..30).to_a %> <span id = "period"></span>
+  </div>
+
   <div class="actions">
-    <%= f.submit %>
+    <%=f.submit "Create", class: "btn btn-primary" %>
   </div>
-<% end %>
+
+<%end %>

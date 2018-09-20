@@ -18,9 +18,11 @@ Rails.application.routes.draw do
 
   resources :subject_tags
 
-  resources :lessons do
-    collection do
-      get :list
+  resources :users do
+    resources :lessons do
+      collection do
+        get :list
+      end
     end
   end
 
