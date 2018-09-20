@@ -12,13 +12,13 @@
     <div class="contol-group">
       <%= f.label "Status" %>
       <div class="controls">
-        <%= f.select(:status, options_for_select([['未開始','未開始', {class: 'undone'}],['進行中','進行中'],['已完成','已完成']]) ,{ include_blank: true })%>
+        <%= f.select(:status, options_for_select([['未開始','未開始'],['進行中','進行中'],['已完成','已完成']]) ,{prompt: true})%>
       </div>
     </div>
 
     <div class="input-group-addon">
+      <%= button_tag t('buttons.cancel'), type: "submit", name: "cancel", value: true %>
       <%= f.submit "Update", :class => "btn btn-warning" %>
-
     </div>
   </div>
 <% end %> 
