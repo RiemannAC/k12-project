@@ -34,15 +34,15 @@
         </div> 
 
         <div class="col-md-2 prepare-storage">
-          <!-- 上傳及下載資料的 modal -->
           <div class="prepare-storage-icon">
-            <div data-toggle="modal" data-target="#exampleModal2">
+            <!-- 上傳及下載資料的 modal -->
+            <div class="teachfile" data-toggle="modal" data-target="#exampleModal2">
               <%= fa_icon "folder-open 2x", style: 'color:skyblue', alt: 'add file'%>
             </div>
-          <!--教學回饋-->
-          <div class="feedback">
-            <%= teachingschedule.feedback %>
-          </div>
+            <!--教學回饋-->
+            <div class="feedback">
+              <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myupdatefeedback_<%= teachingschedule.id  %>">反思</button>
+            </div>
 
 
           </div>
@@ -72,7 +72,7 @@
 
 
 
-<!--modal - update posts-->
+<!--modal - update topic posts-->
 <%= form_for [@classroom,teachingschedule] ,method: :put ,remote: true do |f| %>
   <div class="modal fade" id="myupdatepost_<%= teachingschedule.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -91,6 +91,34 @@
               <%= f.text_field :theme, class: 'form-control', placeholder: "輸入教學主題" %>
             </div>
 
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" id="mypostclose">close</button>
+            <%= submit_tag "Update",class:"btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>
+<!--update modal-->
+
+
+<!--modal - update feedback posts -->
+<%= form_for [@classroom,teachingschedule] ,method: :put ,remote: true do |f| %>
+  <div class="modal fade" id="myupdatefeedback_<%= teachingschedule.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+
+            <h5 class="modal-title" id="myModalLabel">Edit</h5>
+          </div>
+
+          <div class="modal-body">
+
             <div class="field">
               <%= f.label :feedback %>
               <%= f.text_area :feedback, class: 'form-control', placeholder: "輸入教學後的心得＆反思",rows:"6" %>
@@ -107,6 +135,11 @@
     </div>
 <% end %>
 <!--update modal-->
+
+
+
+
+
 
 
 <script>
