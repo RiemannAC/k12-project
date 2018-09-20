@@ -1,0 +1,31 @@
+<%= form_for [@user, @lesson] do |f| %>
+<%# 不需指定 action，名稱套用慣例 %>
+
+  <div class="form-group">
+    <%=f.label :name %>
+    <br/>
+    <%=f.text_field :name, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%=f.label :start_time, 'Start Time' %>
+    <br/>
+    <%=f.datetime_select :start_time %>
+  </div>
+
+  <div class="form-group">
+    <%=f.label :all_day %>
+    <%=f.check_box :all_day %>
+  </div>
+
+  <div class="actions">
+    <% if @subject -%>
+      <%= f.submit "更新這堂課", class: "btn btn-secondary" %>
+      <%= f.submit "更新之後的課程", class: "btn btn-info" %>
+      <%= f.submit "更新整學期的課程", class: "btn btn-danger" %>
+    <% else -%>
+      <%= f.submit "Update", class: "btn btn-primary" %>
+    <% end -%>
+  </div>
+
+<%end %>

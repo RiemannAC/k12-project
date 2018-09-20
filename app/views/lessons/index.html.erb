@@ -1,6 +1,6 @@
 <div class="row">
   <div id="lessons_calendar" class="col-6" style="padding: 0px;">
-    <%= link_to 'Listing lessons', list_lessons_path %>
+    <%= link_to 'Listing lessons', list_user_lessons_path %>
 
       <div class="row">
         <div class="col-8 m-auto">
@@ -10,7 +10,7 @@
               <div id="hour-<%= hour %>" class="day_time">
                 <% lessons.each do |lesson| %>
                   <%- if lesson.start_time.hour.between?(hour, hour + 0.9) %>
-                    <%= link_to lesson_path(lesson) do %>
+                    <%= link_to user_lesson_path(@user, lesson) do %>
                       <%= lesson.name %>
                     <% end %>
                   <% end -%>
@@ -21,7 +21,7 @@
         </div>
       </div>
     <div class="pull-right">
-      <%= link_to new_lesson_path do %>
+      <%= link_to new_user_lesson_path do %>
         <i class="fa fa-plus-circle" style="font-size: 80px; color: #A3A3A3; margin-right: 100px;"></i>
       <% end %>
     </div>
