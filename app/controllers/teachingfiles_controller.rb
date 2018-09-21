@@ -57,7 +57,7 @@ class TeachingfilesController < ApplicationController
     if @teachingfile.update(teachingfile_params)
       flash[:notice] = "teachingfile #{@teachingfile.name} was successfully updated"
       if params[:material_id]
-        redirect_to material_path(@teachingfile.material)
+        redirect_to user_material_path(@teachingfile.material.user)
       elsif params[:plan_id]
         redirect_to plan_path(@teachingfile.plan)
       end
