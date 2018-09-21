@@ -11,19 +11,7 @@
       <%= fa_icon 'caret-down' %>
     </button>
     <div class="dropdown-container">
-      <%= link_to '+ 新增科目/班級' %>
-      <!--第二層 dropdown 開始 -->
-      <% @subject_tags.each do |subject| %>
-        <button class="dropdown-btn">
-          <!-- 如果使用者有科目/班級的話，顯示科目級底下的班級頁面連結 -->
-          <%= subject.name %>
-          <%= fa_icon 'caret-down' %>
-        </button>
-        <div class="dropdown-container">
-          <%= link_to '例：1年1班' %>
-          
-        </div>
-      <% end %>
+     
       
     </div>
 
@@ -33,29 +21,16 @@
       <%= fa_icon 'caret-down' %>
     </button>
     <div class=dropdown-container>
-      <%= link_to " + 新增教材資料夾" ,new_material_path  %>
+      <%= link_to " + 新增教材資料夾" ,new_user_material_path  %>
       <!--第二層 dropdown開始-->
       <button class="dropdown-btn">
         <%= " - 現有教材" %>
         <%= fa_icon 'caret-down' %>
       </button>
       <div class="dropdown-container">
-        <% @subject_tags.each do |subject| %>
-          <% if subject.materials.present? %>
-            <!--第三層 dropdown-->
-            <button class="dropdown-btn">
-              <%= "【" + subject.name + "】" %>
-              <%= fa_icon 'caret-down' %>         
-            </button>
-            <!--第三層 dropdown 裡的內容-->
-            <div class="dropdown-container">
-              <% subject.materials.each do |material| %>
-                <%= link_to material.mtrial_folder_name, material_path(material) %>
-              <% end %> 
-            </div>
-          <% end %>
-        <% end %>
+        
       </div>
+      
     </div>
 
     <button class="dropdown-btn">
@@ -63,25 +38,13 @@
       <%= fa_icon 'caret-down' %>
     </button>
     <div class=dropdown-container>
-      <%= link_to " + 新增教案資料夾" ,new_plan_path  %>
+      <%= link_to " + 新增教案資料夾", new_user_plan_path  %>
       <button class="dropdown-btn">
         <%= " - 現有教案" %>
         <%= fa_icon 'caret-down' %>
       </button>
       <div class="dropdown-container">
-        <% @subject_tags.each do |subject| %>
-          <% if subject.plans.present? %>
-            <button class="dropdown-btn">
-              <%= "【" + subject.name + "】" %>
-              <%= fa_icon 'caret-down' %>         
-            </button>
-            <div class="dropdown-container">
-              <% subject.plans.each do |plan| %>
-                <%= link_to plan.plan_folder_name, plan_path(plan) %>
-              <% end %>
-            </div>
-          <% end %>
-        <% end %>
+        
       </div>
     </div>
       
@@ -90,7 +53,9 @@
       <%= fa_icon 'caret-down' %>
     </button>
     <div class="dropdown-container">
-      
+      <h5 style="color:green">
+        你還沒有任何教學計劃哦！趕快來新增班級吧！
+      </h5>  
     </div>
        
   </div>
