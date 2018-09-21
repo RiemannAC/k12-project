@@ -36,6 +36,7 @@ class MaterialsController < ApplicationController
     end   
   end
 
+
   def update
     if @material.update(material_params)
       flash[:notice] = "更新教案資料夾設定"
@@ -50,7 +51,7 @@ class MaterialsController < ApplicationController
     @user = User.find(params[:user_id])
     @material = @user.materials.find(params[:id])    
     @material.destroy
-    redirect_to materials_path
+    redirect_to root_path
     flash[:alert] = "#{@material.mtrial_folder_name}資料夾已刪除"
   end
 
