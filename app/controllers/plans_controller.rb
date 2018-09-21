@@ -6,45 +6,6 @@ class PlansController < ApplicationController
     @plans = @user.plans.all
   end
 
-  def show
-  
-    if params[:plan_id]
-      @teachingfile = @plan.teachingfiles.find(params[:id])
-    else
-      @teachingfile = Teachingfile.new
-    end  
-  end
-
-  def new
-    @plan = Plan.new
-  end
- 
-  def create
-    @plan = Plan.new(plan_params)
-    if @plan.save
-      flash[:notice] = "teaching-plan file was successfully created"
-      redirect_to root_path
-    else
-      flash.now[:alert] = "teaching-plan file was failed to create"
-      render :new
-    end
-  end
-
-  def update
-    if @plan.update(plan_params)
-      flash[:notice] = "更新教案資料夾設定"
-      redirect_to plan_path(@plan)
-    else
-      flash.now[:alert] = "未能成功更新"
-      render :edit
-    end
-  end
-
-  def destroy
-    @plan.destroy
-    redirect_to plans_path
-    flash[:alert] = "#{@plan.plan_folder_name}資料夾已刪除"
-  end
 
   private
 

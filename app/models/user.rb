@@ -32,6 +32,8 @@ class User < ApplicationRecord
   validates_presence_of :name
 
   has_many :subjects, dependent: :destroy
+  has_many :plans, dependent: :destroy
+  has_many :materials, dependent: :destroy
 
 
   def admin?
