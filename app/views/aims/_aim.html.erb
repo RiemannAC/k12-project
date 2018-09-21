@@ -1,16 +1,24 @@
+<style>
+.aim-status{
+  margin-right: 10px;
+}
+
+</style>
+
 <li id="post_<%= aim.id %>" >
-  <span><%= aim.title %></span>
-  <span><%= aim.status %></span>
-  <span>
-    <%= link_to edit_classroom_teachingschedule_aim_path(aim.teachingschedule.classroom,aim.teachingschedule,aim), remote:true do %>
-       <i class="fa fa-edit" style="font-size:24px"></i>
-    <% end %>
-  </span>
-  <span>
-    <%= link_to classroom_teachingschedule_aim_path(aim.teachingschedule.classroom,aim.teachingschedule,aim) ,remote:true, method: :delete, data: { confirm: "Are you sure?"},remote:true do%>
-      <i class="fa fa-trash" style="font-size:24px"></i>
-    <% end %>
-  </span> 
+    <span class="aim-title"><%= aim.title %></span>
+    <span class="aim-status"><%= aim.status %></span>
+
+    <span>
+      <%= link_to edit_classroom_teachingschedule_aim_path(aim.teachingschedule.classroom,aim.teachingschedule,aim), remote:true do %>
+         <i class="fa fa-edit" style="font-size:24px"></i>
+      <% end %>
+    </span>
+    <span>
+      <%= link_to classroom_teachingschedule_aim_path(aim.teachingschedule.classroom,aim.teachingschedule,aim) ,remote:true, method: :delete, data: { confirm: "Are you sure?"},remote:true do%>
+        <i class="fa fa-trash" style="font-size:24px"></i>
+      <% end %>
+    </span> 
 </li>
 
 

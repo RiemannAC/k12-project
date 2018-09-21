@@ -1,24 +1,21 @@
 <style>
-  .undone{
-    color: blue;
-    font-size: 30px;
+  .aim-group{
+    margin-right: 10px;
   }  
 </style>
 
 <%= form_for [@classroom,@teachingschedule,@aim], remote: true  do |f| %>
-  <div class="input-group">
-    <%= f.text_area :title, :class => "form-control" %>
+  <div class="form-inline">
+    <div class="aim-group">
+      <%#= f.label "Status" %>
+      <%= f.select(:status, options_for_select([['未開始','未開始'],['進行中','進行中'],['已完成','已完成']]) ,{prompt: true})%>
 
-    <div class="contol-group">
-      <%= f.label "Status" %>
-      <div class="controls">
-        <%= f.select(:status, options_for_select([['未開始','未開始'],['進行中','進行中'],['已完成','已完成']]) ,{prompt: true})%>
-      </div>
+      <%= f.text_field :title ,class:"form-control" %>
     </div>
 
-    <div class="input-group-addon">
-      <%= button_tag t('buttons.cancel'), type: "submit", name: "cancel", value: true %>
-      <%= f.submit "Update", :class => "btn btn-warning" %>
+    <div class="aim-group">
+      <%= button_tag t('buttons.取消'), class:"btn btn-danger", type: "submit", name: "cancel", value: true %>
+      <%= f.submit "更新", :class => "btn btn-warning" %>
     </div>
   </div>
 <% end %> 
