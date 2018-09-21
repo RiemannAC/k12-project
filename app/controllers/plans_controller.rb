@@ -43,7 +43,7 @@ class PlansController < ApplicationController
   def update
     if@ @plan.update(plan_params)
       flash[:notice] = "更新教案資料夾設定"
-      redirect_to user_plan_path(@plan)
+      redirect_to user_plan_path(@user, @plan)
     else
       flash.now[:alert] = "未能成功更新"
       render :edit
