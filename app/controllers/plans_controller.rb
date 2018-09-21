@@ -6,7 +6,26 @@ class PlansController < ApplicationController
     @plans = @user.plans.all
   end
 
+  def new
+    @plan = Plan.new
+  end
 
+  def create
+    @plan = Plan.new(plan_params)
+    @plan = @subject_tag.plans.build
+    @plan.user = current_user
+    if @plan.save!
+      redirect_to user_plans_path(current_user)
+    else
+      flash[:alert] = "新增教案資料夾失敗"
+      render :new
+    end
+  end
+
+  def show
+    @plan = Plan.new
+    @plans = @user.plans.all
+  end
   private
 
   def plan_params
