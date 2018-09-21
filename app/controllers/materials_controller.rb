@@ -8,13 +8,16 @@ class MaterialsController < ApplicationController
 
   def show
     @user = User.find(params[:user_id])
-    @material = @user.materials.find(params[:id])    
-    if params[:material_id]
-      @teachingfile = @material.teachingfiles.find(params[:id])
-    else
-      @teachingfile = Teachingfile.new
+    if params[:user_id]
+      @material = @user.materials.find(params[:id])
+      if params[:material_id]
+        @teachingfile = @material.teachingfiles.find(params[:id])
+      else
+        @teachingfile = Teachingfile.new
+      end
     end
   end
+
 
   def new
     @user = User.find(params[:user_id])
