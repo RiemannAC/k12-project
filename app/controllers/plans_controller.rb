@@ -2,7 +2,8 @@ class PlansController < ApplicationController
   before_action :set_plan, only: [:edit, :show, :update, :destroy]
 
   def index
-    @plans = Plan.all
+    @user = current_user
+    @plans = @user.plans.all
   end
 
   def show
@@ -54,5 +55,9 @@ class PlansController < ApplicationController
   def set_plan
     @plan = Plan.find(params[:id])
   end
+
+  def set_user
+      @user = User.find_by_id(params[:user_id])
+    end
 
 end
