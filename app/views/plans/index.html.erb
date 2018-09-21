@@ -2,7 +2,7 @@
   <div >
     <h1>
       教案資料夾
-      <%= link_to new_plan_path do %>
+      <%= link_to new_user_plan_path(@user, @plans) do %>
         <%= fa_icon 'plus-circle', style: 'color:#02f78e', alt: '新增資料夾' %>
       <% end %>
     </h1>
