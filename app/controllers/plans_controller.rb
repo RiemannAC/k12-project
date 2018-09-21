@@ -2,30 +2,62 @@ class PlansController < ApplicationController
   before_action :set_plan, only: [:edit, :show, :update, :destroy]
 
   def index
-    @user = current_user
-    @plans = @user.plans.all
+    @user = User.find(params[:user_id])
+    @plan = @user.plans.all
+  end
+
+  def show
+    @user = User.find(params[:user_id])
+    if params[:user_id]
+      @plan = @user.materials.find(params[:id])
+      if params[:plan_id]
+        @teachingfile = plan.teachingfiles.find(params[:id])
+      else
+        @teachingfile = Teachingfile.new
+      end
+    end
   end
 
   def new
-    @plan = Plan.new
+    @user = User.find(params[:user_id])
+    @plan = @user.plans.new
   end
 
   def create
-    @plan = Plan.new(plan_params)
-    @plan = @subject_tag.plans.build
-    @plan.user = current_user
-    if @plan.save!
-      redirect_to user_plans_path(current_user)
+    @user = User.find(params[:user_id])
+    @plan = @user.plans.new(plan_params)
+    if @plan.save
+      flash[:notice] = "成功新增資料夾【#{plan.plan_folder_name}】"
+      redirect_to user_plans_path
     else
-      flash[:alert] = "新增教案資料夾失敗"
+      flash[:alert] = "資料夾新增失敗"
       render :new
     end
   end
 
-  def show
-    @plan = Plan.new
-    @plans = @user.plans.all
+  def edit
+    @user = User.find(params[:user_id])
+    @plan = @user.plans.find(params[:id])
   end
+
+  def update
+    if@ @plan.update(plan_params)
+      flash[:notice] = "更新教案資料夾設定"
+      redirect_to user_plan_path(@plan)
+    else
+      flash.now[:alert] = "未能成功更新"
+      render :edit
+    end
+  end
+
+  def destroy
+    @user = User.find(params[:user_id])
+    @plan = @user.plans.find(params[:id])
+    @plan.destroy
+    redirect_to user_plans_path
+    flash[:alert] = "#{@plan.plan_folder_name}資料夾已刪除"
+  end
+
   private
 
   def plan_params
@@ -35,9 +67,5 @@ class PlansController < ApplicationController
   def set_plan
     @plan = Plan.find(params[:id])
   end
-
-  def set_user
-      @user = User.find_by_id(params[:user_id])
-    end
 
 end

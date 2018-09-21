@@ -18,7 +18,6 @@ class MaterialsController < ApplicationController
     end
   end
 
-
   def new
     @user = User.find(params[:user_id])
     @material = @user.materials.new
@@ -45,7 +44,7 @@ class MaterialsController < ApplicationController
   def update
     if @material.update(material_params)
       flash[:notice] = "更新教案資料夾設定"
-      redirect_to user_materials_path
+      redirect_to user_material_path(@material)
     else
       flash.now[:alert] = "未能成功更新"
       render :edit
