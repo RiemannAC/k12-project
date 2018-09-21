@@ -7,7 +7,8 @@ class MaterialsController < ApplicationController
   end
 
   def show
-    
+    @user = User.find(params[:user_id])
+    @material = @user.materials.find(params[:id])    
     if params[:material_id]
       @teachingfile = @material.teachingfiles.find(params[:id])
     else
@@ -43,6 +44,8 @@ class MaterialsController < ApplicationController
   end
 
   def destroy
+    @user = User.find(params[:user_id])
+    @material = @user.materials.find(params[:id])    
     @material.destroy
     redirect_to materials_path
     flash[:alert] = "#{@material.mtrial_folder_name}資料夾已刪除"
