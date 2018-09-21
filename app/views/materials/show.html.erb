@@ -26,24 +26,23 @@
   
   <br>
 
-<!--
   <table class="table table-hover">
     <h3 style="color:#894355">Folder Content</h3>
-    <%# @user.materials.teachingfiles.each do |teachingfile| %>
+    <% @material.teachingfiles.each do |teachingfile| %>
     <tr>
-      <td style="padding-right:20px;"><%#= teachingfile.name %></td>
+      <td style="padding-right:20px;"><%= teachingfile.name %></td>
       <td style="padding-right:20px;">
-        <%#= link_to teachingfile.attachment_url do%>
-          <%#= fa_icon 'download 2x', class: 'theme-font' %>
-        <%# end %>
-        <%#= teachingfile.attachment.file.filename %>
+        <%= link_to teachingfile.attachment_url do%>
+          <%= fa_icon 'download 2x', class: 'theme-font' %>
+        <% end %>
+        <%= teachingfile.attachment.file.filename %>
       </td>
-      <td style="padding-right:20px;"><%#= link_to 'Edit',edit_user_material_teachingfile_path(@user,@material,teachingfile) %></td>
-      <td style="padding-right:20px;"> <%#= link_to 'Delete', user_material_teachingfile_path(@user,@material,teachingfile), method: :delete, data: { confirm: "Are you sure to delete ?"} %></td>
+      <td style="padding-right:20px;"><%= link_to 'Edit',edit_user_material_teachingfile_path(@user,@material,teachingfile) %></td>
+      <td style="padding-right:20px;"> <%= link_to 'Delete', user_material_teachingfile_path(@user,@material,teachingfile), method: :delete, data: { confirm: "Are you sure to delete ?"} %></td>
     </tr>
-    <%# end %>
+    <% end %>
   </table> 
--->
+
 
   
 </div>

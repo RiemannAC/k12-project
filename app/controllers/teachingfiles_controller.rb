@@ -20,12 +20,12 @@ class TeachingfilesController < ApplicationController
     # of class Post?  Is @parents is the same parent id passed through params?
     if @parent.is_a?(Material) # template error with this included: (== params[:post_id])
       flash[:notice] = '成功新增教材的檔案 #{@teachingfile.filename}'
-      redirect_to material_path(@teachingfile.material)
+      redirect_to user_material_path(@teachingfile.material.user)
     # if not part of the class Post, is it a Topic?  If so, save here and
     # redirect to the topic after save
     elsif @parent.is_a?(Plan)
       flash[:notice] = '成功新增教案的檔案 #{@teachingfile.filename}'
-      redirect_to plan_path(@teachingfile.plan)
+      redirect_to user_plan_path(@teachingfile.plan)
     
     end
     
