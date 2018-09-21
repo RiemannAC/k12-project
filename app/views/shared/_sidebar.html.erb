@@ -28,7 +28,9 @@
         <%= fa_icon 'caret-down' %>
       </button>
       <div class="dropdown-container">
-        
+        <% if @materials_count == 0 %>
+          <h5 style="color:green">你還沒上傳任何資料哦！</h5>
+        <% end %>
       </div>
       
     </div>
