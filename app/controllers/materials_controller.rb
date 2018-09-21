@@ -28,10 +28,10 @@ class MaterialsController < ApplicationController
     @user = User.find(params[:user_id])
     @material = @user.materials.new(material_params)
     if @material.save
-      flash[:notice] = "teaching-material file was successfully created"
-      redirect_to root_path
+      flash[:notice] = "成功新增資料夾【#{@material.mtrial_folder_name}】"
+      redirect_to user_materials_path
     else
-      flash.now[:alert] = "teaching-material file was failed to create"
+      flash.now[:alert] = "資料夾新增失敗！"
       render :new
     end   
   end
@@ -45,7 +45,7 @@ class MaterialsController < ApplicationController
   def update
     if @material.update(material_params)
       flash[:notice] = "更新教案資料夾設定"
-      redirect_to material_path(@material)
+      redirect_to user_materials_path
     else
       flash.now[:alert] = "未能成功更新"
       render :edit
@@ -56,7 +56,7 @@ class MaterialsController < ApplicationController
     @user = User.find(params[:user_id])
     @material = @user.materials.find(params[:id])    
     @material.destroy
-    redirect_to root_path
+    redirect_to user_materials_path
     flash[:alert] = "#{@material.mtrial_folder_name}資料夾已刪除"
   end
 
