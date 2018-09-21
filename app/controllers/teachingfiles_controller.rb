@@ -1,5 +1,7 @@
 class TeachingfilesController < ApplicationController
   def create
+    @user = User.find(params[:user_id])
+    
     # upon clicking on create, determine what param id is passed
     if params[:material_id]
       # if it is a material id, set instance of post id as @parent
