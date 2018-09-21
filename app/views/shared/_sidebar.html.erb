@@ -30,6 +30,18 @@
       <div class="dropdown-container">
         <% if @materials_count == 0 %>
           <h5 style="color:green">你還沒上傳任何資料哦！</h5>
+        <% else %>
+          <% @subject_tags.each do |subject| %>
+            <% if subject.materials.present? %>
+              <button class="dropdown-btn">
+                <%= "【" + subject.name + "】" %>
+                <%= fa_icon 'caret-down' %>
+              </button>
+              <div class="dropdown-container">
+                <%= link_to "你有一些資料" %>
+              </div>
+            <% end %>
+          <% end %>              
         <% end %>
       </div>
       
