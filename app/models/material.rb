@@ -13,5 +13,6 @@ class Material < ApplicationRecord
   #belongs_to :subject
   validates_presence_of :mtrial_folder_name
   belongs_to :subject_tag
+  belongs_to :user
   has_many :teachingfiles, dependent: :destroy
 end
