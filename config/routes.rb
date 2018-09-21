@@ -23,6 +23,9 @@ Rails.application.routes.draw do
       collection do
         get :list
       end
+      # member do
+      #   post :create_lessons
+      # end
     end
   end
 

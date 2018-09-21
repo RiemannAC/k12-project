@@ -8,6 +8,9 @@ class LessonsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show, :list]
   before_action :authenticate_author, except: [:index, :show, :list]
 
+  # after_create :set_subject_name # undefined method `after_create' for LessonsController:Class Did you mean? after_action
+  after_action :set_subject_name, only: [:create]
+
   def index
   end
 
@@ -18,11 +21,12 @@ class LessonsController < ApplicationController
   def new
     user = current_user
     subject = user.subjects.create!(name: "未分類", start_time: Time.now)
+    # subject = user.subjects.create!(name: @lesson.name, start_time: Time.now) # name 還是傳送給 lesson
     topic = subject.topics.create!(name: "未分類")
     @lesson = topic.lessons.new(:end_time => 1.hour.from_now, :period => "Does not repeat")
     # render :json => {:form => render_to_string(:partial => 'form')}
   end
-  
+
   # 此處 period 是 :commit 參數，不是 lesson table 的欄位
   def create
     if params[:lesson][:period] == "Does not repeat"
@@ -32,10 +36,55 @@ class LessonsController < ApplicationController
       @topic = @subject.topics.create!(name: "未分類") #1
       @lesson = @topic.lessons.new(lesson_params)
       @lesson.end_time = @lesson.start_time + 1.hour
-    else
+    else #params[:lesson][:period] == "Repeat weekly"
       # 編輯中
-      # lesson = @subjects = Subject.new(:frequency => params[:lesson][:frequency], :period => params[:lesson][:repeats], :start_time => params[:lesson][:start_time], :end_time => params[:lesson][:end_time], :all_day => params[:lesson][:all_day])
-      @lesson = Subject.new(lesson_params)
+      # 原寫 lesson = @subjects = Subject.new(:frequency => params[:lesson][:frequency], :period => params[:lesson][:repeats], :start_time => params[:lesson][:start_time], :end_time => params[:lesson][:end_time], :all_day => params[:lesson][:all_day])
+      # 原寫 @lesson = Subject.new(lesson_params)
+      user = current_user
+      @subject = user.subjects.create!(name: "未分類", start_time: Time.now) # time 有誤待修
+      @topic = @subject.topics.create!(name: "未分類")
+
+      # start = params[:lesson][:start_time] # start = nil 接收不到 params
+      # @lesson = @topic.lessons.new(params[:lesson][:start_time]) # nilClass
+
+      
+      # start_array = []
+      # start_array << start
+      # Date.today.beginning_of_day
+      # start = Date.new
+      # 先成一個實例，再用 start 接收 start_time => 沒效第三個以後和第二個同時間
+      # 以上為失敗寫法
+      # 如何和表單回傳的 start_time 同步？
+      start = Time.new(2018,9,22,8)
+
+      i = 0
+      loop do
+
+        @lesson = @topic.lessons.new(lesson_params)
+        @lesson.start_time = start          # 成功待確認終點是否正確
+        @lesson.end_time = start + 1.hour   # 成功待確認終點是否正確
+        @lesson.save
+        start += 1.week                     # 成功待確認終點是否正確
+
+        #start = Date.new(@lesson.start_time.year,@lesson.start_time.month,@lesson.start_time.day,@lesson.start_time.hour)        
+        # 兩邊都對，加等號不合語法
+        # start.year = @lesson.start_time.year
+        # start.month = @lesson.start_time.month
+        # start.day = @lesson.start_time.day
+        # start.hour = @lesson.start_time.hour
+
+        #start = @lesson.start_time
+        #@lesson.start_time = start + i.week
+        
+        i += 1
+        break if ( start + 1.week ) > Time.now + 4.week
+      end
+      # 以上編輯中
+      # AbstractController::DoubleRenderError (Render and/or redirect were called
+      # multiple times in this action. Please note that you may only call render OR
+      # redirect, and at most once per action. Also note that neither redirect nor
+      # render terminate execution of the action, so if you want to exit an action
+      # after redirecting, you need to do something like "redirect_to(...) and return".):
     end
     if @lesson.save
       # render :nothing => true
@@ -91,37 +140,78 @@ class LessonsController < ApplicationController
     end
   end
 
+  # 編輯中
+  # def create_lessons
+  #   if params[:lesson][:period] == "Repeat weekly"
+  #     user = current_user
+  #     @subject = user.subjects.create!(name: "未分類", start_time: Time.now)
+  #     @topic = @subject.topics.create!(name: "未分類")
+  #     start = params[:lesson][:start_time]
+  #     for i = 0
+  #       @lesson = @topic.lessons.new(lesson_params)
+  #       @lesson.end_time = @lesson.start_time + 1.hour
+
+  #       @lesson.start_time = start + i.week
+  #       i += 1
+
+  #       if @lesson.save
+  #         # render :nothing => true
+  #         flash[:notice] = "Lesson was successfully created"
+  #         redirect_to user_lessons_path
+  #         # redirect_to lessons_path
+  #       else
+  #         #render :text => lesson.errors.full_messages.to_sentence, :status => 422
+  #         flash.now[:alert] = "Lesson was failed to created"
+  #         render :new
+  #       end
+  #       if ( @lesson.start_time + (i+1).week ) > Time.now + 8.week
+  #         break
+  #       end
+  #     end
+  #   end
+  # end
+
   private
 
-    # 設定使用者
-    def set_lesson
-      @lesson = Lesson.find_by_id(params[:id])
-    end
+  # 設定使用者
+  def set_lesson
+    @lesson = Lesson.find_by_id(params[:id])
+  end
 
-    # 顯示使用者所擁有的課表
-    def set_lessons
-      # pluck 方法，輸出 array，第一步就用 each do 展開的話，後面就難收拾了
-      subject_ids = Subject.where(user_id: @user).pluck(:id)
-      # 疊代
-      topic_ids = Topic.where(subject_id: subject_ids).pluck(:id)
-      # topic_id 欄位，輸入 id array，輸出 lessons 的 ActiveRecord，不需要用 id 各別宣告再收集起來。
-      @lessons = Lesson.where(topic_id: topic_ids)
-    end
+  # 顯示使用者所擁有的課表
+  def set_lessons
+    # pluck 方法，輸出 array，第一步就用 each do 展開的話，後面就難收拾了
+    subject_ids = Subject.where(user_id: @user).pluck(:id)
+    # 疊代
+    topic_ids = Topic.where(subject_id: subject_ids).pluck(:id)
+    # topic_id 欄位，輸入 id array，輸出 lessons 的 ActiveRecord，不需要用 id 各別宣告再收集起來。
+    @lessons = Lesson.where(topic_id: topic_ids)
+  end
 
-    # 刪除整學期的課程，待利用
-    def set_subject_of_lesson
+  # 刪除整學期的課程，待利用
+  def set_subject_of_lesson
     lesson = Lesson.find_by_id(params[:id])
     # 注意：不用路由 params 也可將 id 傳入，但括號內不可使用"實例變數"。此方法可避免巢狀路由過於複雜。
     topic = Topic.find_by_id(lesson.topic_id)
     @subject = Subject.find_by_id(topic.subject_id)
-    end
+  end
 
-    def set_user
-      @user = User.find_by_id(params[:user_id])
-    end
+  def set_user
+    @user = User.find_by_id(params[:user_id])
+  end
 
-    def lesson_params
-      params.require(:lesson).permit('name', 'start_time(1i)', 'start_time(2i)', 'start_time(3i)', 'start_time(4i)', 'start_time(5i)', 'end_time(1i)', 'end_time(2i)', 'end_time(3i)', 'end_time(4i)', 'end_time(5i)', 'all_day', 'period', 'frequency', 'commit_button')
-    end
+  def set_subject_name
+    # 如何套用 set_subject_of_lesson
+    # lesson = Lesson.find_by_id(params[:id])
+    lesson = Lesson.last
+    topic = Topic.find_by_id(lesson.topic_id)
+    subject = Subject.find_by_id(topic.subject_id)
+    subject.name = lesson.name
+    subject.save
+  end
 
+  def lesson_params
+    # params.require(:lesson).permit('name', 'start_time(1i)', 'start_time(2i)', 'start_time(3i)', 'start_time(4i)', 'start_time(5i)', 'end_time(1i)', 'end_time(2i)', 'end_time(3i)', 'end_time(4i)', 'end_time(5i)', 'all_day', 'period', 'frequency', 'commit_button')
+    params.require(:lesson).permit(:name, 'start_time(1i)', 'start_time(2i)', 'start_time(3i)', 'start_time(4i)', 'start_time(5i)', 'end_time(1i)', 'end_time(2i)', 'end_time(3i)', 'end_time(4i)', 'end_time(5i)', :period, :frequency, :commit_button)
+  end
 end

@@ -17,12 +17,16 @@ class Lesson < ApplicationRecord
 
   belongs_to :topic, optional: true
 
-  REPEATS = [
-              "Does not repeat",
-              "Daily"          ,
-              "Weekly"         ,
-              "Monthly"        ,
-              "Yearly"         
-  ]
+  REPEATS = [ "Does not repeat", "Repeat weekly" ]
+
+  # def semester
+  #   [ Time.new(Time.now.year,7,1)..Time.new(Time.now.year + 1,1,31),
+  #    Time.new(Time.now.year + 1,2,1)..Time.new(Time.now.year + 1,6,30) ]
+  # end
+
+  SEMESTER = [ Time.new(Time.now.year,7,1)..Time.new(Time.now.year + 1,1,31),
+     Time.new(Time.now.year + 1,2,1)..Time.new(Time.now.year + 1,6,30) ]
+  # [0] => 上學期 range，[0].first => 開學，[0].end => 寒假
+  # [1] => 下學期 range，[1].first => 開學，[1].end => 暑假
 
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180921124457) do
+ActiveRecord::Schema.define(version: 20180921160656) do
 
   create_table "lessons", force: :cascade do |t|
     t.string "name"
@@ -56,7 +56,6 @@ ActiveRecord::Schema.define(version: 20180921124457) do
     t.integer "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name", default: "未分類"
     t.string "grade", default: ""
     t.string "classroom", default: ""
     t.integer "students", default: 0
@@ -68,6 +67,7 @@ ActiveRecord::Schema.define(version: 20180921124457) do
     t.string "period", default: "weekly"
     t.boolean "all_day", default: false
     t.integer "user_id"
+    t.string "name"
   end
 
   create_table "teachingfiles", force: :cascade do |t|
