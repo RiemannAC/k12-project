@@ -2,6 +2,8 @@ class MaterialsController < ApplicationController
   before_action :set_material, only: [ :edit, :show, :update, :destroy]
   
   def index 
+    @user = User.find(params[:user_id])
+    @material = @user.materials.order(created_at: :desc)
   end
 
   def show
