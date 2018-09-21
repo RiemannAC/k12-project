@@ -13,11 +13,6 @@
     <%=f.datetime_select :start_time %>
   </div>
 
-  <div class="form-group">
-    <%=f.label :all_day %>
-    <%=f.check_box :all_day %>
-  </div>
-
   <div class="actions">
     <% if @subject -%>
       <%= f.submit "更新這堂課", class: "btn btn-secondary" %>
