@@ -21,7 +21,7 @@
       <%= fa_icon 'caret-down' %>
     </button>
     <div class=dropdown-container>
-      <%= link_to " + 新增教材資料夾" ,new_user_material_path %>
+      <%= link_to " + 新增教材資料夾" ,new_user_material_path(current_user, @material) %>
       <!--第二層 dropdown開始-->
       <button class="dropdown-btn">
         <%= " - 現有教材" %>
@@ -38,7 +38,7 @@
       <%= fa_icon 'caret-down' %>
     </button>
     <div class=dropdown-container>
-      <%= link_to " + 新增教案資料夾", new_user_plan_path %>
+      <%= link_to " + 新增教案資料夾", new_user_plan_path(current_user, @plan) %>
       <button class="dropdown-btn">
         <%= " - 現有教案" %>
         <%= fa_icon 'caret-down' %>
