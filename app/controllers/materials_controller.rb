@@ -1,7 +1,7 @@
 class MaterialsController < ApplicationController
   before_action :set_material, only: [ :edit, :show, :update, :destroy]
   
-  def index
+  def index 
   end
 
   def show
@@ -14,7 +14,8 @@ class MaterialsController < ApplicationController
   end
 
   def new
-    @material = Material.new 
+    @user = User.find(params[:user_id])
+    @material = @user.materials.new
   end 
 
   def create
@@ -47,7 +48,7 @@ class MaterialsController < ApplicationController
   private
 
   def material_params
-    params.require(:material).permit(:mtrial_folder_name,:subject_tag_id)
+    params.require(:material).permit(:mtrial_folder_name,:user_id,:subject_tag_id)
   end
 
   def set_material
