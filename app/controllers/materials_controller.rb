@@ -19,10 +19,11 @@ class MaterialsController < ApplicationController
   end 
 
   def create
-    @material = Material.new(material_params)
+    @user = User.find(params[:user_id])
+    @material = @user.materials.new(material_params)
     if @material.save
       flash[:notice] = "teaching-material file was successfully created"
-      redirect_to materials_path
+      redirect_to root_path
     else
       flash.now[:alert] = "teaching-material file was failed to create"
       render :new
