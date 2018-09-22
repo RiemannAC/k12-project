@@ -16,16 +16,18 @@
         <%= " - 現有班級" %>
         <%= fa_icon 'caret-down' %>  
       </button>
-      <% if @user.subjects.count == 0 %>
+      <% if @subjects.count == 0 %>
         <div class="dropdown-container">        
           <h5 style="color:green;">你還沒有任何班級哦！趕緊新建一個吧！</h5>
         </div>
       <% else %>
-        <% @user.subjects.each do |subject| %>
-          <div class="dropdown-container">
-            <%= link_to subject.name %>
-          </div>
-        <% end %>
+        <div class="dropdown-container">
+          <% @subjects.each do |subject| %>
+            <%= link_to user_subject_path(@user, subject) do %>
+              <%= subject.grade %>年 <%= subject.classroom %>
+            <% end %>
+          <% end %>
+        </div>        
       <% end %>
     </div>    
       
@@ -42,6 +44,9 @@
         <%= " - 現有教材" %>
         <%= fa_icon 'caret-down' %>
       </button>
+      <% if  %>
+        
+      <% end %>
       <div class="dropdown-container">
         
       </div>
@@ -64,12 +69,12 @@
     </div>
       
     <button class="dropdown-btn">
-      <%= '過往學期教學計畫' %>
+      <%= '教學計畫檔案庫' %>
       <%= fa_icon 'caret-down' %>
     </button>
     <div class="dropdown-container">
       <h5 style="color:green">
-        你還沒有任何教學計劃哦！趕快來新增班級吧！
+        你還沒有任何教學計劃哦！先新增班級吧！
       </h5>  
     </div>
        
