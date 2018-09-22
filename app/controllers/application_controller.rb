@@ -10,7 +10,9 @@ class ApplicationController < ActionController::Base
   def call_methods_on_sidebar
     @user = current_user
     @subjects = @user.subjects.all
-    
+    @materials = @user.materials.all
+    @plans = @user.plans.all
+    @subject_tags = SubjectTag.order(name: :desc)
   end
 
   protected
