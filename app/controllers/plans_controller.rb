@@ -42,6 +42,8 @@ class PlansController < ApplicationController
   end
 
   def update
+    @user = User.find(params[:user_id])
+    @plan = @user.plans.find(params[:id]) 
     if @plan.update(plan_params)
       flash[:notice] = "更新教案資料夾設定"
       redirect_to user_plans_path

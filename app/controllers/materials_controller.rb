@@ -2,7 +2,7 @@ class MaterialsController < ApplicationController
   before_action :set_material, only: [ :edit, :show, :update, :destroy]
   
   def index 
-    @user = User.find(params[:user_id])
+    @user = current_user
     @material = @user.materials.order(created_at: :desc)
   end
 
@@ -42,7 +42,9 @@ class MaterialsController < ApplicationController
   end 
 
 
-  def update
+  def update 
+    @user = User.find(params[:user_id])
+    @material = @user.materials.find(params[:id])  
     if @material.update(material_params)
       flash[:notice] = "更新教案資料夾設定"
       redirect_to user_materials_path
