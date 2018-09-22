@@ -8,10 +8,12 @@ class LessonsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show, :list]
   before_action :authenticate_author, except: [:index, :show, :list]
 
-  def index
+  def index 
+    @user = current_user 
+    
   end
 
-  def list
+  def list 
   end
 
   # 新增一堂課，預設 end_time 現在時間一小時後，period "Does not repeat"
