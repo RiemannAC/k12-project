@@ -21,17 +21,24 @@ class PlansController < ApplicationController
     else
       flash[:alert] = "新增教案資料夾失敗"
       render :new
-    end
-  end
+    end 
+  end 
 
   def show
-    @plan = Plan.new
-    @plans = @user.plans.all
+    @user = User.find(params[:user_id])
+    if params[:user_id]
+      @plan = @user.plans.find(params[:id])
+      if params[:plan_id]
+        @teachingfile = @plan.teachingfiles.find(params[:id])
+      else
+        @teachingfile = Teachingfile.new
+      end
+    end
   end
   private
 
   def plan_params
-    params.require(:plan).permit(:plan_folder_name,:subject_tag_id)
+    params.require(:plan).permit(:user_id,:plan_folder_name,:subject_tag_id)
   end
 
   def set_plan
