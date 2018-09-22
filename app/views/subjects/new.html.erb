@@ -32,11 +32,11 @@
     </div>
     <div class="form-group">
       <%= f.label :start_time, "開始日期" %>
-      <%= f.date_select :start_time, {order: [:month, :year], prompt: {month: 'Select month', year: Time.now.year}}, {required: true}%>
+      <%= f.date_select :start_time, {order: [:month, :year], prompt: {month: 'Select month', year: 'Select year'}}, {required: true}%>
     </div>
     <div class="form-group">
       <%= f.label :end_time, "結束日期" %>
-      <%= f.date_select :end_time, {order: [:month, :year], prompt: {month: 'Select month', year: Time.now.year + 1}}, {required: true} %>
+      <%= f.date_select :end_time, {order: [:month, :year], prompt: {month: 'Select month', year: 'Select year'}}, {required: true} %>
     </div>
 
     <div class="form-group">
