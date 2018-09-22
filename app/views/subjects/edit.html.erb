@@ -1,6 +1,6 @@
 <div class="main-frame">
-  <h1>新建班級</h1>
-  <hr class="orange-hr">
+  <h1><%= @subject.name %>班級設定</h1>
+  <hr class="yellow-hr">
 
 
   <% if @subject.errors.any? %>
@@ -32,15 +32,15 @@
     </div>
     <div class="form-group">
       <%= f.label :start_time, "開始日期" %>
-      <%= f.date_select :start_time, {order: [:month, :year], prompt: {month: 'Select month', year: Time.now.year}}, {required: true}%>
+      <%= f.date_select :start_time, {order: [:month, :year], prompt: {month: 'Select month', year: 'Select year' }}, {required: true}%>
     </div>
     <div class="form-group">
       <%= f.label :end_time, "結束日期" %>
-      <%= f.date_select :end_time, {order: [:month, :year], prompt: {month: 'Select month', year: Time.now.year + 1}}, {required: true} %>
+      <%= f.date_select :end_time, {order: [:month, :year], promp: {month: 'Select month', year: 'Select year' }}, {required: true} %>
     </div>
 
     <div class="form-group">
-      <%= f.submit "建立班級", class: 'btn btn-info' %>
+      <%= f.submit "更新班級設定", class: 'btn btn-info' %>
     </div>
 
     <%= link_to '<< 你的所有班級', user_subjects_path(@user) %>
