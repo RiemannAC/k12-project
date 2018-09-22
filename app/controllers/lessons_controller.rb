@@ -5,7 +5,7 @@ class LessonsController < ApplicationController
   before_action :set_user, only: [:index, :show, :list]
   before_action :set_lessons, only: [:index, :list]
 
-  before_action :authenticate_user!, except: [:index, :show, :list]
+  before_action :authenticate_user!# index 改設定為 root，巢狀內的 root 必需加的設定
   before_action :authenticate_author, except: [:index, :show, :list]
 
   def index
