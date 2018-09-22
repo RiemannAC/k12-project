@@ -4,7 +4,7 @@ class PlansController < ApplicationController
   def index
     @user = current_user
     @plans = @user.plans.order(created_at: :desc)
-  end
+  end 
 
   def new 
     @user = User.find(params[:user_id])
@@ -35,6 +35,30 @@ class PlansController < ApplicationController
       end
     end
   end
+
+  def edit
+    @user = User.find(params[:user_id])
+    @plan = @user.plans.find(params[:id])     
+  end
+
+  def update
+    if @plan.update(plan_params)
+      flash[:notice] = "更新教案資料夾設定"
+      redirect_to user_plans_path
+    else
+      flash.now[:alert] = "未能成功更新"
+      render :edit
+    end
+  end
+
+  def destroy
+    @user = User.find(params[:user_id])
+    @plan = @user.plans.find(params[:id])    
+    @plan.destroy
+    redirect_to user_plans_path
+    flash[:alert] = "#{@plan.plan_folder_name}資料夾已刪除"
+  end
+
   private
 
   def plan_params
