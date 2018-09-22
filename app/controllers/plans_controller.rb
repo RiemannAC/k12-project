@@ -3,19 +3,21 @@ class PlansController < ApplicationController
 
   def index
     @user = current_user
-    @plans = @user.plans.all
+    @plans = @user.plans.order(created_at: :desc)
   end
 
-  def new
-    @plan = Plan.new
+  def new 
+    @user = User.find(params[:user_id])
+    @plan = @user.plans.new
   end
 
   def create
-    @plan = Plan.new(plan_params)
-    @plan = @subject_tag.plans.build
+    @user = User.find(params[:user_id])
+    @plan = @user.plans.new(plan_params)
+
     @plan.user = current_user
     if @plan.save!
-      redirect_to user_plans_path(current_user)
+      redirect_to user_plans_path(current_user,@plans)
     else
       flash[:alert] = "新增教案資料夾失敗"
       render :new
