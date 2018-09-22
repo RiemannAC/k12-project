@@ -41,15 +41,9 @@ class LessonsController < ApplicationController
       @subject = user.subjects.create!(name: "未分類", start_time: Time.now) # time 有誤待修
       @topic = @subject.topics.create!(name: "未分類")
 
-      # start = params[:lesson][:start_time] # start = nil 接收不到 params
-      # start_array = []
-      # start_array << start
-      # Date.today.beginning_of_day
-      # start = Date.new
-      # 先成一個實例，再用 start 接收 start_time => 沒效第三個以後和第二個同時間
-      # 以上為失敗寫法
       # 如何和表單回傳的 start_time 同步？
-      start = Time.new(2018,9,22,8)
+      # start = Time.new(2018,9,22,8)
+      start = Time.new(params[:lesson]['start_time(1i)'],params[:lesson]['start_time(2i)'],params[:lesson]['start_time(3i)'],params[:lesson]['start_time(4i)'],params[:lesson]['start_time(5i)'])
 
       i = 0
       loop do
