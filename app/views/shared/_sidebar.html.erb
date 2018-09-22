@@ -1,8 +1,10 @@
 <% if signed_in? %>
   <div class="sidenav">
     <div class="dropdown-btn text-center">
-      <%= image_tag 'admin.jpg', class: 'img-fluid' %>
-      <h2><%= current_user.name %></h2>
+      <%= link_to user_path(@user) do %>
+        <%= image_tag 'admin.jpg', class: 'img-fluid' %>
+        <h2 class="text-center"><%= @user.name %></h2>
+      <% end %>
     </div>
 
     <hr>
