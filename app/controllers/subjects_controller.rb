@@ -6,7 +6,6 @@ class SubjectsController < ApplicationController
 
   def new
     @subject = @user.subjects.new
-    @lesson = @user.lessons.new
   end
 
   def create
