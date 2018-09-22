@@ -1,8 +1,8 @@
 <%= render partial:"shared/sidebar" %> 
 <div class="main-frame">
   <div class="">
-    <%= link_to '編輯資料夾設定', edit_plan_path(@plan), class: 'btn btn-outline-primary btn-sm' %>
-    <%= link_to '刪除資料夾', plan_path(@plan), class: 'btn btn-danger btn-sm pull-right', method: :delete, data: {confirm: "資料夾裡的檔案也會一併刪除，你確定嗎？"} %>
+    <%= link_to '編輯資料夾設定', edit_user_plan_path(@plan.user,@plan), class: 'btn btn-outline-primary btn-sm' %>
+    <%= link_to '刪除資料夾', user_plan_path(@plan.user,@plan), class: 'btn btn-danger btn-sm pull-right', method: :delete, data: {confirm: "資料夾裡的檔案也會一併刪除，你確定嗎？"} %>
   </div>
 
   <br>
@@ -11,7 +11,7 @@
   <%= link_to '<< 全部資料夾',root_path %>
   <hr class="blue-hr">
    
-  <%= form_for [@plan,@teachingfile], html:{multipart:true} do |f| %>
+  <%= form_for [@user,@plan,@teachingfile], html:{multipart:true} do |f| %>
     <div class="form-group">
       <%= f.label :name %>
       <%= f.text_field :name, class: 'form-control', placeholder: "自訂檔案名稱" %>
@@ -27,7 +27,6 @@
   <% end %>
 
   <br>
-
   <table class="table table-hover">
     <h3 style="color:#45785b">Folder Content</h3>
     <% @plan.teachingfiles.each do |teachingfile| %>
@@ -39,10 +38,11 @@
         <% end %>
         <%= teachingfile.attachment.file.filename %>
       </td>
-      <td style="padding-right:20px;"><%= link_to 'Edit',edit_plan_teachingfile_path(@plan,teachingfile) %></td>
-      <td style="padding-right:20px;"> <%= link_to 'Delete', plan_teachingfile_path(@plan,teachingfile), method: :delete, data: { confirm: "Are you sure?"} %></td>
+      <td style="padding-right:20px;"><%= link_to 'Edit',edit_user_plan_teachingfile_path(@user, @plan,teachingfile) %></td>
+      <td style="padding-right:20px;"> <%= link_to 'Delete', user_plan_teachingfile_path(@user, @plan,teachingfile), method: :delete, data: { confirm: "Are you sure?"} %></td>
       
     </tr>
     <% end %>
   </table>
+
 </div>
