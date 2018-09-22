@@ -6,6 +6,7 @@ class SubjectsController < ApplicationController
 
   def new
     @subject = @user.subjects.new
+    @lesson = @user.lessons.new
   end
 
   def create
@@ -20,10 +21,22 @@ class SubjectsController < ApplicationController
     end
   end
 
+  def show
+    @subject = @user.subjects.find(params[:id])
+  end
+
+  def edit
+    @subject = @user.subjects.find(params[:id])
+  end
+
+  def update
+    
+  end
+
 
   private
 
   def subject_params
-    params.require(:subject).permit(:name, :classroom, :grade)    
+    params.require(:subject).permit(:name, :classroom, :grade, :students, :start_time, :end_time)    
   end
 end
