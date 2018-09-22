@@ -8,9 +8,9 @@ class ApplicationController < ActionController::Base
   private
 
   def call_methods_on_sidebar
-     if @user = current_user
-      @subjects = @user.subjects.all
-    end
+    @user = current_user
+    @subjects = @user.subjects.all
+    
   end
 
   protected
