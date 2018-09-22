@@ -2,13 +2,17 @@
   .aim-group{
     margin-right: 10px;
   }  
+
+  .undone{
+    color: blue
+  }
 </style>
 
 <%= form_for [@classroom,@teachingschedule,@aim], remote: true  do |f| %>
   <div class="form-inline">
     <div class="aim-group">
       <%#= f.label "Status" %>
-      <%= f.select(:status, options_for_select([['未開始','未開始'],['進行中','進行中'],['已完成','已完成']]) ,{prompt: true})%>
+      <%= f.select(:status, options_for_select([['未開始','未開始',{class:"undone"}],['進行中','進行中'],['已完成','已完成']]) ,{prompt: true})%>
 
       <%= f.text_field :title ,class:"form-control" %>
     </div>
