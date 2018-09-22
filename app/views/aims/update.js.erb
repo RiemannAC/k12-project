@@ -1,5 +1,5 @@
 <% html = j( render :partial => "aims/aim", :locals => { :aim => @aim } ) %>
-$("#post_<%= @aim.id %>").fadeOut(300,function(){
+$("#aim_posts-<%= teachingschedule.id %>").fadeOut(300,function(){
   $(this).replaceWith("<%= html %>");
 }); 
 

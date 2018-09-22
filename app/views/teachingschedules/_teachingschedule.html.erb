@@ -21,10 +21,10 @@
           <% end %>
           
           
-          <ol id="aim_posts">
+          <ol id="aim_posts-<%= teachingschedule.id %>">
             <% teachingschedule.aims.each do |aim| %> 
               <%= render :partial => 'aims/aim', locals: {aim: aim } %>               
-            <% end %>
+            <% end %> 
           </ol> 
           
            
@@ -96,7 +96,7 @@
         </div>
       </div>
     </div>
-<% end %>
+<% end %> 
 <!--update modal-->
 
 
