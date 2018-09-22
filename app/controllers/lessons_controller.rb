@@ -9,6 +9,7 @@ class LessonsController < ApplicationController
   before_action :authenticate_author, except: [:index, :show, :list]
 
   def index
+    @user = current_user
   end
 
   def list
