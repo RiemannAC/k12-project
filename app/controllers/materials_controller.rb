@@ -16,7 +16,7 @@ class MaterialsController < ApplicationController
         @teachingfile = Teachingfile.new
       end
     end
-  end
+  end 
 
 
   def new
