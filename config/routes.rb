@@ -22,7 +22,9 @@ Rails.application.routes.draw do
     end
 
     resources :subjects do
-      resources :topics
+      resources :topics do
+        resources :aims
+      end
     end
 
 
