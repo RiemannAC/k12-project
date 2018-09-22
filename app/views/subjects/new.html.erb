@@ -15,7 +15,19 @@
   <div class="form"></div>
   <%= form_for [@user, @subject] do |f| %>
 
-    <%= f.label :name, "科目名稱" %>
+    <%= f.label :name, "科目" %>
     <%= f.text_field :name, placeholder: "ex. 國文" %>
+
+    <%= f.label :grade, "年級" %>
+    <%= f.select :grade, Subject::GRADE,{} %>  
+
+    <%= f.label :classroom, "班級名稱" %>  
+    <%= f.text_field :classroom, placeholder: "ex. 三班" %>
+
+    <%= f.label :students, "班級人數" %>
+    <%= f.number_field :students %>
+
+
+
   <% end %>
 </div>
