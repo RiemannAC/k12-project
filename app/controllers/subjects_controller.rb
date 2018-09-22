@@ -29,7 +29,14 @@ class SubjectsController < ApplicationController
   end
 
   def update
-    
+    @subject = @user.subjects.find(params[:id])
+  end
+
+  def destroy
+    @subject = @user.subjects.find(params[:id]) 
+    @subject.destroy
+    redirect_to user_subjects_path(@user)
+    flash[:alert] = "#{@subject.classroom}學期計劃已被刪除"
   end
 
 
