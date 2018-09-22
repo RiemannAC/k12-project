@@ -1,1 +1,8 @@
-<h1>要列出user個人資料</h1>
+<div class="main-frame">
+
+  <% if @user = current_user %>
+    <%= link_to '編輯個人資料', edit_user_path(current_user), class: 'btn btn-outline-success btn-sm' %>  
+  <% end %>
+  
+</div>
+
