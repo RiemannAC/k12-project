@@ -11,9 +11,26 @@
       <%= fa_icon 'caret-down' %>
     </button>
     <div class="dropdown-container">
-    
+      <%= link_to " + 新建班級" %>
+      <button class="dropdown-btn">
+        <%= " - 現有班級" %>
+        <%= fa_icon 'caret-down' %>  
+      </button>
+      <% if @user.subjects.count == 0 %>
+        <div class="dropdown-container">        
+          <h5 style="color:green;">你還沒有任何班級哦！趕緊新建一個吧！</h5>
+        </div>
+      <% else %>
+        <% @user.subjects.each do |subject| %>
+          <div class="dropdown-container">
+            <%= link_to subject.name %>
+          </div>
+        <% end %>
+
+      <% end %>
       
-    </div>
+    </div>    
+      
 
     <!--第一個dropdown-->
     <button class="dropdown-btn">
