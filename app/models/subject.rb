@@ -17,6 +17,8 @@ class Subject < ApplicationRecord
   has_many :plans
   has_many :materials
 
+  validates_presence_of :name, :classroom, :grade
+
   attr_accessor :name, :commit_button
 
 end
