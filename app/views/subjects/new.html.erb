@@ -2,6 +2,20 @@
   <h1>新建班級</h1>
   <hr class="orange-hr">
 
+
+  <% if @subject.errors.any? %>
+    <h2>We have some errors here!</h2>
+    <ul>
+      <% @subject.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  
+  <div class="form"></div>
   <%= form_for [@user, @subject] do |f| %>
+
+    <%= f.label :name, "科目名稱" %>
+    <%= f.text_field :name, placeholder: "ex. 國文" %>
   <% end %>
 </div>
