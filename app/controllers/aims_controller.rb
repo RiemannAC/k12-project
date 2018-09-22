@@ -1,0 +1,2 @@
+class AimsController < ApplicationController
+end
