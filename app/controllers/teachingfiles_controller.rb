@@ -8,7 +8,7 @@ class TeachingfilesController < ApplicationController
       @parent = Material.find(params[:material_id])
     elsif params[:plan_id]
       # if it is a plan id, set instance of topic id as @parent
-      @material= @user.materials.find(params[:material_id])
+      @plan= @user.plans.find(params[:plan_id])
       @parent = Plan.find(params[:plan_id])
     end
 
@@ -45,7 +45,7 @@ class TeachingfilesController < ApplicationController
       @parent = Material.find(params[:material_id])
     elsif params[:plan_id]
       # if it is a plan id, set instance of topic id as @parent
-      @material= @user.materials.find(params[:material_id])
+      @plan= @user.plans.find(params[:plan_id])
       @parent = Plan.find(params[:plan_id])
     end
     @teachingfile = @parent.teachingfiles.find(params[:id])
@@ -60,18 +60,18 @@ class TeachingfilesController < ApplicationController
       @parent = Material.find(params[:material_id])
     elsif params[:plan_id]
       # if it is a plan id, set instance of topic id as @parent
-      @material= @user.materials.find(params[:material_id])
+      @plan= @user.plans.find(params[:plan_id])
       @parent = Plan.find(params[:plan_id])
-    end
+    end 
    
-    @teachingfile = @material.teachingfiles.find(params[:id])
+    @teachingfile = @parent.teachingfiles.find(params[:id])
 
     if @teachingfile.update(teachingfile_params)
       flash[:notice] = "teachingfile #{@teachingfile.name} was successfully updated"
       if params[:material_id]
         redirect_to user_material_path(@user,@material)
       elsif params[:plan_id]
-        redirect_to user_material_path(@user,@plan)
+        redirect_to user_plan_path(@user,@plan)
       end
     else
       @teachingfile = Teachingfile.all
