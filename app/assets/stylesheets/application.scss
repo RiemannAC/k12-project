@@ -39,6 +39,31 @@ body {
   z-index: 99;
 }
 
+/******** NAVBAR SETTING **********/
+
+.nav-user {
+  margin-left: 20px;
+}
+
+.user-icon {
+  margin: 0 15px 0 15px;
+}
+
+.side-avatar {
+  height: 200px;
+  width: 200px;
+}
+
+.fixed-top {
+  background-color: #5e5f5f;
+  color: #fff;
+}
+
+.navbar-nav-li a, .nav-item a {
+  color: #fff;
+  font-weight: 800;
+}
+
 /******** sidebar css setting *********/
 
 .sidenav {
