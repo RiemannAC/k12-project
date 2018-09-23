@@ -46,7 +46,10 @@ class LessonsController < ApplicationController
       # Subject.last.update_attributes(name: params[:lesson][:name], start_time: params[:lesson][:start_time])
 
       # 刪除第一組多餘資料 OK。讓我們突破路由和回呼的限制操爆 server 吧
-      Subject.last(2).first.destroy
+
+      # 加上 event_type 後刪除的順序就不一樣了
+      #Subject.last(2).first.destroy
+
     else #params[:lesson][:period] == "Repeat weekly"
       user = current_user
 
@@ -79,10 +82,12 @@ class LessonsController < ApplicationController
         break if start > semester.end
       end
 
-      Subject.last(2).first.destroy # 跑迴圈還是只會多一筆資料，刪除第一筆多餘資料 OK
+      # 加上 event_type 欄位後，資料庫刪除順序改變，造成會消除前一筆資料，故改為 lesson.save 後再刪除多餘資料
+      # Subject.last(2).first.destroy # 跑迴圈還是只會多一筆資料，刪除第一筆多餘資料 OK
     end
 
     if @lesson.save
+      Subject.last(2).first.destroy # 加入 event_type 改變刪除順序
       flash[:notice] = "Lesson was successfully created"
       redirect_to user_lessons_path
     else
