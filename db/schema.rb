@@ -36,8 +36,8 @@ ActiveRecord::Schema.define(version: 20180923092855) do
     t.integer "subject_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "subject_tag_id"
     t.integer "user_id"
+    t.integer "subject_tag_id"
   end
 
   create_table "plans", force: :cascade do |t|
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 20180923092855) do
     t.integer "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name", default: "未分類"
     t.string "grade", default: ""
     t.string "classroom", default: ""
     t.integer "students", default: 0
@@ -78,7 +79,6 @@ ActiveRecord::Schema.define(version: 20180923092855) do
     t.string "period", default: "weekly"
     t.boolean "all_day", default: false
     t.integer "user_id"
-    t.string "name"
   end
 
   create_table "teachingfiles", force: :cascade do |t|
