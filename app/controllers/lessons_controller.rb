@@ -10,6 +10,10 @@ class LessonsController < ApplicationController
 
   def index
     @user = current_user
+
+    # _to_do_list
+    @day = Date.today
+    # @todos = Lesson.where(event_type: "todo") # 待加欄位
   end
 
   def list
