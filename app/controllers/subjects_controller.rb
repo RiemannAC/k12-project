@@ -1,5 +1,4 @@
 class SubjectsController < ApplicationController
-
   def index
     
   end
@@ -43,6 +42,6 @@ class SubjectsController < ApplicationController
   private
 
   def subject_params
-    params.require(:subject).permit(:name, :classroom, :grade, :students, :start_time, :end_time)    
+    params.require(:subject).permit(:name, :classroom, :grade, :students, :start_time, :end_time,:user_id)    
   end
 end
