@@ -29,22 +29,59 @@ class LessonsController < ApplicationController
     if params[:lesson][:period] == "Does not repeat"
       # 新增權限已確認
       user = current_user
-      @subject = user.subjects.create!(name: "未分類", start_time: Time.now)
-      @topic = @subject.topics.create!(name: "未分類") #1
+
+      # 使用 new 或 create 都會多出一組 s t
+      # 重覆生成多餘的一組 subject 與 topic 資料，但有一組完整的 s t l 在前端顯示資料是正常的
+      @subject = user.subjects.new(name: "未分類") # 時間在資料庫的時區是 +0
+      @topic = @subject.topics.new(name: "未分類")
+
       @lesson = @topic.lessons.new(lesson_params)
       @lesson.end_time = @lesson.start_time + 1.hour
-    else
-      # 編輯中
-      # lesson = @subjects = Subject.new(:frequency => params[:lesson][:frequency], :period => params[:lesson][:repeats], :start_time => params[:lesson][:start_time], :end_time => params[:lesson][:end_time], :all_day => params[:lesson][:all_day])
-      @lesson = Subject.new(lesson_params)
+
+      # 事後修改有關聯的 subject 的屬性 => 無報錯但資料庫沒有更新 => 老問題，有更新動作，但值沒寫入
+      # Subject.last.update_attributes(name: params[:lesson][:name], start_time: params[:lesson][:start_time])
+
+      # 刪除第一組多餘資料 OK。讓我們突破路由和回呼的限制操爆 server 吧
+      Subject.last(2).first.destroy
+    else #params[:lesson][:period] == "Repeat weekly"
+      user = current_user
+
+      # 過渡資料
+      @subject = user.subjects.new(name: "未分類", start_time: params[:lesson][:start_time]) # 時間在資料庫的時區是 +0
+      @topic = @subject.topics.new(name: "未分類")
+
+
+      start = Time.new(params[:lesson]['start_time(1i)'],params[:lesson]['start_time(2i)'],params[:lesson]['start_time(3i)'],params[:lesson]['start_time(4i)'],params[:lesson]['start_time(5i)'])
+
+      # 判斷 break point
+      date_year = params[:lesson]['start_time(1i)'].to_i
+      date_month = params[:lesson]['start_time(2i)'].to_i
+      if date_month.between?(7,12)
+        semester = Time.new(date_year,7,1)..Time.new(date_year + 1,1,31).end_of_day # 沒加 end_of_day 最後一天的事件會漏掉
+      elsif  date_month.between?(1,1)
+        semester = Time.new(date_year - 1,7,1)..Time.new(date_year,1,31).end_of_day
+      else
+        semester = Time.new(date_year,2,1)..Time.new(date_year,6,30).end_of_day
+      end
+
+       i = 0
+      loop do
+        @lesson = @topic.lessons.new(lesson_params)
+        @lesson.start_time = start
+        @lesson.end_time = start + 1.hour
+        @lesson.save
+        start += 1.week
+        i += 1
+        break if start > semester.end
+      end
+
+      Subject.last(2).first.destroy # 跑迴圈還是只會多一筆資料，刪除第一筆多餘資料 OK
     end
+
     if @lesson.save
-      # render :nothing => true
       flash[:notice] = "Lesson was successfully created"
       redirect_to user_lessons_path
-      # redirect_to lessons_path
     else
-      #render :text => lesson.errors.full_messages.to_sentence, :status => 422
       flash.now[:alert] = "Lesson was failed to created"
       render :new
     end
@@ -122,7 +159,7 @@ class LessonsController < ApplicationController
     end
 
     def lesson_params
-      params.require(:lesson).permit('name', 'start_time(1i)', 'start_time(2i)', 'start_time(3i)', 'start_time(4i)', 'start_time(5i)', 'end_time(1i)', 'end_time(2i)', 'end_time(3i)', 'end_time(4i)', 'end_time(5i)', 'all_day', 'period', 'frequency', 'commit_button')
+      params.require(:lesson).permit(:name, :start_time,'start_time(1i)', 'start_time(2i)', 'start_time(3i)', 'start_time(4i)', 'start_time(5i)', 'end_time(1i)', 'end_time(2i)', 'end_time(3i)', 'end_time(4i)', 'end_time(5i)', :period, :frequency, :commit_button)
     end
 
 end

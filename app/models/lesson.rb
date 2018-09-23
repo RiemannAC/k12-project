@@ -17,12 +17,6 @@ class Lesson < ApplicationRecord
 
   belongs_to :topic, optional: true
 
-  REPEATS = [
-              "Does not repeat",
-              "Daily"          ,
-              "Weekly"         ,
-              "Monthly"        ,
-              "Yearly"         
-  ]
+  REPEATS = [ "Does not repeat", "Repeat weekly" ]
 
 end
