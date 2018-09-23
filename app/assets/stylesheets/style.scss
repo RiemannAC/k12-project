@@ -39,8 +39,25 @@
 
 
 /******** user-profile nav-tabs page **********/
-.user-profile{
+.user-profile-navtab{
   margin-top: 100px;
+
+}
+
+.user-profile-grid{
+  margin-top: 30px;
+  box-shadow: 1px 10px 8px 5px #888888;   
+}
+
+.user-avatar{
+  margin-top:15px;
+}
+
+.user-avatar .thumbnail img{
+  max-width: 250px;
+  max-height: 250px;
+  border: 1px solid #ddd;
+  padding: 10px;
 }
 
 
