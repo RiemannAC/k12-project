@@ -1,3 +1,13 @@
+<style>
+  .user-icon img{
+  width: 48px;
+  height: 45px;
+  display: block;
+  position: relative;
+  border-radius: 50%;
+}
+</style>
+
 <nav class="navbar fixed-top navbar-expand-lg">
   
   <%= link_to root_path, class: "navbar-brand" do %>
@@ -29,8 +39,12 @@
             <%= current_user.email.split('@').first %>
           </a>
           <%= link_to do %>
-            <li class="user-icon"><%= fa_icon "user 2x", style: 'color:white' %></li>
-          <% end %>
+            <li class="user-icon">
+              <%#= fa_icon "user 2x", style: 'color:white' %>
+              <%= image_tag 'admin.jpg' %>
+              <%#= image_tag current_user.avatar if current_user.avatar? %>
+            </li>
+          <% end %> 
         </li>
       </ul>
     <% else %>
