@@ -66,7 +66,7 @@
 
 /******** index month-calendar **********/
 .mon-calendar-box {
-  width:315px; 
+  width:270px; 
   background:#fff; 
   border-radius:5px; 
   overflow:hidden; 
@@ -101,7 +101,7 @@
   font-weight:400; 
   color:#f7f3eb; 
   text-align:center; 
-  width:42px; 
+  width:35px; 
   height:42px; 
   display:inline-block; 
   float:left; 
@@ -120,6 +120,18 @@
   opacity: 0.3;
 }
 
+/******** index to-do-list **********/
+.to_do_head{
+  margin-top: 15px;
+  text-align: center;
+}
+
+.to_do_body .day_time{
+  border:1px solid #ddd;
+  border-radius: 3%;
+  padding: 10px;
+  margin-top: 5px;
+}
 
 
 /******** plan/material page **********/
@@ -129,7 +141,25 @@
   margin: 20px 20px;
 }
 
-/******** plan/material page **********/
+/********    layout/navbar   **********/
 #logo {
   padding-left: 45px;
+}
+
+.nav_margin {
+  height: 45px;
+}
+
+/***** lessons/index/todo_list *******/
+.time_box .day_time {
+  border-radius: 8px !important;
+  background-color: #aaaaaa
+}
+
+.todo_content {
+  padding-left: 15px;
+}
+
+#lessons_calendar_2 {
+  margin-bottom: 50px;
 }

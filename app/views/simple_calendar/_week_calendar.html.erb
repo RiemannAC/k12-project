@@ -1,34 +1,43 @@
-<div class="simple-calendar">
+<div class="simple-calendar"> 
   <div class="calendar-heading text-center">
-    <%= link_to t('simple_calendar.previous', default: 'Previous'), calendar.url_for_previous_view %>
+    <%= link_to t('simple_calendar.previous', default: 'Prev'), calendar.url_for_previous_view,style:"color:#000;font-size:20px;margin-right:50px;" %>
     <% if calendar.number_of_weeks == 1 %>
       <span class="calendar-title">Week <%= calendar.week_number %></span>
     <%else%>
-        <span class="calendar-title">Week <%= calendar.week_number %> - <%= calendar.end_week %></span>
+      <span class="calendar-title">Week <%= calendar.week_number %> - <%= calendar.end_week %></span>
     <%end%>
-        <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view %>
+      <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view ,style:"color:#000;font-size:20px;margin-left:50px;" %>
   </div>
 
-  <table class="table table-striped">
+  <table class="table weekly-school-table">
     <thead>
       <tr>
         <th>#</th>
         <% date_range.slice(0, 7).each do |day| %>
-          <th><%= t('date.abbr_day_names')[day.wday] %> <%= "#{day.month}" "/" "#{day.day}" %></th>
+          <th class="text-center">
+            <div>
+              <%= t('date.abbr_day_names')[day.wday] %>
+            </div> 
+  
+            <div style="font-size:20px ">
+              <%= "#{day.month}" "/" "#{day.day}" %> 
+            </div>   
+          </th>
         <% end %>
       </tr>
-    </thead>
+    </thead>  
 
     <tbody>
       <% date_range.each_slice(7) do |week| %>
         <tr>
-          <td class="time_td">
+          <td class="time_td text-center">
             <% 8.upto(18).each do |hour| %>
               <div class="day_time">
                 <%= Time.parse("#{hour}:00").strftime("%l %P") %>
               </div>
             <% end %>
           </td>
+
           <% week.each do |day| %>
             <%= content_tag :td, class: calendar.td_classes_for(day) do %>
               <% if defined?(Haml) && respond_to?(:block_is_haml?) && block_is_haml?(block) %>
