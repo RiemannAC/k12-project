@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 81.37 85.344">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient);
+      }
+
+      .cls-2, .cls-3 {
+        fill: none;
+      }
+
+      .cls-2 {
+        stroke: #fff;
+        stroke-linecap: round;
+        stroke-width: 1.8px;
+      }
+
+      .cls-3 {
+        stroke: #707070;
+      }
+
+      .cls-4, .cls-5 {
+        fill: #fff;
+        font-family: LaoSangamMN, Lao Sangam MN;
+      }
+
+      .cls-4 {
+        font-size: 26px;
+      }
+
+      .cls-5 {
+        font-size: 27px;
+      }
+    </style>
+    <linearGradient id="linear-gradient" y1="0.239" x2="1" y2="1.131" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#0d7ce9"/>
+      <stop offset="0.926" stop-color="#dede26"/>
+      <stop offset="0.964" stop-color="#dd4017"/>
+      <stop offset="1" stop-color="#dd2214"/>
+    </linearGradient>
+  </defs>
+  <g id="Nav_bar_4" data-name="Nav bar 4" transform="translate(-75.841 -24.891)">
+    <path id="Path_208" data-name="Path 208" class="cls-1" d="M236.563,135.635l39.944,19.787v44.892l-39.944,18.9-39.652-18.9V155.421Z" transform="translate(-120.037 -110.119)"/>
+    <g id="K-Italic" transform="translate(102.267 37.333)">
+      <line id="Line_13" data-name="Line 13" class="cls-2" x1="17.703" y2="8.871" transform="translate(0 0)"/>
+      <line id="Line_14" data-name="Line 14" class="cls-2" x2="21.429" transform="translate(7.454 5.603)"/>
+      <line id="Line_16" data-name="Line 16" class="cls-2" y2="8.404" transform="translate(13.044 6.536)"/>
+    </g>
+    <g id="Frame" transform="translate(76.341 25.341)">
+      <line id="Line_1" data-name="Line 1" class="cls-3" y2="45.47" transform="translate(0 19.487)"/>
+      <line id="Line_6" data-name="Line 6" class="cls-3" y2="45.47" transform="translate(80.37 19.487)"/>
+      <line id="Line_5" data-name="Line 5" class="cls-3" x1="40.185" y2="19.487" transform="translate(40.185 19.487)"/>
+      <line id="Line_8" data-name="Line 8" class="cls-3" x1="40.185" y2="19.487"/>
+      <line id="Line_11" data-name="Line 11" class="cls-3" x1="40.185" y2="19.487" transform="translate(40.185 64.957)"/>
+      <line id="Line_3" data-name="Line 3" class="cls-3" x2="40.185" y2="19.487" transform="translate(40.185)"/>
+      <line id="Line_9" data-name="Line 9" class="cls-3" x2="40.185" y2="19.487" transform="translate(0 19.487)"/>
+      <line id="Line_12" data-name="Line 12" class="cls-3" x2="40.185" y2="19.487" transform="translate(0 64.957)"/>
+      <line id="Line_4" data-name="Line 4" class="cls-3" y2="45.47" transform="translate(40.185 38.974)"/>
+    </g>
+    <text id="_1" data-name="1" class="cls-4" transform="translate(95.767 84.17)"><tspan x="-7.28" y="0">1</tspan></text>
+    <text id="_2" data-name="2" class="cls-5" transform="translate(130.841 85.17)"><tspan x="0" y="0">2</tspan></text>
+  </g>
+</svg>
