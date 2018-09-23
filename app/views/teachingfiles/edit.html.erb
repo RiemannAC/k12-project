@@ -1,5 +1,5 @@
 <% if params[:plan_id] %>
-  <%= form_for [@plan,@teachingfile], url: plan_teachingfile_path ,html:{multipart:true} do |f| %>
+  <%= form_for [@user,@plan,@teachingfile], url: user_plan_teachingfile_path ,html:{multipart:true} do |f| %>
     <div class="form-group">
       <%= f.label :name %>
       <%= f.text_field :name, class: 'form-control', placeholder: "輸入檔案名稱" %>
@@ -12,11 +12,11 @@
     </div>
 
     <%= f.submit  class:"btn btn-primary" %>
-    <%= link_to 'Back',plan_path(@teachingfile.plan),class:"btn btn-success"  %>
+    <%= link_to 'Back',user_plan_path(@user,@plan),class:"btn btn-success"  %>
   <% end %>
 
 <% elsif params[:material_id] %>
-  <%= form_for [@material,@teachingfile], url: material_teachingfile_path ,html:{multipart:true} do |f| %>
+  <%= form_for [@user,@material,@teachingfile], url: user_material_teachingfile_path ,html:{multipart:true} do |f| %>
     <div class="form-group">
       <%= f.label :name %>
       <%= f.text_field :name, class: 'form-control', placeholder: "輸入檔案名稱" %>
@@ -29,10 +29,10 @@
     </div>
 
     <%= f.submit  class:"btn btn-primary" %>
-    <%= link_to 'Back',material_path(@teachingfile.material),class:"btn btn-success"  %>
+    <%= link_to 'Back',user_material_path(@user,@material),class:"btn btn-success"  %>
   <% end %>
 
-<% end %>
+<% end %> 
 
 
 

@@ -19,4 +19,6 @@ class Topic < ApplicationRecord
   belongs_to :subject, optional: true
   has_many :lessons, dependent: :destroy
   has_many :teachingfiles
+
+  has_many :aims,dependent: :destroy
 end

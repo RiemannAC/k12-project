@@ -1,10 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :plans do
-    resources :teachingfiles
-  end
-  root "plans#index"
+
+  root "lessons#index"
 
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
@@ -12,13 +10,24 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :materials do
-    resources :teachingfiles
-  end
-
   resources :subject_tags
 
   resources :users do
+    resources :plans do
+      resources :teachingfiles
+    end
+
+    resources :materials do
+      resources :teachingfiles
+    end
+
+    resources :subjects do
+      resources :topics do
+        resources :aims
+      end
+    end
+
+
     resources :lessons do
       collection do
         get :list

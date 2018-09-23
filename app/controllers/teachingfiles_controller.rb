@@ -1,11 +1,14 @@
 class TeachingfilesController < ApplicationController
   def create
+    @user = User.find(params[:user_id])
     # upon clicking on create, determine what param id is passed
     if params[:material_id]
       # if it is a material id, set instance of post id as @parent
+      @material= @user.materials.find(params[:material_id])
       @parent = Material.find(params[:material_id])
     elsif params[:plan_id]
       # if it is a plan id, set instance of topic id as @parent
+      @plan= @user.plans.find(params[:plan_id])
       @parent = Plan.find(params[:plan_id])
     end
 
@@ -20,12 +23,12 @@ class TeachingfilesController < ApplicationController
     # of class Post?  Is @parents is the same parent id passed through params?
     if @parent.is_a?(Material) # template error with this included: (== params[:post_id])
       flash[:notice] = '成功新增教材的檔案 #{@teachingfile.filename}'
-      redirect_to material_path(@teachingfile.material)
+      redirect_to user_material_path(@user,@material)
     # if not part of the class Post, is it a Topic?  If so, save here and
     # redirect to the topic after save
     elsif @parent.is_a?(Plan)
       flash[:notice] = '成功新增教案的檔案 #{@teachingfile.filename}'
-      redirect_to plan_path(@teachingfile.plan)
+      redirect_to user_plan_path(@user,@plan)
     
     end
     
@@ -34,32 +37,41 @@ class TeachingfilesController < ApplicationController
 
   def edit
     @subject_tags = SubjectTag.order(created_at: :desc)
+    @user = User.find(params[:user_id])
+    # upon clicking on create, determine what param id is passed
     if params[:material_id]
       # if it is a material id, set instance of post id as @parent
+      @material= @user.materials.find(params[:material_id])
       @parent = Material.find(params[:material_id])
     elsif params[:plan_id]
       # if it is a plan id, set instance of topic id as @parent
+      @plan= @user.plans.find(params[:plan_id])
       @parent = Plan.find(params[:plan_id])
     end
     @teachingfile = @parent.teachingfiles.find(params[:id])
   end
 
   def update 
+    @user = User.find(params[:user_id])
+    # upon clicking on create, determine what param id is passed
     if params[:material_id]
       # if it is a material id, set instance of post id as @parent
+      @material= @user.materials.find(params[:material_id])
       @parent = Material.find(params[:material_id])
     elsif params[:plan_id]
       # if it is a plan id, set instance of topic id as @parent
+      @plan= @user.plans.find(params[:plan_id])
       @parent = Plan.find(params[:plan_id])
-    end
+    end 
+   
     @teachingfile = @parent.teachingfiles.find(params[:id])
 
     if @teachingfile.update(teachingfile_params)
       flash[:notice] = "teachingfile #{@teachingfile.name} was successfully updated"
       if params[:material_id]
-        redirect_to material_path(@teachingfile.material)
+        redirect_to user_material_path(@user,@material)
       elsif params[:plan_id]
-        redirect_to plan_path(@teachingfile.plan)
+        redirect_to user_plan_path(@user,@plan)
       end
     else
       @teachingfile = Teachingfile.all
@@ -67,6 +79,7 @@ class TeachingfilesController < ApplicationController
       redirect_back fallback_location: root_path
     end
   end
+   
 
   def destroy
     if params[:material_id]
@@ -94,6 +107,6 @@ class TeachingfilesController < ApplicationController
   private
 
   def teachingfile_params
-    params.require(:teachingfile).permit(:name,:attachment,:material_id,:plan_id)
+    params.require(:teachingfile).permit(:name,:attachment,:material_id,:plan_id,:user_id)
   end
 end
