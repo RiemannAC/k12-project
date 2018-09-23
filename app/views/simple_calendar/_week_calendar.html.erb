@@ -1,13 +1,19 @@
+<style>
+  .calendar-title{
+  font-size:30px;
+}
 
-<div class="simple-calendar">
+</style>
+
+<div class="simple-calendar"> 
   <div class="calendar-heading text-center">
-    <%= link_to t('simple_calendar.previous', default: 'Previous'), calendar.url_for_previous_view %>
+    <%= link_to t('simple_calendar.previous', default: 'Prev'), calendar.url_for_previous_view,style:"color:#000;font-size:20px;margin-right:50px;" %>
     <% if calendar.number_of_weeks == 1 %>
       <span class="calendar-title">Week <%= calendar.week_number %></span>
     <%else%>
-        <span class="calendar-title">Week <%= calendar.week_number %> - <%= calendar.end_week %></span>
+      <span class="calendar-title">Week <%= calendar.week_number %> - <%= calendar.end_week %></span>
     <%end%>
-        <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view %>
+      <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view ,style:"color:#000;font-size:20px;margin-left:50px;" %>
   </div>
 
   <table class="table weekly-school-table">

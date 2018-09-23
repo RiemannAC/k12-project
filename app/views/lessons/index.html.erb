@@ -5,7 +5,8 @@
 
         <div class="row">
           <div class="col-12 m-auto">
-            <h2 class="text-center">一週課表</h2>
+            <h2 class="text-center">我的一週課表</h2>
+            <hr>
             <%= week_calendar events: @lessons do |date, lessons| %>
               <% 8.upto(18).each do |hour| %>
                 <div id="hour-<%= hour %>" class="day_time">
