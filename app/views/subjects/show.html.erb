@@ -10,7 +10,7 @@
 
 
   <div class="">
-    <%= month_calendar partial: 'simple_calendar/semester_plan' do |date| %>
+    <%= month_calendar(events: @subjects, attribute: :start_time, end_attribute: :end_time, partial: 'simple_calendar/semester_plan') do |date| %>
       <div class="week-plan">
         <div class="week-plan-top">
           <div class="week-time">
