@@ -1,5 +1,6 @@
 .simple-calendar {
-  table {
+
+table {
     -webkit-border-horizontal-spacing: 0px;
     -webkit-border-vertical-spacing: 0px;
     background-color: rgba(0, 0, 0, 0);
@@ -16,7 +17,7 @@
 
   th {
     padding: 6px;
-    border-bottom: 2px solid rgb(221, 221, 221);
+    border-bottom: 1px solid rgb(221, 221, 221);
     border-collapse: collapse;
     border-left: 1px solid rgb(221, 221, 221);
     border-right: 1px solid rgb(221, 221, 221);
@@ -46,46 +47,10 @@
     border-left-width: 1px;
   }
 
-  .time_td {
-    width: 5%;
-  }
-
-  /*第一個表抓得到，表中表抓不到位置設定最低高度*/
   .day_time {
     border: 1px solid #ddd;
     /*改 0.5 兩線合併為 1 無效*/
     padding: 0px;
     min-height: 50px;
   }
-
-  .day {
-    height: 80px;
-  }
-
-  .wday-0 {}
-  .wday-1 {}
-  .wday-2 {}
-  .wday-3 {}
-  .wday-4 {}
-  .wday-5 {}
-  .wday-6 {}
-
-  .today {
-    background: #FFFFC0
-  }
-
-  .past {}
-  .future {}
-
-  .start-date {}
-
-  .prev-month {
-    background: #DDD;
-  }
-  .next-month {
-    background: #DDD;
-  }
-  .current-month {}
-
-  .has-events {}
 }
