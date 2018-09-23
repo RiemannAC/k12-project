@@ -60,6 +60,63 @@
   padding: 10px;
 }
 
+/******** index month-calendar **********/
+.mon-calendar-box {
+  width:315px; 
+  background:#fff; 
+  border-radius:5px; 
+  overflow:hidden; 
+  display:block; 
+  margin-bottom:10px; 
+  box-shadow:0 0 10px #201d1c; 
+  margin:0 auto; 
+  margin-top:100px;
+  color: #000;
+}
+
+.mon-calendar-body {
+  padding:0 10px 10px 10px; 
+  box-sizing:border-box!important; 
+  background: #527a7a;
+  opacity: 0.9;
+}
+
+.mon-calendar-nav {
+  font:18px 'Roboto'; 
+  font-weight:700; 
+  color:#f7f3eb; 
+  display:block; 
+  margin:10px 0 10px 0; 
+  text-transform:uppercase; 
+  text-align:center; 
+  letter-spacing:1px;
+}
+
+.mon-calendar-body span {
+  font:11px ,'Roboto'; 
+  font-weight:400; 
+  color:#f7f3eb; 
+  text-align:center; 
+  width:42px; 
+  height:42px; 
+  display:inline-block; 
+  float:left; 
+  overflow:hidden; 
+  line-height:40px;
+}
+
+.today {
+  background: #b38f00;
+}
+
+.prev-month {
+  opacity: 0.3;
+}
+.next-month {
+  opacity: 0.3;
+}
+
+
 
 /******** plan/material page **********/
 .folder-block {

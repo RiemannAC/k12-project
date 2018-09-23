@@ -1,3 +1,5 @@
+
+
 <div class="row">
   <div id="lessons_calendar" class="col-6" style="padding: 0px;">
     <%= link_to 'Listing lessons', list_user_lessons_path(@user) %>
@@ -32,9 +34,9 @@
       <div class="col-4">
         <%= month_calendar events: @lessons do |date, lessons| %>
           <%= date.day %>
-        <% end %>
+        <% end %> 
       </div>
-    </div>
+    </div> 
     <%# ToDo List %>
     <div class="row">
       <div class="col-4">
