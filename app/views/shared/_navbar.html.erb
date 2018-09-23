@@ -9,10 +9,13 @@
 </style>
 
 <nav class="navbar fixed-top navbar-expand-lg">
-  
-  <%= link_to root_path, class: "navbar-brand" do %>
-    <%= image_tag "temp-k12-logo.png", width:'55', height:'42', alt:'首頁'%>    
-  <% end %>
+
+  <div id="logo">
+    <%= link_to root_path, class: "navbar-brand" do %>
+      <%= image_tag "logo.svg", width:'65', height:'65', alt:'首頁'%>    
+    <% end %>
+  </div>
+
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
