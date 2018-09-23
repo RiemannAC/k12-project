@@ -1,0 +1,40 @@
+<%# 改自 partial week_calendar 目前邏輯只撈到今日，尚無切換日期，故先移除切換列 %>
+<div class="simple-calendar">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <% date_range.each_slice(1) do |day| %>
+          <% if day[0].today? %>
+            <th><%= t('date.abbr_day_names')[day[0].wday] %> <%= "#{day[0].month}" "/" "#{day[0].day}" %></th>
+          <% end %>
+        <% end %>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% date_range.each_slice(1) do |week| %>
+        <% if week[0].today? %>
+          <tr>
+            <td class="time_td">
+              <% 8.upto(18) do |hour| %>
+                <div class="day_time">
+                  <%= Time.parse("#{hour}:00").strftime("%l %P") %>
+                </div>
+              <% end %>
+            </td>
+            <% week.each do |day| %>
+              <%= content_tag :td, class: calendar.td_classes_for(day) do %>
+                <% if defined?(Haml) && respond_to?(:block_is_haml?) && block_is_haml?(block) %>
+                  <% capture_haml(day, sorted_events.fetch(day, []), &block) %>
+                <% else %>
+                  <% block.call day, sorted_events.fetch(day, []) %>
+                <% end %>
+              <% end %>
+            <% end %>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

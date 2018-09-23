@@ -35,6 +35,8 @@ class User < ApplicationRecord
   has_many :plans, dependent: :destroy
   has_many :materials, dependent: :destroy
 
+  mount_uploader :avatar, AvatarUploader
+
 
   def admin?
     self.role == "admin"

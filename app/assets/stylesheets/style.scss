@@ -1,26 +1,3 @@
-.nav-user {
-  margin-left: 20px;
-}
-
-.user-icon {
-  margin: 0 15px 0 15px;
-}
-
-.side-avatar {
-  height: 200px;
-  width: 200px;
-}
-
-.fixed-top {
-  background-color: #5e5f5f;
-  color: #fff;
-}
-
-.navbar-nav-li a, .nav-item a {
-  color: #fff;
-  font-weight: 800;
-}
-
 /******** devise login page **********/
 
 .login {
@@ -58,6 +35,33 @@
   border:1px solid #ccc;
   color:#000;
   background-color: linen;
+}
+
+
+/******** user-profile nav-tabs page **********/
+.user-profile-navtab{
+  margin-top: 100px;
+
+}
+
+.tab-link {
+  color: #495057!important;
+}
+
+.user-profile-grid{
+  margin-top: 15px;
+  box-shadow: 1px 10px 8px 5px #888888;   
+}
+
+.user-avatar{
+  margin-top:15px;
+}
+
+.user-avatar .thumbnail img{
+  max-width: 250px;
+  max-height: 250px;
+  border: 1px solid #ddd;
+  padding: 10px;
 }
 
 

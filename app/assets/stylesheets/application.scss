@@ -28,6 +28,18 @@ body {
   border-top:10px groove #e86dd4;
 }
 
+.orange-hr {
+  height: 10px;
+  border: none;
+  border-top: 10px groove orange;
+}
+
+.yellow-hr {
+  height: 10px;
+  border: none;
+  border-top: 10px groove yellow;
+}
+
 .main-frame {
   padding-top: 25px;
 }
@@ -39,13 +51,38 @@ body {
   z-index: 99;
 }
 
+/******** NAVBAR SETTING **********/
+
+.nav-user {
+  margin-left: 20px;
+}
+
+.user-icon {
+  margin: 0 15px 0 15px;
+}
+
+.side-avatar {
+  height: 200px;
+  width: 200px;
+}
+
+.fixed-top {
+  background-color: #5e5f5f;
+  color: #fff;
+}
+
+.navbar-nav-li a, .nav-item a {
+  color: #fff;
+  font-weight: 800;
+}
+
 /******** sidebar css setting *********/
 
 .sidenav {
   height: 100%;
   width: 220px;
   position: fixed;
-  z-index: -1;
+  z-index: 5;
   top: 68px;
   left: 0;
   background-color: #f3f5f6;

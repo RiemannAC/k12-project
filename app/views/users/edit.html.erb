@@ -1,0 +1,53 @@
+<div class="container user-profile-navtab">
+  <div class="row"> 
+    <div class="col-md-12">
+      <h2 class="text-center">編輯個人資料</h2>
+      <hr>
+
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <%= link_to '個人資料',edit_user_path(current_user), class: "nav-link active"%>
+        </li> 
+
+        <li class="nav-item">
+          <%= link_to '變更密碼',edit_user_registration_path, class: "nav-link tab-link"%>
+        </li> 
+
+      </ul>
+    </div> 
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 user-profile-grid">
+      <%= form_for @user do |f| %>
+      <div class="offset-md-4  user-avatar">
+        <div class="thumbnail">
+          <%= image_tag @user.avatar if @user.avatar? %>
+        </div>
+        <%= f.file_field :avatar %>
+      </div>
+
+      <div class="col-md-12">
+        <%= f.label :name,"教師姓名" %>
+        <%= f.text_field :name ,class:"form-control"%>
+
+        <%= f.label :email,"電子信箱" %>
+        <%= f.text_field :email ,class:"form-control"%>
+
+        <p><%= f.label :intro,"關於我的介紹" %></p>
+        <%= f.text_area :intro,class:"form-control",rows:"4"   %>
+
+        <p><%= f.label :job_title,"從事工作行業" %></p>
+        <%= f.text_field :job_title ,class:"form-control"%>
+
+        <p><%= f.label :website,"個人網站" %></p>
+        <%= f.text_field :website ,class:"form-control"%>
+
+        <%= f.submit "Update",class:"btn btn-primary" %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+              
+              
+</div> 

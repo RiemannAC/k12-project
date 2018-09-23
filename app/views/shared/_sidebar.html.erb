@@ -1,19 +1,39 @@
 <% if signed_in? %>
   <div class="sidenav">
     <div class="dropdown-btn text-center">
-      <%= image_tag 'admin.jpg', class: 'img-fluid' %>
-      <h2><%= current_user.name %></h2>
+      <%= link_to user_path(@user) do %>
+        <%#= image_tag 'admin.jpg', class: 'img-fluid' %>
+        <%= image_tag current_user.avatar,class:"img-fluid" if current_user.avatar? %>
+        <h2 class="text-center"><%= @user.name %></h2>
+      <% end %>
     </div>
 
     <hr>
     <button class="dropdown-btn">
-      <%= '我的科目' %>
+      <%= '我的班級' %>
       <%= fa_icon 'caret-down' %>
     </button>
     <div class="dropdown-container">
-     
+      <%= link_to " + 新建班級", new_user_subject_path(@user, @subject) %>
+      <button class="dropdown-btn">
+        <%= " - 現有班級" %>
+        <%= fa_icon 'caret-down' %>  
+      </button>
+      <% if @subjects.count == 0 %>
+        <div class="dropdown-container">        
+          <h5 style="color:green;">你還沒有任何班級哦！趕緊新建一個吧！</h5>
+        </div>
+      <% else %>
+        <div class="dropdown-container">
+          <% @subjects.each do |subject| %>
+            <%= link_to user_subject_path(@user, subject) do %>
+              <%= subject.grade %>年 <%= subject.classroom %>
+            <% end %>
+          <% end %>
+        </div>        
+      <% end %>
+    </div>    
       
-    </div>
 
     <!--第一個dropdown-->
     <button class="dropdown-btn">
@@ -27,10 +47,29 @@
         <%= " - 現有教材" %>
         <%= fa_icon 'caret-down' %>
       </button>
-      <div class="dropdown-container">
-        
-      </div>
-      
+      <% if @materials.count == 0 %>
+        <div class="dropdown-container">
+          <h5 style="color:green;">尚未建立任何資料夾</h5>
+        </div>
+      <% else %>
+        <div class="dropdown-container">
+          <% @subject_tags.each do |subject| %>
+
+            <% if subject.materials.present? %>
+            <button class="dropdown-btn">
+              <%= "【" + subject.name + "】" %>
+              <%= fa_icon 'caret-down' %>
+            </button>
+            <div class="dropdown-container">
+              <% subject.materials.each do |material| %>
+                <%= link_to material.mtrial_folder_name, user_material_path(@user, material) %>
+              <% end %>
+            </div>
+            <% end %>
+
+          <% end %>
+        </div>
+      <% end %>
     </div>
 
     <button class="dropdown-btn">
@@ -43,18 +82,38 @@
         <%= " - 現有教案" %>
         <%= fa_icon 'caret-down' %>
       </button>
-      <div class="dropdown-container">
-        
-      </div>
+      <% if @plans.count == 0 %>
+        <div class="dropdown-container">
+          <h5 style="color:green;">尚未建立任何資料夾</h5>
+        </div>
+      <% else %>
+        <div class="dropdown-container">
+          <% @subject_tags.each do |subject| %>
+
+            <% if subject.plans.present? %>
+            <button class="dropdown-btn">
+              <%= "【" + subject.name + "】" %>
+              <%= fa_icon 'caret-down' %>
+            </button>
+            <div class="dropdown-container">
+              <% subject.plans.each do |plan| %>
+                <%= link_to plan.plan_folder_name, user_plan_path(@user, plan) %>
+              <% end %>
+            </div>
+            <% end %>
+
+          <% end %>
+        </div>
+      <% end %>
     </div>
       
     <button class="dropdown-btn">
-      <%= '過往學期教學計畫' %>
+      <%= '教學計畫檔案庫' %>
       <%= fa_icon 'caret-down' %>
     </button>
     <div class="dropdown-container">
       <h5 style="color:green">
-        你還沒有任何教學計劃哦！趕快來新增班級吧！
+        你還沒有任何教學計劃哦！先新增班級吧！
       </h5>  
     </div>
        
