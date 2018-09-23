@@ -35,18 +35,7 @@
         <% end %>
       </div>
     </div>
-    <%# ToDo List %>
-    <div class="row">
-      <div class="col-4">
-        <h2>今日待辦事項</h2>
-        <%= week_calendar partial: 'simple_calendar/to_do_list' do |date| %>
-        </%>
-          <% 8.upto(18).each do |hour| %>
-            <div id="hour-<%= hour %>" class="day_time">
-            </div>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
+    <%# ToDo List V2 %>
+    <%= render 'to_do_list' %>
   </div>
 </div>
