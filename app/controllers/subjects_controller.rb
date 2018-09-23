@@ -29,6 +29,13 @@ class SubjectsController < ApplicationController
 
   def update
     @subject = @user.subjects.find(params[:id])
+    if @subject.update(subject_params)
+      flash[:notice] = "更新班級設定"
+      redirect_to user_subjects_path
+    else
+      flash.now[:alert] = "未能成功更新"
+      render :edit
+    end
   end
 
   def destroy

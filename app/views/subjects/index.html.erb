@@ -20,7 +20,7 @@
         <td><%= subject.name %></td>
         <td><%= subject.grade %> 年級 <%= subject.classroom %></td>
         <td><%= subject.students %></td>
-        <td><%= subject.start_time.strftime('%Y-%m') %> 學年開始</td>
+        <td><%= subject.start_time.strftime('%Y-%m') %> 至 <%= subject.end_time.strftime('%Y-%m') %></td>
         <td><%= link_to '刪除學期計劃', user_subject_path(@user, subject), method: :delete, data: {confirm: "此為永久刪除，確定要執行嗎？"} %></td>
       </tr>
       <% end %>
