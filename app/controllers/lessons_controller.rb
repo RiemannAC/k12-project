@@ -13,7 +13,7 @@ class LessonsController < ApplicationController
 
     # _to_do_list
     @day = Date.today
-    # @todos = Lesson.where(event_type: "todo") # 待加欄位
+    @todos = Lesson.where(event_type: "todo")
   end
 
   def list
@@ -147,7 +147,7 @@ class LessonsController < ApplicationController
       # 疊代
       topic_ids = Topic.where(subject_id: subject_ids).pluck(:id)
       # topic_id 欄位，輸入 id array，輸出 lessons 的 ActiveRecord，不需要用 id 各別宣告再收集起來。
-      @lessons = Lesson.where(topic_id: topic_ids)
+      @lessons = Lesson.where(topic_id: topic_ids, event_type: "lesson")
     end
 
     # 刪除整學期的課程，待利用
@@ -163,7 +163,7 @@ class LessonsController < ApplicationController
     end
 
     def lesson_params
-      params.require(:lesson).permit(:name, :start_time,'start_time(1i)', 'start_time(2i)', 'start_time(3i)', 'start_time(4i)', 'start_time(5i)', 'end_time(1i)', 'end_time(2i)', 'end_time(3i)', 'end_time(4i)', 'end_time(5i)', :period, :frequency, :commit_button)
+      params.require(:lesson).permit(:name, :start_time,'start_time(1i)', 'start_time(2i)', 'start_time(3i)', 'start_time(4i)', 'start_time(5i)', 'end_time(1i)', 'end_time(2i)', 'end_time(3i)', 'end_time(4i)', 'end_time(5i)', :period, :frequency, :commit_button, :event_type)
     end
 
 end
