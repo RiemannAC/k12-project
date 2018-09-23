@@ -12,7 +12,7 @@
 
 class Subject < ApplicationRecord
   attr_accessor :name, :commit_button
-  
+   
 
   belongs_to :user, optional: true
   has_many :topics, dependent: :destroy
