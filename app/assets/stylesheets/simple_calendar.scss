@@ -1,6 +1,6 @@
 .simple-calendar {
-
-table {
+ 
+  table {
     -webkit-border-horizontal-spacing: 0px;
     -webkit-border-vertical-spacing: 0px;
     background-color: rgba(0, 0, 0, 0);
@@ -9,6 +9,7 @@ table {
     box-sizing: border-box;
     max-width: 100%;
     width: 100%;
+    box-shadow: 5px 10px 18px #888888;
   }
 
   tr {
@@ -23,7 +24,7 @@ table {
     border-right: 1px solid rgb(221, 221, 221);
     border-top: 0px none rgb(51, 51, 51);
     box-sizing: border-box;
-    text-align: left;
+    text-align: center;
   }
 
   td {
@@ -31,6 +32,7 @@ table {
     margin: 0px;
     vertical-align: top;
     width: 10%;
+
 
     border: 1px solid #ddd;
     border-top-color: rgb(221, 221, 221);
@@ -50,7 +52,43 @@ table {
   .day_time {
     border: 1px solid #ddd;
     /*改 0.5 兩線合併為 1 無效*/
-    padding: 0px;
-    min-height: 50px;
+    padding-top: 20px;
+    min-height: 70px;
   }
+
+  .time_td {
+    width: 7%;
+  }
+
+  .day {
+    height: 80px;
+  }
+
+  .wday-0 {}
+  .wday-1 {}
+  .wday-2 {}
+  .wday-3 {}
+  .wday-4 {}
+  .wday-5 {}
+  .wday-6 {}
+ 
+  .today {
+    background: #ffff99;
+    opacity:0.6;
+  }
+
+  .past {}
+  .future {}
+
+  .start-date {}
+
+  .prev-month {
+    opacity:1;
+  }
+  .next-month {
+    opacity:1;
+  }
+  .current-month {}
+
+  .has-events {}
 }
