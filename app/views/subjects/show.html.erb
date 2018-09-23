@@ -9,24 +9,33 @@
   <hr class="blue-hr">
 
 
-  <div class="">
-    <%= month_calendar(events: @subjects, attribute: :start_time, end_attribute: :end_time, partial: 'simple_calendar/semester_plan') do |date| %>
-      <div class="week-plan">
-        <div class="week-plan-top">
-          <div class="week-time">
-            <%= date[0] %> ~ <%= date[6] %>
-          </div>
-          <div class="week-topic">
-            <h5>這裡打上單元 topic</h5>
-          </div>
-        </div>
-        
-        <div class="week-plan-bottom">
-          <h5><i>這裡要放to do aim</i></h5>
-        </div>
-
+  <div class="row">
+    <div class="col-md-8">
+      <div class="topic-aim">
+        這裡放topic aim 和 評鑑
       </div>
-    <% end %>    
+        
+      
+    </div>
+    <div class="col-md-4">
+      <%= month_calendar(attribute: :start_time, end_attribute: :end_time, partial: 'simple_calendar/semester_plan') do |date| %>
+        <div class="week-plan">
+          <div class="week-plan-top">
+            <div class="week-time">
+              <%= date[0] %> ~ <%= date[6] %>
+            </div>
+            <div class="week-topic">
+              <h5>這裡打上單元 topic</h5>
+            </div>
+          </div>
+          <div class="topic-access">
+            反思
+          </div>
+
+        </div>
+      <% end %> 
+    </div> 
+
   </div>
 
 
