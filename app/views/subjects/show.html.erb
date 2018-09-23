@@ -7,12 +7,11 @@
 
   <div class="row">
     <div class="col-md-5">
-      <%= week_calendar event: @topics do |date| %>
+      <%= calendar partia: 'simple_calendar/semester_plan', number_of_days: @subject.end_time.yday - @subject.start_time.yday + 1 do |date| %>
         <%= date.day %>
       <% end %>    
     </div>
     <div class="col-md-5"></div>
   </div>
 
-  
 </div>
