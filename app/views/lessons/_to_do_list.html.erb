@@ -10,10 +10,10 @@
             <%= Time.parse("#{hour}:00").strftime("%l %P") %>
           </div>
           <div id="hour-<%= hour %>" class="day_time">
-            <% @lessons.each do |lesson| %> <%# 可行待改 @todos %>  
-              <%- if lesson.start_time.hour.between?(hour, hour + 0.9) %>
-                <%= link_to user_lesson_path(@user, lesson) do %>
-                  <%= lesson.name %>
+            <% @todos.each do |todo| %>
+              <%- if todo.start_time.hour.between?(hour, hour + 0.9) %>
+                <%= link_to user_lesson_path(@user, todo) do %>
+                  <%= todo.name %>
                 <% end %>
               <% end -%>
             <% end %>
