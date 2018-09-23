@@ -141,7 +141,25 @@
   margin: 20px 20px;
 }
 
-/******** plan/material page **********/
+/********    layout/navbar   **********/
 #logo {
   padding-left: 45px;
+}
+
+.nav_margin {
+  height: 45px;
+}
+
+/***** lessons/index/todo_list *******/
+.time_box .day_time {
+  border-radius: 8px !important;
+  background-color: #aaaaaa
+}
+
+.todo_content {
+  padding-left: 15px;
+}
+
+#lessons_calendar_2 {
+  margin-bottom: 50px;
 }
