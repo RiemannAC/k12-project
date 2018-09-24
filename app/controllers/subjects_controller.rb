@@ -46,6 +46,11 @@ class SubjectsController < ApplicationController
     end
     return @project_weeks
 
+    @startdate = Date.parse(@subject.start_time.strftime("%Y-%m-%d"))
+    @enddate = Date.parse(@subject.end_time.strftime("%Y-%m-%d"))
+    @week_firsts = (startdate..enddate).select(&:sunday?).map(&:to_s).to_a
+    @week_lasts = (startdate..enddate).select(&:saturday?).map(&:to_s).to_a
+
   end
 
   def edit
