@@ -1,34 +1,22 @@
 <div class="main-frame">
-
-  <%= link_to '編輯班級設定', edit_user_subject_path(@user, @subject), class: 'btn btn-outline-success' %>
-  <span class="text-center">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mynewpost">
-      新增教學計劃
-    </button>
-  </span>
-
-  <br>
-  <br>
-  <h4>學期： <%= @subject.start_time.strftime("%Y-%m") %> 至 <%= @subject.end_time.strftime("%Y-%m") %></h4>
+  <h4>學期開始： </h4>
   <h4>科目： <%= @subject.name %></h4>  
   <h4>班級： <%= @subject.grade %> 年 <%= @subject.classroom %>（<%= @subject.students %> 人）</h4>
-  <h4>課程時間： <i> <%= link_to '新增課表', new_user_lesson_path(@user) %> </i></h4>
-  <%= link_to '<< 班級列表', user_subjects_path(@user) %>
-
+  <h4>課程時間： </h4>  
   <hr class="blue-hr">
-
 
   <div class="row">
   <!--row-->
-    <div class="col-md-12">
+    <div class="col-md-10">
       <div id="container_posts">
         <% @subject.topics.each do |topic|%>  
           <%= render partial:'topics/topic',locals: {topic: topic } %>
         <% end %>   
       </div>
-    </div>
-  </div>
 
+    </div>
+
+  </div>
 </div>
 
 
@@ -48,19 +36,19 @@
             <%# modal-body %>
               <!--輸入主題日期開始-->
               <div class="field">
-                <%= f.label :start_time %>
+                <%= f.label "開始日期" %>
                 <%= f.text_field :start_time, class: 'form-control post_theme', placeholder: "輸入開始日期 ex:9/14" %>
               </div>
 
               <!--輸入主題日期結束-->
               <div class="field">
-                <%= f.label :end_time %>
+                <%= f.label "結束日期" %>
                 <%= f.text_field :end_time, class: 'form-control post_theme', placeholder: "輸入結束日期 ex:9/20" %>
               </div>
 
               <!--輸入教學主題-->
               <div class="field">
-                <%= f.label :name %>
+                <%= f.label "教學單元主題" %>
                 <%= f.text_field :name, class: 'form-control post_theme', placeholder: "輸入教學主題" %>
               </div>
             
@@ -75,6 +63,3 @@
       </div>
     </div>
 <% end %> 
-
-
-

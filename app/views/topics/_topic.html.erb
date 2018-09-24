@@ -14,8 +14,8 @@
 
 <div id="post_<%= topic.id %>">
   <div class="row">
-    <!--<div class="col-md-8">-->
-    <div class="col-md-9">
+    <!--<div class="col-md-12">-->
+    <div class="col-md-12">
       <div class="weekly-prepare">
         <div class="col-md-12 prepare-detail">
           <!--教學單元主題-->
@@ -57,8 +57,8 @@
       </div>
     </div>
     <!-------------------------->
-    <div class="col-md-3">
-
+    <div class="col">
+      
     </div> 
   
   </div>
@@ -75,25 +75,25 @@
               <span aria-hidden="true">&times;</span>
             </button>
 
-            <h5 class="modal-title" id="myModalLabel">Edit</h5>
+            <h5 class="modal-title" id="myModalLabel">編輯教學主題</h5>
           </div>
 
           <div class="modal-body">
               <!--輸入主題日期開始-->
               <div class="field">
-                <%= f.label :start_time %>
+                <%= f.label "開始日期" %>
                 <%= f.text_field :start_time, class: 'form-control post_theme', placeholder: "輸入開始日期 ex:9/14" %>
               </div>
 
               <!--輸入主題日期結束-->
               <div class="field">
-                <%= f.label :end_time %>
+                <%= f.label "結束日期" %>
                 <%= f.text_field :end_time, class: 'form-control post_theme', placeholder: "輸入結束日期 ex:9/20" %>
               </div>
 
               <!--輸入教學主題-->
               <div class="field">
-                <%= f.label :name %>
+                <%= f.label "教學單元主題" %>
                 <%= f.text_field :name, class: 'form-control', placeholder: "輸入教學主題" %>
               </div>
 
@@ -120,13 +120,13 @@
               <span aria-hidden="true">&times;</span>
             </button>
 
-            <h5 class="modal-title" id="myModalLabel">Edit</h5>
+            <h5 class="modal-title" id="myModalLabel">教學反思與紀錄</h5>
           </div>
 
           <div class="modal-body">
 
             <div class="field">
-              <%= f.label :feedback %>
+              <%= f.label "教學反思與紀錄" %>
               <%= f.trix_editor :feedback, placeholder: "輸入教學後的心得＆反思" %>
             </div>
 
