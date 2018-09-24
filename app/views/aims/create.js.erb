@@ -1,0 +1,11 @@
+$('.post_aim').val('');
+
+
+<% html = j( render :partial => "aims/aim", :locals => { :aim => @aim } ) %>
+$("#aim_posts-<%= @aim.topic.id %>").append("<%= html %>");
+
+$("#post_<%= @aim.id %> ").hide().fadeIn(500);
+
+  
+
+ 
