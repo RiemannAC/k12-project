@@ -11,7 +11,7 @@
 #  project_id
 
 class Subject < ApplicationRecord
-  attr_accessor :name, :commit_button
+  attr_accessor :commit_button # non-db attr 不要放 db arrt 會阻止寫入，而且不會報錯 
 
   belongs_to :user, optional: true
   has_many :topics, dependent: :destroy
