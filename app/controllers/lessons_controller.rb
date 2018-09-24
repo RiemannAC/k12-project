@@ -7,6 +7,7 @@ class LessonsController < ApplicationController
 
   before_action :authenticate_user!# index 改設定為 root，巢狀內的 root 必需加的設定
   before_action :authenticate_author, except: [:index, :show, :list]
+  before_action :set_author, only: [:new, :create, :edit, :update, :destroy]
 
   def index
     @user = current_user
@@ -21,40 +22,27 @@ class LessonsController < ApplicationController
 
   # 新增一堂課，預設 end_time 現在時間一小時後，period "Does not repeat"
   def new
-    user = current_user
-    subject = user.subjects.create!(name: "未分類", start_time: Time.now)
-    topic = subject.topics.create!(name: "未分類")
-    @lesson = topic.lessons.new(:end_time => 1.hour.from_now, :period => "Does not repeat")
+    # debug：先 create 就多出無用的資料了，用 new
+    subject = @user.subjects.new
+    topic = subject.topics.new
+    @lesson = topic.lessons.new
     # render :json => {:form => render_to_string(:partial => 'form')}
   end
   
   # 此處 period 是 :commit 參數，不是 lesson table 的欄位
   def create
     if params[:lesson][:period] == "Does not repeat"
-      # 新增權限已確認
-      user = current_user
 
-      # 使用 new 或 create 都會多出一組 s t
-      # 重覆生成多餘的一組 subject 與 topic 資料，但有一組完整的 s t l 在前端顯示資料是正常的
-      @subject = user.subjects.new(name: "未分類") # 時間在資料庫的時區是 +0
+      # 時間在資料庫的時區是 +0
+      @subject = @user.subjects.find_or_initialize_by(name: params[:lesson][:name], classroom: params[:lesson][:classroom])
       @topic = @subject.topics.new(name: "未分類")
-
       @lesson = @topic.lessons.new(lesson_params)
       @lesson.end_time = @lesson.start_time + 1.hour
 
-      # 事後修改有關聯的 subject 的屬性 => 無報錯但資料庫沒有更新 => 老問題，有更新動作，但值沒寫入
-      # Subject.last.update_attributes(name: params[:lesson][:name], start_time: params[:lesson][:start_time])
+    else # params[:lesson][:period] == "Repeat weekly"
 
-      # 刪除第一組多餘資料 OK。讓我們突破路由和回呼的限制操爆 server 吧
-
-      # 加上 event_type 後刪除的順序就不一樣了
-      #Subject.last(2).first.destroy
-
-    else #params[:lesson][:period] == "Repeat weekly"
-      user = current_user
-
-      # 過渡資料
-      @subject = user.subjects.new(name: "未分類", start_time: params[:lesson][:start_time]) # 時間在資料庫的時區是 +0
+      # 時間在資料庫的時區是 +0
+      @subject = @user.subjects.find_or_initialize_by(name: params[:lesson][:name], classroom: params[:lesson][:classroom])
       @topic = @subject.topics.new(name: "未分類")
 
 
@@ -82,12 +70,9 @@ class LessonsController < ApplicationController
         break if start > semester.end
       end
 
-      # 加上 event_type 欄位後，資料庫刪除順序改變，造成會消除前一筆資料，故改為 lesson.save 後再刪除多餘資料
-      # Subject.last(2).first.destroy # 跑迴圈還是只會多一筆資料，刪除第一筆多餘資料 OK
     end
 
     if @lesson.save
-      Subject.last(2).first.destroy # 加入 event_type 改變刪除順序
       flash[:notice] = "Lesson was successfully created"
       redirect_to user_lessons_path
     else
@@ -165,6 +150,10 @@ class LessonsController < ApplicationController
 
     def set_user
       @user = User.find_by_id(params[:user_id])
+    end
+
+    def set_author
+      @user = current_user
     end
 
     def lesson_params
