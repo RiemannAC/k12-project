@@ -1,0 +1,58 @@
+<style>
+  .weekly-prepare{
+    border:1px solid #ddd;
+    padding: 20px;
+    min-height: 200px;
+  }
+</style>
+
+<div id="post_<%= topic.id %>">
+  <div class="row">
+    <!--<div class="col-md-8">-->
+    <div class="col-md-9">
+      <div class="weekly-prepare">
+        <div class="col-md-9 prepare-detail">
+          <h5>
+            <%= topic.name %>  <br>
+          <h5>           
+        </div>
+
+        <div class="col-md-3">
+          
+        </div>
+      </div>
+    </div>
+    <!-------------------------->
+    <div class="col-md-3">
+      <div class="table">            
+        
+          <%= topic.name %>
+          
+            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myupdatepost_<%= topic.id  %>">edit</button>
+            <%= link_to "destroy",  user_subject_topic_path(@user,@subject,topic) ,method: :delete, data: { confirm: "Are you sure?"},class:"btn brn-danger" %>
+                   
+      </div>  
+      
+    </div> 
+  
+  </div>
+</div>
+
+
+
+      
+   
+
+
+
+
+
+
+
+
+<script>
+  $('trix-editor').css("min-height", "350px");
+</script>
+
+
+
