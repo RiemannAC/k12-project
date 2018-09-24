@@ -24,6 +24,7 @@ class SubjectsController < ApplicationController
     @user = current_user
     @subject = @user.subjects.find(params[:id])
     @topic = Topic.new
+    
 
     @topics = @subject.topics.all
 
