@@ -1,18 +1,81 @@
 <div class="main-frame">
-  <h4>學期開始： <%= @subject.start_time.year-1911 %> 年度 <%= @subject.start_time.month %> 月</h4>
+
+  <%= link_to '編輯班級設定', edit_user_subject_path(@user, @subject), class: 'btn btn-outline-success' %>
+  <span class="text-center">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mynewpost">
+      新增教學計劃
+    </button>
+  </span>
+
+  <br>
+  <br>
   <h4>科目： <%= @subject.name %></h4>  
   <h4>班級： <%= @subject.grade %> 年 <%= @subject.classroom %>（<%= @subject.students %> 人）</h4>
-  <h4>課程時間： <i>這要拿 lesson 時間來弄吧…？</i></h4>
+  <h4>課程時間： <i> <%= link_to '新增課表', new_user_lesson_path(@user) %> </i></h4>
+  <%= link_to '<< 班級列表', user_subjects_path(@user) %>
+
   <hr class="blue-hr">
 
+
   <div class="row">
-    <div class="col-md-5">
-      <%= week_calendar event: @topics do |date| %>
-        <%= date.day %>
-      <% end %>    
+  <!--row-->
+    <div class="col-md-10">
+      <div id="container_posts">
+        <% @subject.topics.each do |topic|%>  
+          <%= render partial:'topics/topic',locals: {topic: topic } %>
+        <% end %>   
+      </div>
+
     </div>
-    <div class="col-md-5"></div>
+
   </div>
 
-  
-</div> 
+</div>
+
+
+<%= form_for [@user,@subject,@topic] do |f| %>
+  <div class="modal fade" id="mynewpost" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+ 
+            <h5 class="modal-title" id="myModalLabel">反思／備註</h5>
+          </div>
+
+          <div class="modal-body">
+            <%# modal-body %>
+              <!--輸入主題日期開始-->
+              <div class="field">
+                <%= f.label "開始日期" %>
+                <%= f.text_field :start_time, class: 'form-control post_theme', placeholder: "輸入開始日期 ex:9/14" %>
+              </div>
+
+              <!--輸入主題日期結束-->
+              <div class="field">
+                <%= f.label "結束日期" %>
+                <%= f.text_field :end_time, class: 'form-control post_theme', placeholder: "輸入結束日期 ex:9/20" %>
+              </div>
+
+              <!--輸入教學主題-->
+              <div class="field">
+                <%= f.label "教學單元主題" %>
+                <%= f.text_field :name, class: 'form-control post_theme', placeholder: "輸入教學主題" %>
+              </div>
+            
+            <%# modal-body  %>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" id="mynewpostclose">close</button>
+            <%= submit_tag "create",class:"btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %> 
+
+
+
