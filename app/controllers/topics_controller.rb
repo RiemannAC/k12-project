@@ -15,7 +15,7 @@ class TopicsController < ApplicationController
         #format.js
       end
     end 
-  end
+  end 
 
   def update
     @user = current_user
