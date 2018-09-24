@@ -20,11 +20,6 @@
     </div>
 
     <div class="col-md-4">
-      <div class="text-center">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mynewpost">
-          新增教學計劃
-        </button>
-      </div>
 
       <%= month_calendar(attribute: :start_time, end_attribute: :end_time, partial: 'simple_calendar/semester_plan') do |date| %>
 
@@ -33,6 +28,14 @@
           <div class="week-plan-top">
 
             <span><%= date[0] %> ~ <%= date[6] %></span>
+
+            <div class="text-center">
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mynewpost">
+                新增教學計劃
+              </button>
+            </div>
+
+            
             
           </div> 
         </div>
@@ -58,14 +61,13 @@
 
           <div class="modal-body">
             <%# modal-body %>
-            <%= month_calendar(attribute: :start_time, end_attribute: :end_time, partial: 'simple_calendar/topic_name') do |date| %>
-              <span><%= date[0] %> ~ <%= date[6] %></span>
+            
               <!--輸入教學主題-->
               <div class="field">
                 <%= f.label :name %>
                 <%= f.text_field :name, class: 'form-control post_theme', placeholder: "輸入教學主題" %>
               </div>
-            <% end %>
+            
             <%# modal-body  %>
           </div>
 
