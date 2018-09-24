@@ -29,22 +29,19 @@
       </div>
 
       <div class="col-md-12">
-        <%= f.label :name,"教師姓名" %>
-        <%= f.text_field :name ,class:"form-control"%><br>
-
-        <%= f.label :email,"電子信箱" %>
-        <%= f.text_field :email ,class:"form-control"%><br>
+        <%= f.label :name,"姓名" %>
+        <%= f.text_field :name, class: "form-control" %><br>
 
         <%= f.label :intro,"關於我的介紹" %>
-        <%= f.text_area :intro,class:"form-control",rows:"4"   %><br>
+        <%= f.text_area :intro, class: "form-control",rows:"4" %><br>
 
-        <%= f.label :job_title,"從事工作行業" %>
-        <%= f.text_field :job_title ,class:"form-control"%><br>
+        <%= f.label :job_title, "從事工作行業" %>
+        <%= f.text_field :job_title , class: "form-control" %><br>
 
-        <%= f.label :website,"個人網站" %>
-        <%= f.text_field :website ,class:"form-control"%><br>
+        <%= f.label :website, "個人網站" %>
+        <%= f.text_field :website, class: "form-control" %><br>
 
-        <%= f.submit "Update",class:"btn btn-primary" %>
+        <%= f.submit "Update", class: "btn btn-primary" %>
       </div>
       <% end %>
     </div>
