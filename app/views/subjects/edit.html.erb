@@ -18,10 +18,7 @@
       <%= f.label :name, "科目" %>
       <%= f.text_field :name, placeholder: "ex. 國文" %>
     </div>
-    <div class="form-group">
-      <%= f.label :grade, "年級" %>
-      <%= f.select :grade, Subject::GRADE,{} %>  
-    </div>
+    
     <div class="form-group">
       <%= f.label :classroom, "班級名稱" %>  
       <%= f.text_field :classroom, placeholder: "ex. 三班" %>
