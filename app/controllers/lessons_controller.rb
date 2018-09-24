@@ -73,10 +73,10 @@ class LessonsController < ApplicationController
     end
 
     if @lesson.save
-      flash[:notice] = "Lesson was successfully created"
+      flash[:notice] = "行事曆已增添一筆資料"
       redirect_to user_lessons_path
     else
-      flash.now[:alert] = "Lesson was failed to created"
+      flash.now[:alert] = "資料未能在行事曆上新增成功"
       render :new
     end
   end
@@ -102,7 +102,7 @@ class LessonsController < ApplicationController
     else # "更新這堂課" 編輯完成
       @lesson.attributes = lesson_params
       @lesson.save
-      flash[:notice] = "Lesson was successfully updated"
+      flash[:notice] = "行事曆已更新一筆資料"
       redirect_to user_lessons_path
     end
   end
@@ -118,7 +118,7 @@ class LessonsController < ApplicationController
     # 刪除這堂課 編輯完成
     else
       @lesson.destroy
-      flash[:alert] = "Lesson was successfully deleted"
+      flash[:alert] = "行事曆一筆資料已成功刪除"
       redirect_to user_lessons_path
     end
   end

@@ -13,18 +13,20 @@
           <th scope="col">科目</th>
           <th scope="col">班級</th>
           <th scope="col">學生人數</th>
-          <th scope="col">學年度</th>
+          <!--th scope="col">學年度</th-->
           <th scope="col">#</th>
         </tr>
       </thead>
       <tbody>
         <% @subjects.each do |subject| %>
         <tr>
-          <td><%= link_to '管理班級', user_subject_path(@user, subject) %></td>
+          <td><%= link_to '管理班級', user_subject_path(@user, subject) %> | <%= link_to '設定班級資料',edit_user_subject_path(@user,@subject) %></td>
           <td><%= subject.name %></td>
           <td><%= subject.grade %> 年級 <%= subject.classroom %></td>
           <td><%= subject.students %></td>
-          <td><%#= subject.start_time.strftime('%Y-%m') %> 學年開始</td>
+
+          <!--td><%#= subject.start_time.strftime('%Y-%m') %> 學年開始</td-->
+
           <td><%= link_to '刪除學期計劃', user_subject_path(@user, subject), class: 'btn btn-danger btn-sm', method: :delete, data: {confirm: "此為永久刪除，確定要執行嗎？"} %></td>
         </tr>
         <% end %>
