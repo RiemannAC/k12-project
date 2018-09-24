@@ -23,32 +23,28 @@
     <%= link_to 'New Ttopic', new_user_subject_ttopic_path(@user, @subject) %>
 
     <div class="col-md-4">
-      <%= month_calendar(attribute: :start_time, end_attribute: :end_time, partial: 'simple_calendar/semester_plan') do |date| %>
+      <%= calendar event: @subject.ttopics, number_of_days: 7 do |date, ttopics| %>
 
+        <%= date.day %>
 
-        <div class="week-plan">
-          <div class="week-plan-top">
+        <% ttopics.each do |topic| %>
+          <div class="">
+            <%= topic.name %>  
+          </div>
+        <% end %> 
 
-            <div class="week-time">
-              <span><%= date[0] %> ~ <%= date[6] %></span>
-
-            </div>
-
-            <div class="week-topic">
-              <h5>
-                <% @subject.topics.each do |topic| %>
-                  <%= topic.name %>
-                <% end %> 
-              </h5>
-            </div>
-
-            <div class="topic-access">
-              <span>反思</span>
-            </div>
-
-          </div> 
-        </div>
       <% end %> 
+
+      <%= calendar events: @subject.ttopics, number_of_days: 7, partial: 'simple_calendar/semester_plan' do |date, ttopics| %>
+        
+        <%= date.day %>
+
+        <% ttopics.each do |topic| %>
+          <div>
+            <%= topic.name %>
+          </div>
+        <% end %>
+      <% end %>
     </div> 
 
   </div>
