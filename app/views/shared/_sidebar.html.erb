@@ -3,12 +3,12 @@
     <div class="dropdown-btn text-center">
       <% if current_user.avatar? %>
         <%= link_to user_path(@user) do %>
-          <%= image_tag current_user.avatar,class:"img-fluid"%>
-          <h2 class="text-center"><%= @user.name %></h2>
+          <%= image_tag current_user.avatar,class: "img-fluid"%>
+          <h4 class="text-center"><%= @user.name %></h4>
         <% end %>
       <% else %>
         <%= image_tag 'avatar-default.png', class: 'img-fluid' %>
-        <h2 class="text-center"><%= @user.name %></h2>
+        <h4 class="text-center"><%= @user.name %></h4>
       <% end %>
 
       

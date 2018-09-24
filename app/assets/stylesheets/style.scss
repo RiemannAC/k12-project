@@ -64,6 +64,22 @@
   padding: 10px;
 }
 
+.name-card {
+  background-color: rgba(0, 0, 0, 0);
+  border: 1px solid #dddddd;
+  width: 100%;
+  box-shadow: 5px 10px 18px #888888;
+  padding: 35px;
+}
+
+.name-card-left h6 {
+  margin-bottom: 25px;
+}
+
+.name-card-right {
+  float: right;
+}
+
 /******** index month-calendar **********/
 .mon-calendar-box {
   width:270px; 

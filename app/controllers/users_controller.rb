@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
 
   def show
-    
+    @user = current_user
+    @subject_count = @user.subjects.count
   end
 
   def edit
