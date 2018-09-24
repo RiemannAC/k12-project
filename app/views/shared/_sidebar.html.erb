@@ -34,7 +34,7 @@
         <div class="dropdown-container">
           <% @subjects.each do |subject| %>
             <%= link_to user_subject_path(@user, subject) do %>
-              <%= subject.grade %>年 <%= subject.classroom %>
+              <%= subject.grade %> <%= subject.classroom %>
             <% end %>
           <% end %>
         </div>        
