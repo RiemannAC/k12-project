@@ -1,49 +1,34 @@
 <div class="main-frame">
 
-  <%= link_to '編輯班級設定', edit_user_subject_path(@user, @subject), class: 'btn btn-outline-success' %><br><br>
+  <%= link_to '編輯班級設定', edit_user_subject_path(@user, @subject), class: 'btn btn-outline-success' %>
+  <span class="text-center">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mynewpost">
+      新增教學計劃
+    </button>
+  </span>
+
+  <br>
+  <br>
   <h4>學期： <%= @subject.start_time.strftime("%Y-%m") %> 至 <%= @subject.end_time.strftime("%Y-%m") %></h4>
   <h4>科目： <%= @subject.name %></h4>  
   <h4>班級： <%= @subject.grade %> 年 <%= @subject.classroom %>（<%= @subject.students %> 人）</h4>
   <h4>課程時間： <i> <%= link_to '新增課表', new_user_lesson_path(@user) %> </i></h4>
   <%= link_to '<< 班級列表', user_subjects_path(@user) %>
+
   <hr class="blue-hr">
 
 
   <div class="row">
-
-    <div class="col-md-8">
-      <div class="topic-aim">
-        <% @topics.each do |topic| %>
-          <%= topic.name %>
-        <% end %>
+  <!--row-->
+    <div class="col-md-12">
+      <div id="container_posts">
+        <% @subject.topics.each do |topic|%>  
+          <%= render partial:'topics/topic',locals: {topic: topic } %>
+        <% end %>   
       </div>
     </div>
-
-    <div class="col-md-4">
-
-      <%= month_calendar(attribute: :start_time, end_attribute: :end_time, partial: 'simple_calendar/semester_plan') do |date| %>
-
-
-        <div class="week-plan">
-          <div class="week-plan-top">
-
-            <span><%= date[0] %> ~ <%= date[6] %></span>
-
-            <div class="text-center">
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mynewpost">
-                新增教學計劃
-              </button>
-            </div>
-
-            
-            
-          </div> 
-        </div>
-
-      <% end %> 
-    </div> 
-
   </div>
+
 </div>
 
 
