@@ -43,9 +43,13 @@
           </a>
           <%= link_to do %>
             <li class="user-icon">
+              <% if current_user.avatar? %>
+                <%= image_tag current_user.avatar %>
+              <% else %>
+                <%= image_tag 'avatar-default.png' %>  
+              <% end %>
               <%#= fa_icon "user 2x", style: 'color:white' %>
               <%#= image_tag 'admin.jpg' %>
-              <%= image_tag current_user.avatar if current_user.avatar? %>
             </li>
           <% end %> 
         </li>
