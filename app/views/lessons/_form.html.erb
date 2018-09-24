@@ -7,6 +7,12 @@
   </div>
 
   <div class="form-group">
+    <%=f.label :classroom %>
+    <br/>
+    <%=f.text_field :classroom, class: "form-control", placeholder: "請填入班級" %>
+  </div>
+
+  <div class="form-group">
     <%=f.label :start_time, 'Start Time' %>
     <br/>
     <%=f.datetime_select :start_time %>
@@ -20,12 +26,8 @@
 
   <div class="form-group">
     <%=f.label :period, "Repeats" %>
+    <br/>
     <%=f.select :period, Lesson::REPEATS,{} %>
-  </div>
-
-  <div class="form-group" id="frequency">
-    <%=f.label :frequency, "Repeat every" %>
-    <%=f.select :frequency, (1..30).to_a %> <span id = "period"></span>
   </div>
 
   <div class="actions">

@@ -4,7 +4,8 @@
     <table class="table table-hover table-bordered">
       <thead>
         <tr>
-          <th>Name</th>
+          <th>科目</th>
+          <th>班級</th>
           <th>Start time</th>
           <th>End time</th>
           <th colspan="3">#</th>
@@ -15,6 +16,7 @@
         <% @lessons.each do |lesson| %>
           <tr>
             <td><%= lesson.name %></td>
+            <td><%= lesson.classroom %></td>
             <td><%= lesson.start_time %></td>
             <td><%= lesson.end_time %></td>
             <td><%= link_to 'Show', user_lesson_path(@user, lesson) %></td>
