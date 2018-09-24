@@ -46,7 +46,18 @@
 
           <div class="modal-body">
             <%# modal-body %>
-            
+              <!--輸入主題日期開始-->
+              <div class="field">
+                <%= f.label :start_time %>
+                <%= f.text_field :start_time, class: 'form-control post_theme', placeholder: "輸入開始日期 ex:9/14" %>
+              </div>
+
+              <!--輸入主題日期結束-->
+              <div class="field">
+                <%= f.label :end_time %>
+                <%= f.text_field :end_time, class: 'form-control post_theme', placeholder: "輸入結束日期 ex:9/20" %>
+              </div>
+
               <!--輸入教學主題-->
               <div class="field">
                 <%= f.label :name %>

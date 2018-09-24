@@ -3,6 +3,7 @@
     border:1px solid #ddd;
     padding: 20px;
     min-height: 200px;
+    margin-top: 10px;
   }
 </style>
 
@@ -13,7 +14,8 @@
       <div class="weekly-prepare">
         <div class="col-md-9 prepare-detail">
           <h5>
-            <%= topic.name %>  <br>
+            <span><%= topic.start_time %> ~ <%= topic.end_time %></span>
+            <span><%= topic.name %> </span> 
           <h5>           
         </div>
 

@@ -19,6 +19,6 @@ class TopicsController < ApplicationController
 
   private
   def topic_params
-    params.require(:topic).permit(:name,:subject_id,:feedback)
+    params.require(:topic).permit(:name,:subject_id,:start_time,:end_time,:feedback)
   end
 end
