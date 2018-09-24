@@ -1,8 +1,23 @@
-<div class="main-frame">
-
-  <% if @user = current_user %>
-    <%= link_to '編輯個人資料', edit_user_path(current_user), class: 'btn btn-outline-success btn-sm' %>  
-  <% end %>
-  
-</div>
  
+  <div class="container">
+    <div class="name-card">
+      <div class="row">
+        <div class="col-md-8 name-card-left">
+          <h3><%= @user.name %></h3>
+          <hr>
+          <h6><%= fa_icon 'envelope' %>： <%= @user.email %></h6>
+          <h6><%= fa_icon 'user' %>： <%= @user.intro %></h6>
+          <h6><%= fa_icon 'briefcase' %>： <%= @user.job_title %></h6>
+          <h6><%= fa_icon 'globe' %>： <%= @user.website %></h6>
+        </div>
+        <div class="col-md-4 name-card-right">
+          <h4>目前班級數： <span style="color:red;"><%= @user.subjects.count %></span></h4>
+          <br>
+          <h4><%= link_to '>> 班級管理', user_subjects_path(@user) %></h4>
+          <h4><%= link_to '>> 建立新課表', user_lessons_path(@user) %></h4>
+
+        </div>
+      </div>
+    </div>
+  </div>
+   

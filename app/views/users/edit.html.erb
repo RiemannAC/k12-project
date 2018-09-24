@@ -22,28 +22,26 @@
       <%= form_for @user do |f| %>
       <div class="offset-md-4  user-avatar">
         <div class="thumbnail">
-          <%= image_tag @user.avatar if @user.avatar? %>
+          <%= image_tag @user.avatar, class: 'img-fluid' if @user.avatar? %>
         </div>
+        <%= f.label :avatar, '個人像片' %>
         <%= f.file_field :avatar %>
       </div>
 
       <div class="col-md-12">
-        <%= f.label :name,"教師姓名" %>
-        <%= f.text_field :name ,class:"form-control"%>
+        <%= f.label :name,"姓名" %>
+        <%= f.text_field :name, class: "form-control" %><br>
 
-        <%= f.label :email,"電子信箱" %>
-        <%= f.text_field :email ,class:"form-control"%>
+        <%= f.label :intro,"關於我的介紹" %>
+        <%= f.text_area :intro, class: "form-control",rows:"4" %><br>
 
-        <p><%= f.label :intro,"關於我的介紹" %></p>
-        <%= f.text_area :intro,class:"form-control",rows:"4"   %>
+        <%= f.label :job_title, "從事工作行業" %>
+        <%= f.text_field :job_title , class: "form-control" %><br>
 
-        <p><%= f.label :job_title,"從事工作行業" %></p>
-        <%= f.text_field :job_title ,class:"form-control"%>
+        <%= f.label :website, "個人網站" %>
+        <%= f.text_field :website, class: "form-control" %><br>
 
-        <p><%= f.label :website,"個人網站" %></p>
-        <%= f.text_field :website ,class:"form-control"%>
-
-        <%= f.submit "Update",class:"btn btn-primary" %>
+        <%= f.submit "Update", class: "btn btn-primary" %>
       </div>
       <% end %>
     </div>
