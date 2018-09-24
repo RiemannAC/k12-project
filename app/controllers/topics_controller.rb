@@ -2,7 +2,7 @@ class TopicsController < ApplicationController
   def create
     @user = current_user
     @subject = @user.subjects.find(params[:subject_id])
-    @topic = @subject.topics.new(topic_params)
+    @topic = @subject.topics.create(topic_params)
 
     respond_to do |format|
       if @topic.save!
