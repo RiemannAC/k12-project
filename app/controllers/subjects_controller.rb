@@ -37,6 +37,15 @@ class SubjectsController < ApplicationController
       @topic= @subject.topics.find(params[:topic_id])
       @aim = @topic.aims.find(params[:id])     
     end
+
+    @subject_range = @subject.end_time.yday-@subject.start_time.yday + 1
+    if @subject_range%7 != 0
+      @project_weeks = @subject_range/7 + 1
+    else
+      @project_weeks = @subject_range/7
+    end
+    return @project_weeks
+
   end
 
   def edit

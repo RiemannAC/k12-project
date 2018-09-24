@@ -11,12 +11,9 @@
 
   <div class="row">
 
-    <div class="col-md-6">
+    <div class="col-md-4">
       <div class="topic-aim">
         <h3>這裡是 ttopic 的單元主題</h3>  
-        <% @subject.ttopics.each do |ttopic| %>
-          <p><%= ttopic.name %><p>
-        <% end %>
         <br><br>
 
         <%= link_to 'TTopic New', new_user_subject_ttopic_path(@user, @subject) %>
@@ -25,84 +22,65 @@
 
           <thead>
             <tr>
-              <th>週次</th>
-              <th>教學主題</th>
+              <th>週數</th>
+              <th>教學單元</th>
             </tr>
           </thead>
-          <% @subject.ttopics.each do |ttopic| %>
+
+          
           <tbody>
+            <% 1.upto(@project_weeks).each do |num| %>
             <tr>
-              <th><%= ttopic.start_time.strftime("%m/%d") + "~" + ttopic.end_time.strftime("%m/%d") %></th>
-              <td><%= ttopic.name %></td>
-            </tr>
+              <th>第 <%= num %> 週</th>
+              <td></td>
+            <tr>
+            <% end %>
           </tbody>
-          <% end %>
+          
         </table>
+
       </div>
     </div>
 
-    
-
-    <div class="col-md-6">
-      <%= month_calendar events: @subject.ttopics, partial: 'simple_calendar/semester_plan' do |date, ttopics| %>
-
-        <%= date[0] %> ~ <%= date[6] %>
-
-         <% ttopics.each do |topic| %>
-          <div class="">
-            <%= topic.name %>  
-          </div>
-        <% end %>
-
-      <% end %> 
-
-      <%= calendar events: @subject.ttopics, number_of_days: 7 do |date, ttopics| %>
-        
-        <%= date.day %>
-
-        <% ttopics.each do |topic| %>
-          <div>
-            <%= topic.name %>
-          </div>
-        <% end %>
-      <% end %>
-    </div> 
+    <div class="col-md-8">
+      
+    </div>
 
   </div>
 </div>
 
 <%= form_for [@user,@subject,@topic] do |f| %>
   <div class="modal fade" id="mynewpost" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
- 
-            <h5 class="modal-title" id="myModalLabel">反思／備註</h5>
-          </div>
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
 
-          <div class="modal-body">
-            <!--輸入教學主題-->
-            <div class="field">
-              <%= f.label :name %>
-              <%= f.text_field :name, class: 'form-control post_theme', placeholder: "輸入教學主題" %>
-            </div>
-            
-            <!--輸入教學後的心得＆反思-->
-            <!-- <div class="field"> -->
-              <%#= f.label :feedback %>
-              <%#= f.text_area :feedback, class: 'form-control post_feedback', placeholder: "輸入教學後的心得＆反思",rows:"6" %>
-            <!-- </div> -->
-            
-          </div>
+          <h5 class="modal-title" id="myModalLabel">反思／備註</h5>
+        </div>
 
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal" id="mynewpostclose">close</button>
-            <%= submit_tag "create",class:"btn btn-primary" %>
+        <div class="modal-body">
+          <!--輸入教學主題-->
+          <div class="field">
+            <%= f.label :name %>
+            <%= f.text_field :name, class: 'form-control post_theme', placeholder: "輸入教學主題" %>
           </div>
+          
+          <!--輸入教學後的心得＆反思-->
+          <!-- <div class="field"> -->
+            <%#= f.label :feedback %>
+            <%#= f.text_area :feedback, class: 'form-control post_feedback', placeholder: "輸入教學後的心得＆反思",rows:"6" %>
+          <!-- </div> -->
+          
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" id="mynewpostclose">close</button>
+          <%= submit_tag "create",class:"btn btn-primary" %>
         </div>
       </div>
     </div>
+  </div>
 <% end %> 
