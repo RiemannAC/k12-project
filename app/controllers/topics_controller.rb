@@ -25,11 +25,11 @@ class TopicsController < ApplicationController
       if @topic.update(topic_params)
         format.html{redirect_to user_subject_url(@user,@subject),notice:"成功更新教學計劃" }
         format.json{render :show, status: :ok, location: @topic}  
-        format.js 
+        #format.js 
       else
         format.html{redirect_to user_subject_url(@user,@subject),alert:"更新失敗，請完全填妥教學計劃表格資訊"}
         format.json{render json: @topic.errors,status: :unprocessable_entity} 
-        format.js
+        #format.js
       end
     end
   end
