@@ -8,8 +8,9 @@ class SubjectsController < ApplicationController
   end
 
   def create
-    @subject = @user.subjects.new(subject_params)
     @user = current_user
+    @subject = @user.subjects.new(subject_params)
+    
     if @subject.save
       redirect_to user_subjects_path(@user)
       flash[:notice] = "班級新建成功 :)"
@@ -18,12 +19,22 @@ class SubjectsController < ApplicationController
       render :new
     end
   end
-
+ 
   def show
+    @user = current_user
     @subject = @user.subjects.find(params[:id])
+    @topic = Topic.new
+
+    @topics = @subject.topics.all
+
+    if params[:subject_id]
+      @topic= @subject.topics.find(params[:topic_id])
+      @aim = @topic.aims.find(params[:id])     
+    end
   end
 
   def edit
+    @user = current_user
     @subject = @user.subjects.find(params[:id])
   end
 
