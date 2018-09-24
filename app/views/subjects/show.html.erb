@@ -11,31 +11,52 @@
 
   <div class="row">
 
-    <div class="col-md-8">
+    <div class="col-md-6">
       <div class="topic-aim">
         <h3>這裡是 ttopic 的單元主題</h3>  
         <% @subject.ttopics.each do |ttopic| %>
-          <%= ttopic.name %>
+          <p><%= ttopic.name %><p>
         <% end %>
+        <br><br>
+
+        <%= link_to 'TTopic New', new_user_subject_ttopic_path(@user, @subject) %>
+
+        <table class="table table-stripe">
+
+          <thead>
+            <tr>
+              <th>週次</th>
+              <th>教學主題</th>
+            </tr>
+          </thead>
+          <% @subject.ttopics.each do |ttopic| %>
+          <tbody>
+            <tr>
+              <th><%= ttopic.start_time.strftime("%m/%d") + "~" + ttopic.end_time.strftime("%m/%d") %></th>
+              <td><%= ttopic.name %></td>
+            </tr>
+          </tbody>
+          <% end %>
+        </table>
       </div>
     </div>
 
-    <%= link_to 'New Ttopic', new_user_subject_ttopic_path(@user, @subject) %>
+    
 
-    <div class="col-md-4">
-      <%= calendar event: @subject.ttopics, number_of_days: 7 do |date, ttopics| %>
+    <div class="col-md-6">
+      <%= month_calendar events: @subject.ttopics, partial: 'simple_calendar/semester_plan' do |date, ttopics| %>
 
-        <%= date.day %>
+        <%= date[0] %> ~ <%= date[6] %>
 
-        <% ttopics.each do |topic| %>
+         <% ttopics.each do |topic| %>
           <div class="">
             <%= topic.name %>  
           </div>
-        <% end %> 
+        <% end %>
 
       <% end %> 
 
-      <%= calendar events: @subject.ttopics, number_of_days: 7, partial: 'simple_calendar/semester_plan' do |date, ttopics| %>
+      <%= calendar events: @subject.ttopics, number_of_days: 7 do |date, ttopics| %>
         
         <%= date.day %>
 
