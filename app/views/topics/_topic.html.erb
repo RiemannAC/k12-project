@@ -24,13 +24,13 @@
             <span><%= topic.name %> </span> 
             <div class="button-set">
               <!--編輯教學主題計劃表--->
-              <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myupdatepost_<%= topic.id  %>">edit</button>
+              <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myupdatepost_<%= topic.id  %>">編輯</button>
 
               <!--刪除教學主題計劃表--->
-              <%= link_to "destroy",  user_subject_topic_path(@user,@subject,topic) ,method: :delete, data: { confirm: "Are you sure?"},class:"btn brn-danger" %>
+              <%= link_to "刪除",  user_subject_topic_path(@user,@subject,topic) ,method: :delete, data: { confirm: "Are you sure?"},class:"btn btn-danger", remote: true %>
 
               <!--教學回饋-->
-              <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myupdatefeedback_<%= topic.id  %>">反思</button>
+              <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myupdatefeedback_<%= topic.id  %>">教學反思</button>
               
             </div>
           <h5>
@@ -66,7 +66,7 @@
 
 
 <!--modal - update topic posts-->
-<%= form_for [@user,@subject,topic] ,method: :put  do |f| %>
+<%= form_for [@user,@subject,topic] ,method: :put,remote: true  do |f| %>
   <div class="modal fade" id="myupdatepost_<%= topic.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -111,7 +111,7 @@
 
 
 <!--modal - update feedback posts -->
-<%= form_for [@user,@subject,topic] ,method: :put  do |f| %>
+<%= form_for [@user,@subject,topic] ,method: :put,remote: true  do |f| %>
   <div class="modal fade" id="myupdatefeedback_<%= topic.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-md modal-lg" role="document">
         <div class="modal-content">
