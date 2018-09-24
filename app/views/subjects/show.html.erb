@@ -20,13 +20,15 @@
 
   <div class="row">
   <!--row-->
-    <div class="col-md-12">
+    <div class="col-md-10">
       <div id="container_posts">
         <% @subject.topics.each do |topic|%>  
           <%= render partial:'topics/topic',locals: {topic: topic } %>
         <% end %>   
       </div>
+
     </div>
+
   </div>
 
 </div>
@@ -48,19 +50,19 @@
             <%# modal-body %>
               <!--輸入主題日期開始-->
               <div class="field">
-                <%= f.label :start_time %>
+                <%= f.label "開始日期" %>
                 <%= f.text_field :start_time, class: 'form-control post_theme', placeholder: "輸入開始日期 ex:9/14" %>
               </div>
 
               <!--輸入主題日期結束-->
               <div class="field">
-                <%= f.label :end_time %>
+                <%= f.label "結束日期" %>
                 <%= f.text_field :end_time, class: 'form-control post_theme', placeholder: "輸入結束日期 ex:9/20" %>
               </div>
 
               <!--輸入教學主題-->
               <div class="field">
-                <%= f.label :name %>
+                <%= f.label "教學單元主題" %>
                 <%= f.text_field :name, class: 'form-control post_theme', placeholder: "輸入教學主題" %>
               </div>
             
