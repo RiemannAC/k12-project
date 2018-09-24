@@ -35,11 +35,57 @@
     </div>
     <!-------------------------->
     <div class="col-md-3">
-      
+
     </div> 
   
   </div>
 </div>
+
+
+<!--modal - update topic posts-->
+<%= form_for [@user,@subject,topic] ,method: :put  do |f| %>
+  <div class="modal fade" id="myupdatepost_<%= topic.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+
+            <h5 class="modal-title" id="myModalLabel">Edit</h5>
+          </div>
+
+          <div class="modal-body">
+              <!--輸入主題日期開始-->
+              <div class="field">
+                <%= f.label :start_time %>
+                <%= f.text_field :start_time, class: 'form-control post_theme', placeholder: "輸入開始日期 ex:9/14" %>
+              </div>
+
+              <!--輸入主題日期結束-->
+              <div class="field">
+                <%= f.label :end_time %>
+                <%= f.text_field :end_time, class: 'form-control post_theme', placeholder: "輸入結束日期 ex:9/20" %>
+              </div>
+
+              <!--輸入教學主題-->
+              <div class="field">
+                <%= f.label :name %>
+                <%= f.text_field :name, class: 'form-control', placeholder: "輸入教學主題" %>
+              </div>
+
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" id="mypostclose">close</button>
+            <%= submit_tag "Update",class:"btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %> 
+<!--update modal-->
+
 
 
 
