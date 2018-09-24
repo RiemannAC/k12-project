@@ -35,7 +35,7 @@
             </div>
           <h5>
           <!--教學單元主題下的教學目標-->
-          <%= form_for [@user,@subject,topic,Aim.new] do |f| %>
+          <%= form_for [@user,@subject,topic,Aim.new],remote: true do |f| %>
             <%#= f.label :title, "教學目標" %>
             <div class="form-inline col-md-7">
               <div class="">

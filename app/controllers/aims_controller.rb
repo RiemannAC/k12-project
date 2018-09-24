@@ -7,13 +7,13 @@ class AimsController < ApplicationController
 
     respond_to do |format|
       if @aim.save
-        format.html{redirect_to user_subject_url(@user,@subject),notice:"成功新增教學目標" }
-        format.json{render :show, status: :created, location: @aim}
-        #format.js
+        #format.html{redirect_to user_subject_url(@user,@subject),notice:"成功新增教學目標" }
+        #format.json{render :show, status: :created, location: @aim}
+        format.js
       else
-        format.html{render :new}
-        format.json{render json: @aim.errors,status: :unprocessable_entity}
-        #format.js
+        #format.html{render :new}
+        #format.json{render json: @aim.errors,status: :unprocessable_entity}
+        format.js
       end
     end 
   end
@@ -32,13 +32,13 @@ class AimsController < ApplicationController
     @aim = @topic.aims.find(params[:id])
     respond_to do |format|
       if @aim.update(aim_params)
-        format.html{redirect_to user_subject_url(@user,@subject),notice:"成功更新教學目標" }
-        format.json{render :show, status: :ok, location: @aim}  
-        #format.js
+        #format.html{redirect_to user_subject_url(@user,@subject),notice:"成功更新教學目標" }
+        #format.json{render :show, status: :ok, location: @aim}  
+        format.js
       else
-        format.html{render :edit}
-        format.json{render json: @aim.errors,status: :unprocessable_entity} 
-        #format.js
+        #format.html{render :edit}
+        #format.json{render json: @aim.errors,status: :unprocessable_entity} 
+        format.js
       end
     end
   end
@@ -50,9 +50,9 @@ class AimsController < ApplicationController
     @aim = @topic.aims.find(params[:id])   
     @aim.destroy
     respond_to do |format|
-      format.html{redirect_to user_subject_url(@user,@subject),notice:"成功刪除教學目標" }
-      format.json{head :no_content}  
-      #format.js
+      #format.html{redirect_to user_subject_url(@user,@subject),notice:"成功刪除教學目標" }
+      #format.json{head :no_content}  
+      format.js
     end
   end
 
