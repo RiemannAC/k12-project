@@ -16,6 +16,7 @@ class Subject < ApplicationRecord
 
   belongs_to :user, optional: true
   has_many :topics, dependent: :destroy
+  has_many :ttopics, dependent: :destroy
 
   has_many :plans
   has_many :materials

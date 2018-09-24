@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180923092855) do
+ActiveRecord::Schema.define(version: 20180924092524) do
 
   create_table "aims", force: :cascade do |t|
     t.string "name"
@@ -99,6 +99,17 @@ ActiveRecord::Schema.define(version: 20180923092855) do
     t.integer "subject_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "ttopics", force: :cascade do |t|
+    t.string "name"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "subject_id"
+    t.text "feedback"
+    t.string "file_upload"
   end
 
   create_table "users", force: :cascade do |t|

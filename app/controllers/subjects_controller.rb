@@ -23,6 +23,8 @@ class SubjectsController < ApplicationController
   def show
     @user = current_user
     @subject = @user.subjects.find(params[:id])
+    @ttopic = Ttopic.new
+    @ttopics = @subject.ttopics.all
     @topic = Topic.new
 
     @topics = @subject.topics.all

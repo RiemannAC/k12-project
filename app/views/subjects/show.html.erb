@@ -13,11 +13,14 @@
 
     <div class="col-md-8">
       <div class="topic-aim">
-        <% @topics.each do |topic| %>
-          <%= topic.name %>
+        <h3>這裡是 ttopic 的單元主題</h3>  
+        <% @subject.ttopics.each do |ttopic| %>
+          <%= ttopic.name %>
         <% end %>
       </div>
     </div>
+
+    <%= link_to 'New Ttopic', new_user_subject_ttopic_path(@user, @subject) %>
 
     <div class="col-md-4">
       <%= month_calendar(attribute: :start_time, end_attribute: :end_time, partial: 'simple_calendar/semester_plan') do |date| %>

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @ttopic.name %>
+</p>
+
+<p>
+  <strong>Start time:</strong>
+  <%= @ttopic.start_time %>
+</p>
+
+<p>
+  <strong>End time:</strong>
+  <%= @ttopic.end_time %>
+</p>
+
+<%= link_to 'Edit', edit_ttopic_path(@ttopic) %> |
+<%= link_to 'Back', ttopics_path %>
