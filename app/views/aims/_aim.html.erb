@@ -1,0 +1,16 @@
+<li id="post_<%= aim.id %>" >
+  <span class="aim-title"><%= aim.name %></span>
+  <span class="aim-status"><%= aim.status %></span>
+
+  <span>
+    <%= link_to edit_user_subject_topic_aim_path(aim.topic.subject.user,aim.topic.subject,aim.topic,aim),remote:true do %>
+       <i class="fa fa-edit" style="font-size:24px"></i>
+    <% end %>
+  </span>
+  <span>
+    <%= link_to user_subject_topic_aim_path(aim.topic.subject.user,aim.topic.subject,aim.topic,aim) , method: :delete, data: { confirm: "Are you sure?"},remote:true do%>
+      <i class="fa fa-trash" style="font-size:24px"></i>
+    <% end %>
+  </span> 
+
+</li>

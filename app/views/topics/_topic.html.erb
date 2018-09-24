@@ -1,0 +1,163 @@
+<style>
+  .weekly-prepare{
+    border:1px solid #ddd;
+    padding: 20px;
+    min-height: 200px;
+    margin-top: 10px;
+  }
+
+  .button-set{
+    text-align: right;
+    margin-top: -30px;
+  }
+</style>
+
+<div id="post_<%= topic.id %>">
+  <div class="row">
+    <!--<div class="col-md-8">-->
+    <div class="col-md-9">
+      <div class="weekly-prepare">
+        <div class="col-md-12 prepare-detail">
+          <!--教學單元主題-->
+          <h5>
+            <span><%= topic.start_time %> ~ <%= topic.end_time %></span>
+            <span><%= topic.name %> </span> 
+            <div class="button-set">
+              <!--編輯教學主題計劃表--->
+              <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myupdatepost_<%= topic.id  %>">編輯</button>
+
+              <!--刪除教學主題計劃表--->
+              <%= link_to "刪除",  user_subject_topic_path(@user,@subject,topic) ,method: :delete, data: { confirm: "Are you sure?"},class:"btn btn-danger", remote: true %>
+
+              <!--教學回饋-->
+              <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myupdatefeedback_<%= topic.id  %>">教學反思</button>
+              
+            </div>
+          <h5>
+          <!--教學單元主題下的教學目標-->
+          <%= form_for [@user,@subject,topic,Aim.new],remote: true do |f| %>
+            <%#= f.label :title, "教學目標" %>
+            <div class="form-inline col-md-7">
+              <div class="">
+                <%= f.text_field :name, placeholder:"新增教學目標", class:"form-control post_aim" %>
+                <%= f.submit "新增", class:"btn btn-primary" %>
+              </div>                           
+            </div>
+          <% end %>
+          
+          
+          <ol id="aim_posts-<%= topic.id %>">
+            <% topic.aims.each do |aim| %> 
+              <%= render :partial => 'aims/aim', locals: {aim: aim } %>               
+            <% end %> 
+          </ol> 
+           
+        </div>
+
+      </div>
+    </div>
+    <!-------------------------->
+    <div class="col-md-3">
+
+    </div> 
+  
+  </div>
+</div>
+
+
+<!--modal - update topic posts-->
+<%= form_for [@user,@subject,topic] ,method: :put,remote: true  do |f| %>
+  <div class="modal fade" id="myupdatepost_<%= topic.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+
+            <h5 class="modal-title" id="myModalLabel">Edit</h5>
+          </div>
+
+          <div class="modal-body">
+              <!--輸入主題日期開始-->
+              <div class="field">
+                <%= f.label :start_time %>
+                <%= f.text_field :start_time, class: 'form-control post_theme', placeholder: "輸入開始日期 ex:9/14" %>
+              </div>
+
+              <!--輸入主題日期結束-->
+              <div class="field">
+                <%= f.label :end_time %>
+                <%= f.text_field :end_time, class: 'form-control post_theme', placeholder: "輸入結束日期 ex:9/20" %>
+              </div>
+
+              <!--輸入教學主題-->
+              <div class="field">
+                <%= f.label :name %>
+                <%= f.text_field :name, class: 'form-control', placeholder: "輸入教學主題" %>
+              </div>
+
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" id="mypostclose">close</button>
+            <%= submit_tag "Update",class:"btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %> 
+<!--update modal-->
+
+
+<!--modal - update feedback posts -->
+<%= form_for [@user,@subject,topic] ,method: :put,remote: true  do |f| %>
+  <div class="modal fade" id="myupdatefeedback_<%= topic.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-md modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+
+            <h5 class="modal-title" id="myModalLabel">Edit</h5>
+          </div>
+
+          <div class="modal-body">
+
+            <div class="field">
+              <%= f.label :feedback %>
+              <%= f.trix_editor :feedback, placeholder: "輸入教學後的心得＆反思" %>
+            </div>
+
+
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" id="mypostclose">close</button>
+            <%= submit_tag "Update",class:"btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>
+<!--update modal-->
+
+
+
+      
+   
+
+
+
+
+
+
+
+
+<script>
+  $('trix-editor').css("min-height", "350px");
+</script>
+
+
+

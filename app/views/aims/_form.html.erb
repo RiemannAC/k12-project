@@ -1,0 +1,25 @@
+<style>
+  .aim-group{
+    margin-right: 10px;
+  }  
+
+  .undone{
+    color: blue
+  }
+</style>
+
+<%= form_for [@user,@subject,@topic,@aim], remote: true  do |f| %>
+  <div class="form-inline">
+    <div class="aim-group">
+      <%#= f.label "Status" %>
+      <%= f.select(:status, options_for_select([['未開始','未開始',{class:"undone"}],['進行中','進行中'],['已完成','已完成']]) ,{prompt: true})%>
+
+      <%= f.text_field :name ,class:"form-control" %>
+    </div>
+
+    <div class="aim-group">
+      <%= button_tag t('buttons.取消'), class:"btn btn-danger", type: "submit", name: "cancel", value: true %>
+      <%= f.submit "更新", :class => "btn btn-warning" %>
+    </div>
+  </div>
+<% end %> 

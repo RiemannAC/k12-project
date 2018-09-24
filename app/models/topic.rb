@@ -16,6 +16,10 @@
 #  subject_id        :integer
 
 class Topic < ApplicationRecord
+  validates_presence_of :name
+  validates_presence_of :start_time
+  validates_presence_of :end_time
+
   belongs_to :subject, optional: true
   has_many :lessons, dependent: :destroy
   has_many :teachingfiles
