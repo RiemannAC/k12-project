@@ -1,13 +1,13 @@
 <h1>Editing Ttopic</h1>
 
-<%= form_for [@user,@subject,@ttopic], url: user_subject_ttopic_path, local: true do |form| %>
+<%= form_with(model: @ttopic, url: [@user, @subject, @ttopic], local: true) do |form| %>
 
-  <% if ttopic.errors.any? %>
+  <% if @ttopic.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(ttopic.errors.count, "error") %> prohibited this ttopic from being saved:</h2>
 
       <ul>
-      <% ttopic.errors.full_messages.each do |message| %>
+      <% @ttopic.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -34,6 +34,4 @@
   </div>
 <% end %>
 
-
-<%= link_to 'Show', @ttopic %> |
-<%= link_to 'Back', ttopics_path %>
+<%= link_to 'Back', root_path %>

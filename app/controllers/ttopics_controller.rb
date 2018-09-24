@@ -14,7 +14,9 @@ class TtopicsController < ApplicationController
 
   # GET /ttopics/new
   def new
-    @ttopic = Ttopic.new
+    @user = current_user
+    @subject = @user.subjects.find(params[:subject_id])
+    @ttopic = @subject.ttopics.new
   end
 
   # GET /ttopics/1/edit
@@ -30,7 +32,7 @@ class TtopicsController < ApplicationController
 
     respond_to do |format|
       if @ttopic.save
-        format.html { redirect_to user_subject_path(@user, @subject), notice: '成功新增教學主題' }
+        format.html { redirect_to root_path, notice: '成功新增教學主題' }
         format.json { render :show, status: :created, location: @ttopic }
       else
         format.html { render :new }

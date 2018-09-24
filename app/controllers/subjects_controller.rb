@@ -25,8 +25,12 @@ class SubjectsController < ApplicationController
     @subject = @user.subjects.find(params[:id])
     @ttopic = Ttopic.new
     @ttopics = @subject.ttopics.all
-    @topic = Topic.new
 
+    if params[:subject_id]
+      @ttopic = @subject.ttopics.find(params[:topic_id])
+    end
+    
+    @topic = Topic.new
     @topics = @subject.topics.all
 
     if params[:subject_id]
