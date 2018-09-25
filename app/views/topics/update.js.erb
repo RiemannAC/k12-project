@@ -3,7 +3,7 @@ $("#myupdatefeedback_<%= @topic.id %>").modal('hide');
 
 <% html = j( render :partial => "topics/topic", :locals => { :topic => @topic } ) %>
 $("#post_<%= @topic.id %>").fadeOut(500,function(){
-  $(this).replaceWith("<%= html %>");
+  $(this).replaceWith("<%= render @topic %>");
 });
 
 
