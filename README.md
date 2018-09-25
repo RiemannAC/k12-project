@@ -1,24 +1,30 @@
-# README
+# AlphaCamp DemoDay K12-Project
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- 幫助 K12 教師訂定教學計劃，迅速檢視學期計劃、安排課程、待辨事項
+- 檢視當日所需教材、教案，迅速歸檔及調用
 
-Things you may want to cover:
+## Install project
+```
+ $ git clone https://github.com/RiemannAC/k12-project.git
+ $ cd k12-project
+ $ bundle install
+ $ rails db:migrate
+```
 
-* Ruby version
+## Generate seed data and fake user
+```
+ $ rails db:seed
+ $ rails dev:fake_user
+```
 
-* System dependencies
+## Heroku
+- https://k12-project.herokuapp.com
 
-* Configuration
+## License Information
+- simple_calendar MIT License
+- trix            MIT License
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Author
+Austin  https://github.com/AustinFengYi
+Jealic  https://github.com/jealic
+Riemann https://github.com/RiemannAC
