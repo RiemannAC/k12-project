@@ -22,7 +22,7 @@
         <tr>
           <td><%= link_to '管理班級', user_subject_path(@user, subject) %> | <%= link_to '設定班級資料',edit_user_subject_path(@user,subject) %></td>
           <td><%= subject.name %></td>
-          <td><%= subject.grade %> 年級 <%= subject.classroom %></td>
+          <td><%= subject.classroom %></td>
           <td><%= subject.students %></td>
 
           <!--td><%#= subject.start_time.strftime('%Y-%m') %> 學年開始</td-->
