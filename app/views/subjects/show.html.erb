@@ -10,7 +10,7 @@
   <br>
   <br>
   <h4>科目： <%= @subject.name %></h4>  
-  <h4>班級： <%= @subject.grade %> 年 <%= @subject.classroom %>（<%= @subject.students %> 人）</h4>
+  <h4>班級： <%= @subject.grade %>  <%= @subject.classroom %>（<%= @subject.students %> 人）</h4>
   <!--h4>課程時間： <i> <%#= link_to '新增課表', new_user_lesson_path(@user) %> </i></h4-->
   <%= link_to '<< 班級列表', user_subjects_path(@user) %>
 
