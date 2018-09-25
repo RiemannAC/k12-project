@@ -1,5 +1,5 @@
 <div class="row">
-  <div id="lessons_calendar" class="col-9" style="padding-left:15px;">
+  <div id="lessons_calendar" class="col-9" style="padding:0 25px;">
     <div class="index-right-container">
       <%= link_to 'Listing lessons', list_user_lessons_path(@user) %>
 
@@ -23,7 +23,7 @@
                 <% lessons.each do |lesson| %>
                   <%- if lesson.start_time.hour.between?(hour, hour + 0.9) %>
                     <%= link_to user_lesson_path(@user, lesson) do %>
-                      <%= lesson.name %>
+                      <span class="lesson-text"><%= lesson.name %></span>
                     <% end %>
                   <% end -%>
                 <% end %>

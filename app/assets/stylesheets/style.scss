@@ -118,7 +118,7 @@
   color:#f7f3eb; 
   text-align:center; 
   width:35px; 
-  height:42px; 
+  height:34px; 
   display:inline-block; 
   float:left; 
   overflow:hidden; 
@@ -147,6 +147,9 @@
   border-radius: 3%;
   padding: 10px;
   margin-top: 5px;
+  font-size:17px;
+  box-shadow: 5px 5px 4px #888888;
+
 }
 
 
@@ -169,11 +172,15 @@
 /***** lessons/index/todo_list *******/
 .time_box .day_time {
   border-radius: 8px !important;
-  background-color: #aaaaaa
+  background-color: #f2f2f2;
 }
 
 .todo_content {
-  padding-left: 15px;
+  padding-left:20px;
+}
+
+.todo-text{
+  color: #4d4d4d;
 }
 
 #lessons_calendar_2 {
