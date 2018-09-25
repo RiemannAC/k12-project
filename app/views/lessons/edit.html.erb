@@ -10,13 +10,13 @@
   <%# buttons %>
   <ul class="nav nav-pills">
     <li class="nav-item">
-      <%= link_to 'Show', user_lesson_path(@user, @lesson), class: "nav-link bg-light" %>
+      <%= link_to '編輯', user_lesson_path(@user, @lesson), class: "nav-link bg-light" %>
     </li>
     <li class="nav-item">
-      <%= link_to 'Destroy', user_lesson_path(@user, @lesson), method: :delete, data: { confirm: 'Are you sure?' }, class: "nav-link bg-light" %>
+      <%= link_to '刪除', user_lesson_path(@user, @lesson), method: :delete, data: { confirm: '你確定要刪除嗎?' }, class: "nav-link bg-light" %>
     </li>
     <li class="nav-item">
-      <%= link_to 'Back', user_lessons_path, class: "nav-link bg-light" %>
+      <%= link_to '返回', user_lessons_path, class: "nav-link bg-light" %>
     </li>
   </ul>
 
