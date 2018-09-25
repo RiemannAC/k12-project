@@ -22,6 +22,7 @@
     <div class="dropdown-container">
       <%#= link_to " + 新建班級", new_user_subject_path(@user, @subject) %>
       <%= link_to '班級管理', user_subjects_path(@user) %>
+      <%= link_to '+ 新增課表', new_user_lesson_path(@user) %>  
       <button class="dropdown-btn">
         <%= " - 現有班級" %>
         <%= fa_icon 'caret-down' %>  
