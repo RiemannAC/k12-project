@@ -25,7 +25,7 @@
   </div> 
 
   <div class="field">
-  <%= f.label :mtrial_folder_name, "資料夾名稱" %><br>
+  <%= f.label :mtrial_folder_name, "教學主題／單元" %><br>
   <%= f.text_field :mtrial_folder_name ,class:"form-control"%>
   </div>
 
@@ -36,6 +36,6 @@
   <br>
     
   <div class="field">
-    <%= link_to '<< Index Page',root_path %>
+    <%= link_to '<< 返回教材總覽', user_materials_path(@user) %>
   </div>
 <% end %>

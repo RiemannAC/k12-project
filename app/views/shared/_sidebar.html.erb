@@ -10,18 +10,29 @@
         <%= image_tag 'avatar-default.png', class: 'img-fluid' %>
         <h4 class="text-center"><%= @user.name %></h4>
       <% end %>
-
       
     </div>
 
     <hr>
+
+    <div class="dropdown-container">
+      <h5 style="color:green">
+        你還沒有任何教學計劃哦！先新增班級吧！
+      </h5>  
+    </div>
+
     <button class="dropdown-btn">
       <%= '我的班級' %>
       <%= fa_icon 'caret-down' %>
     </button>
     <div class="dropdown-container">
       <%#= link_to " + 新建班級", new_user_subject_path(@user, @subject) %>
-      <%= link_to '班級管理', user_subjects_path(@user) %>
+      <%= link_to user_lessons_path(@user) do %>
+        <%= fa_icon 'home' %> <%= '課表首頁' %>
+      <% end %>
+      <%= link_to user_subjects_path(@user) do %>
+        <%= fa_icon 'desktop' %> <%= "班級管理" %>
+      <% end %>
       <button class="dropdown-btn">
         <%= " - 現有班級" %>
         <%= fa_icon 'caret-down' %>  
@@ -34,7 +45,7 @@
         <div class="dropdown-container">
           <% @subjects.each do |subject| %>
             <%= link_to user_subject_path(@user, subject) do %>
-              <%= subject.grade %>年 <%= subject.classroom %>
+              <%= subject.classroom %>
             <% end %>
           <% end %>
         </div>        
@@ -112,16 +123,6 @@
           <% end %>
         </div>
       <% end %>
-    </div>
-      
-    <button class="dropdown-btn">
-      <%= '教學計畫檔案庫' %>
-      <%= fa_icon 'caret-down' %>
-    </button>
-    <div class="dropdown-container">
-      <h5 style="color:green">
-        你還沒有任何教學計劃哦！先新增班級吧！
-      </h5>  
     </div>
        
   </div>

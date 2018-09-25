@@ -18,9 +18,9 @@
     
     <%# buttons %>
     <div>
-      <%= link_to 'Edit', edit_user_lesson_path(@user, @lesson), class: "btn btn-primary" %>
-      <%= link_to 'Destroy', user_lesson_path(@user, @lesson), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
-      <%= link_to 'Back', user_lessons_path, class: "btn btn-secondary" %>
+      <%= link_to '編輯', edit_user_lesson_path(@user, @lesson), class: "btn btn-primary" %>
+      <%= link_to '刪除', user_lesson_path(@user, @lesson), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+      <%= link_to '返回', user_lessons_path, class: "btn btn-secondary" %>
     </div>
   </div>
 </div>
