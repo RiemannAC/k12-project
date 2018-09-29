@@ -17,13 +17,7 @@ class MaterialsController < ApplicationController
         @teachingfile = Teachingfile.new
       end
     end
-  end 
-
-
-  def new
-    @user = User.find(params[:user_id])
-    @material = @user.materials.new
-  end 
+  end
 
   def create
     @user = User.find(params[:user_id])
@@ -32,8 +26,8 @@ class MaterialsController < ApplicationController
       flash[:notice] = "成功新增資料夾【#{@material.mtrial_folder_name}】"
       redirect_to user_materials_path
     else
-      flash.now[:alert] = "資料夾新增失敗！"
-      render :new
+      flash.now[:alert] = "請確定選擇科目及填上主題／單元名稱！"
+      render :index
     end   
   end
 
@@ -47,11 +41,11 @@ class MaterialsController < ApplicationController
     @user = User.find(params[:user_id])
     @material = @user.materials.find(params[:id])  
     if @material.update(material_params)
-      flash[:notice] = "更新教案資料夾設定"
-      redirect_to user_materials_path
+      flash[:notice] = "更新教材資料夾設定"
+      redirect_to user_material_path(@user, @material)
     else
-      flash.now[:alert] = "未能成功更新"
-      render :edit
+      flash[:alert] = "更新失敗，請確定填上主題／單元名稱！"
+      redirect_to user_material_path(@user, @material)
     end
   end
 

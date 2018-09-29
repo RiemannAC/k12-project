@@ -9,8 +9,16 @@
     <% if current_user %>
       <ul class="nav">
         <li><%= link_to '課表首頁', user_lessons_path(@user) %></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">我的班級</a>
+          <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="navbarDropdown2">
+            這裡用 each do 把班級名稱條列出來
+          </div>
+        </li>
+
         <li><%= link_to '教材資料夾', user_materials_path(@user) %></li>
         <li><%= link_to '教案資料夾', user_plans_path(@user) %></li>
+
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <% if current_user.avatar? %>
