@@ -4,6 +4,7 @@ class MaterialsController < ApplicationController
   def index 
     @user = current_user
     @material = @user.materials.order(created_at: :desc)
+    @material = @user.materials.new
   end
 
   def show
