@@ -15,14 +15,9 @@
     <div class="container-fluid">
 
       <%= render partial: "shared/alert" %>
-            
-      
-      <%= render partial: "shared/sidebar" %>
-      <div class="main">
-        <%= yield %>
-      </div>
 
-      
+      <%= yield %>
+
     </div>
     <script>
       var dropdown = document.getElementsByClassName("dropdown-btn");

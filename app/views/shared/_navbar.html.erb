@@ -4,12 +4,37 @@
     <%= image_tag "logo.svg", width:'45', height:'45', alt:'首頁', class: "d-inline-block" %>
      <strong>K12 Project</strong>
   <% end %>
-  
-  <ul class="nav">
-    <li><%= link_to '課表首頁' %></li>
-    <li><%= link_to '教材資料夾' %></li>
-    <li><%= link_to '教案資料夾' %></li>
-    <li><%= link_to '個人檔案' %></li>
-  </ul>
+
+  <% if user_signed_in? %>
+    <% if current_user %>
+      <ul class="nav">
+        <li><%= link_to '課表首頁', user_lessons_path(@user) %></li>
+        <li><%= link_to '教材資料夾' %></li>
+        <li><%= link_to '教案資料夾' %></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <% if current_user.avatar? %>
+              <%= image_tag current_user.avatar %>
+            <% else %>
+              <%= image_tag 'avatar-default.png', width: '30', height: '30' %>  
+            <% end %>
+            <%= current_user.email.split('@').first %>
+            
+          </a>
+          <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="navbarDropdown">
+            <%= link_to('個人檔案', edit_user_path(current_user), class: 'dropdown-item theme-font') %>
+            <div class="dropdown-divider"></div>
+            <%= link_to('登出', destroy_user_session_path, method: :delete, class: "dropdown-item theme-font") %>
+          </div>
+          
+        </li>
+      </ul>
+    <% else %>
+      <ul class="navbar-nav navbar-right">
+        <li class='navbar-nav-li'><%= link_to('Sign up', new_user_registration_path) %> or <%= link_to('Log in', new_user_session_path) %></li>
+        <li></li>
+      </ul>
+    <% end %>
+  <% end %>
 
 </nav>
