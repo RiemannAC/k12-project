@@ -96,7 +96,7 @@
 
 .mon-calendar-body {
   padding:0 10px 10px 10px; 
-  box-sizing:border-box!important; 
+  box-sizing:border-box!important;
   background: #527a7a;
   opacity: 0.9;
 }
@@ -178,4 +178,20 @@
 
 #lessons_calendar_2 {
   margin-bottom: 50px;
+}
+
+/***** lessons/index/time_table *******/
+/*課表格子高度*/
+.time_table .day_time {
+  min-height: 125px !important;
+}
+
+/*課堂時間垂直置中*/
+.day_time .day_hour {
+  line-height: 85px;
+}
+
+/*井字號垂直置中*/
+.th_head {
+  line-height: 50px;
 }

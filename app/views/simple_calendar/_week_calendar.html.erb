@@ -12,7 +12,7 @@
   <table class="table weekly-school-table">
     <thead>
       <tr>
-        <th>#</th>
+        <th><span class="th_head">#</span></th>
         <% date_range.slice(0, 7).each do |day| %>
           <th class="text-center">
             <div>
@@ -33,7 +33,9 @@
           <td class="time_td text-center">
             <% 8.upto(18).each do |hour| %>
               <div class="day_time">
-                <%= Time.parse("#{hour}:00").strftime("%l %P") %>
+                <span class="day_hour">
+                  <%= Time.parse("#{hour}:00").strftime("%l %P") %>
+                </span>
               </div>
             <% end %>
           </td>
