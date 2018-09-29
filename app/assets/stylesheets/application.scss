@@ -55,7 +55,24 @@ body {
   z-index: 99;
 }
 
-/******** NAVBAR SETTING **********/
+/******* New Navbar Setting ********/
+
+.nav {
+  float: right;
+}
+
+.nav li {
+  display: inline-block;
+}
+
+.nav li a {
+  color: #fff;
+  text-transform: capitalize;
+  display: block;
+  padding: 10px 12px;
+}
+
+/******** OLD NAVBAR SETTING **********/
 
 .nav-user {
   margin-left: 20px;
