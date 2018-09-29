@@ -1,6 +1,7 @@
 class LessonsController < ApplicationController
   before_action :set_lesson, only: [:show, :edit, :update, :destroy]
   # before_action :set_subject_of_lesson, only: [:edit]
+  before_action :set_subject_of_lesson, only: [:show]
 
   before_action :set_user, only: [:index, :show, :list]
   before_action :set_lessons, only: [:index, :list]
@@ -15,6 +16,18 @@ class LessonsController < ApplicationController
     # _to_do_list
     @day = Date.today
     @todos = Lesson.where(event_type: "todo")
+  end
+
+  def show
+    @topic = Topic.new
+    
+
+    @topics = @subject.topics.all
+
+    if params[:subject_id]
+      @topic= @subject.topics.find(params[:topic_id])
+      @aim = @topic.aims.find(params[:id])     
+    end
   end
 
   def list
