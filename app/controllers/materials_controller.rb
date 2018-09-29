@@ -31,12 +31,6 @@ class MaterialsController < ApplicationController
     end   
   end
 
-  def edit
-    @user = User.find(params[:user_id])
-    @material = @user.materials.find(params[:id])   
-  end 
-
-
   def update 
     @user = User.find(params[:user_id])
     @material = @user.materials.find(params[:id])  
