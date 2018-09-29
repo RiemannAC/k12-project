@@ -4,12 +4,8 @@ class PlansController < ApplicationController
   def index
     @user = current_user
     @plans = @user.plans.order(created_at: :desc)
-  end 
-
-  def new 
-    @user = User.find(params[:user_id])
     @plan = @user.plans.new
-  end
+  end 
 
   def create
     @user = User.find(params[:user_id])
@@ -17,9 +13,10 @@ class PlansController < ApplicationController
 
     @plan.user = current_user
     if @plan.save!
+      flash[:notice] = "成功新增資料夾【#{@plan.plan_folder_name}】"
       redirect_to user_plans_path(current_user,@plans)
     else
-      flash[:alert] = "新增教案資料夾失敗"
+      flash[:alert] = "請確定選擇科目及填上主題／單元名稱！"
       render :new
     end 
   end 
@@ -36,11 +33,6 @@ class PlansController < ApplicationController
     end
   end
 
-  def edit
-    @user = User.find(params[:user_id])
-    @plan = @user.plans.find(params[:id])     
-  end
-
   def update
     @user = User.find(params[:user_id])
     @plan = @user.plans.find(params[:id]) 
@@ -48,8 +40,8 @@ class PlansController < ApplicationController
       flash[:notice] = "更新教案資料夾設定"
       redirect_to user_plans_path
     else
-      flash.now[:alert] = "未能成功更新"
-      render :edit
+      flash[:alert] = "更新失敗，請確定填上主題／單元名稱！"
+      redirect_to user_plan_path(@user, @material)
     end
   end
 

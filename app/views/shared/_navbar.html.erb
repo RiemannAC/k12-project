@@ -1,59 +1,39 @@
-<style>
-  .user-icon img{
-  width: 48px;
-  height: 45px;
-  display: block;
-  position: relative;
-  border-radius: 50%;
-}
-</style>
+<nav class="navbar sticky-top navbar-light bg-light">
+  <%= link_to root_path, class: "navbar-brand" do %>
+    <%= image_tag "logo.svg", width:'45', height:'45', alt:'首頁', class: "d-inline-block" %>
+     <strong>K12 Project</strong>
+  <% end %>
 
-<nav class="navbar fixed-top navbar-expand-lg">
-
-  <div id="logo">
-    <%= link_to root_path, class: "navbar-brand" do %>
-      <%= image_tag "logo.svg", width:'65', height:'65', alt:'首頁'%>    
-    <% end %>
-  </div>
-
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse pull-right" id="navbarSupportedContent">
-    
-
-      <ul class="navbar mr-auto"></ul>
-
-      <% if current_user %>
-      
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
-      </form>
-      <ul class="navbar-nav nav-user">        
-        
+  <% if user_signed_in? %>
+    <% if current_user %>
+      <ul class="nav">
+        <li><%= link_to '課表首頁', user_lessons_path(@user) %></li>
         <li class="nav-item dropdown">
-          
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <%= link_to('Edit Profile', edit_user_path(current_user), class: 'dropdown-item theme-font') %>
-            <div class="dropdown-divider"></div>
-            <%= link_to('Log out', destroy_user_session_path, method: :delete, class: "dropdown-item theme-font") %>
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">我的班級</a>
+          <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="navbarDropdown2">
+            這裡用 each do 把班級名稱條列出來
           </div>
+        </li>
+
+        <li><%= link_to '教材資料夾', user_materials_path(@user) %></li>
+        <li><%= link_to '教案資料夾', user_plans_path(@user) %></li>
+
+        <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <% if current_user.avatar? %>
+              <%= image_tag current_user.avatar, width: '30', height: '30' %>
+            <% else %>
+              <%= image_tag 'avatar-default.png', width: '30', height: '30' %>  
+            <% end %>
             <%= current_user.email.split('@').first %>
+            
           </a>
-          <%= link_to do %>
-            <li class="user-icon">
-              <% if current_user.avatar? %>
-                <%= image_tag current_user.avatar %>
-              <% else %>
-                <%= image_tag 'avatar-default.png' %>  
-              <% end %>
-              <%#= fa_icon "user 2x", style: 'color:white' %>
-              <%#= image_tag 'admin.jpg' %>
-            </li>
-          <% end %> 
+          <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="navbarDropdown">
+            <%= link_to('個人檔案', edit_user_path(current_user), class: 'dropdown-item theme-font') %>  
+            <div class="dropdown-divider"></div>
+            <%= link_to('登出', destroy_user_session_path, method: :delete, class: "dropdown-item theme-font") %>
+          </div>
+          
         </li>
       </ul>
     <% else %>
@@ -62,5 +42,6 @@
         <li></li>
       </ul>
     <% end %>
-  </div>
+  <% end %>
+
 </nav>

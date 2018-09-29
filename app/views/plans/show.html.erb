@@ -1,7 +1,42 @@
-<%= render partial:"shared/sidebar" %> 
-<div class="main-frame">
+<div class="container">
   <div class="">
-    <%= link_to '資料夾設定', edit_user_plan_path(@plan.user,@plan), class: 'btn btn-outline-primary btn-sm' %>
+
+    <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#exampleModal">
+      資料夾設定
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">編輯資料夾</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <%= form_for [@user,@plan] do |f| %>
+              <div class="form-group">
+              <%= f.label :subject_tag_id, "科目" %>
+              <%= f.collection_select :subject_tag_id , SubjectTag.all, :id, :name, {prompt: true}, {class: "form-control"} %>
+              </div> 
+
+              <div class="form-group">
+              <%= f.label :plan_folder_name, "教學主題／單元" %>
+              <%= f.text_field :plan_folder_name ,class:"form-control"%>
+              </div>
+
+              <div class="form-group pull-right">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                <%= f.submit '變更設定', class: 'btn btn-info' %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <%= link_to '刪除資料夾', user_plan_path(@plan.user,@plan), class: 'btn btn-danger btn-sm pull-right', method: :delete, data: {confirm: "資料夾裡的檔案也會一併刪除，你確定嗎？"} %>
   </div>
 
@@ -9,7 +44,7 @@
   <h4 style="color:#55a578">教案科目：<%= @plan.subject_tag.name %></h4>
   <h4 style="color:#55a578">教學主題／單元：<%= @plan.plan_folder_name %></h4> 
   <%= link_to '<< 返回教案總覽', user_plans_path(@user) %>
-  <hr class="blue-hr">
+  <hr class="orange-hr">
    
   <%= form_for [@user,@plan,@teachingfile], html:{multipart:true} do |f| %>
     <div class="form-group">
@@ -34,9 +69,9 @@
       <td style="padding-right:20px;"><%= teachingfile.name %></td>
       <td style="padding-right:20px;">
         <%= link_to teachingfile.attachment_url do%>
+          <%= teachingfile.attachment.file.filename %>
           <%= fa_icon 'download 2x', class: 'theme-font' %>
         <% end %>
-        <%= teachingfile.attachment.file.filename %>
       </td>
       <td style="padding-right:20px;"><%= link_to '編輯',edit_user_plan_teachingfile_path(@user, @plan,teachingfile) %></td>
       <td style="padding-right:20px;"> <%= link_to '刪除', user_plan_teachingfile_path(@user, @plan,teachingfile), method: :delete, data: { confirm: "確定要刪除這個檔案嗎？"} %></td>
