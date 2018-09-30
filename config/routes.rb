@@ -27,7 +27,6 @@ Rails.application.routes.draw do
       end
     end
 
-
     resources :lessons do
       collection do
         get :list
