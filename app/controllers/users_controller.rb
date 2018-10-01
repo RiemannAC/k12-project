@@ -3,6 +3,11 @@ class UsersController < ApplicationController
   def show
     @user = current_user
     @subject_count = @user.subjects.count
+    if signed_in?
+      redirect_to user_lessons_path(current_user)
+    else
+      redirect_to root_path
+    end
   end
 
   def edit
