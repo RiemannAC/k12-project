@@ -3,7 +3,7 @@ class TopicsController < ApplicationController
     @user = current_user
     @subject = @user.subjects.find(params[:subject_id])
     @topic = @subject.topics.find(params[:id])
-    @topic_files = Teachingfile.all
+    @topic_files = @topic.teachingfiles.all
   end
 
   def create

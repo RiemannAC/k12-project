@@ -107,6 +107,6 @@ class TeachingfilesController < ApplicationController
   private
 
   def teachingfile_params
-    params.require(:teachingfile).permit(:name,:attachment,:material_id,:plan_id,:user_id)
+    params.require(:teachingfile).permit(:name,:attachment,:material_id,:plan_id,:topic_id,:user_id)
   end
 end

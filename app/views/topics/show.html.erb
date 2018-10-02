@@ -1,17 +1,45 @@
-這裡放該主題的教學檔案
-<ul>
-  
+<div class="row">
+  <!--放教材的檔案-->
+  <div class="col-md-6">
+    <div><h4>這裡放教材檔案</h4></div>
     <% @topic_files.each do |teachingfile|  %>
-    <li>
-      <%= teachingfile.name %>
-      <%= link_to teachingfile.attachment_url do%>
-        <%= teachingfile.attachment.file.filename  %>
-        <%= fa_icon 'download 2x', class: 'theme-font' %>
-      <% end %>
-      教材科目：<%= teachingfile.material.subject_tag.name %></h4>
-      教學主題／單元：<%= teachingfile.material.mtrial_folder_name %></h4>
-    </li>  
-    <% end %>
+      <% if teachingfile.attributes['material_id']%>
+        <%= teachingfile.name %>
 
-</ul>
+        <%= link_to teachingfile.attachment_url do%>
+          <%= teachingfile.attachment.file.filename  %>
+          <%= fa_icon 'download 2x', class: 'theme-font' %>
+        <% end %>
+
+        <span>教材科目：<%= teachingfile.material.subject_tag.name %></span>
+        <span>教學主題／單元：<%= teachingfile.material.mtrial_folder_name %></span>
+
+      <% end %>
+    <% end %>
+  </div>
+
+  <!--放教案的檔案-->
+  <div class="col-md-6">
+    <div><h4>這裡放教案檔案</h4></div>
+    <% @topic_files.each do |teachingfile|  %>
+      <% if teachingfile.attributes['plan_id']%>
+        <%= teachingfile.name %>
+
+        <%= link_to teachingfile.attachment_url do%>
+          <%= teachingfile.attachment.file.filename  %>
+          <%= fa_icon 'download 2x', class: 'theme-font' %>
+        <% end %>  
+        
+        <span>教案科目：<%= teachingfile.plan.subject_tag.name %></span>
+        <span>教學主題／單元：<%= teachingfile.plan.plan_folder_name %></span>
+      
+      <% end %>
+    <% end %>   
+  </div>
+</div>
+
+
+
+
+    
  

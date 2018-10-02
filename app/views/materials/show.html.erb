@@ -76,6 +76,7 @@
           <%= fa_icon 'download 2x', class: 'theme-font' %>
         <% end %>
       </td>
+
       <td style="padding-right:20px;"><%= link_to '編輯',edit_user_material_teachingfile_path(@user, @material, teachingfile) %></td>
       <td style="padding-right:20px;"> <%= link_to '刪除', user_material_teachingfile_path(@user,@material,teachingfile), method: :delete, data: { confirm: "Are you sure to delete ?"} %></td>
     </tr>
