@@ -1,7 +1,8 @@
 這裡放該主題的教學檔案
 <ul>
-  <li>
+  
     <% @topic_files.each do |teachingfile|  %>
+    <li>
       <%= teachingfile.name %>
       <%= link_to teachingfile.attachment_url do%>
         <%= teachingfile.attachment.file.filename  %>
@@ -9,7 +10,8 @@
       <% end %>
       教材科目：<%= teachingfile.material.subject_tag.name %></h4>
       教學主題／單元：<%= teachingfile.material.mtrial_folder_name %></h4>
+    </li>  
     <% end %>
-  </li>
+
 </ul>
  
