@@ -14,7 +14,7 @@
 
       <div class="form-group">
         <%= f.label :topic_id, '加到主題卡片' %>
-        <%= f.collection_select :topic_id , Topic.all, :id ,:name, {prompt: true}, {class: ""}  %><br>     
+        <%= f.collection_select :topic_id , Topic.all, :id ,:name, {:include_blank => 'None Specified'}, {class: ""}  %><br>     
       </div>
 
       <%= f.submit '更新', class:"btn btn-primary" %>
@@ -36,7 +36,7 @@
 
       <div class="form-group">
         <%= f.label :topic_id, '加到主題卡片' %>
-        <%= f.collection_select :topic_id , Topic.all, :id ,:name, {prompt: true}, {class: ""}  %><br>     
+        <%= f.collection_select :topic_id , Topic.all, :id ,:name, {:include_blank => 'None Specified'}, {class: ""}  %><br>     
       </div>
 
 
