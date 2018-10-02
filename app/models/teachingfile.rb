@@ -17,6 +17,7 @@ class Teachingfile < ApplicationRecord
   validates_presence_of :name
 
   belongs_to :plan, optional: true
-  #belongs_to :topic
+  belongs_to :topic, optional: true
   belongs_to :material, optional: true
+
 end

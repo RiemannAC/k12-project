@@ -1,1 +1,15 @@
 這裡放該主題的教學檔案
+<ul>
+  <li>
+    <% @topic_files.each do |teachingfile|  %>
+      <%= teachingfile.name %>
+      <%= link_to teachingfile.attachment_url do%>
+        <%= teachingfile.attachment.file.filename  %>
+        <%= fa_icon 'download 2x', class: 'theme-font' %>
+      <% end %>
+      教材科目：<%= teachingfile.material.subject_tag.name %></h4>
+      教學主題／單元：<%= teachingfile.material.mtrial_folder_name %></h4>
+    <% end %>
+  </li>
+</ul>
+ 
