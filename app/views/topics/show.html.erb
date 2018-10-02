@@ -38,6 +38,52 @@
   </div>
 </div>
 
+<hr>
+<br><br><br>
+
+<div class="row">
+  <div class="col-md-6">
+    <!--從教材資料夾中選擇你要的教學檔案-->
+    <h4>從教材資料夾中選擇你要的教學檔案吧</h4>
+    
+    <% @subject_tags.each do |subject| %>
+      <% if subject.materials.present? %>
+        <h5><i><%= subject.name %></i></h5>
+        <% subject.materials.each do |material| %>
+          <div class="folder-block">
+            <%= link_to user_material_path(@user,material) do %>     
+              <%= fa_icon 'folder-open 4x', style: 'color:skyblue;' %>
+              <p><%= material.mtrial_folder_name %></p>
+            <% end %>
+          </div>
+        <% end %>
+      
+      <% end %>
+    <% end %>
+  </div>  
+
+  <div class="col-md-6">
+    <!--從教案資料夾中選擇你要的教學檔案-->
+    <h4>從教案資料夾中選擇你要的教學檔案吧</h4>
+  
+    <% @subject_tags.each do |subject| %>
+      <% if subject.plans.present? %>
+        <h4><i><%= subject.name %></i></h4>
+        <% subject.plans.each do |plan| %>
+        <div class="folder-block">
+          <%= link_to user_plan_path(@user,plan) do %>     
+            <%= fa_icon 'folder-open 4x', style: 'color:skyblue;' %>
+            <p><%= plan.plan_folder_name %></p>
+            
+          <% end %>
+        </div>
+        <% end %>
+      
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
 
 
 
