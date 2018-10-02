@@ -31,7 +31,9 @@
 
               <!--教學回饋-->
               <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myupdatefeedback_<%= topic.id  %>">教學反思</button>
-              
+
+              <!--教學檔案-->
+              <%= link_to "教學檔案", user_subject_topic_path(@user,topic),class:"btn btn-info" %>              
             </div>
           <h5>
           <!--教學單元主題下的教學目標-->

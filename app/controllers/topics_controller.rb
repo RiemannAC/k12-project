@@ -1,4 +1,8 @@
 class TopicsController < ApplicationController
+  def show
+    
+  end
+  
   def create
     @user = current_user
     @subject = @user.subjects.find(params[:subject_id])
