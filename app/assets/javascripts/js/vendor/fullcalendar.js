@@ -5993,7 +5993,7 @@ DayGrid.mixin({
 		// append to each row's content skeleton
 		this.rowEls.each(function(i, rowNode) {
 			$(rowNode).find('.fc-content-skeleton > table').append(
-				rowStructs[i].tbodyEl
+				//rowStructs[i].tbodyEl
 			);
 		});
 

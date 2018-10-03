@@ -65,7 +65,8 @@ var initializeLeftCalendar = function() {
       header: {
           left: 'prev,next today',
           center: 'title',
-          right: 'month,agendaWeek'
+          right:' ',
+          //right: 'month,agendaWeek'
       },
       navLinks: false,
       dayClick: function(date) {
@@ -76,7 +77,7 @@ var initializeLeftCalendar = function() {
       }
   });
 }
-
+ 
 /* -------------------moves right pane to date------------------- */
 var cal2GoTo = function(date) {
   $cal2.fullCalendar('gotoDate', date);
