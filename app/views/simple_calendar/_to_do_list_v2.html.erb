@@ -1,0 +1,26 @@
+<div class="simple-calendar">
+  <div class="calendar-heading text-center">
+    <%= link_to t('simple_calendar.previous', default: 'Prev'), calendar.url_for_previous_view %>
+    <span class="calendar-title"><%= start_date.month %> - <%= start_date.day %> 待辦事項</span>
+    <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view %>
+  </div>
+
+  <div class="calendar-body">
+    <div>
+      <% date_range.each_slice(7) do |week| %>
+        <%# 兩層標籤不可以樣，結構會崩潰。將 calendar 套版測試改 div span 可行。class 內跑的是 lib 內的方法，無需修改 %>
+        <%= content_tag :div, class: calendar.tr_classes_for(week) do %>
+          <% week.each do |day| %>
+            <%= content_tag :span, class: calendar.td_classes_for(day) do %>
+              <% if defined?(Haml) && respond_to?(:block_is_haml?) && block_is_haml?(block) %>
+                <% capture_haml(day, sorted_events.fetch(day, []), &block) %>
+              <% else %>
+                <% block.call day, sorted_events.fetch(day, []) %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
