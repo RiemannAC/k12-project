@@ -143,10 +143,15 @@
 }
 
 .to_do_body .day_time{
-  border:1px solid #ddd;
-  border-radius: 3%;
+  border:1px solid #ddd !important;
+  border-radius: 10px;
   padding: 10px;
   margin-top: 5px;
+  background-color: #aaaaaa;
+}
+
+.to_do_body .today .day_time {
+  background-color: #ffffc0;
 }
 
 
