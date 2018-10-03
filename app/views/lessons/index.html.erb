@@ -1,3 +1,46 @@
+<style>
+#calendar1 {
+  padding-bottom: 15px;
+  z-index: 950;
+}
+
+#calendar2 {
+  z-index: 900;
+}
+  .fc-body td {
+  cursor: pointer;
+}
+
+
+.left {
+  float: left;
+}
+
+.fc-event .fc-bg {
+  background-color: #337ab7;
+}
+
+.navbar-btn {
+  margin-right: 15px;
+}
+
+.fc-today .fc-day-number {
+  background: #d9534f;
+  color: white;
+  font-weight: bold;
+  width: 20px;
+  border-radius: 50%;
+  text-align: center;
+  margin: 2px;
+}
+
+.fc-today {
+  background-color: #F2F2F2;
+}
+
+
+</style>
+
 <!--  <link href='css/vendor/bootstrap.min.css' rel='stylesheet' />  -->
 <!--  <link href='css/vendor/fullcalendar.css' rel='stylesheet' />  -->
 <!--  <link href='css/style.css' rel='stylesheet' /> -->
@@ -8,17 +51,22 @@
 <!--  <script src='js/vendor/fullcalendar.js'></script>  -->
 <!--  <script src='js/events.js'></script>  -->
 <!--  <script src='js/calendar.js'></script> -->
+ 
 
-<%= stylesheet_link_tag "calendar/calendar-style.css" %>
+<%########## bootstrap v3.3.7 ############%>
+<%#= stylesheet_link_tag "calendar/bootstrap.min.css" %>
+
 <%= stylesheet_link_tag "calendar/fullcalendar.css" %>
-<%= stylesheet_link_tag "calendar/bootstrap.min.css" %>
+<%#= stylesheet_link_tag "calendar/calendar-style.css" %>
 
-<%= javascript_include_tag "js/vendor/jquery.min.js" %>
+<%########## bootstrap v3.3.7 ############%>
+<%#= javascript_include_tag "js/vendor/jquery.min.js" %>
+<%#= javascript_include_tag "js/vendor/bootstrap.min.js" %>
 <%= javascript_include_tag "js/vendor/moment.min.js" %>
-<%= javascript_include_tag "js/vendor/bootstrap.min.js" %>
 <%= javascript_include_tag "js/vendor/fullcalendar.js" %>
 <%= javascript_include_tag "js/events.js" %>
 <%= javascript_include_tag "js/calendar.js" %>
+  
 
 
 <div class="row">
@@ -66,14 +114,15 @@
           <div class="container-fluid">
             <p class="navbar-brand" id="todaysDate"></p>
           </div>
-        </nav>
+        </nav> 
 
         <div class="container-fluid row">
           <div id='calendar1' class='calendar col-md-8'></div>
           <div id='calendar2' class='calendar col-md-4'></div>
         </div>
-
-        <div class="modal fade" id="newEvent" role="dialog" aria-labelledby="eventFormLabel" aria-hidden="true">
+          
+        <!--新增todo-->
+        <div class="modal fade" id="newEvent" tabindex="-1" role="dialog" aria-labelledby="eventFormLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -99,8 +148,9 @@
             </div>
           </div>
         </div>
-
-        <div class="modal fade" id="editEvent" role="dialog" aria-labelledby="eventFormLabel" aria-hidden="true" data-persist="false">
+        
+        <!--編輯todo-->
+        <div class="modal fade" id="editEvent" tabindex="-1" role="dialog" aria-labelledby="eventFormLabel" aria-hidden="true" data-persist="false">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <!--modal-header-->

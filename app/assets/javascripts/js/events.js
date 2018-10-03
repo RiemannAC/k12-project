@@ -5,7 +5,7 @@ var events = function() {
   start: "2016-10-03T14:30:00.000Z",
   end: null
   },
-  {
+  { 
   id: 2,
   title: "You'll find I'm full of surprises!",
   start: "2016-09-10T16:30:00.000Z",
@@ -381,6 +381,18 @@ var events = function() {
   id: 64,
   title: "submit Rails, jQuery assessment",
   start: "2016-11-07T17:30:00.000Z",
+  end: null
+  },
+  {
+  id: 65,
+  title: "去清華大學上課",
+  start: "2018-10-03T09:00:00.000Z",
+  end: null
+  },
+  {
+  id: 66,
+  title: "去圖書館念書",
+  start: "2018-10-03T11:00:00.000Z",
   end: null
   }
 ];

@@ -8,6 +8,7 @@ $(function() {
   disableEnter();
 });
 
+
 /* --------------------------initialize calendar-------------------------- */
 var initializeCalendar = function() {
   $('.calendar').fullCalendar({
@@ -15,11 +16,17 @@ var initializeCalendar = function() {
       eventLimit: true, // allow "more" link when too many events
       // create events
       events: events(),
-      defaultTimedEventDuration: '00:30:00',
+      //設定時間區間
+      defaultTimedEventDuration: '01:00:00',
+      //設定開始時間
+      minTime: "07:00:00",
+      //設定結束時間
+      maxTime: "19:30:00",
       forceEventDuration: true,
       eventBackgroundColor: '#337ab7',
       editable: false,
-      height: screen.height - 160,
+      //設定右半邊time zone table的高，多出來的部分使用scroll down
+      height: screen.height - 400,
       timezone: 'America/Chicago',
     });
 }
@@ -80,7 +87,7 @@ var loadEvents = function() {
   $.getScript("js/events.js", function(){
   });
 }
-
+ 
 
 var newEvent = function(start) {
   $('input#title').val("");
