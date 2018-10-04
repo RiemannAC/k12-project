@@ -394,6 +394,12 @@ var events = function() {
   title: "去圖書館念書",
   start: "2018-10-03T11:30:00.000Z",
   end: null
+  },
+  {
+  id: 67,
+  title: "在家裡寫程式",
+  start: "2018-10-04T10:00:00.000Z",
+  end: null
   }
 ];
 }
