@@ -12,6 +12,12 @@ Rails.application.routes.draw do
 
   resources :subject_tags
 
+
+  resources :events
+  get '/test' => 'calendar#test'
+
+
+
   resources :users do
     resources :plans do
       resources :teachingfiles
@@ -26,6 +32,7 @@ Rails.application.routes.draw do
         resources :aims
       end
     end
+    
 
     resources :lessons do
       collection do

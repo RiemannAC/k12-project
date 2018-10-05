@@ -19,6 +19,7 @@ js/vendor/bootstrap.min.js
 js/vendor/fullcalendar.js 
 js/events.js 
 js/calendar.js 
+js/index.js
 calendar/calendar-style.css 
 calendar/fullcalendar.css 
 calendar/bootstrap.min.css 

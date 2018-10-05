@@ -18,6 +18,7 @@
 //= require popper
 //= require bootstrap
 //
+
 $(function() {
   setTimeout(function(){
     $('.alert').slideUp(500);
