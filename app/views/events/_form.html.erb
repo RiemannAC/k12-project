@@ -29,6 +29,9 @@
 
   <div class="actions">
     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+
+    <%= link_to 'Delete',user_event_path(@user,@event), method: :delete, data: {confirm: "確定要刪除此代辦事項嗎？"} , class:"btn btn-danger" unless @event.new_record? %>
+      
     <%= f.submit  class:"ben btn-primary"%>
   </div>
 <% end %>
