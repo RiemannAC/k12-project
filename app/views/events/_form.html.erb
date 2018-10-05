@@ -1,10 +1,10 @@
-<%= form_for[@user,event] do |f| %>
-  <% if event.errors.any? %>
+<%= form_for (event) do |f| %>
+  <% if @event.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
 
       <ul>
-      <% event.errors.full_messages.each do |message| %>
+      <% @event.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -28,6 +28,7 @@
 
 
   <div class="actions">
-    <%= f.submit %>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+    <%= f.submit "Create", class:"ben btn-primary"%>
   </div>
 <% end %>

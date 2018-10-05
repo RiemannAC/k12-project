@@ -11,7 +11,7 @@ class LessonsController < ApplicationController
 
   def index
     @user = current_user
-
+    @event = @user.events.new
     
     # _to_do_list
     #@day = Date.today

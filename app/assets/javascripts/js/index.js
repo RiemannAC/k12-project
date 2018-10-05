@@ -48,7 +48,7 @@ $(document).ready(function() {
     });
   /* --------------------------connect to rails db-------------------------- */
   $('.calendar').fullCalendar({
-      events: '/events.json'
+      events: '/users' + '/user_id' + '/events.json'
   });
 
   /* -------------------manage cal2 (right pane)------------------- */
@@ -62,7 +62,7 @@ $(document).ready(function() {
       selectHelper: true,
       select: function(start, end) {
         {
-          $.getScript('/events/new', function() {
+          $.getScript('/users' + '/user_id' + '/events/new', function() {
             $('#event_date_range').val(moment(start).format("MM/DD/YYY HH:mm") + ' - ' + moment(end).format("MM/DD/YYY HH:mm"));
             date_range_picker();
             $('.start_hidden').val(moment(start).format('YYYY-MM-DD HH:mm'));

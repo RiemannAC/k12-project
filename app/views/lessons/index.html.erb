@@ -66,6 +66,7 @@
 <%= javascript_include_tag "js/vendor/moment.min.js" %>
 <%= javascript_include_tag "js/vendor/fullcalendar.js" %>
 <%= javascript_include_tag "js/events.js" %>
+
 <%#= javascript_include_tag "js/calendar.js" %>
 <%= javascript_include_tag "js/index.js" %>
   
@@ -75,7 +76,7 @@
 
 
 <div class="row">
-  <div id="lessons_calendar" class="col-9" style="padding-left:15px;">
+  <div id="lessons_calendar" class="col-8" style="padding-left:15px;">
     <div class="index-right-container">
       <%= link_to 'Listing lessons', list_user_lessons_path(@user) %>
 
@@ -111,7 +112,7 @@
     </div>
   </div>
 
-  <div id="lessons_calendar_2" class="col-12" style="margin-top:-5px;">
+  <div id="lessons_calendar_2" class="col-4" style="margin-top:-5px;">
     <div class="index-left-container">
       <div class="row">
         <!---------------todo月曆設定開始------------------>
@@ -122,17 +123,86 @@
         </nav> 
  
         <div class="container-fluid row">
-          <div id='calendar1' class='calendar calendar-month col-md-4'></div>
-          <div id='calendar2' class='calendar col-md-4'></div>
+          <div id='calendar1' class='calendar calendar-month col-md-12'></div>
         </div>
 
         <div class="container-fluid row">
-          
+          <div id='calendar2' class='calendar col-md-12'></div>
         </div>
-
-                  
         
-        <!---------------todo月曆設定結束------------------>
+
+        <!--新增todo-->
+        <!--------------------------------------------------------------
+        <div class="modal fade" id="newEvent" tabindex="-1" role="dialog" aria-labelledby="eventFormLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <--modal-header-->
+              <!--------------------------------------------------------
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="newEvent">New Apppointment</h4>
+              </div>
+
+              <form>
+                <--modal-body-->
+                <!-------------------------------------------------------
+                <div class="modal-body">
+                  <div class="form-group">
+                      <label for="title" class="form-control-label">Title</label>
+                      <input type="text" class="form-control" id="title">
+                  </div>
+                </div>
+                
+                <--modal-footer-->
+                <!-------------------------------------------------------
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                  <button type="button" class="btn btn-success" id="submit">Create Event</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        
+        <--編輯todo-->
+        <!-------------------------------------------------------
+        <div class="modal fade" id="editEvent" tabindex="-1" role="dialog" aria-labelledby="eventFormLabel" aria-hidden="true" data-persist="false">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <--modal-header-->
+              <!-------------------------------------------------------
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="editEvent">Update Apppointment</h4>
+              </div>
+
+              <form>
+                <--modal-body-->
+                <!-------------------------------------------------------
+                <div class="modal-body">
+                  <div class="form-group">
+                    <label for="title" class="form-control-label">Title</label>
+                    <input type="text" class="form-control" id="editTitle">
+                  </div>
+                </div>
+                
+                <--modal-footer-->
+                <!-------------------------------------------------------
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger left" id="delete">Delete Event</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                  <button type="button" class="btn btn-success" id="update">Update Event</button>
+                </div>
+              </form>
+
+            </div>
+          </div>
+        </div>
+        <---------------todo月曆設定結束------------------>
       </div>
     </div>
   </div>
