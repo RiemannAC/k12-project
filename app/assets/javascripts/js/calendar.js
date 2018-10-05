@@ -28,7 +28,7 @@ var initializeCalendar = function() {
       //設定右半邊time zone table的高，多出來的部分使用scroll down
       height: screen.height - 400,
       timezone: 'America/Chicago',
-    });
+  });
 }
 
 /*--------------------------calendar variables--------------------------*/

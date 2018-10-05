@@ -80,24 +80,55 @@ $(document).ready(function() {
           }
         $cal.fullCalendar('unselect');
       },
-      eventClick: function(calEvent, jsEvent, view) {
+      editable:true,
+
+      eventDrop: function(event, delta, revertFunc) {
+        event_data = { 
+          event: {
+            id: event.id,
+            start: event.start.format(),
+            end: event.end.format()
+          }
+        };
+        $.ajax({
+            //url: event.update_url,
+            data: event_data,
+            //type: 'PATCH'
+            type:"PUT",
+            url: "/users" + "/user_id" + "/events/"+ event.id,
+        });
+      },
+      eventClick: function(event, jsEvent, view) {
+        $.getScript("/users" + "/user_id" + "/events/"+ event.id + "/edit", function() {
+          $('#event_date_range').val(moment(event.start).format("MM/DD/YYYY HH:mm") + ' - ' + moment(event.end).format("MM/DD/YYYY HH:mm"))
+          date_range_picker();
+          $('.start_hidden').val(moment(event.start).format('YYYY-MM-DD HH:mm'));
+          $('.end_hidden').val(moment(event.end).format('YYYY-MM-DD HH:mm'));
+        });
+      
+        /*
           if (calEvent.allDay) {
               var cal1Event = getCal1Event(calEvent._id);
           } else {
               var cal1Event = calEvent;
-          }
+          }/*
           var title = prompt('Edit Appointment Info:', calEvent.title, {
               buttons: {
                   Ok: true,
                   Cancel: false
               }
           });
+          
+
+
+          
           if (title) {
               calEvent.title = title;
               cal1Event.title = title;
               $cal2.fullCalendar('updateEvent', calEvent);
-              $cal1.fullCalendar('updateEvent', cal1Event);
           }
+          */
+
       }
   });
 
@@ -107,7 +138,8 @@ $(document).ready(function() {
       header: {
           left: 'prev,next today',
           center: 'title',
-          right: 'month,agendaWeek'
+          //right: 'month,agendaWeek'
+          right: ' '
       },
       navLinks: false,
       dayClick: function(date) {
