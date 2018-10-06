@@ -48,7 +48,8 @@ $(document).ready(function() {
     });
   /* --------------------------connect to rails db-------------------------- */
   $('.calendar').fullCalendar({
-      events: '/users' + '/user_id' + '/events.json'
+      events: '/users' + '/user_id' + '/events.json',
+      height: screen.height - 400,
   });
 
   /* -------------------manage cal2 (right pane)------------------- */
