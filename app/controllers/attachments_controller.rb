@@ -4,7 +4,7 @@ class AttachmentsController < ApplicationController
   def destroy
     @attachments = @teachingfile.attachments
     remove_attachment_at_index(params[:id].to_i)
-    flash[:error] = "Failed deleting attachment" unless @teachingfile.save
+    flash[:error] = "未能刪除檔附件" unless @teachingfile.save
     redirect_back fallback_location: root_path
   end
 

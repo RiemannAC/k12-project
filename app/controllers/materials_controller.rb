@@ -5,7 +5,6 @@ class MaterialsController < ApplicationController
     @user = current_user
     @material = @user.materials.order(created_at: :desc)
     @material = @user.materials.new
-    end
   end
 
   def show
