@@ -45,6 +45,8 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :events
+
 
     resources :lessons do
       collection do
