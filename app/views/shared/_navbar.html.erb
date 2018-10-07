@@ -13,9 +13,11 @@
           <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="navbarDropdown2">            
             <%= link_to "班級首頁", user_subjects_path(current_user) %>
             <div class="dropdown-divider"></div>
-            
-            <h6>關聯不對</h6>
-            
+            <%# @lessons.each do |lesson| %>
+              <%#= link_to user_lesson_path(@user, lesson) do %>
+                <%#= lesson.name + " | " + lesson.classroom %>
+              <%# end %>
+            <%# end %>
           </div>
 
         </li>
