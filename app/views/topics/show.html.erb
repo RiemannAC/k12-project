@@ -15,8 +15,8 @@
             <ul>
               <% m.teachingfiles.each do |t| %>  
                 <li>
-                  <%= link_to 'Add file' %>
-                  <%= link_to 'Remove file' %> |  
+                  <%= link_to 'Add file', addfile_user_material_teachingfile_path(@user, @material, @teachingfile), method: :post, class: 'btn btn-outline-dark btn-sm' %>
+                  <%= link_to 'Remove file', removefile_user_material_teachingfile(@user, @material, @teachingfile), method: :post, class: 'btn btn-outline-dark btn-sm' %> |  
                   <%= t.name %>   
                 </li>
                 <ul>
