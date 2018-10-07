@@ -15,12 +15,20 @@ Rails.application.routes.draw do
   resources :users do
     resources :plans do
       resources :teachingfiles do
+        member do
+          post :addfile
+          post :removefile
+        end
         resources :attachments, only: :destroy
       end
     end
 
     resources :materials do
       resources :teachingfiles do
+        member do
+          post :addfile
+          post :removefile
+        end
         resources :attachments, only: :destroy
       end
     end
