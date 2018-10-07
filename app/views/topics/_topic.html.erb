@@ -27,10 +27,12 @@
               <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myupdatepost_<%= topic.id  %>">編輯</button>
 
               <!--刪除教學主題計劃表--->
-              <%= link_to "刪除",  user_subject_topic_path(@user,@subject,topic) ,method: :delete, data: { confirm: "Are you sure?"},class:"btn btn-danger", remote: true %>
+              <%= link_to "刪除",  user_subject_topic_path(@user,@subject,topic) ,method: :delete, data: { confirm: "Are you sure?"},class: "btn btn-danger", remote: true %>
 
               <!--教學回饋-->
               <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myupdatefeedback_<%= topic.id  %>">教學反思</button>
+
+              <%= link_to 'add files to this topic' %>
               
             </div>
           <h5>
@@ -39,8 +41,8 @@
             <%#= f.label :title, "教學目標" %>
             <div class="form-inline col-md-7">
               <div class="">
-                <%= f.text_field :name, placeholder:"新增教學目標", class:"form-control post_aim" %>
-                <%= f.submit "新增", class:"btn btn-primary" %>
+                <%= f.text_field :name, placeholder:"新增教學目標", class: "form-control post_aim" %>
+                <%= f.submit "新增", class: "btn btn-primary" %>
               </div>                           
             </div>
           <% end %>
