@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   resources :subject_tags
 
   resources :users do
+    member do
+      get :viewfile
+    end
 
     member do
       get :viewfile
