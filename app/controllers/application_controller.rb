@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :set_classrooms
   before_action :call_methods_on_navbar
-  
 
   private
 
