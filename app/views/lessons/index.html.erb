@@ -30,9 +30,13 @@
       <div class="row">
         <div class="col-12">
           <%# 右上月曆 %>
-          <%= render partial: "month_calendar", locals: {lessons: @lessons} %> 
+          <div id="month_calendar">
+            <%= render partial: "month_calendar", locals: {lessons: @lessons} %>
+          </div>
           <%# ToDo List V2 %>
-          <%= render partial: "todo_list", locals: {todos: @todos} %>
+          <div id="todo_list">
+            <%= render partial: "todo_list", locals: {todos: @todos} %>
+          </div>
         </div>
       </div>       
     </div>
