@@ -1,0 +1,3 @@
+$("#events_calendar").html("<%= escape_javascript render(partial: "week_calendar", locals: {lessons: @lessons}) %>");
+$("#month_calendar").html("<%= escape_javascript render(partial: "month_calendar", locals: {lessons: @lessons}) %>");
+$("#todo_list").html("<%= escape_javascript render(partial: "todo_list", locals: {todos: @todos}) %>");

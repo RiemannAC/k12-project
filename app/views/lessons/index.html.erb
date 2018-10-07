@@ -10,29 +10,15 @@
               <%= link_to '今天', user_lessons_path(@user), class: "btn btn-secondary" %>
             </span>
             <span>我的一週課表</span>
-            <span class="">
+            <span id="new_button">
               <%= link_to new_user_lesson_path(@user) do %>
                 <i class="fa fa-plus-circle" style="font-size: 60px; color: #009FCC; padding-left: 10px;"></i>
               <% end %>
             <span>
           </h2>
           <hr>
-          <div class="time_table">
-            <%= week_calendar events: @lessons do |date, lessons| %>
-              <% 8.upto(18).each do |hour| %>
-                <div id="hour-<%= hour %>" class="day_time text-center">
-                  <% lessons.each do |lesson| %>
-                    <%- if lesson.start_time.hour.between?(hour, hour + 0.9) %>
-                      <%= link_to user_lesson_path(@user, lesson) do %>
-                        <div><%= lesson.topic.name %></div>
-                        <div><%= lesson.name %></div>
-                        <div><%= lesson.classroom %></div>
-                      <% end %>
-                    <% end -%>
-                  <% end %>
-                </div>
-              <% end %>
-            <% end %>
+          <div id="events_calendar">
+            <%= render partial: "week_calendar", locals: {lessons: @lessons} %>
           </div>
         </div>
       </div>
@@ -44,28 +30,12 @@
       <div class="row">
         <div class="col-12">
           <%# 右上月曆 %>
-          <%= month_calendar events: @lessons do |date, lessons| %>
-            <%= date.day %>
-          <% end %> 
+          <div id="month_calendar">
+            <%= render partial: "month_calendar", locals: {lessons: @lessons} %>
+          </div>
           <%# ToDo List V2 %>
-          <div class="to_do_body">
-            <%# 客制化各項需以逗號分開 %>
-            <%= calendar partial: 'simple_calendar/to_do_list_v2', number_of_days: 1, events: @todos do |date, todos| %>
-              <% 8.upto(18).each do |hour| %>
-                <div class="day_time">
-                    <%= Time.parse("#{hour}:00").strftime("%l %P") %>
-                    <span id="hour-<%= hour %>" class="text-center">
-                      <% todos.each do |todo| %>
-                        <%- if todo.start_time.hour.between?(hour, hour + 0.9) %>
-                          <%= link_to user_lesson_path(@user, todo) do %>
-                            <%= todo.name %>
-                          <% end %>
-                        <% end -%>
-                      <% end %>
-                    </span>
-                </div>
-              <% end %>
-            <% end %>
+          <div id="todo_list">
+            <%= render partial: "todo_list", locals: {todos: @todos} %>
           </div>
         </div>
       </div>       
