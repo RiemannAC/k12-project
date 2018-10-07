@@ -1,9 +1,5 @@
 class TeachingfilesController < ApplicationController
   
-  def index
-    @teachingfiles = Teachingfile.all
-  end
-
   def create
     @user = User.find(params[:user_id])
     # upon clicking on create, determine what param id is passed
