@@ -2,14 +2,16 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!
-  before_action :call_methods_on_sidebar
+  before_action :call_methods_on_navbar
   before_action :set_classrooms
-  
   skip_before_action :verify_authenticity_token
+
+
+
   
   private
 
-  def call_methods_on_sidebar
+  def call_methods_on_navbar
     if signed_in?
       @user = current_user
       @subjects = @user.subjects.all
