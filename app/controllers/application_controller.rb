@@ -5,7 +5,8 @@ class ApplicationController < ActionController::Base
   before_action :call_methods_on_sidebar
   before_action :set_classrooms
   
-
+  skip_before_action :verify_authenticity_token
+  
   private
 
   def call_methods_on_sidebar
