@@ -5,7 +5,7 @@
         <% lessons.each do |lesson| %>
           <%- if lesson.start_time.hour.between?(hour, hour + 0.9) %>
             <%= link_to user_lesson_path(@user, lesson) do %>
-              <div><%= lesson.topic.name %></div>
+              <%#= lesson.topic.name %>
               <div><%= lesson.name %></div>
               <div><%= lesson.classroom %></div>
             <% end %>

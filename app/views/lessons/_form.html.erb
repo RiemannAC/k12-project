@@ -19,12 +19,6 @@
   </div>
 
   <div class="form-group">
-    <%=f.label :event_type, '課務類別' %>
-    <br/>
-    <%=f.select :event_type, ["lesson", "todo", "exam"], prompt: "Select One" %>
-  </div>
-
-  <div class="form-group">
     <%=f.label :period, "每週循環" %>
     <br/>
     <%=f.select :period, Lesson::REPEATS,{} %>
