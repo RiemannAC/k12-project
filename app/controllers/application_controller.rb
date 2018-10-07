@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :set_classrooms
   before_action :call_methods_across_board
-
+  
   private
 
   def call_methods_across_board
