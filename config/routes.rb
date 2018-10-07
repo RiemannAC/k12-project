@@ -46,6 +46,7 @@ Rails.application.routes.draw do
     end
 
     resources :events
+    get '/test' => 'calendar#test'
 
 
     resources :lessons do

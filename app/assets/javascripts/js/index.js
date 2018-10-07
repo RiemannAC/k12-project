@@ -59,7 +59,7 @@ $(document).ready(function() {
 
   /* -------------------manage cal2 (right pane)------------------- */
   $cal2.fullCalendar('changeView', 'agendaDay');
-  $cal2.fullCalendar('option', 'height', 805);
+  $cal2.fullCalendar('option', 'height', 807);
   $cal2.fullCalendar('option', {
       header: {
         left: '',
