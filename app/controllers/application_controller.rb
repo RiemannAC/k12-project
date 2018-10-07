@@ -2,18 +2,14 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!
-  #before_action :call_methods_on_navbar
+  before_action :call_methods_across_board
   
 
   private
 
-  def call_methods_on_navbar
+  def call_methods_across_board
     if signed_in?
-      @user = current_user
-
-      # _to_do_list
-      @day = Date.today
-      @todos = Lesson.where(event_type: "todo")
+      @subject_tags = SubjectTag.all
     end
   end
 

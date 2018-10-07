@@ -1,1 +1,48 @@
-<h1>This is Topic Show</h1>
+
+<div class="container">
+  <h1>This is Topic Show</h1>
+  <h2>上傳檔案總覽</h2>
+  <hr class="pink-hr">
+  <div class="row">
+    <div class="col-md-6">
+      <h3>【教材檔案】</h3>
+      <br>
+      <% @subject_tags.each do |subject| %>
+        <% if subject.materials.present? %>
+          <h5><%= subject.name %></h5>
+          <% subject.materials.each do |m| %>
+            <p><strong><%= m.mtrial_folder_name %></strong></p>
+            <ul>
+              <% m.teachingfiles.each do |t| %>  
+                <li><%= t.name %></li>
+              <% end %>
+            </ul>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="col-md-6">
+      <h3>【教案檔案】</h3>
+      <br>
+      <% @subject_tags.each do |subject| %>
+        <% if subject.plans.present? %>
+          <h5><%= subject.name %></h5>
+          <% subject.plans.each do |m| %>
+            <p><strong><%= m.plan_folder_name %></strong></p>
+            <ul>
+              <% m.teachingfiles.each do |t| %>  
+                <li><%= t.name %></li>
+                <ul>
+                <% t.attachments.each do |file| %>
+                  <li><i><%= file.file.filename %></i></li>
+                <% end %>
+                </ul>
+              <% end %>
+            </ul>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <!--這裡可以用上 kaminari 分頁 -->
+</div>
