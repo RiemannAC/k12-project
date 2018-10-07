@@ -34,6 +34,7 @@ class User < ApplicationRecord
   has_many :subjects, dependent: :destroy
   has_many :plans, dependent: :destroy
   has_many :materials, dependent: :destroy
+  has_many :events,dependent: :destroy
 
   mount_uploader :avatar, AvatarUploader
 
