@@ -12,6 +12,13 @@
 
 ActiveRecord::Schema.define(version: 20181009082113) do
 
+  create_table "addfiles", force: :cascade do |t|
+    t.integer "topic_id"
+    t.integer "teachingfile_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "aims", force: :cascade do |t|
     t.string "name"
     t.string "status"
