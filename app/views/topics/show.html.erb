@@ -14,7 +14,19 @@
             <p><strong><%= m.mtrial_folder_name %></strong></p>
             <ul>
               <% m.teachingfiles.each do |t| %>  
-                <li><%= t.name %></li>
+                <li> 
+                  <%= t.name %>
+                  <ul>
+                    <% t.attachments.each do |file| %>
+                      <li>
+                        <i><%= file.file.filename %></i>
+                        <p><%= link_to 'Add file' %>
+                           <%= link_to 'Remove file' %></p>
+                      </li>
+                    <% end %>
+                  </ul>
+                  
+                </li>
               <% end %>
             </ul>
           <% end %>
@@ -34,7 +46,11 @@
                 <li><%= t.name %></li>
                 <ul>
                 <% t.attachments.each do |file| %>
-                  <li><i><%= file.file.filename %></i></li>
+                  <li>
+                    <i><%= file.file.filename %></i>
+                    <p><%= link_to 'Add file' %>
+                      <%= link_to 'Remove file' %></p>
+                  </li>
                 <% end %>
                 </ul>
               <% end %>
