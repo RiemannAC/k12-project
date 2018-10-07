@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181009082113) do
+ActiveRecord::Schema.define(version: 20181011030903) do
 
   create_table "addfiles", force: :cascade do |t|
     t.integer "topic_id"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20181009082113) do
     t.integer "subject_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
   end
 
   create_table "classrooms_subjects", id: false, force: :cascade do |t|
@@ -41,15 +42,6 @@ ActiveRecord::Schema.define(version: 20181009082113) do
     t.integer "classroom_id", null: false
     t.index ["classroom_id"], name: "index_classrooms_subjects_on_classroom_id"
     t.index ["subject_id"], name: "index_classrooms_subjects_on_subject_id"
-  end
-
-  create_table "events", force: :cascade do |t|
-    t.string "title"
-    t.datetime "start"
-    t.datetime "end"
-    t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "events", force: :cascade do |t|
@@ -140,6 +132,7 @@ ActiveRecord::Schema.define(version: 20181009082113) do
     t.datetime "updated_at", null: false
     t.datetime "start_time"
     t.datetime "end_time"
+    t.integer "classroom_id"
   end
 
   create_table "users", force: :cascade do |t|
