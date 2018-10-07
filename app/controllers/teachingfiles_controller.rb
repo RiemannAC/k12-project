@@ -67,7 +67,7 @@ class TeachingfilesController < ApplicationController
     @teachingfile = @parent.teachingfiles.find(params[:id])
 
     if @teachingfile.update(teachingfile_params)
-      flash[:notice] = "teachingfile #{@teachingfile.name} was successfully updated"
+      flash[:notice] = "《#{@teachingfile.name}》成功新增"
       if params[:material_id]
         redirect_to user_material_path(@user,@material)
       elsif params[:plan_id]
@@ -75,7 +75,7 @@ class TeachingfilesController < ApplicationController
       end
     else
       @teachingfile = Teachingfile.all
-      flash[:alert] = "filename cannot be blank"
+      flash[:alert] = "檔案名稱不可空白"
       redirect_back fallback_location: root_path
     end
   end
@@ -107,6 +107,6 @@ class TeachingfilesController < ApplicationController
   private
 
   def teachingfile_params
-    params.require(:teachingfile).permit(:name,:attachment,:material_id,:plan_id,:user_id)
+    params.require(:teachingfile).permit(:name,:material_id,:plan_id, :user_id, {attachments: []})
   end
 end

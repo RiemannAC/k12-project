@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180924195324) do
+ActiveRecord::Schema.define(version: 20181007083554) do
 
   create_table "aims", force: :cascade do |t|
     t.string "name"
@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(version: 20180924195324) do
 
   create_table "teachingfiles", force: :cascade do |t|
     t.string "name"
-    t.string "attachment"
+    t.string "attachments"
     t.integer "material_id"
     t.integer "plan_id"
     t.integer "topic_id"

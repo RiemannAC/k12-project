@@ -46,7 +46,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 #常用
 gem 'devise'
 gem 'ffaker'
-gem 'carrierwave'
+gem 'carrierwave', github:'carrierwaveuploader/carrierwave'
 gem 'bootstrap', '~> 4.1.3'
 gem 'jquery-rails'
 gem 'font-awesome-rails'

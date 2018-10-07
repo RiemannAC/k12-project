@@ -24,7 +24,7 @@
 
               <div class="form-group">
               <%= f.label :plan_folder_name, "教學主題／單元" %>
-              <%= f.text_field :plan_folder_name ,class:"form-control"%>
+              <%= f.text_field :plan_folder_name ,class: "form-control"%>
               </div>
 
               <div class="form-group pull-right">
@@ -53,11 +53,11 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :attachment,'上傳附件' %>
-      <%= f.file_field :attachment %>
+      <%= f.label :attachments,'上傳附件' %>
+      <%= f.file_field :attachments, multiple: true %>
     </div>
 
-    <%= f.submit "上傳", class:"btn btn-primary" %>
+    <%= f.submit "上傳", class: "btn btn-primary" %>
 
   <% end %>
 
@@ -68,14 +68,20 @@
     <tr>
       <td style="padding-right:20px;"><%= teachingfile.name %></td>
       <td style="padding-right:20px;">
-        <%= link_to teachingfile.attachment_url do%>
-          <%= teachingfile.attachment.file.filename %>
-          <%= fa_icon 'download 2x', class: 'theme-font' %>
+        <% teachingfile.attachments.each_with_index do |file, index| %>
+        <div>
+          <%= link_to file.url do %>
+            <%= fa_icon 'download 2x', class: 'theme-font' %>
+            <%= file.file.filename %>
+          <% end %>
+          <%= link_to user_plan_teachingfile_attachment_path(@user, @plan, teachingfile, index), :method => :delete, data: { confirm: "要刪除《#{file.file.filename}》檔案嗎？" } do %>
+            <%= fa_icon 'trash', style: 'color: red;'%>
+          <% end %>
+        </div>
         <% end %>
       </td>
       <td style="padding-right:20px;"><%= link_to '編輯',edit_user_plan_teachingfile_path(@user, @plan,teachingfile) %></td>
       <td style="padding-right:20px;"> <%= link_to '刪除', user_plan_teachingfile_path(@user, @plan,teachingfile), method: :delete, data: { confirm: "確定要刪除這個檔案嗎？"} %></td>
-      
     </tr>
     <% end %>
   </table>
