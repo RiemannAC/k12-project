@@ -30,11 +30,8 @@ class TeachingfilesController < ApplicationController
     elsif @parent.is_a?(Plan)
       flash[:notice] = '成功新增教案的檔案 #{@teachingfile.filename}'
       redirect_to user_plan_path(@user,@plan)
-    
     end
-    
   end
-
 
   def edit
     @subject_tags = SubjectTag.order(created_at: :desc)
@@ -81,7 +78,6 @@ class TeachingfilesController < ApplicationController
     end
   end
    
-
   def destroy
     if params[:material_id]
       # if it is a material id, set instance of post id as @parent
@@ -104,6 +100,16 @@ class TeachingfilesController < ApplicationController
       redirect_back fallback_location: root_path
     end
   end
+
+  def addfile
+
+  end
+
+  def removefile
+    
+  end
+
+
 
   private
 
