@@ -18,23 +18,23 @@ Rails.application.routes.draw do
     end
 
     resources :plans do
-      resources :teachingfiles do 
+      resources :teachingfiles do
+        member do
+          post :addfile
+          post :removefile
+        end
         resources :attachments, only: :destroy do
-          member do
-            post :addfile
-            post :removefile
-          end
         end
       end
     end
 
     resources :materials do
       resources :teachingfiles do
+        member do
+          post :addfile
+          post :removefile
+        end
         resources :attachments, only: :destroy do
-          member do
-            post :addfile
-            post :removefile
-          end
         end
       end
     end
