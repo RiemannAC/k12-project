@@ -102,11 +102,19 @@ class TeachingfilesController < ApplicationController
   end
 
   def addfile
-
+    @teachingfile = Teachingfile.find(params[:id])
+    @topic = Topic.find_by(params[:topic_id])
+    # 呼叫其他 model 要用 find_by 才找得到 id?
+    @topic.addfiles.create(teachingfile: @teachingfile)
+    redirect_back fallback_location: root_path
   end
 
   def removefile
-    
+    @teachingfile = Teachingfile.find(params[:id])
+    @topic = Topic.find_by(params[:topic_id])
+    addfiles = Addfile.where(teachingfile: @teachingfile, topic: @topic)
+    addfiles.destroy_all
+    redirect_back fallback_location: root_path
   end
 
 
