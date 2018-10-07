@@ -1,0 +1,13 @@
+<div class="container">
+  <h1>Here shows all the teachingfiles</h1>
+  <ul>
+    <% @teachingfiles.each do |folder| %>
+    <li>
+      <%= folder.name %>
+      <%= folder.attachments.each do |file| %>
+        <%= file.file.name %>
+      <% end %>
+    </li>
+    <% end %>
+  </ul>
+</div>
