@@ -13,7 +13,7 @@
 #  topic_id      :integer
 
 class Teachingfile < ApplicationRecord
-  mount_uploader :attachments, AttachmentUploader # Tells rails to use this uploader for this model.
+  mount_uploaders :attachments, AttachmentUploader # Tells rails to use this uploader for this model.
   serialize :attachments, JSON
   
   validates_presence_of :name
