@@ -19,14 +19,13 @@ class LessonsController < ApplicationController
   end
 
   def show
-    @topic = Topic.new
-    
-
-    @topics = @subject.topics.all
+    @classroom = Classroom.new
+    @lesson = Lesson.find(params[:id])
+    @classrooms = @subject.classrooms.all
 
     if params[:subject_id]
-      @topic= @subject.topics.find(params[:topic_id])
-      @aim = @topic.aims.find(params[:id])     
+      @classroom= @subject.classrooms.find(params[:classroom_id])
+      @aim = @classroom.aims.find(params[:id])     
     end
   end
 
@@ -37,8 +36,8 @@ class LessonsController < ApplicationController
   def new
     # debug：先 create 就多出無用的資料了，用 new
     subject = @user.subjects.new
-    topic = subject.topics.new
-    @lesson = topic.lessons.new
+    classroom = subject.classrooms.new
+    @lesson = classroom.lessons.new
     # render :json => {:form => render_to_string(:partial => 'form')}
   end
   
@@ -47,17 +46,16 @@ class LessonsController < ApplicationController
     if params[:lesson][:period] == "Does not repeat"
 
       # 時間在資料庫的時區是 +0
-      @subject = @user.subjects.find_or_initialize_by(name: params[:lesson][:name], classroom: params[:lesson][:classroom])
-      @topic = @subject.topics.new(name: "未分類")
-      @lesson = @topic.lessons.new(lesson_params)
+      @subject = @user.subjects.find_or_initialize_by(name: params[:lesson][:name])
+      @classroom = @subject.classrooms.find_or_initialize_by(name: (params[:lesson][:grade] + params[:lesson][:room]), grade: params[:lesson][:grade], room: params[:lesson][:room])
+      @lesson = @classroom.lessons.new(lesson_params)
       @lesson.end_time = @lesson.start_time + 1.hour
 
     else # params[:lesson][:period] == "Repeat weekly"
 
       # 時間在資料庫的時區是 +0
-      @subject = @user.subjects.find_or_initialize_by(name: params[:lesson][:name], classroom: params[:lesson][:classroom])
-      @topic = @subject.topics.new(name: "未分類")
-
+      @subject = @user.subjects.find_or_initialize_by(name: params[:lesson][:name])
+      @classroom = @subject.classrooms.find_or_initialize_by(name: (params[:lesson][:grade] + params[:lesson][:room]), grade: params[:lesson][:grade], room: params[:lesson][:room])
 
       start = Time.new(params[:lesson]['start_time(1i)'],params[:lesson]['start_time(2i)'],params[:lesson]['start_time(3i)'],params[:lesson]['start_time(4i)'],params[:lesson]['start_time(5i)'])
 
@@ -74,7 +72,7 @@ class LessonsController < ApplicationController
 
        i = 0
       loop do
-        @lesson = @topic.lessons.new(lesson_params)
+        @lesson = @classroom.lessons.new(lesson_params)
         @lesson.start_time = start
         @lesson.end_time = start + 1.hour
         @lesson.save
@@ -97,8 +95,8 @@ class LessonsController < ApplicationController
   def edit
     lesson = Lesson.find_by_id(params[:id])
     # 不用路由 params 也可將 id 傳入，但括號內不可使用"實例變數"
-    topic = Topic.find_by_id(lesson.topic_id)
-    @subject = Subject.find_by_id(topic.subject_id)
+    classroom = Classroom.find_by_id(lesson.classroom_id)
+    @subject = Subject.find_by_id(classroom.subject_id)
     # 測試用 render :json => { :form => render_to_string(:partial => 'edit_form') }
   end
 
@@ -148,17 +146,17 @@ class LessonsController < ApplicationController
       # pluck 方法，輸出 array，第一步就用 each do 展開的話，後面就難收拾了
       subject_ids = Subject.where(user_id: @user).pluck(:id)
       # 疊代
-      topic_ids = Topic.where(subject_id: subject_ids).pluck(:id)
-      # topic_id 欄位，輸入 id array，輸出 lessons 的 ActiveRecord，不需要用 id 各別宣告再收集起來。
-      @lessons = Lesson.where(topic_id: topic_ids, event_type: "lesson")
+      classroom_ids = Classroom.where(subject_id: subject_ids).pluck(:id)
+      # classroom_id 欄位，輸入 id array，輸出 lessons 的 ActiveRecord，不需要用 id 各別宣告再收集起來。
+      @lessons = Lesson.where(classroom_id: classroom_ids, event_type: "lesson")
     end
 
     # 刪除整學期的課程，待利用
     def set_subject_of_lesson
     lesson = Lesson.find_by_id(params[:id])
     # 注意：不用路由 params 也可將 id 傳入，但括號內不可使用"實例變數"。此方法可避免巢狀路由過於複雜。
-    topic = Topic.find_by_id(lesson.topic_id)
-    @subject = Subject.find_by_id(topic.subject_id)
+    classroom = Classroom.find_by_id(lesson.classroom_id)
+    @subject = Subject.find_by_id(classroom.subject_id)
     end
 
     def set_user
@@ -170,7 +168,7 @@ class LessonsController < ApplicationController
     end
 
     def lesson_params
-      params.require(:lesson).permit(:name, :start_time,'start_time(1i)', 'start_time(2i)', 'start_time(3i)', 'start_time(4i)', 'start_time(5i)', 'end_time(1i)', 'end_time(2i)', 'end_time(3i)', 'end_time(4i)', 'end_time(5i)', :period, :frequency, :commit_button, :event_type, :classroom)
+      params.require(:lesson).permit(:name, :start_time,'start_time(1i)', 'start_time(2i)', 'start_time(3i)', 'start_time(4i)', 'start_time(5i)', 'end_time(1i)', 'end_time(2i)', 'end_time(3i)', 'end_time(4i)', 'end_time(5i)', :period, :frequency, :commit_button, :event_type, :grade, :room)
     end
 
 end

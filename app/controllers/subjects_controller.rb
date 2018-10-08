@@ -1,6 +1,5 @@
 class SubjectsController < ApplicationController
   def index
-    
   end
 
   def new
@@ -23,14 +22,14 @@ class SubjectsController < ApplicationController
   def show
     @user = current_user
     @subject = @user.subjects.find(params[:id])
-    @topic = Topic.new
+    @classroom = Classroom.new
     
 
-    @topics = @subject.topics.all
+    @classrooms = @subject.classrooms.all
 
     if params[:subject_id]
-      @topic= @subject.topics.find(params[:topic_id])
-      @aim = @topic.aims.find(params[:id])     
+      @classroom= @subject.classrooms.find(params[:classroom_id])
+      @aim = @classroom.aims.find(params[:id])     
     end
   end
 

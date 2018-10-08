@@ -11,7 +11,13 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">我的班級</a>
           <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="navbarDropdown2">
-            這裡用 each do 把班級名稱條列出來
+            <% @classroom_array.each do |classroom| %>
+              <a class="dropdown-item">
+                <%# link_to 路由需要另外設定 do %> <%# 加了選單內容變不見 %>
+                  <%= classroom %>
+                <%# end %>
+              </a>
+            <% end %>
           </div>
         </li>
 

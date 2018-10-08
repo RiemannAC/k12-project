@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!
   before_action :call_methods_on_sidebar
+  before_action :set_classrooms
   
 
   private
@@ -14,6 +15,8 @@ class ApplicationController < ActionController::Base
       @materials = @user.materials.all
       @plans = @user.plans.all
       @subject_tags = SubjectTag.order(name: :desc)
+      # 已排序且唯一，連結路由需要另外設定路由
+      @classroom_array = Classroom.order(:name).select(:name).map(&:name).uniq
     end
   end
 
@@ -29,6 +32,11 @@ class ApplicationController < ActionController::Base
       flach[:alert] = "Not Allow!"
       redirect_to user_lessons_path
     end
+  end
+
+  def set_classrooms
+    subject_ids = Subject.where(user_id: @user).pluck(:id)
+    @classrooms = Classroom.where(subject_id: subject_ids)#.pluck(:grade, :room)
   end
 
 end
