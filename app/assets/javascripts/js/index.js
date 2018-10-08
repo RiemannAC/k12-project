@@ -5,6 +5,8 @@ $(document).ready(function() {
   var $cal = $('.calendar');
   var $cal1 = $('#calendar1');
   var $cal2 = $('#calendar2');
+  var events_path = gon.events_path;
+  
 
   /* --------------------------initialize calendar-------------------------- */
   /* --------------------------javascript version------------------------------
@@ -78,7 +80,7 @@ $(document).ready(function() {
 
       select: function(start, end) {
         {
-          $.getScript('/users' + '/user_id' + '/events/new', function() {
+          $.getScript('' + '/events/new', function() {
             $('#event_date_range').val(moment(start).format("MM/DD/YYY HH:mm") + ' - ' + moment(end).format("MM/DD/YYY HH:mm"));
             date_range_picker();
             $('.start_hidden').val(moment(start).format('YYYY-MM-DD HH:mm'));
@@ -111,11 +113,11 @@ $(document).ready(function() {
             data: event_data,
             //type: 'PATCH'
             type:"PUT",
-            url: "/users" + "/user_id" + "/events/"+ event.id,
+            url: event_path + 'events/' + event.id,
         });
       },
       eventClick: function(event, jsEvent, view) {
-        $.getScript("/users" + "/user_id" + "/events/"+ event.id + "/edit", function() {
+        $.getScript("users/" + "user_id" +"/events/"+ event.id + "/edit", function() {
           $('#event_date_range').val(moment(event.start).format("MM/DD/YYYY HH:mm") + ' - ' + moment(event.end).format("MM/DD/YYYY HH:mm"))
           date_range_picker();
           $('.start_hidden').val(moment(event.start).format('YYYY-MM-DD HH:mm'));

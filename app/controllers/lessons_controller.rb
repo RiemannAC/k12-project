@@ -17,6 +17,9 @@ class LessonsController < ApplicationController
     # _to_do_list
     @day = Date.today
     @todos = Lesson.where(event_type: "todo")
+
+    #gon.events_path = @user.events.all
+    
   end
 
   def show
