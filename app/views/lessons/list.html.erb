@@ -19,7 +19,7 @@
         <% @lessons.each do |lesson| %>
           <tr>
             <td><%= lesson.name %></td>
-            <td><%= lesson.classroom %></td>
+            <td><%= lesson.grade %> <%= lesson.room %></td>
             <td><%= lesson.start_time.strftime("%Y-%m-%d") %></td>
             <td><%= lesson.end_time.strftime("%Y-%m-%d") %></td>
             <td><%= link_to '瀏覽', user_lesson_path(@user, lesson) %></td>

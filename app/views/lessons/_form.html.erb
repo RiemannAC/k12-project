@@ -1,31 +1,37 @@
 <%= form_for [@user, @lesson], url: {action: "create"} do |f| %>
 
-  <div class="form-group">
-    <%=f.label :name, "課程科目" %>
+  <div class="form-group col-8">
+    <%= f.label :name, "課程科目" %>
     <br/>
-    <%=f.text_field :name, class: "form-control" %>
+    <%= f.text_field :name, class: "form-control" %>
   </div>
 
-  <div class="form-group">
-    <%=f.label :classroom, "班級名稱" %>
-    <br/>
-    <%=f.text_field :classroom, class: "form-control", placeholder: "ex. 1年1班" %>
+  <div class="form-row col-8">
+    <div class="col">
+      <%= f.label :grade, "年級" %>
+      <% grade_array = Classroom::GRADE.map { |grade| grade + "年"} %>
+      <%= f.select :grade, grade_array,{}, class: "form-control" %>
+    </div>
+    <div class="col">
+      <%= f.label :room, "班級" %>
+      <%= f.text_field :room, class: "form-control", placeholder: "ex. 1班" %>
+    </div>
   </div>
 
-  <div class="form-group">
-    <%=f.label :start_time, 'Start Time' %>
+  <div class="form-group col-8">
+    <%= f.label :start_time, 'Start Time' %>
     <br/>
-    <%=f.datetime_select :start_time %>
+    <%= f.datetime_select :start_time, discard_minute: true, start_hour: 8, end_hour: 18, ampm: true, default: Date.today.beginning_of_day + 8.hour %>
   </div>
 
-  <div class="form-group">
-    <%=f.label :period, "每週循環" %>
+  <div class="form-group col-8">
+    <%= f.label :period, "每週循環" %>
     <br/>
-    <%=f.select :period, Lesson::REPEATS,{} %>
+    <%= f.select :period, Lesson::REPEATS,{}, class: "form-control" %>
   </div>
 
-  <div class="actions">
-    <%=f.submit "新增", class: "btn btn-primary" %>
+  <div class="actions col-8">
+    <%= f.submit "新增", class: "btn btn-primary" %>
   </div>
 
 <%end %>

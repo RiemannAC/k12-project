@@ -7,7 +7,7 @@
             <%= link_to user_lesson_path(@user, lesson) do %>
               <%#= lesson.topic.name %>
               <div><%= lesson.name %></div>
-              <div><%= lesson.classroom %></div>
+              <div><%= lesson.grade %> <%= lesson.room %> </div>
             <% end %>
           <% end -%>
         <% end %>
