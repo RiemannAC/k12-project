@@ -14,7 +14,6 @@
 class Lesson < ApplicationRecord
   attr_accessor :period, :frequency, :commit_button
   validates_presence_of :name
-  # validates :classroom, :presence => { :message => "請填班級名稱" }, :if => :lesson?
 
   belongs_to :classroom, optional: true
 

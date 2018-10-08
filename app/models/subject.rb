@@ -19,7 +19,7 @@ class Subject < ApplicationRecord
   has_many :plans
   has_many :materials
 
-  # validates_presence_of :name
+  validates_presence_of :name
 
   GRADE = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
   
