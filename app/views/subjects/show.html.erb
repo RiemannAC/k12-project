@@ -20,14 +20,14 @@
   <!--row-->
     <div class="col-md-10">
       <div id="container_posts">
-        <% if @subject.topics.count <= 1 %>
+        <% if @subject.classrooms.count <= 1 %>
           <h5>新增卡片請點擊上方的「新增教學計畫」</h5>
-            <% @subject.topics.each do |topic|%>  
-            <%= render partial:'topics/topic',locals: {topic: topic } %>
+            <% @subject.classrooms.each do |classroom|%>  
+            <%= render partial:'classrooms/classroom',locals: {classroom: classroom } %>
           <% end %>
         <% else %> 
-          <% @subject.topics.each do |topic|%>  
-            <%= render partial:'topics/topic',locals: {topic: topic } %>
+          <% @subject.classrooms.each do |classroom|%>  
+            <%= render partial:'classrooms/classroom',locals: {classroom: classroom } %>
           <% end %>
         <% end %>  
       </div>
@@ -37,51 +37,3 @@
   </div>
 
 </div>
-
-
-<%= form_for [@user,@subject,@topic] do |f| %>
-  <div class="modal fade" id="mynewpost" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
- 
-            <h5 class="modal-title" id="myModalLabel">反思／備註</h5>
-          </div>
-
-          <div class="modal-body">
-            <%# modal-body %>
-              <!--輸入主題日期開始-->
-              <div class="field">
-                <%= f.label "開始日期" %>
-                <%= f.text_field :start_time, class: 'form-control post_theme', placeholder: "輸入開始日期 ex:9/14" %>
-              </div>
-
-              <!--輸入主題日期結束-->
-              <div class="field">
-                <%= f.label "結束日期" %>
-                <%= f.text_field :end_time, class: 'form-control post_theme', placeholder: "輸入結束日期 ex:9/20" %>
-              </div>
-
-              <!--輸入教學主題-->
-              <div class="field">
-                <%= f.label "教學單元主題" %>
-                <%= f.text_field :name, class: 'form-control post_theme', placeholder: "輸入教學主題" %>
-              </div>
-            
-            <%# modal-body  %>
-          </div>
-
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal" id="mynewpostclose">close</button>
-            <%= submit_tag "create",class:"btn btn-primary" %>
-          </div>
-        </div>
-      </div>
-    </div>
-<% end %> 
-
-
-
