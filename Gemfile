@@ -58,3 +58,4 @@ gem 'ransack'
 #日曆功能
 gem 'simple_calendar', '~> 2.0'
 gem 'trix'
+gem 'gon'
