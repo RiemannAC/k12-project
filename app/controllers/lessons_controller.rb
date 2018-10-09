@@ -1,6 +1,7 @@
 class LessonsController < ApplicationController
   before_action :set_lesson, only: [:show, :edit, :update, :destroy]
   # before_action :set_subject_of_lesson, only: [:edit]
+
   before_action :set_subject_of_lesson, only: [:show]
 
   before_action :set_user, only: [:index, :show, :list]
@@ -21,7 +22,8 @@ class LessonsController < ApplicationController
   def show
     @classroom = Classroom.new
     @lesson = Lesson.find(params[:id])
-    @classrooms = @subject.classrooms.all
+    # HABTM 關聯方法
+    @classrooms = @subject.classrooms
 
     if params[:subject_id]
       @classroom= @subject.classrooms.find(params[:classroom_id])
@@ -36,7 +38,7 @@ class LessonsController < ApplicationController
   def new
     # debug：先 create 就多出無用的資料了，用 new
     subject = @user.subjects.new
-    classroom = subject.classrooms.new
+    classroom = Classroom.new
     @lesson = classroom.lessons.new
     # render :json => {:form => render_to_string(:partial => 'form')}
   end
@@ -46,16 +48,14 @@ class LessonsController < ApplicationController
     if params[:lesson][:period] == "Does not repeat"
 
       # 時間在資料庫的時區是 +0
-      @subject = @user.subjects.find_or_initialize_by(name: params[:lesson][:name])
-      @classroom = @subject.classrooms.find_or_initialize_by(name: (params[:lesson][:grade] + params[:lesson][:room]), grade: params[:lesson][:grade], room: params[:lesson][:room])
+      @classroom = Classroom.find_or_initialize_by(name: (params[:lesson][:grade] + params[:lesson][:room]), grade: params[:lesson][:grade], room: params[:lesson][:room])
+
       @lesson = @classroom.lessons.new(lesson_params)
       @lesson.end_time = @lesson.start_time + 1.hour
 
     else # params[:lesson][:period] == "Repeat weekly"
 
-      # 時間在資料庫的時區是 +0
-      @subject = @user.subjects.find_or_initialize_by(name: params[:lesson][:name])
-      @classroom = @subject.classrooms.find_or_initialize_by(name: (params[:lesson][:grade] + params[:lesson][:room]), grade: params[:lesson][:grade], room: params[:lesson][:room])
+      @classroom = Classroom.find_or_initialize_by(name: (params[:lesson][:grade] + params[:lesson][:room]), grade: params[:lesson][:grade], room: params[:lesson][:room])
 
       start = Time.new(params[:lesson]['start_time(1i)'],params[:lesson]['start_time(2i)'],params[:lesson]['start_time(3i)'],params[:lesson]['start_time(4i)'],params[:lesson]['start_time(5i)'])
 
@@ -84,6 +84,11 @@ class LessonsController < ApplicationController
     end
 
     if @lesson.save
+
+      # Subject name 需保持唯一性，lesson name 編輯時需同步更換同名的 subject
+      @subject = @user.subjects.find_or_create_by(name: params[:lesson][:name])
+      @subject.classrooms << @classroom unless @subject.classrooms.exists?(@classroom.id)
+
       flash[:notice] = "行事曆已增添一筆資料"
       redirect_to user_lessons_path
     else
@@ -93,11 +98,6 @@ class LessonsController < ApplicationController
   end
 
   def edit
-    lesson = Lesson.find_by_id(params[:id])
-    # 不用路由 params 也可將 id 傳入，但括號內不可使用"實例變數"
-    classroom = Classroom.find_by_id(lesson.classroom_id)
-    @subject = Subject.find_by_id(classroom.subject_id)
-    # 測試用 render :json => { :form => render_to_string(:partial => 'edit_form') }
   end
 
   def update
@@ -145,18 +145,25 @@ class LessonsController < ApplicationController
     def set_lessons
       # pluck 方法，輸出 array，第一步就用 each do 展開的話，後面就難收拾了
       subject_ids = Subject.where(user_id: @user).pluck(:id)
-      # 疊代
-      classroom_ids = Classroom.where(subject_id: subject_ids).pluck(:id)
+
+      # 一個 id 可行，但塞兩個 id 進去 SQL 語法就爆了
+      # classroom_ids = Classroom.joins("join classrooms_subjects on classrooms.id = classrooms_subjects.classroom_id").where(["classrooms_subjects.subject_id = ?", subject_ids]).pluck(:id)
+      # 適用於 HABTM，外鍵被移掉需要合併 subjects 來撈資料
+      classroom_ids = Classroom.joins(:subjects).where(subjects: { id: subject_ids })
+
       # classroom_id 欄位，輸入 id array，輸出 lessons 的 ActiveRecord，不需要用 id 各別宣告再收集起來。
       @lessons = Lesson.where(classroom_id: classroom_ids, event_type: "lesson")
     end
 
-    # 刪除整學期的課程，待利用
     def set_subject_of_lesson
     lesson = Lesson.find_by_id(params[:id])
     # 注意：不用路由 params 也可將 id 傳入，但括號內不可使用"實例變數"。此方法可避免巢狀路由過於複雜。
-    classroom = Classroom.find_by_id(lesson.classroom_id)
-    @subject = Subject.find_by_id(classroom.subject_id)
+    classroom_id = Classroom.find_by_id(lesson.classroom_id).id
+    # SQL 語法，只吃 id 不吃物件
+    subjects = Subject.joins("join classrooms_subjects on subjects.id = classrooms_subjects.subject_id").where(["classrooms_subjects.classroom_id = ?", classroom_id])
+    # 這個資料撈法要在 @subject name 唯一性，且 @subject 及其下的 @lessons 的名稱需同步 CRUD 才行！
+    # 若 .first 沒加，撈到的是 relation 無法使用關聯方法
+    @subject = subjects.where(name: lesson.name).first
     end
 
     def set_user
