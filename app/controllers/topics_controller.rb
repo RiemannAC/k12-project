@@ -6,7 +6,7 @@ class TopicsController < ApplicationController
     @topic = @subject.topics.find(params[:id])
     
   end
-
+ 
   def create
     @user = current_user
     @subject = @user.subjects.find(params[:subject_id])
@@ -53,6 +53,7 @@ class TopicsController < ApplicationController
       #format.js
     end
   end
+
 
   private
   def topic_params
