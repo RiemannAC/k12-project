@@ -11,13 +11,13 @@
 // about supported directives.
 //
 //= require rails-ujs
-//= require jquery-ui
 //= require turbolinks
 //= require_tree .
 //= require trix
 //= require jquery3
 //= require popper
 //= require bootstrap
+//= require bootstrap-datepicker
 //
 $(function() {
   setTimeout(function(){
