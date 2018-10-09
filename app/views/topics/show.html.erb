@@ -17,7 +17,7 @@
                 <li>
                   <%= link_to 'Add file', addfile_user_subject_topic_teachingfile_path(@user,@subject,@topic,teachingfile), method: :post, class: 'btn btn-outline-primary btn-sm' %>
                   <%= link_to 'Remove file', removefile_user_subject_topic_teachingfile_path(@user,@subject,@topic,teachingfile), method: :post, class: 'btn btn-outline-warning btn-sm' %> |  
-                  <%= teachingfile.name %>   
+                  <b><%= teachingfile.name %></b>
                 </li>
                 <ul>
                   <% teachingfile.attachments.each do |file| %>
@@ -39,14 +39,14 @@
           <% subject.plans.each do |m| %>
             <p><strong><%= '主題／單元：' + m.plan_folder_name %></strong></p>
             <ul>
-              <% m.teachingfiles.each do |t| %>  
+              <% m.teachingfiles.each do |teachingfile| %>  
                 <li>
-                  <%= link_to 'Add file', addfile_user_teachingfile_path(@user, @topic, t), method: :post, class: 'btn btn-outline-primary btn-sm' %>
-                  <%= link_to 'Remove file', removefile_user_teachingfile_path(@user, @topic, t), method: :post, class: 'btn btn-outline-warning btn-sm' %> |  
-                  <%= t.name %>
+                  <%= link_to 'Add file', addfile_user_subject_topic_teachingfile_path(@user, @subject, @topic, teachingfile), method: :post, class: 'btn btn-outline-primary btn-sm' %>
+                  <%= link_to 'Remove file', removefile_user_subject_topic_teachingfile_path(@user, @subject, @topic, teachingfile), method: :post, class: 'btn btn-outline-warning btn-sm' %> |  
+                  <b><%= teachingfile.name %></b>
                 </li>
                 <ul>
-                <% t.attachments.each do |file| %>
+                <% teachingfile.attachments.each do |file| %>
                   <li><i><%= file.file.filename %></i></li>
                 <% end %>
                 </ul>
