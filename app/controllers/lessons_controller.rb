@@ -1,7 +1,9 @@
 class LessonsController < ApplicationController
   before_action :set_lesson, only: [:show, :edit, :update, :destroy]
   # before_action :set_subject_of_lesson, only: [:edit]
-  before_action :set_subject_of_lesson, only: [:show]
+
+  # has_and_belongs_to_many
+  #before_action :set_subject_of_lesson, only: [:show]
 
   before_action :set_user, only: [:index, :show, :list]
   before_action :set_lessons, only: [:index, :list]
@@ -21,7 +23,13 @@ class LessonsController < ApplicationController
   def show
     @classroom = Classroom.new
     @lesson = Lesson.find(params[:id])
-    @classrooms = @subject.classrooms.all
+    #@classrooms = @subject.classrooms.all
+
+    # has_and_belongs_to_many
+    # 回呼關
+    @classrooms = Classroom.all
+    @subject = Subject.first
+
 
     if params[:subject_id]
       @classroom= @subject.classrooms.find(params[:classroom_id])
@@ -36,7 +44,11 @@ class LessonsController < ApplicationController
   def new
     # debug：先 create 就多出無用的資料了，用 new
     subject = @user.subjects.new
-    classroom = subject.classrooms.new
+
+    # has_and_belongs_to_many
+    #classroom = subject.classrooms.new
+    classroom = Classroom.new
+
     @lesson = classroom.lessons.new
     # render :json => {:form => render_to_string(:partial => 'form')}
   end
@@ -47,7 +59,13 @@ class LessonsController < ApplicationController
 
       # 時間在資料庫的時區是 +0
       @subject = @user.subjects.find_or_initialize_by(name: params[:lesson][:name])
-      @classroom = @subject.classrooms.find_or_initialize_by(name: (params[:lesson][:grade] + params[:lesson][:room]), grade: params[:lesson][:grade], room: params[:lesson][:room])
+
+      # has_and_belongs_to_many
+      #@classroom = @subject.classrooms.find_or_initialize_by(name: (params[:lesson][:grade] + params[:lesson][:room]), grade: params[:lesson][:grade], room: params[:lesson][:room])
+      @classroom = Classroom.find_or_initialize_by(name: (params[:lesson][:grade] + params[:lesson][:room]), grade: params[:lesson][:grade], room: params[:lesson][:room])
+
+      @subject.classrooms << @classroom unless @subject.classrooms.exists?(@classroom.id)
+
       @lesson = @classroom.lessons.new(lesson_params)
       @lesson.end_time = @lesson.start_time + 1.hour
 
@@ -55,7 +73,12 @@ class LessonsController < ApplicationController
 
       # 時間在資料庫的時區是 +0
       @subject = @user.subjects.find_or_initialize_by(name: params[:lesson][:name])
-      @classroom = @subject.classrooms.find_or_initialize_by(name: (params[:lesson][:grade] + params[:lesson][:room]), grade: params[:lesson][:grade], room: params[:lesson][:room])
+
+      # has_and_belongs_to_many
+      #@classroom = @subject.classrooms.find_or_initialize_by(name: (params[:lesson][:grade] + params[:lesson][:room]), grade: params[:lesson][:grade], room: params[:lesson][:room])
+      @classroom = Classroom.find_or_initialize_by(name: (params[:lesson][:grade] + params[:lesson][:room]), grade: params[:lesson][:grade], room: params[:lesson][:room])
+
+      @subject.classrooms << @classroom unless @subject.classrooms.exists?(@classroom.id)
 
       start = Time.new(params[:lesson]['start_time(1i)'],params[:lesson]['start_time(2i)'],params[:lesson]['start_time(3i)'],params[:lesson]['start_time(4i)'],params[:lesson]['start_time(5i)'])
 
@@ -84,6 +107,11 @@ class LessonsController < ApplicationController
     end
 
     if @lesson.save
+
+      # has_and_belongs_to_many
+      @subject = @user.subjects.find_or_create_by(name: params[:lesson][:name])
+      @subject.classrooms << @classroom unless @subject.classrooms.exists?(@classroom.id)
+
       flash[:notice] = "行事曆已增添一筆資料"
       redirect_to user_lessons_path
     else
@@ -93,10 +121,13 @@ class LessonsController < ApplicationController
   end
 
   def edit
-    lesson = Lesson.find_by_id(params[:id])
+    #lesson = Lesson.find_by_id(params[:id])
     # 不用路由 params 也可將 id 傳入，但括號內不可使用"實例變數"
-    classroom = Classroom.find_by_id(lesson.classroom_id)
-    @subject = Subject.find_by_id(classroom.subject_id)
+
+    # has_and_belongs_to_many
+    # 編輯 lesson 不需要給 subject
+    #classroom = Classroom.find_by_id(lesson.classroom_id)
+    #@subject = Subject.find_by_id(classroom.subject_id)
     # 測試用 render :json => { :form => render_to_string(:partial => 'edit_form') }
   end
 
@@ -146,7 +177,11 @@ class LessonsController < ApplicationController
       # pluck 方法，輸出 array，第一步就用 each do 展開的話，後面就難收拾了
       subject_ids = Subject.where(user_id: @user).pluck(:id)
       # 疊代
-      classroom_ids = Classroom.where(subject_id: subject_ids).pluck(:id)
+
+      # has_and_belongs_to_many
+      # classroom_ids = Classroom.where(subject_id: subject_ids).pluck(:id)
+      classroom_ids = Classroom.joins("join classrooms_subjects on classrooms.id = classrooms_subjects.classroom_id").where(["classrooms_subjects.subject_id = ?", subject_ids]).pluck(:id)
+
       # classroom_id 欄位，輸入 id array，輸出 lessons 的 ActiveRecord，不需要用 id 各別宣告再收集起來。
       @lessons = Lesson.where(classroom_id: classroom_ids, event_type: "lesson")
     end
@@ -155,8 +190,19 @@ class LessonsController < ApplicationController
     def set_subject_of_lesson
     lesson = Lesson.find_by_id(params[:id])
     # 注意：不用路由 params 也可將 id 傳入，但括號內不可使用"實例變數"。此方法可避免巢狀路由過於複雜。
-    classroom = Classroom.find_by_id(lesson.classroom_id)
-    @subject = Subject.find_by_id(classroom.subject_id)
+
+    # has_and_belongs_to_many
+    #classroom = Classroom.find_by_id(lesson.classroom_id)
+    #@subject = Subject.find_by_id(classroom.subject_id)
+    # 這個關聯要在 @subject name 唯一性，且 @subject 及其下的 @lessons 的名稱需同步 CRUD 才行！
+
+    #@subject = Subject.where(name: lesson.name)
+    # 不知為什麼，這個 query 到的實例變數，無法使用 classrooms 關聯方法
+    # only for lessons#show 使用
+
+    classroom_id = Classroom.find_by_id(lesson.classroom_id).id
+    subjects = Subject.joins("join classrooms_subjects on subjects.id = classrooms_subjects.subject_id").where(["classrooms_subjects.classroom_id = ?", classroom_id])
+    @subject = subjects.where(name: lesson.name)
     end
 
     def set_user
