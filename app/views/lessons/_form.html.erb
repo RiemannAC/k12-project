@@ -3,7 +3,6 @@
   <div class="form-group col-8">
     <%= f.label :name, "課程科目" %>
     <br/>
-    <%#= f.text_field :name, class: "form-control" %>
     <%= f.select :name, Subject::SUBJECT,{}, class: "form-control" %>
   </div>
 
