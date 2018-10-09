@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181008092250) do
+ActiveRecord::Schema.define(version: 20181009082113) do
 
   create_table "aims", force: :cascade do |t|
     t.string "name"
@@ -25,6 +25,22 @@ ActiveRecord::Schema.define(version: 20181008092250) do
     t.string "grade", default: "", null: false
     t.string "room", default: "", null: false
     t.integer "subject_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "classrooms_subjects", id: false, force: :cascade do |t|
+    t.integer "subject_id", null: false
+    t.integer "classroom_id", null: false
+    t.index ["classroom_id"], name: "index_classrooms_subjects_on_classroom_id"
+    t.index ["subject_id"], name: "index_classrooms_subjects_on_subject_id"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string "title"
+    t.datetime "start"
+    t.datetime "end"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
