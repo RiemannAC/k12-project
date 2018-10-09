@@ -23,6 +23,7 @@ class Subject < ApplicationRecord
   validates_presence_of :name
 
   GRADE = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
-  
+
+  SUBJECT = ["國文", "英文", "數學", "社會", "自然", "生活科技", "藝術", "音樂", "體育", "班級經營", "家政", "健康教育", "其他"]
 
 end
