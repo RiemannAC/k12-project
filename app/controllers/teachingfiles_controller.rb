@@ -102,18 +102,30 @@ class TeachingfilesController < ApplicationController
   end
 
   def addfile
+    @user = current_user
+    @subject = @user.subjects.find(params[:subject_id])
+    @topic = @subject.topics.find(params[:topic_id])   
+   
     @teachingfile = Teachingfile.find(params[:id])
-    @topic = Topic.find_by(params[:topic_id])
+    
+    
+    #@topic = Topic.find_by(params[:topic_id])
     # 呼叫其他 model 要用 find_by 才找得到 id?
-    @topic.addfiles.create(teachingfile: @teachingfile)
+    @teachingfile.addfiles.create!(topic: @topic)
+    flash[:notice] = "成功建立關聯"
     redirect_back fallback_location: root_path
   end
 
   def removefile
+    @user = current_user
+    @subject = @user.subjects.find(params[:subject_id])
+    @topic = @subject.topics.find(params[:topic_id])
+
     @teachingfile = Teachingfile.find(params[:id])
-    @topic = Topic.find_by(params[:topic_id])
-    addfiles = Addfile.where(teachingfile: @teachingfile, topic: @topic)
-    addfiles.destroy_all
+
+    addfile = Addfile.where(teachingfile: @teachingfile, topic: @topic).first
+    addfile.destroy
+    flash[:alert] = "成功刪除關聯"
     redirect_back fallback_location: root_path
   end
 
