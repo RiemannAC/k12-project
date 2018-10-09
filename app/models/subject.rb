@@ -14,7 +14,8 @@ class Subject < ApplicationRecord
   attr_accessor :commit_button # non-db attr 不要放 db arrt 會阻止寫入，而且不會報錯 
 
   belongs_to :user, optional: true
-  has_many :classrooms, dependent: :destroy
+  #has_many :classrooms, dependent: :destroy
+  has_and_belongs_to_many :classrooms
 
   has_many :plans
   has_many :materials
