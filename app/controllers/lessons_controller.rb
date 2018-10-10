@@ -28,6 +28,7 @@ class LessonsController < ApplicationController
       @topic= @subject.topics.find(params[:topic_id])
       @aim = @topic.aims.find(params[:id])     
     end
+
   end
 
   def list
