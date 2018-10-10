@@ -12,6 +12,13 @@
 
 ActiveRecord::Schema.define(version: 20181009082113) do
 
+  create_table "addfiles", force: :cascade do |t|
+    t.integer "topic_id"
+    t.integer "teachingfile_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "aims", force: :cascade do |t|
     t.string "name"
     t.string "status"
@@ -112,21 +119,18 @@ ActiveRecord::Schema.define(version: 20181009082113) do
     t.string "attachments"
     t.integer "material_id"
     t.integer "plan_id"
-    t.integer "topic_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "topics", force: :cascade do |t|
     t.string "name"
-    t.datetime "set_week"
-    t.string "file_upload"
     t.text "feedback"
     t.integer "subject_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "start_time"
-    t.string "end_time"
+    t.datetime "start_time"
+    t.datetime "end_time"
   end
 
   create_table "users", force: :cascade do |t|

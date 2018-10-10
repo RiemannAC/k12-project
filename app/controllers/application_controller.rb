@@ -2,13 +2,12 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!
-  before_action :call_methods_on_sidebar
   before_action :set_classrooms
-  
+  before_action :call_methods_across_board
 
   private
 
-  def call_methods_on_sidebar
+  def call_methods_across_board
     if signed_in?
       @user = current_user
       @subjects = @user.subjects.all
@@ -17,6 +16,7 @@ class ApplicationController < ActionController::Base
       @subject_tags = SubjectTag.order(name: :desc)
       # 已排序且唯一，連結路由需要另外設定路由
       @classroom_array = Classroom.order(:name).select(:name).map(&:name).uniq
+      @subject_tags = SubjectTag.all
     end
   end
 

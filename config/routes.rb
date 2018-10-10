@@ -13,20 +13,34 @@ Rails.application.routes.draw do
   resources :subject_tags
 
   resources :users do
+
+    member do
+      get :viewfile
+    end
+
     resources :plans do
       resources :teachingfiles do
-        resources :attachments, only: :destroy
+        resources :attachments, only: :destroy do
+        end
       end
     end
 
     resources :materials do
       resources :teachingfiles do
-        resources :attachments, only: :destroy
+        resources :attachments, only: :destroy do
+        end
       end
     end
 
     resources :subjects do
       resources :topics do
+        resources :teachingfiles do
+          member do
+            post :addfile
+            post :removefile
+          end
+        end
+        
         resources :aims
       end
     end

@@ -80,7 +80,7 @@
         </div>
         <% end %>
       </td>
-      <td style="padding-right:20px;"><%= link_to '編輯',edit_user_plan_teachingfile_path(@user, @plan,teachingfile) %></td>
+      <td style="padding-right:20px;"><%= link_to '重新上傳',edit_user_plan_teachingfile_path(@user, @plan,teachingfile) %></td>
       <td style="padding-right:20px;"> <%= link_to '刪除', user_plan_teachingfile_path(@user, @plan,teachingfile), method: :delete, data: { confirm: "確定要刪除這個檔案嗎？"} %></td>
     </tr>
     <% end %>

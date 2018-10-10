@@ -21,4 +21,6 @@ class Teachingfile < ApplicationRecord
   belongs_to :plan, optional: true
   #belongs_to :topic
   belongs_to :material, optional: true
+  has_many :addfiles #teachingfile 刪掉，但 addfile 應該還要保留才對
+  has_many :adding_topics, through: :addfiles, source: :topics
 end
