@@ -1,6 +1,10 @@
 <div class="container">
-  <h1>This is Topic Show</h1>
-  <h2>上傳檔案總覽</h2> 
+  <div id="topic-show-top">
+    <span class="h1-font">上傳檔案總覽</span>
+    <span class="right-link"> <%= link_to '>> 返回卡片' %></span> 
+  </div>
+  
+
   <hr class="pink-hr">
   <div class="row"> 
     <div class="col-md-6">
@@ -9,8 +13,14 @@
       <% @subject_tags.each do |subject| %>
         <% if subject.materials.present? %>
           <h5><%= '科目：' + subject.name %></h5>
+          <span class="right-link">
+            <%= link_to user_subject_topic_path(@user, @subject, @topic, :anchor => "topic-show-top") do %>
+              <%= fa_icon 'arrow-circle-up 2x', style: 'color: grey;', alt: 'back to top' %>
+            <% end %>
+          </span>
           <% subject.materials.each do |m| %>
             <p><strong><%= '主題／單元：' + m.mtrial_folder_name %></strong></p>
+
             <ul>
               <% m.teachingfiles.each do |teachingfile| %>  
                 <li>
@@ -27,6 +37,7 @@
             </ul>
           <% end %>
         <% end %>
+
       <% end %>
     </div>
     <div class="col-md-6">
@@ -35,6 +46,11 @@
       <% @subject_tags.each do |subject| %>
         <% if subject.plans.present? %>
           <h5><%= '科目：' + subject.name %></h5>
+          <span class="right-link">
+            <%= link_to user_subject_topic_path(@user, @subject, @topic, :anchor => "topic-show-top") do %>
+              <%= fa_icon 'arrow-circle-up 2x', style: 'color: grey;', alt: 'back to top' %>
+            <% end %>
+          </span>
           <% subject.plans.each do |m| %>
             <p><strong><%= '主題／單元：' + m.plan_folder_name %></strong></p>
             <ul>
