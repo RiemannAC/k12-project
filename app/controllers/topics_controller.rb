@@ -5,7 +5,7 @@ class TopicsController < ApplicationController
     @subject = @user.subjects.find(params[:subject_id])
     @topic = @subject.topics.find(params[:id])
     
-  end
+  end 
  
   def create
     @user = current_user
@@ -57,6 +57,6 @@ class TopicsController < ApplicationController
 
   private
   def topic_params
-    params.require(:topic).permit(:name,:subject_id,:start_time,:end_time,:feedback)
+    params.require(:topic).permit(:name,:subject_id,:classroom_id,:start_time,:end_time,:feedback)
   end
 end

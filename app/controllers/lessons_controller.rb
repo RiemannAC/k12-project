@@ -31,8 +31,8 @@ class LessonsController < ApplicationController
     @classroom = @subject.classrooms.where(id: params[:classroom_id]).first
     #@classroom = @subject.classrooms.find(params[:classroom_id])
     
-    #@topic = Topic.new
-    #@topics = @classroom.topics.all
+    @topic = Topic.new
+    #@topics = @lesson.classroom.topics.all
 
     if params[:subject_id] 
       #@classroom= @subject.classrooms.find(params[:classroom_id])
