@@ -18,7 +18,10 @@
 class Topic < ApplicationRecord
   belongs_to :subject, optional: true
   has_many :lessons, dependent: :destroy
-  has_many :teachingfiles
+
+  has_many :addfiles, dependent: :destroy 
+  # topic 刪掉， addfile 上也不會有檔案，但 teachingfiles上的應保留
+  has_many :added_files, through: :addfiles, source: :teachingfiles
 
   has_many :aims,dependent: :destroy
 end

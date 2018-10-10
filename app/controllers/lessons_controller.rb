@@ -33,6 +33,7 @@ class LessonsController < ApplicationController
       @classroom= @subject.classrooms.find(params[:classroom_id])
       @aim = @classroom.aims.find(params[:id])     
     end
+
   end
 
   def list

@@ -11,6 +11,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def viewfile
+    @user = current_user    
+  end
+
   def edit
     @user = User.find(params[:id])
     unless @user==current_user

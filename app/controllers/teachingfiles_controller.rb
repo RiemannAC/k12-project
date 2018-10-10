@@ -1,4 +1,5 @@
 class TeachingfilesController < ApplicationController
+  
   def create
     @user = User.find(params[:user_id])
     # upon clicking on create, determine what param id is passed
@@ -22,18 +23,15 @@ class TeachingfilesController < ApplicationController
     # .is_a? method determines if it is of a certain class.  Here, is @parent
     # of class Post?  Is @parents is the same parent id passed through params?
     if @parent.is_a?(Material) # template error with this included: (== params[:post_id])
-      flash[:notice] = '成功新增教材的檔案 #{@teachingfile.filename}'
+      flash[:notice] = '成功新增教材的檔案'
       redirect_to user_material_path(@user,@material)
     # if not part of the class Post, is it a Topic?  If so, save here and
     # redirect to the topic after save
     elsif @parent.is_a?(Plan)
-      flash[:notice] = '成功新增教案的檔案 #{@teachingfile.filename}'
+      flash[:notice] = '成功新增教案的檔案'
       redirect_to user_plan_path(@user,@plan)
-    
     end
-    
   end
-
 
   def edit
     @subject_tags = SubjectTag.order(created_at: :desc)
@@ -80,7 +78,6 @@ class TeachingfilesController < ApplicationController
     end
   end
    
-
   def destroy
     if params[:material_id]
       # if it is a material id, set instance of post id as @parent
@@ -103,6 +100,36 @@ class TeachingfilesController < ApplicationController
       redirect_back fallback_location: root_path
     end
   end
+
+  def addfile
+    @user = current_user
+    @subject = @user.subjects.find(params[:subject_id])
+    @topic = @subject.topics.find(params[:topic_id])   
+   
+    @teachingfile = Teachingfile.find(params[:id])
+    
+    
+    #@topic = Topic.find_by(params[:topic_id])
+    # 呼叫其他 model 要用 find_by 才找得到 id?
+    @teachingfile.addfiles.create!(topic: @topic)
+    flash[:notice] = "已將檔案放進卡片"
+    redirect_back fallback_location: root_path
+  end
+
+  def removefile
+    @user = current_user
+    @subject = @user.subjects.find(params[:subject_id])
+    @topic = @subject.topics.find(params[:topic_id])
+
+    @teachingfile = Teachingfile.find(params[:id])
+
+    addfile = Addfile.where(teachingfile: @teachingfile, topic: @topic)
+    addfile.destroy_all
+    flash[:alert] = "已刪除卡片檔案"
+    redirect_back fallback_location: root_path
+  end
+
+
 
   private
 
