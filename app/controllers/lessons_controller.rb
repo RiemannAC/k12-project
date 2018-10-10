@@ -22,15 +22,20 @@ class LessonsController < ApplicationController
     gon.event_path = ""
     
   end
-
+ 
   def show
+    
     @classroom = Classroom.new
     @lesson = Lesson.find(params[:id])
     # HABTM 關聯方法
-    @classrooms = @subject.classrooms
 
-    if params[:subject_id]
-      @classroom= @subject.classrooms.find(params[:classroom_id])
+    @classrooms = @subject.classrooms
+    #@classroom = @subject.classrooms.where(id: params[:classroom_id]).first
+    #@classroom = @subject.classrooms.find(params[:classroom_id])
+    @classroom = @lesson.classroom
+
+    if params[:subject_id] 
+      #@classroom= @subject.classrooms.find(params[:classroom_id])
       @aim = @classroom.aims.find(params[:id])     
     end
 
@@ -140,6 +145,8 @@ class LessonsController < ApplicationController
   end
 
   private
+
+
 
     # 設定使用者
     def set_lesson
