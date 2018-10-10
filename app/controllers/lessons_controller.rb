@@ -24,15 +24,15 @@ class LessonsController < ApplicationController
   end
  
   def show
-    
-    @classroom = Classroom.new
     @lesson = Lesson.find(params[:id])
     # HABTM 關聯方法
 
     @classrooms = @subject.classrooms
-    #@classroom = @subject.classrooms.where(id: params[:classroom_id]).first
+    @classroom = @subject.classrooms.where(id: params[:classroom_id]).first
     #@classroom = @subject.classrooms.find(params[:classroom_id])
-    @classroom = @lesson.classroom
+    
+    #@topic = Topic.new
+    #@topics = @classroom.topics.all
 
     if params[:subject_id] 
       #@classroom= @subject.classrooms.find(params[:classroom_id])
@@ -152,7 +152,7 @@ class LessonsController < ApplicationController
     def set_lesson
       @lesson = Lesson.find_by_id(params[:id])
     end
-
+ 
     # 顯示使用者所擁有的課表
     def set_lessons
       # pluck 方法，輸出 array，第一步就用 each do 展開的話，後面就難收拾了
@@ -176,6 +176,7 @@ class LessonsController < ApplicationController
     # 這個資料撈法要在 @subject name 唯一性，且 @subject 及其下的 @lessons 的名稱需同步 CRUD 才行！
     # 若 .first 沒加，撈到的是 relation 無法使用關聯方法
     @subject = subjects.where(name: lesson.name).first
+
     end
 
     def set_user
