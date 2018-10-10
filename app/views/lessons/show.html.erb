@@ -52,10 +52,9 @@
           <h2>現在可以秀出同科目所有班級</h2>
           <% if @subject.classrooms.count <= 1 %>
             <h5>新增卡片請點擊上方的「新增教學計畫」</h5>
-            <% @subject.classrooms.each do |classroom|%>  
-              <%= render partial:'classrooms/classroom',locals: {classroom: classroom } %>
-            <% end %>
-          <% else %> 
+            
+          <% else %>  
+            <%= @classroom.name %>
             <% @subject.classrooms.each do |classroom|%>  
               <%= render partial:'classrooms/classroom',locals: {classroom: classroom } %>
             <% end %>
