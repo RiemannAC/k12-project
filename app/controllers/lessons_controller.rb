@@ -166,22 +166,17 @@ class LessonsController < ApplicationController
     end
 
     def set_subject_of_lesson
-    lesson = Lesson.find_by_id(params[:id])
-    # 注意：不用路由 params 也可將 id 傳入，但括號內不可使用"實例變數"。此方法可避免巢狀路由過於複雜。
-    classroom_id = Classroom.find_by_id(lesson.classroom_id).id
-    # SQL 語法，只吃 id 不吃物件
-    subjects = Subject.joins("join classrooms_subjects on subjects.id = classrooms_subjects.subject_id").where(["classrooms_subjects.classroom_id = ?", classroom_id])
-    # 這個資料撈法要在 @subject name 唯一性，且 @subject 及其下的 @lessons 的名稱需同步 CRUD 才行！
-    # 若 .first 沒加，撈到的是 relation 無法使用關聯方法
-    @subject = subjects.where(name: lesson.name).first
+      lesson = Lesson.find_by_id(params[:id])
+      # 注意：不用路由 params 也可將 id 傳入，但括號內不可使用"實例變數"。此方法可避免巢狀路由過於複雜。
+      classroom_id = Classroom.find_by_id(lesson.classroom_id).id
+      # SQL 語法，只吃 id 不吃物件
+      subjects = Subject.joins("join classrooms_subjects on subjects.id = classrooms_subjects.subject_id").where(["classrooms_subjects.classroom_id = ?", classroom_id])
+      # 這個資料撈法要在 @subject name 唯一性，且 @subject 及其下的 @lessons 的名稱需同步 CRUD 才行！
+      # 若 .first 沒加，撈到的是 relation 無法使用關聯方法
+      @subject = subjects.where(name: lesson.name).first
 
-    
-    #lesson = Lesson.find(params[:lesson_id])
-    @classroom = Classroom.find(lesson.classroom_id)
-
-    #classroom = Classroom.find(params[:classroom_id])
-    #@topic = @classroom.topics.where(classroom_id: classroom.id).first
- 
+      
+      @classroom = Classroom.find(lesson.classroom_id)
     end
 
     def set_user
