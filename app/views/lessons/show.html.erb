@@ -1,9 +1,10 @@
+<!--
 <div class="row">
   <div class="col-12">
-    <%= render 'shared/msg' %>
+    <%#= render 'shared/msg' %>
 
     <div class="form-group">
-      <h1><%= @lesson.name %></h1>
+      <h1><%#= @lesson.name %></h1>
     </div>
 
     <div class="form-group">
@@ -18,12 +19,15 @@
     
     <%# buttons %>
     <div>
-      <%= link_to '編輯', edit_user_lesson_path(@user, @lesson), class: "btn btn-primary" %>
-      <%= link_to '刪除', user_lesson_path(@user, @lesson), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
-      <%= link_to '返回', user_lessons_path, class: "btn btn-secondary" %>
+      <%#= link_to '編輯', edit_user_lesson_path(@user, @lesson), class: "btn btn-primary" %>
+      <%#= link_to '刪除', user_lesson_path(@user, @lesson), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+      <%#= link_to '返回', user_lessons_path, class: "btn btn-secondary" %>
     </div>
   </div>
 </div>
+<-->
+
+
 
 <%# 以下為新增的科目內容，只有 lesson 才顯示以下內容 %>
 <% if @lesson.event_type == "lesson" %>
@@ -44,22 +48,21 @@
 
     <hr class="blue-hr">
 
-
-    <div class="row">
+ 
+    <div class="row"> 
     <!--row-->
       <div class="col-md-10">
         <div id="container_posts">
-          <h2>現在可以秀出同科目所有班級</h2>
-          <% if @subject.classrooms.count <= 1 %>
+          <% if @classroom.topics.count < 1 %>
             <h5>新增卡片請點擊上方的「新增教學計畫」</h5>
-            <% @subject.classrooms.each do |classroom|%>  
-              <%= render partial:'classrooms/classroom',locals: {classroom: classroom } %>
+            <% @topics.each do |topic|%>  
+              <%= render partial:'topics/topic',locals: {topic: topic } %>
             <% end %>
-          <% else %> 
-            <% @subject.classrooms.each do |classroom|%>  
-              <%= render partial:'classrooms/classroom',locals: {classroom: classroom } %>
+          <% else %>  
+            <% @topics.each do |topic|%>  
+              <%= render partial:'topics/topic',locals: {topic: topic } %>
             <% end %>
-          <% end %>  
+          <% end %>   
         </div>
 
       </div>
@@ -67,4 +70,51 @@
     </div>
 
   </div>
+<% end %>
+
+
+<%= form_for [@user,@classroom,@topic] do |f| %>
+  <div class="modal fade" id="mynewpost" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+ 
+            <h5 class="modal-title" id="myModalLabel">反思／備註</h5>
+          </div>
+
+          <div class="modal-body">
+            <%# modal-body %>
+              <!--輸入主題日期開始-->
+              <div class="field">
+                <%= f.label "開始日期" %>
+                <%= f.text_field :start_time, class: 'form-control post_theme', placeholder: "輸入開始日期 ex:9/14" %>
+              </div>
+            
+              <!--輸入主題日期結束-->
+              
+              <div class="field">
+                <%= f.label "結束日期" %>
+                <%= f.text_field :end_time, class: 'form-control post_theme', placeholder: "輸入結束日期 ex:9/20" %>
+              </div>
+
+              <!--輸入教學主題-->
+              
+              <div class="field">
+                <%= f.label "教學單元主題" %>
+                <%= f.text_field :name, class: 'form-control post_theme', placeholder: "輸入教學主題" %>
+              </div>
+            
+            <%# modal-body  %>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" id="mynewpostclose">close</button>
+            <%= submit_tag "create",class:"btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    </div>
 <% end %>
