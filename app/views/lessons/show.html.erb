@@ -49,21 +49,20 @@
     <hr class="blue-hr">
 
  
-    <div class="row">
+    <div class="row"> 
     <!--row-->
       <div class="col-md-10">
         <div id="container_posts">
-          <% if @subject.classrooms.count <= 1 %>
+          <% if @classroom.topics.count <= 1 %>
             <h5>新增卡片請點擊上方的「新增教學計畫」</h5>
-            <%# @topics.each do |topic|%>  
-              <%#= render partial:'topics/topic',locals: {topic: topic } %>
-            <%# end %>
+            <% @topics.each do |topic|%>  
+              <%= render partial:'topics/topic',locals: {topic: topic } %>
+            <% end %>
           <% else %>  
-            <%= @lesson.classroom.name %>
-            <%# @topics.each do |topic|%>  
-              <%#= render partial:'topics/topic',locals: {topic: topic } %>
-            <%# end %>
-          <% end %>  
+            <% @topics.each do |topic|%>  
+              <%= render partial:'topics/topic',locals: {topic: topic } %>
+            <% end %>
+          <% end %>   
         </div>
 
       </div>

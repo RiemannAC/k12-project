@@ -27,34 +27,34 @@
               <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myupdatepost_<%= topic.id  %>">編輯</button>
 
               <!--刪除教學主題計劃表--->
-              <%= link_to "刪除",  user_subject_topic_path(@user,@subject,topic) ,method: :delete, data: { confirm: "Are you sure?"},class: "btn btn-danger", remote: true %>
+              <%#= link_to "刪除",  user_subject_topic_path(@user,@subject,topic) ,method: :delete, data: { confirm: "Are you sure?"},class: "btn btn-danger", remote: true %>
 
               <!--教學回饋-->
               <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myupdatefeedback_<%= topic.id  %>">教學反思</button>
 
-              <%= link_to user_subject_topic_path(@user, @subject, topic) do %>
-                <span><%= fa_icon 'plus' %></span>
-                <span> <%= fa_icon 'folder' %></span>
-              <% end %>
+              <%#= link_to user_subject_topic_path(@user, @subject, topic) do %>
+                <span><%#= fa_icon 'plus' %></span>
+                <span> <%#= fa_icon 'folder' %></span>
+              <%# end %>
               
             </div>
           <h5>
           <!--教學單元主題下的教學目標-->
-          <%= form_for [@user,@subject,topic,Aim.new],remote: true do |f| %>
+          <%#= form_for [@user,@subject,topic,Aim.new],remote: true do |f| %>
             <%#= f.label :title, "教學目標" %>
             <div class="form-inline col-md-7">
               <div class="">
-                <%= f.text_field :name, placeholder:"新增教學目標", class: "form-control post_aim" %>
-                <%= f.submit "新增", class: "btn btn-primary" %>
+                <%#= f.text_field :name, placeholder:"新增教學目標", class: "form-control post_aim" %>
+                <%#= f.submit "新增", class: "btn btn-primary" %>
               </div>                           
             </div>
-          <% end %>
+          <%# end %>
           
           
           <ol id="aim_posts-<%= topic.id %>">
-            <% topic.aims.each do |aim| %> 
-              <%= render :partial => 'aims/aim', locals: {aim: aim } %>               
-            <% end %> 
+            <%# topic.aims.each do |aim| %> 
+              <%#= render :partial => 'aims/aim', locals: {aim: aim } %>               
+            <%# end %> 
           </ol> 
            
         </div>
@@ -71,7 +71,7 @@
 
 
 <!--modal - update topic posts-->
-<%= form_for [@user,@subject,topic] ,method: :put,remote: true  do |f| %>
+<%= form_for [@user,@classroom,topic] ,method: :put,remote: true  do |f| %>
   <div class="modal fade" id="myupdatepost_<%= topic.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -93,7 +93,7 @@
               <!--輸入主題日期結束-->
               <div class="field">
                 <%= f.label "結束日期" %>
-                <%= f.text_field :end_time, class: 'form-control post_theme', placeholder: "輸入結束日期 ex:9/20" %>
+                <%= f.date_select :end_time, class: 'form-control post_theme', placeholder: "輸入結束日期 ex:9/20" %>
               </div>
 
               <!--輸入教學主題-->
@@ -116,7 +116,7 @@
 
 
 <!--modal - update feedback posts -->
-<%= form_for [@user,@subject,topic] ,method: :put,remote: true  do |f| %>
+<%= form_for [@user,@classroom,topic] ,method: :put,remote: true  do |f| %>
   <div class="modal fade" id="myupdatefeedback_<%= topic.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-md modal-lg" role="document">
         <div class="modal-content">
