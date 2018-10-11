@@ -17,17 +17,24 @@ class LessonsController < ApplicationController
     # _to_do_list
     @day = Date.today
     @todos = Lesson.where(event_type: "todo")
-  end
 
+    gon.events_path = @user.events.order(created_at: :asc)
+    gon.event_path = ""
+    
+  end
+ 
   def show
-    @classroom = Classroom.new
     @lesson = Lesson.find(params[:id])
     # HABTM 關聯方法
-    @classrooms = @subject.classrooms
 
-    if params[:subject_id]
-      @classroom= @subject.classrooms.find(params[:classroom_id])
-      @aim = @classroom.aims.find(params[:id])     
+    @classrooms = @subject.classrooms
+        
+    @topic = Topic.new
+    @topics = @classroom.topics.order(created_at: :desc)
+
+    if params[:classroom_id] 
+      @topic = @classroom.topics.find(params[:topic_id])
+      @aim = @topic.aims.find(params[:id])     
     end
 
   end
@@ -49,14 +56,14 @@ class LessonsController < ApplicationController
     if params[:lesson][:period] == "Does not repeat"
 
       # 時間在資料庫的時區是 +0
-      @classroom = Classroom.find_or_initialize_by(name: (params[:lesson][:grade] + params[:lesson][:room]), grade: params[:lesson][:grade], room: params[:lesson][:room])
+      @classroom = @user.classrooms.find_or_initialize_by(name: (params[:lesson][:grade] + params[:lesson][:room]), grade: params[:lesson][:grade], room: params[:lesson][:room])
 
       @lesson = @classroom.lessons.new(lesson_params)
       @lesson.end_time = @lesson.start_time + 1.hour
 
     else # params[:lesson][:period] == "Repeat weekly"
 
-      @classroom = Classroom.find_or_initialize_by(name: (params[:lesson][:grade] + params[:lesson][:room]), grade: params[:lesson][:grade], room: params[:lesson][:room])
+      @classroom = @user.classrooms.find_or_initialize_by(name: (params[:lesson][:grade] + params[:lesson][:room]), grade: params[:lesson][:grade], room: params[:lesson][:room])
 
       start = Time.new(params[:lesson]['start_time(1i)'],params[:lesson]['start_time(2i)'],params[:lesson]['start_time(3i)'],params[:lesson]['start_time(4i)'],params[:lesson]['start_time(5i)'])
 
@@ -137,11 +144,13 @@ class LessonsController < ApplicationController
 
   private
 
+
+
     # 設定使用者
     def set_lesson
       @lesson = Lesson.find_by_id(params[:id])
     end
-
+ 
     # 顯示使用者所擁有的課表
     def set_lessons
       # pluck 方法，輸出 array，第一步就用 each do 展開的話，後面就難收拾了
@@ -157,14 +166,17 @@ class LessonsController < ApplicationController
     end
 
     def set_subject_of_lesson
-    lesson = Lesson.find_by_id(params[:id])
-    # 注意：不用路由 params 也可將 id 傳入，但括號內不可使用"實例變數"。此方法可避免巢狀路由過於複雜。
-    classroom_id = Classroom.find_by_id(lesson.classroom_id).id
-    # SQL 語法，只吃 id 不吃物件
-    subjects = Subject.joins("join classrooms_subjects on subjects.id = classrooms_subjects.subject_id").where(["classrooms_subjects.classroom_id = ?", classroom_id])
-    # 這個資料撈法要在 @subject name 唯一性，且 @subject 及其下的 @lessons 的名稱需同步 CRUD 才行！
-    # 若 .first 沒加，撈到的是 relation 無法使用關聯方法
-    @subject = subjects.where(name: lesson.name).first
+      lesson = Lesson.find_by_id(params[:id])
+      # 注意：不用路由 params 也可將 id 傳入，但括號內不可使用"實例變數"。此方法可避免巢狀路由過於複雜。
+      classroom_id = Classroom.find_by_id(lesson.classroom_id).id
+      # SQL 語法，只吃 id 不吃物件
+      subjects = Subject.joins("join classrooms_subjects on subjects.id = classrooms_subjects.subject_id").where(["classrooms_subjects.classroom_id = ?", classroom_id])
+      # 這個資料撈法要在 @subject name 唯一性，且 @subject 及其下的 @lessons 的名稱需同步 CRUD 才行！
+      # 若 .first 沒加，撈到的是 relation 無法使用關聯方法
+      @subject = subjects.where(name: lesson.name).first
+
+      
+      @classroom = Classroom.find(lesson.classroom_id)
     end
 
     def set_user

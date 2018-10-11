@@ -1,7 +1,9 @@
 <div class="container">
   <div id="topic-show-top">
     <span class="h1-font">上傳檔案總覽</span>
-    <span class="right-link"> <%= link_to '>> 返回卡片' %></span> 
+    <span class="right-link"> 
+      <%= link_to '>> 返回卡片', 'javascript:history.back()' %>
+    </span> 
   </div>
   
 
@@ -14,18 +16,18 @@
         <% if subject.materials.present? %>
           <h5><%= '科目：' + subject.name %></h5>
           <span class="right-link">
-            <%= link_to user_subject_topic_path(@user, @subject, @topic, :anchor => "topic-show-top") do %>
+            <%= link_to user_classroom_topic_path(@user, @classroom, @topic, :anchor => "topic-show-top") do %>
               <%= fa_icon 'arrow-circle-up 2x', style: 'color: grey;', alt: 'back to top' %>
             <% end %>
           </span>
           <% subject.materials.each do |m| %>
             <p><strong><%= '主題／單元：' + m.mtrial_folder_name %></strong></p>
 
-            <ul>
+            <ul> 
               <% m.teachingfiles.each do |teachingfile| %>  
                 <li>
-                  <%= link_to 'Add file', addfile_user_subject_topic_teachingfile_path(@user,@subject,@topic,teachingfile), method: :post, class: 'btn btn-outline-primary btn-sm' %>
-                  <%= link_to 'Remove file', removefile_user_subject_topic_teachingfile_path(@user,@subject,@topic,teachingfile), method: :post, class: 'btn btn-outline-warning btn-sm' %> |  
+                  <%= link_to 'Add file', addfile_user_classroom_topic_teachingfile_path(@user,@classroom,@topic,teachingfile), method: :post, class: 'btn btn-outline-primary btn-sm' %>
+                  <%= link_to 'Remove file', removefile_user_classroom_topic_teachingfile_path(@user,@classroom,@topic,teachingfile), method: :post, class: 'btn btn-outline-warning btn-sm' %> |  
                   <b><%= teachingfile.name %></b>
                 </li>
                 <ul>
@@ -37,7 +39,6 @@
             </ul>
           <% end %>
         <% end %>
-
       <% end %>
     </div>
     <div class="col-md-6">
@@ -47,7 +48,7 @@
         <% if subject.plans.present? %>
           <h5><%= '科目：' + subject.name %></h5>
           <span class="right-link">
-            <%= link_to user_subject_topic_path(@user, @subject, @topic, :anchor => "topic-show-top") do %>
+            <%= link_to user_classroom_topic_path(@user, @classroom, @topic, :anchor => "topic-show-top") do %>
               <%= fa_icon 'arrow-circle-up 2x', style: 'color: grey;', alt: 'back to top' %>
             <% end %>
           </span>
@@ -56,8 +57,8 @@
             <ul>
               <% m.teachingfiles.each do |teachingfile| %>  
                 <li>
-                  <%= link_to 'Add file', addfile_user_subject_topic_teachingfile_path(@user, @subject, @topic, teachingfile), method: :post, class: 'btn btn-outline-primary btn-sm' %>
-                  <%= link_to 'Remove file', removefile_user_subject_topic_teachingfile_path(@user, @subject, @topic, teachingfile), method: :post, class: 'btn btn-outline-warning btn-sm' %> |  
+                  <%= link_to 'Add file', addfile_user_classroom_topic_teachingfile_path(@user, @classroom, @topic, teachingfile), method: :post, class: 'btn btn-outline-primary btn-sm' %>
+                  <%= link_to 'Remove file', removefile_user_classroom_topic_teachingfile_path(@user, @classroom, @topic, teachingfile), method: :post, class: 'btn btn-outline-warning btn-sm' %> |  
                   <b><%= teachingfile.name %></b>
                 </li>
                 <ul>

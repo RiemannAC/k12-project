@@ -17,7 +17,11 @@
 
 class Topic < ApplicationRecord
   belongs_to :subject, optional: true
-  has_many :lessons, dependent: :destroy
+
+  ###lesson不再直接屬於topic , 所以這行要刪掉，不然會出現ActiveRecord::StatementInvalid (SQLite3::SQLException: no such column: lessons.topic_id: SELECT "lessons".* FROM "lessons" WHERE "lessons"."topic_id" = ?)
+  #has_many :lessons, dependent: :destroy
+
+  belongs_to :classroom,optional: true
 
   has_many :addfiles, dependent: :destroy 
   # topic 刪掉， addfile 上也不會有檔案，但 teachingfiles上的應保留

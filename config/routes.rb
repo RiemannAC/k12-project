@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   resources :subject_tags
 
   resources :users do
+    member do
+      get :viewfile
+    end
 
     member do
       get :viewfile
@@ -32,7 +35,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :subjects do
+    resources :classroom do
       resources :topics do
         resources :teachingfiles do
           member do
@@ -44,6 +47,11 @@ Rails.application.routes.draw do
         resources :aims
       end
     end
+
+    resources :subjects
+
+    resources :events
+    get '/test' => 'calendar#test'
 
 
     resources :lessons do
