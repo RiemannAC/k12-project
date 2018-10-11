@@ -2,6 +2,8 @@ class Classroom < ApplicationRecord
   #belongs_to :subject, optional: true
   has_and_belongs_to_many :subjects
 
+  belongs_to :user,optional: true
+
   has_many :lessons, dependent: :destroy
 
   has_many :topics, dependent: :destroy

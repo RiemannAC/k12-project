@@ -33,7 +33,7 @@
 <% if @lesson.event_type == "lesson" %>
   <div class="main-frame">
 
-    <%= link_to '編輯班級設定', edit_user_subject_path(@user, @subject), class: 'btn btn-outline-success' %>
+    <%#= link_to '編輯班級設定', edit_user_subject_path(@user, @subject), class: 'btn btn-outline-success' %>
     <span class="text-center">
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mynewpost">
         新增教學計劃
@@ -44,7 +44,7 @@
     <br>
     <h4>科目： <%= @subject.name %></h4>  
     <h4>班級： <%= @lesson.classroom.name %>（<%= @subject.students %> 人）</h4>
-    <%= link_to '<< 班級列表', user_subjects_path(@user) %>
+    <%#= link_to '<< 班級列表', user_subjects_path(@user) %>
 
     <hr class="blue-hr">
 
@@ -74,7 +74,7 @@
 <% end %>
 
 
-<%= form_for [@user,@subject,@topic] do |f| %>
+<%= form_for [@user,@classroom,@topic] do |f| %>
   <div class="modal fade" id="mynewpost" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">

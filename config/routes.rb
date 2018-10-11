@@ -32,7 +32,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :subjects do
+    resources :classroom do
       resources :topics do
         resources :teachingfiles do
           member do
