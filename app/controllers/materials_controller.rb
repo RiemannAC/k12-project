@@ -3,8 +3,7 @@ class MaterialsController < ApplicationController
   
   def index 
     @user = current_user
-    @materials = @user.materials
-    @material = @user.materials.order(created_at: :desc)
+    @materials = @user.materials.order(created_at: :desc)
     @material = @user.materials.new
   end
 

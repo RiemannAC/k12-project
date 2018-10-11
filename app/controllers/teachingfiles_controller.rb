@@ -104,7 +104,7 @@ class TeachingfilesController < ApplicationController
   def addfile
     @user = current_user
     @classroom = @user.classrooms.find(params[:classroom_id])
-    @topic = @classroom.topics.find(params[:id])
+    @topic = @classroom.topics.find(params[:topic_id])
   
    
     @teachingfile = Teachingfile.find(params[:id])
@@ -115,12 +115,12 @@ class TeachingfilesController < ApplicationController
     @teachingfile.addfiles.create!(topic: @topic)
     flash[:notice] = "已將檔案放進卡片"
     redirect_back fallback_location: root_path
-  end
+  end 
 
   def removefile
     @user = current_user
     @classroom = @user.classrooms.find(params[:classroom_id])
-    @topic = @classroom.topics.find(params[:id])
+    @topic = @classroom.topics.find(params[:topic_id])
 
     @teachingfile = Teachingfile.find(params[:id])
 
