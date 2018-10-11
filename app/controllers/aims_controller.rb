@@ -20,15 +20,15 @@ class AimsController < ApplicationController
 
   def edit
     @user = current_user
-    @subject = @user.subjects.find(params[:subject_id])
-    @topic = @subject.topics.find(params[:topic_id])
+    @classroom = @user.classrooms.find(params[:classroom_id])
+    @topic = @classroom.topics.find(params[:topic_id])
     @aim = @topic.aims.find(params[:id])
   end
 
   def update
     @user = current_user
-    @subject = @user.subjects.find(params[:subject_id])
-    @topic = @subject.topics.find(params[:topic_id])
+    @classroom = @user.classrooms.find(params[:classroom_id])
+    @topic = @classroom.topics.find(params[:topic_id])
     @aim = @topic.aims.find(params[:id])
     respond_to do |format|
       if @aim.update(aim_params)
@@ -45,8 +45,8 @@ class AimsController < ApplicationController
 
   def destroy
     @user = current_user
-    @subject = @user.subjects.find(params[:subject_id])
-    @topic = @subject.topics.find(params[:topic_id])
+    @classroom = @user.classrooms.find(params[:classroom_id])
+    @topic = @classroom.topics.find(params[:topic_id])
     @aim = @topic.aims.find(params[:id])   
     @aim.destroy
     respond_to do |format|
