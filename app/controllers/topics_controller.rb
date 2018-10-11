@@ -48,14 +48,16 @@ class TopicsController < ApplicationController
 
   def destroy
     @user = current_user
-    @subject = @user.subjects.find(params[:subject_id])
-    @topic = @subject.topics.find(params[:id])
+    @classroom = @user.classrooms.find(params[:classroom_id])
+    @topic = @classroom.topics.find(params[:id])
     @topic.destroy
-    respond_to do |format|
-      format.html{redirect_to user_subject_url(@user,@subject),notice:"成功刪除一個教學計劃" }
-      format.json{head :no_content}  
+    #respond_to do |format|
+      #format.html{redirect_to user_subject_url(@user,@subject),notice:"成功刪除一個教學計劃" }
+      #format.json{head :no_content}  
       #format.js
-    end
+    #end
+    flash[:notice]= "成功刪除一個教學計劃"
+    redirect_back fallback_location: root_path
   end
 
 
