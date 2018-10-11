@@ -48,6 +48,8 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :subjects
+
     resources :events
     get '/test' => 'calendar#test'
 

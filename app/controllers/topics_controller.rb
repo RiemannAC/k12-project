@@ -4,8 +4,7 @@ class TopicsController < ApplicationController
     @user = current_user
     @classroom = @user.classrooms.find(params[:classroom_id])
     @topic = @classroom.topics.find(params[:id])
-    
-  end 
+  end  
  
   def create
     @user = current_user

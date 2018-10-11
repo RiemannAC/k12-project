@@ -32,11 +32,12 @@
               <!--教學回饋-->
               <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myupdatefeedback_<%= topic.id  %>">教學反思</button>
 
-              <%= link_to user_subject_topic_path(@user, @subject, topic) do %>
+              <%= link_to user_classroom_topic_path(@user, @classroom, topic) do %>
                 <span><%= fa_icon 'plus' %></span>
                 <span> <%= fa_icon 'folder' %></span>
               <% end %>
-            </div>
+
+            </div>  
           <h5>
           <!--教學單元主題下的教學目標-->
           <%= form_for [@user,@classroom,topic,Aim.new],remote: true do |f| %>
