@@ -23,7 +23,7 @@ class ClassroomsController < ApplicationController
     # else
     #   flash.now[:alert] = "@classroom.errors.full_messages.to_sentence"
     #   render :edit
-    # end
+    # end 
   end
 
   def destroy
@@ -41,6 +41,6 @@ class ClassroomsController < ApplicationController
 
   private
   def classroom_params
-    params.require(:classroom).permit(:name, :grade, :room, :subject_id, :start_time, :end_time, :feedback)
+    params.require(:classroom).permit(:name, :grade, :room, :subject_id,:user_id, :start_time, :end_time, :feedback)
   end
 end

@@ -28,11 +28,12 @@ class LessonsController < ApplicationController
     # HABTM 關聯方法
 
     @classrooms = @subject.classrooms
-    @classroom = @subject.classrooms.where(id: params[:classroom_id]).first
+    #@classroom = @subject.classrooms.where(id: params[:classroom_id]).first
     #@classroom = @subject.classrooms.find(params[:classroom_id])
     
     @topic = Topic.new
     #@topics = @lesson.classroom.topics.all
+    @topics = @classroom.topics.all
 
     if params[:subject_id] 
       #@classroom= @subject.classrooms.find(params[:classroom_id])
@@ -58,14 +59,14 @@ class LessonsController < ApplicationController
     if params[:lesson][:period] == "Does not repeat"
 
       # 時間在資料庫的時區是 +0
-      @classroom = Classroom.find_or_initialize_by(name: (params[:lesson][:grade] + params[:lesson][:room]), grade: params[:lesson][:grade], room: params[:lesson][:room])
+      @classroom = @user.classrooms.find_or_initialize_by(name: (params[:lesson][:grade] + params[:lesson][:room]), grade: params[:lesson][:grade], room: params[:lesson][:room])
 
       @lesson = @classroom.lessons.new(lesson_params)
       @lesson.end_time = @lesson.start_time + 1.hour
 
     else # params[:lesson][:period] == "Repeat weekly"
 
-      @classroom = Classroom.find_or_initialize_by(name: (params[:lesson][:grade] + params[:lesson][:room]), grade: params[:lesson][:grade], room: params[:lesson][:room])
+      @classroom = @user.classrooms.find_or_initialize_by(name: (params[:lesson][:grade] + params[:lesson][:room]), grade: params[:lesson][:grade], room: params[:lesson][:room])
 
       start = Time.new(params[:lesson]['start_time(1i)'],params[:lesson]['start_time(2i)'],params[:lesson]['start_time(3i)'],params[:lesson]['start_time(4i)'],params[:lesson]['start_time(5i)'])
 
@@ -177,6 +178,17 @@ class LessonsController < ApplicationController
     # 若 .first 沒加，撈到的是 relation 無法使用關聯方法
     @subject = subjects.where(name: lesson.name).first
 
+    #問題點？？
+    #topic = Topic.find_by_id(lesson.classroom.topic_ids)
+    #@classroom = Classroom.find_by_id(topic.classroom_id)
+
+    
+    #lesson = Lesson.find(params[:lesson_id])
+    @classroom = Classroom.find(lesson.classroom_id)
+
+    #classroom = Classroom.find(params[:classroom_id])
+    #@topic = @classroom.topics.where(classroom_id: classroom.id).first
+ 
     end
 
     def set_user

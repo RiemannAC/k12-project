@@ -2,23 +2,25 @@ class TopicsController < ApplicationController
   
   def show
     @user = current_user
-    @subject = @user.subjects.find(params[:subject_id])
-    @topic = @subject.topics.find(params[:id])
+    @classroom = @user.classrooms.find(params[:classroom_id])
+    @topic = @classroom.topics.find(params[:id])
     
   end 
  
   def create
     @user = current_user
-    @subject = @user.subjects.find(params[:subject_id])
-    @topic = @subject.topics.create(topic_params)
+    #lesson = Lesson.find(params[:lesson_id])
+    #@classroom = Classroom.find(lesson.classroom_id)
+    @classroom = @user.classrooms.find(params[:classroom_id])
+    @topic = @classroom.topics.create(topic_params)
 
     respond_to do |format|
       if @topic.save
-        format.html{redirect_to user_subject_url(@user,@subject),notice:"成功新增教學主題" }
+        format.html{redirect_to user_classroom_url(@user,@classroom),notice:"成功新增教學主題" }
         format.json{render :show, status: :created, location: @topic}
         #format.js
       else
-        format.html{redirect_to user_subject_url(@user,@subject),alert:"新增失敗，請完全填妥教學計劃表格資訊"}
+        format.html{redirect_to user_classroom_url(@user,@classroom),alert:"新增失敗，請完全填妥教學計劃表格資訊"}
         format.json{render json: @topic.errors,status: :unprocessable_entity}
         #format.js
       end
