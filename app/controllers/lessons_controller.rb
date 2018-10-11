@@ -18,7 +18,7 @@ class LessonsController < ApplicationController
     @day = Date.today
     @todos = Lesson.where(event_type: "todo")
 
-    gon.events_path = @user.events.all
+    gon.events_path = @user.events.order(created_at: :asc)
     gon.event_path = ""
     
   end
@@ -30,7 +30,7 @@ class LessonsController < ApplicationController
     @classrooms = @subject.classrooms
         
     @topic = Topic.new
-    @topics = @classroom.topics.all
+    @topics = @classroom.topics.order(created_at: :desc)
 
     if params[:classroom_id] 
       @topic = @classroom.topics.find(params[:topic_id])
