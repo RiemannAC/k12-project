@@ -28,16 +28,13 @@ class LessonsController < ApplicationController
     # HABTM 關聯方法
 
     @classrooms = @subject.classrooms
-    #@classroom = @subject.classrooms.where(id: params[:classroom_id]).first
-    #@classroom = @subject.classrooms.find(params[:classroom_id])
-    
+        
     @topic = Topic.new
-    #@topics = @lesson.classroom.topics.all
     @topics = @classroom.topics.all
 
-    if params[:subject_id] 
-      #@classroom= @subject.classrooms.find(params[:classroom_id])
-      @aim = @classroom.aims.find(params[:id])     
+    if params[:classroom_id] 
+      @topic = @classroom.topics.find(params[:topic_id])
+      @aim = @topic.aims.find(params[:id])     
     end
 
   end
@@ -177,10 +174,6 @@ class LessonsController < ApplicationController
     # 這個資料撈法要在 @subject name 唯一性，且 @subject 及其下的 @lessons 的名稱需同步 CRUD 才行！
     # 若 .first 沒加，撈到的是 relation 無法使用關聯方法
     @subject = subjects.where(name: lesson.name).first
-
-    #問題點？？
-    #topic = Topic.find_by_id(lesson.classroom.topic_ids)
-    #@classroom = Classroom.find_by_id(topic.classroom_id)
 
     
     #lesson = Lesson.find(params[:lesson_id])
