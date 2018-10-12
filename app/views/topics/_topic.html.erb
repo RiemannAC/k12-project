@@ -51,7 +51,10 @@
                     <div class="modal-body">
                       <% if @topic.added_files.count == 0 %>
                         <h5>卡片尚未放入任何檔案</h5>
+                      <% else %>
+                        <% @topic.add_files.each do |file| %>
                         
+                        <% end %>
                       <% end %>
                     </div>
                     <div class="modal-footer">
