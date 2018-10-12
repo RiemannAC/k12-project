@@ -32,9 +32,9 @@
               <!--教學回饋-->
               <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myupdatefeedback_<%= topic.id  %>">教學反思</button>
 
+              <span> <%= fa_icon 'folder' %></span>
               <%= link_to user_classroom_topic_path(@user, @classroom, topic) do %>
                 <span><%= fa_icon 'plus' %></span>
-                <span> <%= fa_icon 'folder' %></span>
               <% end %>
               
             </div>  
@@ -87,13 +87,13 @@
               <!--輸入主題日期開始-->
               <div class="field">
                 <%= f.label "開始日期" %>
-                <%= f.date_select :start_time, class: 'form-control post_theme', placeholder: "輸入開始日期 ex:9/14" %>
+                <%= f.date_select :start_time, class: 'form-control post_theme', placeholder: "ex: 2018/9/14" %>
               </div>
 
               <!--輸入主題日期結束-->
               <div class="field">
                 <%= f.label "結束日期" %>
-                <%= f.date_select :end_time, class: 'form-control post_theme', placeholder: "輸入結束日期 ex:9/20" %>
+                <%= f.date_select :end_time, class: 'form-control post_theme', placeholder: "ex:2018/9/21" %>
               </div>
 
               <!--輸入教學主題-->

@@ -26,9 +26,13 @@
             <ul> 
               <% m.teachingfiles.each do |teachingfile| %>  
                 <li>
-                  <%= link_to 'Add file', addfile_user_classroom_topic_teachingfile_path(@user,@classroom,@topic,teachingfile), method: :post, class: 'btn btn-outline-primary btn-sm' %>
-                  <%= link_to 'Remove file', removefile_user_classroom_topic_teachingfile_path(@user,@classroom,@topic,teachingfile), method: :post, class: 'btn btn-outline-warning btn-sm' %> |  
-                  <b><%= teachingfile.name %></b>
+                  <% if teachingfile.is_added?(@topic) %>
+                    <%= link_to '從卡片移除', removefile_user_classroom_topic_teachingfile_path(@user,@classroom,@topic,teachingfile), method: :post, class: 'btn btn-outline-warning btn-sm' %> | 
+                    <b><%= teachingfile.name %></b>
+                  <% else %>
+                    <%= link_to '加入卡片', addfile_user_classroom_topic_teachingfile_path(@user,@classroom,@topic,teachingfile), method: :post, class: 'btn btn-outline-primary btn-sm' %> | 
+                    <b><%= teachingfile.name %></b>
+                  <% end %>
                 </li>
                 <ul>
                   <% teachingfile.attachments.each do |file| %>
@@ -58,9 +62,13 @@
             <ul>
               <% m.teachingfiles.each do |teachingfile| %>  
                 <li>
-                  <%= link_to 'Add file', addfile_user_classroom_topic_teachingfile_path(@user, @classroom, @topic, teachingfile), method: :post, class: 'btn btn-outline-primary btn-sm' %>
-                  <%= link_to 'Remove file', removefile_user_classroom_topic_teachingfile_path(@user, @classroom, @topic, teachingfile), method: :post, class: 'btn btn-outline-warning btn-sm' %> |  
-                  <b><%= teachingfile.name %></b>
+                  <% if teachingfile.is_added?(@topic) %>
+                    <%= link_to '從卡片移除', removefile_user_classroom_topic_teachingfile_path(@user, @classroom, @topic, teachingfile), method: :post, class: 'btn btn-outline-warning btn-sm' %> |  
+                    <b><%= teachingfile.name %></b>
+                  <% else %>
+                    <%= link_to '加入卡片', addfile_user_classroom_topic_teachingfile_path(@user, @classroom, @topic, teachingfile), method: :post, class: 'btn btn-outline-primary btn-sm' %> | 
+                    <b><%= teachingfile.name %></b>
+                  <% end %>
                 </li>
                 <ul>
                 <% teachingfile.attachments.each do |file| %>
