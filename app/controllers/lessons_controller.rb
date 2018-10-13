@@ -25,10 +25,7 @@ class LessonsController < ApplicationController
  
   def show
     @lesson = Lesson.find(params[:id])
-    # HABTM 關聯方法
-
-    @classrooms = @subject.classrooms
-        
+    # HABTM 關聯方法        
     @topic = Topic.new
     @topics = @classroom.topics.order(created_at: :desc)
 
