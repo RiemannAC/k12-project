@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181013165534) do
+ActiveRecord::Schema.define(version: 20181013171721) do
 
   create_table "addfiles", force: :cascade do |t|
     t.integer "topic_id"
@@ -64,6 +64,8 @@ ActiveRecord::Schema.define(version: 20181013165534) do
     t.integer "classroom_id"
     t.string "grade"
     t.string "room"
+    t.integer "students", default: 0
+    t.integer "student", default: 0
   end
 
   create_table "materials", force: :cascade do |t|
