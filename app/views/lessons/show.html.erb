@@ -34,11 +34,11 @@
 <% if @lesson.event_type == "lesson" %>
   <div class="main-frame">
 
-    <%= link_to '編輯班級設定', edit_user_subject_path(@user, @subject), class: 'btn btn-outline-success' %>
+    <%= link_to '編輯班級設定', edit_user_classroom_path(@user, @classroom), class: 'btn btn-outline-success' %>
     <span class="text-center">
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mynewpost">
         新增教學計劃
-      </button>
+      </button> 
     </span>
 
     <br>

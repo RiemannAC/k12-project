@@ -33,6 +33,10 @@ class ClassroomsController < ApplicationController
     # end 
   end
 
+  def edit
+    
+  end
+
   def destroy
     # @user = current_user
     # @subject = @user.subjects.find(params[:subject_id])
