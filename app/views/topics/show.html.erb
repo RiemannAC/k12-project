@@ -15,11 +15,6 @@
       <% @subject_tags.each do |subject| %>
         <% if subject.materials.present? %>
           <h5><%= '科目：' + subject.name %></h5>
-          <span class="right-link">
-            <%= link_to user_classroom_topic_path(@user, @classroom, @topic, :anchor => "topic-show-top") do %>
-              <%= fa_icon 'arrow-circle-up 2x', style: 'color: grey;', alt: 'back to top' %>
-            <% end %>
-          </span>
           <% subject.materials.each do |m| %>
             <p><strong>
               <%= link_to user_material_path(@user, m) do %>
@@ -32,10 +27,10 @@
                 <li>
                   <% if teachingfile.is_added?(@topic) %>
                     <%= link_to '從卡片移除', removefile_user_classroom_topic_teachingfile_path(@user,@classroom,@topic,teachingfile), method: :post, class: 'btn btn-outline-warning btn-sm' %> | 
-                    <b><%= teachingfile.name %></b>
+                    <b style="font-size: 20px;"><%= "【 " + teachingfile.name + " 】" %></b>
                   <% else %>
                     <%= link_to '加入卡片', addfile_user_classroom_topic_teachingfile_path(@user,@classroom,@topic,teachingfile), method: :post, class: 'btn btn-outline-primary btn-sm' %> | 
-                    <b><%= teachingfile.name %></b>
+                    <b style="font-size: 20px;"><%= "【 " + teachingfile.name + " 】" %></b>
                   <% end %>
                 </li>
                 <ul>
@@ -56,11 +51,6 @@
       <% @subject_tags.each do |subject| %>
         <% if subject.plans.present? %>
           <h5><%= '科目：' + subject.name %></h5>
-          <span class="right-link">
-            <%= link_to user_classroom_topic_path(@user, @classroom, @topic, :anchor => "topic-show-top") do %>
-              <%= fa_icon 'arrow-circle-up 2x', style: 'color: grey;', alt: 'back to top' %>
-            <% end %>
-          </span>
           <% subject.plans.each do |p| %>
             <p><strong>
               <%= link_to user_plan_path(@user, p) do %>
@@ -72,16 +62,17 @@
                 <li>
                   <% if teachingfile.is_added?(@topic) %>
                     <%= link_to '從卡片移除', removefile_user_classroom_topic_teachingfile_path(@user, @classroom, @topic, teachingfile), method: :post, class: 'btn btn-outline-warning btn-sm' %> |  
-                    <b><%= teachingfile.name %></b>
+                    <b style="font-size: 20px;"><%= "【 " + teachingfile.name + " 】" %></b>
                   <% else %>
                     <%= link_to '加入卡片', addfile_user_classroom_topic_teachingfile_path(@user, @classroom, @topic, teachingfile), method: :post, class: 'btn btn-outline-primary btn-sm' %> | 
-                    <b><%= teachingfile.name %></b>
+                    <b style="font-size: 20px;"><%= "【 " + teachingfile.name + " 】" %></b>
                   <% end %>
                 </li>
                 <ul>
                 <% teachingfile.attachments.each do |file| %>
                   <li><i><%= file.file.filename %></i></li>
                 <% end %>
+                <br>
                 </ul>
               <% end %>
             </ul>
@@ -90,5 +81,23 @@
       <% end %>
     </div>
   </div>
+  <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
   <!--這裡可以用上 kaminari 分頁 -->
+  <script>
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("myBtn").style.display = "block";
+        } else {
+            document.getElementById("myBtn").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    }
+  </script>
 </div>
