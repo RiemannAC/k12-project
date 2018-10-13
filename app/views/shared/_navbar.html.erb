@@ -8,19 +8,24 @@
     <% if current_user %>
       <ul class="nav">
         <li><%= link_to '課表首頁', user_lessons_path(@user) %></li>
+
+        <%# 原版本的我的班級  %>
+        <!--
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">我的班級</a>
           <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="navbarDropdown2">
-            <% @classroom_array.each do |classroom| %>
+            <%# @classroom_array.each do |classroom| %>
               <a class="dropdown-item">
                 <%# link_to 路由需要另外設定 do %> <%# 加了選單內容變不見 %>
-                  <%= classroom %>
+                  <%#= classroom %>
                 <%# end %>
               </a>
-            <% end %>
+            <%# end %>
           </div>
-
         </li>
+        <-->
+
+        <li><%= link_to '我的班級', user_subjects_path(@user)  %></li>
 
         <li><%= link_to '教材資料夾', user_materials_path(@user) %></li>
         <li><%= link_to '教案資料夾', user_plans_path(@user) %></li>

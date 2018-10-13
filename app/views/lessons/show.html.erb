@@ -45,9 +45,9 @@
     <br>
     <h4>科目： <%= @subject.name %></h4>  
     <h4>班級： <%= @lesson.classroom.name %>（<%= @subject.students %> 人）</h4>
-    <%= link_to '<< 班級列表', user_subjects_path(@user) %>
+    <%= link_to '<< 回到課表首頁', user_lessons_path(@user)  %>
 
-    <hr class="blue-hr">
+    <hr class="blue-hr"> 
 
  
     <div class="row"> 
