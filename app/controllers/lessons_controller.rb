@@ -114,8 +114,8 @@ class LessonsController < ApplicationController
     # @lesson = Lesson.find_by_id(params[:lesson][:id])
     if params[:lesson][:commit_button] == "更新之後的課程"
       # 以下編輯中，待接新增科目
-      @lessons = @event.event_series.events #.find(:all, :conditions => ["starttime > '#{@event.starttime.to_formatted_s(:db)}' "])
-      @lesson.update_events(@events, event_params)
+      @lessons = @lesson.classroom.lessons #.find(:all, :conditions => ["starttime > '#{@event.starttime.to_formatted_s(:db)}' "])
+      @lesson.update_lessons(@lessons, lesson_params)
     elsif params[:lesson][:commit_button] == "更新整學期的課程"
       # 以下編輯中，待接新增科目
       @lessons = @event.event_series.events.find(:all, :conditions => ["starttime > '#{@event.starttime.to_formatted_s(:db)}' "])
