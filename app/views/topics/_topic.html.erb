@@ -33,37 +33,51 @@
               <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myupdatefeedback_<%= topic.id  %>">教學反思</button>
 
               <!-- * FOLDER * Button trigger modal -->
-             
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#fileCenter">
-                <%= fa_icon 'folder' %>    
-              </button>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg"><%= fa_icon 'folder' %></button>
 
-              <!-- Modal -->
-              <div class="modal fade" id="fileCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                      <h5 class="modal-title" id="exampleModalLongTitle">下載教學檔案</h5>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
                     <div class="modal-body">
-                      <% if @topic.added_files.count == 0 %>
+                      <% if topic.added_files.count == 0 %>
                         <h5>卡片尚未放入任何檔案</h5>
                       <% else %>
-                        <% @topic.add_files.each do |file| %>
-                        
+                      <ul>
+                        <% topic.added_files.each do |teachingfile| %>
+                        <li style="text-align: left;">
+                          <h5><%= "【 " + teachingfile.name + " 】"%></h5>
+                          <ul>
+                            <% teachingfile.attachments.each_with_index do |file, index| %>
+                            <li>
+                              <%= link_to file.url do %>
+                                <%= fa_icon 'download', class: 'theme-font' %>
+                                <%= file.file.filename %>
+                              <% end %>
+                            </li>
+                            <% end %>
+                          </ul>
+                        </li>
+                        <br>
+
                         <% end %>
+                      </ul>
                       <% end %>
+                      
+                        
                     </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
+                    
                   </div>
                 </div>
               </div>
+
+
+
               <%= link_to user_classroom_topic_path(@user, @classroom, topic) do %>
                 <span><%= fa_icon 'plus 2x' %></span>
               <% end %>
