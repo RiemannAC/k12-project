@@ -1,3 +1,5 @@
+/********* 整體設定 ***********/
+
 /*
  *= require trix
  */
@@ -6,9 +8,27 @@
 @import "font-awesome";
 @import "style";
 @import "simple_calendar";
+@import url('https://fonts.googleapis.com/css?family=Kodchasan:400,500,700');
+@import url(https://fonts.googleapis.com/earlyaccess/notosanstc.css);
+
 
 body {
   color: #5e5f5f;
+  font-family: 'Kodchasan', ‘Noto Sans TC’, sans-serif;
+  background-color: #f3f7f6
+}
+
+a {
+  font-size: 14px;
+}
+
+a:link, a:visited {
+  color: #454545;
+}
+
+a:hover {
+  color: #ababab;
+  text-decoration: none;
 }
 
 .theme-color {
@@ -20,34 +40,16 @@ body {
   color: #5e5f5f!important;
 }
 
-.blue-hr {
+.green-hr {
   height:10px;
   border:none;
-  border-top:10px groove skyblue;
-}
-
-.pink-hr {
-  height:10px;
-  border:none;
-  border-top:10px groove pink;
-}
-
-.red-hr {
-  height: 10px;
-  border: none;
-  border-top:10px groove #e86dd4;
+  border-top:10px groove #64b24494;
 }
 
 .orange-hr {
   height: 10px;
   border: none;
-  border-top: 10px groove orange;
-}
-
-.yellow-hr {
-  height: 10px;
-  border: none;
-  border-top: 10px groove yellow;
+  border-top: 10px groove #ec584d8f;
 }
 
 .main-frame {
@@ -72,11 +74,13 @@ body {
 }
 
 .nav li a {
-  color: #000;
-  font-weight: bold;
   text-transform: capitalize;
   display: block;
-  padding: 10px 12px;
+  padding: 10px 18px;
+}
+
+.navbar {
+  box-shadow: 0px -2px 20px 0px grey;
 }
 
 /******** OLD NAVBAR SETTING **********/
@@ -100,70 +104,5 @@ body {
 }
 
 .navbar-nav-li a, .nav-item a {
-  color: #fff;
-  font-weight: 800;
+
 }
-
-
-/******** sidebar css setting *********/
-
-.sidenav {
-  height: 100%;
-  width: 220px;
-  position: fixed;
-  z-index: 5;
-  top: 68px;
-  left: 0;
-  background-color: #f3f5f6;
-  overflow-x: hidden;
-  padding-top: 20px;
-}
-
-.dropdown-btn img {
-  padding: 6px 8px 6px 3px;
-  border-radius: 50%;
-}
-
-.sidenav a, .dropdown-btn {
-  padding: 6px 8px 6px 16px;
-  text-decoration: none;
-  font-size: 20px;
-  color: #818181;
-  display: block;
-  border: none;
-  background: none;
-  width: 100%;
-  text-align: left;
-  cursor: pointer;
-  outline: none;
-  margin: 10px 0;
-}
-
-.sidenav a:hover {
-  color: #454545;
-}
-
-.active {
-  background-color: #54dea0;
-  color: white;
-}
-
-.dropdown-container {
-  display: none;
-  background-color: #d5e1d8;
-  padding-left: 8px;
-  color: #818181;
-}
-
-.fa-caret-down {
-  float: right;
-  padding-right: 8px;
-}
-
-.main {
-  margin-left: 220px;
-  padding: 0px 10px;
-  margin-top: 68px;
-}
-
-/*********** sidebar end *********/

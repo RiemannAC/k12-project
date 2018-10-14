@@ -1,4 +1,4 @@
-<nav class="navbar sticky-top navbar-light bg-light">
+<nav class="navbar sticky-top bg-light">
   <%= link_to root_path, class: "navbar-brand" do %>
     <%= image_tag "logo.svg", width:'45', height:'45', alt:'首頁', class: "d-inline-block" %>
      <strong>K12 Project</strong>
@@ -7,35 +7,44 @@
   <% if user_signed_in? %>
     <% if current_user %>
       <ul class="nav">
-        <li><%= link_to '課表首頁', user_lessons_path(@user) %></li>
+        <li style="border-left: 2px solid #ebebeb; padding-top: 4px;"><%= link_to '課表首頁', user_lessons_path(@user) %></li>
 
-        <li class="dropdown" style="position:relative">
+        <li class="dropdown" style="position:relative; border-left: 2px solid #ebebeb;; padding-top: 4px;">
           <a href="#" class=" dropdown-toggle" data-toggle="dropdown">我的班級<span class="caret"></span></a>
           <%# 設定第一層：科目 %>
           <ul class="dropdown-menu">
-            <% @subjects.each do |subject| %>
-            <li>     
-              <a class="trigger right-caret"><%= subject.name %></a>
-              <%# 設定第二層：科目下的班級 %>
-              <ul class="dropdown-menu sub-menu">
-                <% subject.classrooms.each do |classroom| %>
-                  <li>
-                    <%= link_to user_classroom_path(@user,classroom) do %>
-                      <%= classroom.name %>  
-                    <% end %>                   
-                  </li>  
-                <% end %>
-              </ul>
-            </li>
+            <% if @subjects.count == 0 %>
+              <li><%= link_to '請新增班級', new_user_lesson_path(@user) %></li>
+            <% else %>
+              <% @subjects.each do |subject| %>
+              
+                <li>     
+                  <a class="trigger right-caret"><%= subject.name %></a>
+                  <%# 設定第二層：科目下的班級 %>
+                  <ul class="dropdown-menu sub-menu">
+                  
+                    <% subject.classrooms.each do |classroom| %>
+                      <li>
+                        <%= link_to user_classroom_path(@user,classroom) do %>
+                          <%= classroom.name %>
+                        <% end %>
+                      </li>  
+                    <% end %>
+                    
+                  </ul>
+                </li>
+              <% end %>
             <% end %>
+            
+            
           </ul>
         </li>
         
-        <li><%= link_to '教材資料夾', user_materials_path(@user) %></li>
-        <li><%= link_to '教案資料夾', user_plans_path(@user) %></li>
+        <li style="border-left: 2px solid #ebebeb; padding-top: 4px;"><%= link_to '教材資料夾', user_materials_path(@user) %></li>
+        <li style="border-left: 2px solid #ebebeb; padding-top: 4px;"><%= link_to '教案資料夾', user_plans_path(@user) %></li>
 
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" style="" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <% if current_user.avatar? %>
               <%= image_tag current_user.avatar, width: '30', height: '30' %>
             <% else %>

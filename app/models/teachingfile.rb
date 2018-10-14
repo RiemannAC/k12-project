@@ -17,6 +17,7 @@ class Teachingfile < ApplicationRecord
   serialize :attachments, JSON
   
   validates_presence_of :name
+  validates_presence_of :attachments
 
   belongs_to :plan, optional: true
   #belongs_to :topic
