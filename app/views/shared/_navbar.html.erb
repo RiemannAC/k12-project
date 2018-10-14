@@ -13,21 +13,29 @@
           <a href="#" class=" dropdown-toggle" data-toggle="dropdown">我的班級<span class="caret"></span></a>
           <%# 設定第一層：科目 %>
           <ul class="dropdown-menu">
+            
             <% @subjects.each do |subject| %>
-            <li>     
-              <a class="trigger right-caret"><%= subject.name %></a>
-              <%# 設定第二層：科目下的班級 %>
-              <ul class="dropdown-menu sub-menu">
-                <% subject.classrooms.each do |classroom| %>
-                  <li>
-                    <%= link_to user_classroom_path(@user,classroom) do %>
-                      <%= classroom.name %>  
-                    <% end %>                   
-                  </li>  
-                <% end %>
-              </ul>
-            </li>
+              <% if subject.classrooms.count == 0 %>
+                <li><%= link_to '請至課表新增班級' %></li>
+              <% else %>
+                <li>     
+                  <a class="trigger right-caret"><%= subject.name %></a>
+                  <%# 設定第二層：科目下的班級 %>
+                  <ul class="dropdown-menu sub-menu">
+                  
+                    <% subject.classrooms.each do |classroom| %>
+                      <li>
+                        <%= link_to user_classroom_path(@user,classroom) do %>
+                          <%= classroom.name %>  
+                        <% end %>
+                      </li>  
+                    <% end %>
+                    
+                  </ul>
+                </li>
+              <% end %>
             <% end %>
+            
           </ul>
         </li>
         
