@@ -37,6 +37,8 @@ class LessonsController < ApplicationController
       @aim = @topic.aims.find(params[:id])     
     end
 
+    @added_files = @topic.added_files
+
   end
 
   def list
