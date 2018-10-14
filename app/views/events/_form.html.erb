@@ -1,40 +1,38 @@
-<%= form_for (event) ,remote: true do |f| %>
-  <% if @event.errors.any? %>
+<%= form_for [@user, @todo], url: {action: "create"} do |f| %>
+<%#= form_for (todo) ,remote: true do |f| %>
+  <% if @todo.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
+      <h2><%= pluralize(todo.errors.count, "error") %> prohibited this todo from being saved:</h2>
 
       <ul>
-      <% @event.errors.full_messages.each do |message| %>
+      <% @todo.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
  
-  <div class="field">
+  <div class="form-group col-8">
     <%= f.label '待辦事項' %>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group col-8">
     <%= f.label '開始時間' %>
-    <%= f.datetime_select :start, start_year: Date.today.year, :end_year => Date.today.year+1, :ampm => true, :minute_step => 15, start_hour: 7, end_hour: 19 %>
+    <%= f.datetime_select :start_time, start_year: Date.today.year, end_year: Date.today.year+1, start_hour: 8, end_hour: 18, ampm: true, discard_minute: true, default: Date.today.beginning_of_day + 8.hour %>
   </div>
 
-  <div class="field">
+  <div class="form-group col-8">
     <%= f.label '結束時間' %>
-    <%= f.datetime_select :end, start_year: Date.today.year, :end_year => Date.today.year+1, :ampm => true, :minute_step => 15, start_hour: 7, end_hour: 19 %>
+    <%= f.datetime_select :end_time, start_year: Date.today.year, end_year: Date.today.year+1, start_hour: 8, end_hour: 18, ampm: true, discard_minute: true, default: Date.today.beginning_of_day + 9.hour %>
   </div>
 
 
-  <div class="actions">
+  <div class="actions col-8">
     <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
 
-    <%= link_to '刪除',user_event_path(@user,@event), method: :delete, data: {confirm: "確定要刪除此待辦事項嗎？"} , class:"btn btn-danger" unless @event.new_record? %>
+    <%= link_to '刪除',user_event_path(@user,@todo), method: :delete, data: {confirm: "確定要刪除此待辦事項嗎？"} , class:"btn btn-danger" unless @todo.new_record? %>
       
     <%= f.submit action_name == 'new' ? '新增' : '更新' ,class:"btn btn-primary"%>
   </div>
 <% end %>
-
-
-

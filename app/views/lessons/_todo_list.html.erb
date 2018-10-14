@@ -7,13 +7,16 @@
           <span id="hour-<%= hour %>" class="text-center">
             <% todos.each do |todo| %>
               <%- if todo.start_time.hour.between?(hour, hour + 0.9) %>
-                <%= link_to user_lesson_path(@user, todo) do %>
-                  <%= todo.name %>
-                <% end %>
+                <%= todo.title %>
               <% end -%>
             <% end %>
           </span>
       </div>
     <% end %>
   <% end %>
+  <span id="new_event_button">
+    <%= link_to new_user_event_path(@user) do %>
+      <i class="fa fa-plus-circle pull-right" style="font-size: 60px; color: #009FCC; padding-left: 10px;"></i>
+    <% end %>
+  <span>
 </div>
