@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
       @plans = @user.plans.all
       @subject_tags = SubjectTag.order(name: :desc)
       # 已排序且唯一，連結路由需要另外設定路由
-      @classroom_array = Classroom.order(:name).select(:name).map(&:name).uniq
+      # @classroom_array = Classroom.order(:name).select(:name).map(&:name).uniq
     end
   end
 
