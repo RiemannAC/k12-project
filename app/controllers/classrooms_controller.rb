@@ -1,10 +1,22 @@
 class ClassroomsController < ApplicationController
   def index
-    
+    @user = current_user
+    #@classrooms = @user.classrooms.order(grade: :asc,room: :asc)
+    @classrooms = @user.classrooms.includes(:classrooms_subjects).order("classrooms_subjects.subject_id asc, classrooms.grade asc, classrooms.room asc")
+
   end
 
-  def show
-    
+  def show 
+    @user = current_user 
+    @classroom = @user.classrooms.find(params[:id])
+
+    @topic = Topic.new
+    @topics = @classroom.topics.order(created_at: :desc)
+
+    if params[:classroom_id] 
+      @topic = @classroom.topics.find(params[:topic_id])
+      @aim = @topic.aims.find(params[:id])     
+    end
   end
   
   def create
@@ -21,33 +33,32 @@ class ClassroomsController < ApplicationController
   end
 
   def update
-    # @user = current_user
-    # @subject = @user.subjects.find(params[:subject_id])
-    # @classroom = @subject.classrooms.find(params[:id])
-    # if @classroom.update(classroom_params)
-    #   flash[:notice] = "已更新班級資料"
-    #   redirect_to root_path
-    # else
-    #   flash.now[:alert] = "@classroom.errors.full_messages.to_sentence"
-    #   render :edit
-    # end 
+    @user = current_user
+    @classroom = @user.classrooms.find(params[:id])
+    if @classroom.update(classroom_params)
+      flash[:notice] = "更新班級設定"
+      redirect_to user_classrooms_path
+    else
+      flash.now[:alert] = "未能成功更新"
+      render :edit
+    end
+  end
+
+  def edit 
+    @user = current_user
+    @classroom = @user.classrooms.find(params[:id])
   end
 
   def destroy
-    # @user = current_user
-    # @subject = @user.subjects.find(params[:subject_id])
-    # @classroom = @subject.classrooms.find(params[:id])
-    # if @classroom.destroy
-    #   flash[:alert] = "班級已成功刪除"
-    #   redirect_to root_path
-    # else
-    #   flash.now[:alert] = "@classroom.errors.full_messages.to_sentence"
-    #   redirect_to root_path
-    # end
+    @user = current_user
+    @classroom = @user.classrooms.find(params[:id]) 
+    @classroom.destroy
+    redirect_to user_classrooms_path(@user)
+    flash[:notice] = "#{@classroom.name}學期計劃已被刪除"
   end
 
   private
   def classroom_params
-    params.require(:classroom).permit(:name, :grade, :room, :subject_id,:user_id, :start_time, :end_time, :feedback)
+    params.require(:classroom).permit(:name, :grade, :room, :subject_id,:user_id, :start_time, :end_time, :student)
   end
 end

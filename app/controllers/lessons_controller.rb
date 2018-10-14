@@ -25,10 +25,7 @@ class LessonsController < ApplicationController
  
   def show
     @lesson = Lesson.find(params[:id])
-    # HABTM 關聯方法
-
-    @classrooms = @subject.classrooms
-        
+    # HABTM 關聯方法        
     @topic = Topic.new
     @topics = @classroom.topics.order(created_at: :desc)
 
@@ -58,14 +55,14 @@ class LessonsController < ApplicationController
     if params[:lesson][:period] == "Does not repeat"
 
       # 時間在資料庫的時區是 +0
-      @classroom = @user.classrooms.find_or_initialize_by(name: (params[:lesson][:grade] + params[:lesson][:room]), grade: params[:lesson][:grade], room: params[:lesson][:room])
+      @classroom = @user.classrooms.find_or_initialize_by(name: (params[:lesson][:grade] + params[:lesson][:room]), grade: params[:lesson][:grade], room: params[:lesson][:room], student: params[:lesson][:student])
 
       @lesson = @classroom.lessons.new(lesson_params)
       @lesson.end_time = @lesson.start_time + 1.hour
 
     else # params[:lesson][:period] == "Repeat weekly"
 
-      @classroom = @user.classrooms.find_or_initialize_by(name: (params[:lesson][:grade] + params[:lesson][:room]), grade: params[:lesson][:grade], room: params[:lesson][:room])
+      @classroom = @user.classrooms.find_or_initialize_by(name: (params[:lesson][:grade] + params[:lesson][:room]), grade: params[:lesson][:grade], room: params[:lesson][:room], student: params[:lesson][:student])
 
       start = Time.new(params[:lesson]['start_time(1i)'],params[:lesson]['start_time(2i)'],params[:lesson]['start_time(3i)'],params[:lesson]['start_time(4i)'],params[:lesson]['start_time(5i)'])
 
@@ -114,8 +111,8 @@ class LessonsController < ApplicationController
     # @lesson = Lesson.find_by_id(params[:lesson][:id])
     if params[:lesson][:commit_button] == "更新之後的課程"
       # 以下編輯中，待接新增科目
-      @lessons = @event.event_series.events #.find(:all, :conditions => ["starttime > '#{@event.starttime.to_formatted_s(:db)}' "])
-      @lesson.update_events(@events, event_params)
+      @lessons = @lesson.classroom.lessons #.find(:all, :conditions => ["starttime > '#{@event.starttime.to_formatted_s(:db)}' "])
+      @lesson.update_lessons(@lessons, lesson_params)
     elsif params[:lesson][:commit_button] == "更新整學期的課程"
       # 以下編輯中，待接新增科目
       @lessons = @event.event_series.events.find(:all, :conditions => ["starttime > '#{@event.starttime.to_formatted_s(:db)}' "])
@@ -190,7 +187,7 @@ class LessonsController < ApplicationController
     end
 
     def lesson_params
-      params.require(:lesson).permit(:name, :start_time,'start_time(1i)', 'start_time(2i)', 'start_time(3i)', 'start_time(4i)', 'start_time(5i)', 'end_time(1i)', 'end_time(2i)', 'end_time(3i)', 'end_time(4i)', 'end_time(5i)', :period, :frequency, :commit_button, :event_type, :grade, :room)
+      params.require(:lesson).permit(:name, :start_time,'start_time(1i)', 'start_time(2i)', 'start_time(3i)', 'start_time(4i)', 'start_time(5i)', 'end_time(1i)', 'end_time(2i)', 'end_time(3i)', 'end_time(4i)', 'end_time(5i)', :period, :frequency, :commit_button, :event_type, :grade, :room,:student)
     end
 
 end

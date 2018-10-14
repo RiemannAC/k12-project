@@ -1,0 +1,40 @@
+<div class="main-frame">
+  <h1><%= @classroom.name %>的班級設定</h1>
+  <hr class="yellow-hr">
+
+
+  <% if @classroom.errors.any? %>
+    <h2>We have some errors here!</h2>
+    <ul>
+      <% @sclassroom.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>  
+  
+  <div class="form">
+  <%= form_for [@user, @classroom] do |f| %>
+    <div class="form-group">
+      <%#= f.label :name, "科目" %>
+      <%#= f.text_field :name, placeholder: "ex. 國文" %>
+    </div>
+    <div class="form-group">
+      <%#= f.label :name, "年班級" %>
+      <%#= f.text_field :name %>  
+    </div>
+    <div class="form-group">
+      <%= f.label :student, "班級人數" %>
+      <%= f.number_field :student %>
+    </div>
+    
+
+    <div class="form-group">
+      <%= f.submit "完成班級設定", class: 'btn btn-info' %>
+    </div>
+
+    <%= link_to '<< 班級列表', user_classrooms_path(@user) %>
+
+  </div>
+
+  <% end %>
+</div>
