@@ -1,7 +1,9 @@
 class ClassroomsController < ApplicationController
   def index
     @user = current_user
-    @classrooms = @user.classrooms.all
+    #@classrooms = @user.classrooms.order(grade: :asc,room: :asc)
+    @classrooms = @user.classrooms.includes(:classrooms_subjects).order("classrooms_subjects.subject_id asc, classrooms.grade asc, classrooms.room asc")
+
   end
 
   def show 
