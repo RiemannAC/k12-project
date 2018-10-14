@@ -8,6 +8,14 @@
             <% todos.each do |todo| %>
               <%- if todo.start_time.hour.between?(hour, hour + 0.9) %>
                 <%= todo.title %>
+                <span id="edit_buttons" class="pull-right">
+                  <%= link_to edit_user_event_path(@user, todo) do %>
+                    <i class="fa fa-edit" style="font-size: 36px; color: #009FCC;"></i>
+                  <% end %>
+                  <%= link_to user_event_path(@user, todo), method: :delete, data: { confirm: "確定要刪除嗎？"} do %>
+                    <i class="fa fa-trash" style="font-size: 36px; color: #009FCC;"></i>
+                  <% end %>
+                </span>
               <% end -%>
             <% end %>
           </span>
