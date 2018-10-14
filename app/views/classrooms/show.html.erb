@@ -9,7 +9,7 @@
     <br>
     <h4>科目： <%#= @subject.name %></h4>  
     <h4>班級： <%= @classroom.name %>（<%= @classroom.student %> 人）</h4>
-    <%= link_to '<< 回到班級列表', user_classrooms_path(@user)  %>
+    <%= link_to '以課表首頁檢視', user_lessons_path(@user)  %> || <%= link_to ' 以班級列表檢視', user_classrooms_path(@user)  %>
 
     <hr class="blue-hr"> 
 
