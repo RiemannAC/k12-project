@@ -17,20 +17,29 @@ class TeachingfilesController < ApplicationController
     
 
     # save teachingfile to database
-    @teachingfile.save
+    if @teachingfile.save
     # direction of save through if and elsif
     # Redirection depends on the comment's parent.
     # .is_a? method determines if it is of a certain class.  Here, is @parent
     # of class Post?  Is @parents is the same parent id passed through params?
-    if @parent.is_a?(Material) # template error with this included: (== params[:post_id])
-      flash[:notice] = '成功新增教材的檔案'
-      redirect_to user_material_path(@user,@material)
-    # if not part of the class Post, is it a Topic?  If so, save here and
-    # redirect to the topic after save
-    elsif @parent.is_a?(Plan)
-      flash[:notice] = '成功新增教案的檔案'
-      redirect_to user_plan_path(@user,@plan)
-    end
+      if @parent.is_a?(Material) # template error with this included: (== params[:post_id])
+        flash[:notice] = '成功新增教材的檔案'
+        redirect_to user_material_path(@user,@material)
+      # if not part of the class Post, is it a Topic?  If so, save here and
+      # redirect to the topic after save
+      elsif @parent.is_a?(Plan)
+        flash[:notice] = '成功新增教案的檔案'
+        redirect_back fallback_location: root_path
+      end
+    else
+      if @parent.is_a?(Material)
+        flash[:alert] = "請確定已輸入檔名或新增附件"
+        redirect_to user_material_path(@user, @material)
+      elsif @parent.is_a?(Plan)
+        flash[:alert] = "請確定已輸入檔名或新增附件"
+        redirect_back fallback_location: root_path
+      end
+    end 
   end
 
   def edit

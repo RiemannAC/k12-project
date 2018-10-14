@@ -6,9 +6,11 @@
 @import "font-awesome";
 @import "style";
 @import "simple_calendar";
+@import url(https://fonts.googleapis.com/earlyaccess/cwtexming.css);
 
 body {
   color: #5e5f5f;
+  font-family: ‘cwTeXMing’, serif;
 }
 
 .theme-color {
