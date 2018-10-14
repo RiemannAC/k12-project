@@ -1,5 +1,6 @@
 <div class="main-frame">
   <h1>我的班級管理列表</h1>
+  <h4><%= link_to '<<以首頁課表檢視', user_lessons_path(@user)  %></h4>
   <hr class="blue-hr">
   
   <% if @classrooms.count == 0 %>
@@ -20,7 +21,7 @@
       <tbody>
         <% @classrooms.each do |classroom| %>
         <tr>
-          <td><%= link_to '管理班級', user_classroom_path(@user, classroom) %></td>
+          <td><%= link_to '教學進度管理', user_classroom_path(@user, classroom) %></td>
           <td><%= classroom.subjects.pluck(:name).join() %></td>
           <td><%= classroom.name %></td>
           <td><%= classroom.student %></td> 
@@ -32,7 +33,7 @@
             <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#myupdateclass">
               修改班級人數
             </button>
-            <%= link_to '刪除學期計劃', user_classroom_path(@user, classroom), class: 'btn btn-danger btn-sm', method: :delete, data: {confirm: "此為永久刪除，確定要執行嗎？"} %>
+            <%= link_to '刪除班級資料', user_classroom_path(@user, classroom), class: 'btn btn-danger btn-sm', method: :delete, data: {confirm: "此為永久刪除，確定要執行嗎？"} %>
           </td>
         </tr> 
 
