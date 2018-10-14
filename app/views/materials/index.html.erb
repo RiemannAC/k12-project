@@ -1,55 +1,90 @@
 <div class="container">
-  <h1>
-    教材資料夾
-  </h1>
-  
-  <hr class="red-hr">
-  <div class="row">
-    <div class="col-md-8">
-      <% if @materials.count == 0 %>
-        <h4>你還沒有任何教材資料！</h4>
-      <% else %>  
-        <% @subject_tags.each do |subject| %>
-          <% if subject.materials.present? %>
-            <h4><i><%= subject.name %></i></h4>
-            <% subject.materials.each do |material| %>
-            <div class="folder-block">
-              <%= link_to user_material_path(@user,material) do %>     
-                <%= fa_icon 'folder-open 4x', style: 'color:skyblue;' %>
-                <p><%= material.mtrial_folder_name %></p>
-                
-              <% end %>
+  <h3>
+    教材資料夾 
+    <!-- Button trigger modal -->
+    <a href="" data-toggle="modal" data-target="#exampleModal">
+      <%= fa_icon "plus-circle 2x", style: 'color: #83c867' %>
+    </a>
+  </h3>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">新增資料夾</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <%= form_for [@user,@material] do |f| %>
+            <div class="form-group">
+            <%= f.label :subject_tag_id, "科目" %>
+            <%= f.collection_select :subject_tag_id , SubjectTag.all, :id, :name, {prompt: true}, {class: "form-control"}  %>
             </div>
-            <% end %>
-          
+            <div class="form-group">
+            <%= f.label :mtrial_folder_name, "教學主題／單元" %>
+            <%= f.text_field :mtrial_folder_name ,class: "form-control"%>
+            </div>
+
+            <div class="form-group">
+              <% if @material.mtrial_folder_name.present? %>
+                <%= f.submit '修改', class: 'btn btn-outline-info' %>
+                <%= link_to '取消', user_materials_path(@user), class: 'btn btn-outline-danger' %>
+              <% else %>
+                <%= f.submit '新增', class: 'btn btn-info float-right' %>
+              <% end %> 
+            </div>
           <% end %>
-        <% end %>
-      <% end %>
-    </div>
-
-    <div class="col-md-4">
-      <h4>新增資料夾</h4><br>
-      <div class="">
-        <%= form_for [@user,@material] do |f| %>
-          <div class="form-group">
-          <%= f.label :subject_tag_id, "科目" %>
-          <%= f.collection_select :subject_tag_id , SubjectTag.all, :id, :name, {prompt: true}, {class: "form-control"}  %>
-          </div>
-          <div class="form-group">
-          <%= f.label :mtrial_folder_name, "教學主題／單元" %>
-          <%= f.text_field :mtrial_folder_name ,class: "form-control"%>
-          </div>
-
-          <div class="form-group">
-            <% if @material.mtrial_folder_name.present? %>
-              <%= f.submit '修改', class: 'btn btn-outline-info' %>
-              <%= link_to '取消', user_materials_path(@user), class: 'btn btn-outline-danger' %>
-            <% else %>
-              <%= f.submit '新增', class: 'btn btn-info' %>
-            <% end %> 
-          </div>
-        <% end %>
+        </div>
       </div>
     </div>
   </div>
+  
+  <hr class="orange-hr">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <% if @materials.count == 0 %>
+        <h4>你還沒有任何教材資料！</h4>
+      <% else %>
+        
+
+        <table class="table table-sm table-hover">
+          <thead>
+            <tr>
+              <th scope="col">科目</th>
+              <th scope="col">主題／單元</th>
+              <th scope="col">上次修改日期</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @subject_tags.each do |subject| %>
+              <% if subject.materials.present? %>
+                <tr>
+                  <th><%= subject.name %></th>
+                  <td>
+                    <% subject.materials.each do |material| %>
+                      <%= link_to user_material_path(@user,material) do %>  
+                        <%= fa_icon 'folder', style: 'color:grey;' %>&nbsp;&nbsp;
+                        <span><%= material.mtrial_folder_name %></span> 
+                      <% end %><br>              
+                    <% end %>
+                  </td>
+                  <td>
+                    <% subject.materials.each do |material| %>
+                      <%= material.updated_at.strftime("%Y/%m/%d") %><br>
+                    <% end %>
+                  </td>
+                </tr>
+
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %>
+    </div>
+
+  </div>
+
 </div>

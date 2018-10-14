@@ -15,6 +15,7 @@
 body {
   color: #5e5f5f;
   font-family: 'Kodchasan', ‘Noto Sans TC’, sans-serif;
+  background-color: #f3f7f6
 }
 
 a {
@@ -39,34 +40,16 @@ a:hover {
   color: #5e5f5f!important;
 }
 
-.blue-hr {
+.green-hr {
   height:10px;
   border:none;
-  border-top:10px groove skyblue;
-}
-
-.pink-hr {
-  height:10px;
-  border:none;
-  border-top:10px groove pink;
-}
-
-.red-hr {
-  height: 10px;
-  border: none;
-  border-top:10px groove #e86dd4;
+  border-top:10px groove #64b24494;
 }
 
 .orange-hr {
   height: 10px;
   border: none;
-  border-top: 10px groove orange;
-}
-
-.yellow-hr {
-  height: 10px;
-  border: none;
-  border-top: 10px groove yellow;
+  border-top: 10px groove #ec584d8f;
 }
 
 .main-frame {
