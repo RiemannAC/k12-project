@@ -16,10 +16,11 @@ class LessonsController < ApplicationController
 
     # _to_do_list
     @day = Date.today
-    @todos = Lesson.where(event_type: "todo")
+    # @todos = Lesson.where(event_type: "todo")
+    @todos = @user.events.all
 
-    gon.events_path = @user.events.order(created_at: :asc)
-    gon.event_path = ""
+    #gon.events_path = @user.events.order(created_at: :asc)
+    #gon.event_path = ""
     
   end
  

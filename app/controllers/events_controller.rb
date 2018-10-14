@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_todo, only: [:show, :edit, :update, :destroy]
 
   # GET /events
   # GET /events.json
@@ -20,7 +20,7 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @user = current_user
-    @event = @user.events.new
+    @todo = @user.events.new
   end
 
   # GET /events/1/edit
@@ -31,16 +31,23 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @user = current_user
-    @event = @user.events.new(event_params)
-    respond_to do |format|
-      if @event.save
-        format.html { redirect_to user_lessons_url, notice: '成功新增一個待辦事項' }
-        format.json { render :show, status: :created, location: user_lessons_url }
-      else
-        format.html { render :new }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
-      end
+    @todo = @user.events.new(event_params)
+    if @todo.save
+      flash[:notice] = "已新增待辦事項"
+      redirect_to root_path
+    else
+      flash.now[:alert] = "@todo.errors.full_messages.to_sentence"
+      render :new
     end
+    # respond_to do |format|
+    #   if @event.save
+    #     format.html { redirect_to user_lessons_url, notice: '成功新增一個待辦事項' }
+    #     format.json { render :show, status: :created, location: user_lessons_url }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @event.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /events/1
@@ -71,13 +78,13 @@ class EventsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_event
+    def set_todo
       @user = current_user
-      @event = @user.events.find(params[:id])
+      @todo = @user.events.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:title, :start, :end,:user_id)
+      params.require(:event).permit(:title, :start_time, :end_time,:user_id)
     end
 end
