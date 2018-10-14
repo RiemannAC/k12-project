@@ -16,7 +16,9 @@ class LessonsController < ApplicationController
 
     # _to_do_list
     @day = Date.today
+
     @todos = @user.events.all
+    @todo = @user.events.new
   end
  
   def show

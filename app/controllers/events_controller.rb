@@ -6,7 +6,7 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @todo = @user.events.new
-  end
+  end 
 
   # POST /events
   # POST /events.json
@@ -37,7 +37,7 @@ class EventsController < ApplicationController
       # redirect_to user_event_path(@user, @todo)
       #@todo.update.attributes = event_params
       @todo.save
-      flash[:notice] = "已更新待辦事項"
+      flash[:notice] = "已更新此待辦事項"
       redirect_to root_path
     else # "更新這堂課" 編輯完成
       flash.now[:alert] = "@todo.errors.full_messages.to_sentence"
@@ -60,7 +60,7 @@ class EventsController < ApplicationController
   # DELETE /events/1.json
   def destroy
     if @todo.destroy
-      flash[:alert] = "行事曆一筆資料已成功刪除"
+      flash[:alert] = "已成功刪除此待辦事項"
       redirect_to root_path
     else
       flash[:alert] = "@todo.errors.full_messages.to_sentence"
