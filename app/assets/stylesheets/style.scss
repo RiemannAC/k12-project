@@ -1,3 +1,23 @@
+/******* New Navbar Setting ********/
+
+.nav {
+  float: right;
+}
+
+.nav li {
+  display: inline-block;
+}
+
+.nav li a {
+  text-transform: capitalize;
+  display: block;
+  padding: 10px 18px;
+}
+
+.navbar {
+  box-shadow: 0px -2px 20px 0px grey;
+}
+
 /******** devise login page **********/
 
 .login {

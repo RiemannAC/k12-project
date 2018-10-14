@@ -1,12 +1,11 @@
-/********* 整體設定 ***********/
+/********* 整體設定 Start ***********/
 
 /*
  *= require trix
  */
 
-@import "bootstrap";
 @import "font-awesome";
-@import "style";
+@import "bootstrap";
 @import "simple_calendar";
 @import url('https://fonts.googleapis.com/css?family=Kodchasan:400,500,700');
 @import url(https://fonts.googleapis.com/earlyaccess/notosanstc.css);
@@ -15,10 +14,11 @@
 body {
   color: #5e5f5f;
   font-family: 'Kodchasan', ‘Noto Sans TC’, sans-serif;
-  background-color: #f3f7f6
+  background-color: #f3f7f6;
 }
 
 a {
+  color: #454545;
   font-size: 14px;
 }
 
@@ -33,11 +33,15 @@ a:hover {
 
 .theme-color {
   color:#fff;
-  background-color:#5e5f5f;
+  background-color:#454545;
 }
 
 .theme-font {
-  color: #5e5f5f!important;
+  color: #454545!important;
+}
+
+.theme-button {
+  
 }
 
 .green-hr {
@@ -63,46 +67,9 @@ a:hover {
   z-index: 99;
 }
 
-/******* New Navbar Setting ********/
-
-.nav {
-  float: right;
+.clearfix {
+  clear: both;
 }
 
-.nav li {
-  display: inline-block;
-}
-
-.nav li a {
-  text-transform: capitalize;
-  display: block;
-  padding: 10px 18px;
-}
-
-.navbar {
-  box-shadow: 0px -2px 20px 0px grey;
-}
-
-/******** OLD NAVBAR SETTING **********/
-
-.nav-user {
-  margin-left: 20px;
-}
-
-.user-icon {
-  margin: 0 15px 0 15px;
-}
-
-.side-avatar {
-  height: 200px;
-  width: 200px;
-}
-
-.fixed-top {
-  background-color: #5e5f5f;
-  color: #fff;
-}
-
-.navbar-nav-li a, .nav-item a {
-
-}
+@import "style";
+@import "materials";
