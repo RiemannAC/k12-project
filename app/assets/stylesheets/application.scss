@@ -1,3 +1,5 @@
+/********* 整體設定 ***********/
+
 /*
  *= require trix
  */
@@ -6,12 +8,22 @@
 @import "font-awesome";
 @import "style";
 @import "simple_calendar";
-@import url(https://fonts.googleapis.com/earlyaccess/cwtexming.css);
+@import url('https://fonts.googleapis.com/css?family=Kodchasan:400,500,700');
+@import url(https://fonts.googleapis.com/earlyaccess/notosanstc.css);
+
 
 body {
   color: #5e5f5f;
-  font-family: ‘cwTeXMing’, serif;
+  font-family: 'Kodchasan', ‘Noto Sans TC’, sans-serif;
 }
+
+a {
+  font-weight: 300;
+}
+
+
+
+
 
 .theme-color {
   color:#fff;
