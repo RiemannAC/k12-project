@@ -21,10 +21,52 @@
           </span>
       </div>
     <% end %>
-  <% end %>
+  <% end %> 
   <span id="new_event_button">
-    <%= link_to new_user_event_path(@user) do %>
-      <i class="fa fa-plus-circle pull-right" style="font-size: 60px; color: #009FCC; padding-left: 10px;"></i>
-    <% end %>
-  <span>
-</div>
+    <i class="fa fa-plus-circle pull-right" data-toggle="modal" data-target="#todopost" style="font-size: 60px; color: #009FCC; padding-left: 10px;"></i>
+  <span> 
+</div> 
+  
+ 
+<%= form_for [@user, @todo] do |f| %>
+  <div class="modal fade" id="todopost" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+ 
+            <h5 class="modal-title" id="myModalLabel">待辦事項</h5>
+          </div>
+
+          <div class="modal-body">
+            <%# modal-body %>
+              <div class="form-group">
+                <%= f.label '待辦事項' %>
+                <%= f.text_field :title, class: "form-control" %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label '開始時間' %>
+                <%= f.datetime_select :start_time, start_year: Date.today.year, end_year: Date.today.year+1, start_hour: 8, end_hour: 18, ampm: true, discard_minute: true, default: Date.today.beginning_of_day + 8.hour %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label '結束時間' %>
+                <%= f.datetime_select :end_time, start_year: Date.today.year, end_year: Date.today.year+1, start_hour: 8, end_hour: 18, ampm: true, discard_minute: true, default: Date.today.beginning_of_day + 9.hour %>
+              </div>            
+            <%# modal-body  %>
+          </div>  
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" id="mynewpostclose">close</button>
+
+            <%#= link_to '刪除',user_event_path(@user,@todo), method: :delete, data: {confirm: "確定要刪除此待辦事項嗎？"} , class:"btn btn-danger" unless @todo.new_record? %>
+              
+            <%= f.submit '新增' ,class:"btn btn-primary"%>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>
