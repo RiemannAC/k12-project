@@ -96,4 +96,43 @@ namespace :dev do
     puts "now you have #{Subject.count} subjects data"
   end
 
+  task fake_lesson: :environment do
+    # Lesson.destroy_all
+
+    user = User.where(name: "liberal").first
+    SUBJECTS = ["國文", "英文", "社會"]
+    classrooms = [ user.classrooms[0], user.classrooms[1], user.classrooms[2] ]
+    classroom = classrooms[0]
+    subject_name = SUBJECTS[0]
+    start_time = Time.new(Time.now.year, 7, 2, 8)
+
+    # 判斷 break point
+    if Time.now.month.between?(7,12)
+      semester = Time.new(Time.now.year,7,1)..Time.new(Time.now.year + 1,1,31).end_of_day
+    elsif  Time.now.month.between?(1,1)
+      semester = Time.new(Time.now.year - 1,7,1)..Time.new(Time.now.year,1,31).end_of_day
+    else
+      semester = Time.new(Time.now.year,2,1)..Time.new(Time.now.year,6,30).end_of_day
+    end
+
+     i = 0
+    loop do
+      @lesson = classroom.lessons.new(name: subject_name, grade: classroom.grade, room: classroom.room)
+      @lesson.start_time = start_time
+      @lesson.end_time = start_time + 1.hour
+      @lesson.save
+      start_time += 1.week
+      i += 1
+      break if start_time > semester.end
+    end
+    if @lesson.save
+
+      # Subject name 需保持唯一性，lesson name 編輯時需同步更換同名的 subject
+      subject = user.subjects.find_or_create_by(name: subject_name)
+      subject.classrooms << classroom unless subject.classrooms.exists?(classroom.id)
+    end
+    puts "created fake lessons"
+    puts "now you have #{Lesson.count} lessons data"
+  end
+
 end
