@@ -263,21 +263,16 @@
 
 /***** new button *****/
 
- #new_event_button a i {
+#new_event_button i {
   margin-top: 25px;
 }
- #new_event_button a i:hover {
-  /*background-color: #BADA55;*/
-  /*box-shadow: 20px 15px rgba(0,0,0,0.15);  變直接陰影*/
+
+#new_event_button i:hover {
   transform: scale(1.2);
   transition-timing-function: cubic-bezier(.1,.7,.26,.21);
-  /*-webkit-transition: all .3s linear;
-  -moz-transition: all .3s linear;
-  -ms-transition: all .3s linear;
-  -o-transition: all .3s linear;
-  transition: all .3s linear;*/
 }
- #new_button a i:hover {
+
+#new_button a i:hover {
   transform: scale(1.2);
   transition-timing-function: cubic-bezier(.1,.7,.26,.21);
 }
