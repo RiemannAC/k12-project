@@ -66,4 +66,34 @@ namespace :dev do
     puts "now you have #{Classroom.count} classrooms data"
   end
 
+  task fake_subject: :environment do
+    Subject.destroy_all
+
+    SUBJECTS = ["國文", "英文", "社會", "數學", "自然", "生活科技"]
+    for i in 0..2
+      user = User.where(name: "liberal").first
+      classroom = user.classrooms[i]
+      subject = user.subjects.find_or_create_by( name: SUBJECTS[i] )
+      subject.classrooms << classroom unless subject.classrooms.exists?(classroom.id)
+    end
+    for i in 3..5
+      user = User.where(name: "science").first
+      # 理科教師只有教三班，index 要平移
+      classroom = user.classrooms[i - 3]
+
+      subject = user.subjects.find_or_create_by( name: SUBJECTS[i] )
+      subject.classrooms << classroom unless subject.classrooms.exists?(classroom.id)
+    end
+
+    user = User.where(name: "general").first
+    classroom = user.classrooms[0]
+    for i in 0..5
+      subject = user.subjects.find_or_create_by( name: SUBJECTS[i] )
+      subject.classrooms << classroom unless subject.classrooms.exists?(classroom.id)
+    end
+
+    puts "created fake subjects"
+    puts "now you have #{Subject.count} subjects data"
+  end
+
 end
