@@ -94,10 +94,11 @@
             <%= f.datetime_select :start_time, start_year: Date.today.year, end_year: Date.today.year+1, start_hour: 8, end_hour: 18, ampm: true, discard_minute: true, default: Date.today.beginning_of_day + 8.hour %>
           </div>
 
-          <div class="form-group">
-            <%= f.label '結束時間' %>
-            <%= f.datetime_select :end_time, start_year: Date.today.year, end_year: Date.today.year+1, start_hour: 8, end_hour: 18, ampm: true, discard_minute: true, default: Date.today.beginning_of_day + 9.hour %>
-          </div>            
+          <%# <div class="form-group"> 暫時關閉 end_time 選項 %>
+            <%#= f.label '結束時間' %>
+            <%#= f.datetime_select :end_time, start_year: Date.today.year, end_year: Date.today.year+1, start_hour: 8, end_hour: 18, ampm: true, discard_minute: true, default: Date.today.beginning_of_day + 9.hour %>
+          <%# </div> %>
+
           <%# modal-body 結束  %>
         </div>  
 
