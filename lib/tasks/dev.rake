@@ -16,11 +16,11 @@ namespace :dev do
     # user model has_many :event_series on condition 設定條件回呼或先關閉 dependent: :destroy
     User.where.not(role: "admin").destroy_all
 
-    5.times do
-      username = FFaker::Name.unique.last_name
+    NAMES = ["liberal", "science", "general"]
+    NAMES.each do |name|
       User.create!(
-        name: username,
-        email: "#{username}@example.com",
+        name: name,
+        email: "#{name}@example.com",
         password: "12345678",
         intro: FFaker::Lorem.paragraph.first(130),
         job_title: FFaker::Job.title,
