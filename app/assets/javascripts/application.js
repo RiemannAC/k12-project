@@ -17,6 +17,7 @@
 //= require jquery3
 //= require popper
 //= require bootstrap
+//= require jquery-ui/datepicker
 //
 $(function() {
   setTimeout(function(){

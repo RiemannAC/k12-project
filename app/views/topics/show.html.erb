@@ -22,22 +22,26 @@
             <% subject.materials.each do |m| %>
               <p><strong><%= '主題／單元：' + m.mtrial_folder_name %></strong></p>
 
-              <ul> 
-                <% m.teachingfiles.each do |teachingfile| %>  
-                  <li>
-                    <% if teachingfile.is_added?(@topic) %>
-                      <%= link_to '移除檔案', removefile_user_classroom_topic_teachingfile_path(@user,@classroom,@topic,teachingfile), method: :post, class: 'btn btn-outline-warning btn-sm', remote: true %> | 
-                      <b style="font-size: 20px;"><%= "【 " + teachingfile.name + " 】" %></b>
-                    <% else %>
-                      <%= link_to '加入檔案', addfile_user_classroom_topic_teachingfile_path(@user,@classroom,@topic,teachingfile), method: :post, class: 'btn btn-outline-primary btn-sm', remote: true %> | 
-                      <b style="font-size: 20px;"><%= "【 " + teachingfile.name + " 】" %></b>
-                    <% end %>
-                  </li>
-                  <ul>
-                    <% teachingfile.attachments.each do |file| %>
-                      <li><i><%= file.file.filename %></i></li>
-                    <% end %>
-                  </ul>
+              <ul>
+                <% if m.teachingfiles.count == 0 %>
+                  <p style="color: green;"><i>此為空資料夾</i></p>
+                <% else %>
+                  <% m.teachingfiles.each do |teachingfile| %>                  
+                    <li>
+                      <% if teachingfile.is_added?(@topic) %>
+                        <%= link_to '移除檔案', removefile_user_classroom_topic_teachingfile_path(@user,@classroom,@topic,teachingfile), method: :post, class: 'btn btn-outline-warning btn-sm', remote: true %> | 
+                        <b style="font-size: 20px;"><%= "【 " + teachingfile.name + " 】" %></b>
+                      <% else %>
+                        <%= link_to '加入檔案', addfile_user_classroom_topic_teachingfile_path(@user,@classroom,@topic,teachingfile), method: :post, class: 'btn btn-outline-primary btn-sm', remote: true %> | 
+                        <b style="font-size: 20px;"><%= "【 " + teachingfile.name + " 】" %></b>
+                      <% end %>
+                    </li>
+                    <ul>
+                      <% teachingfile.attachments.each do |file| %>
+                        <li><i><%= file.file.filename %></i></li>
+                      <% end %>
+                    </ul>
+                  <% end %>
                 <% end %>
               </ul>
             <% end %>
@@ -59,22 +63,26 @@
             <% subject.plans.each do |p| %>
               <p><strong><%= '主題／單元：' + p.plan_folder_name %></strong></p>
               <ul>
-                <% p.teachingfiles.each do |teachingfile| %>  
-                  <li>
-                    <% if teachingfile.is_added?(@topic) %>
-                      <%= link_to '從卡片移除', removefile_user_classroom_topic_teachingfile_path(@user, @classroom, @topic, teachingfile), method: :post, class: 'btn btn-outline-warning btn-sm', remote: true %> |  
-                      <b style="font-size: 20px;"><%= "【 " + teachingfile.name + " 】" %></b>
-                    <% else %>
-                      <%= link_to '加入卡片', addfile_user_classroom_topic_teachingfile_path(@user, @classroom, @topic, teachingfile), method: :post, class: 'btn btn-outline-primary btn-sm', remote: true %> | 
-                      <b style="font-size: 20px;"><%= "【 " + teachingfile.name + " 】" %></b>
+                <% if p.teachingfiles.count == 0 %>
+                  <p>此為空資料夾</p>
+                <% else %>
+                  <% p.teachingfiles.each do |teachingfile| %>  
+                    <li>
+                      <% if teachingfile.is_added?(@topic) %>
+                        <%= link_to '移除檔案', removefile_user_classroom_topic_teachingfile_path(@user, @classroom, @topic, teachingfile), method: :post, class: 'btn btn-outline-warning btn-sm', remote: true %> |  
+                        <b style="font-size: 20px;"><%= "【 " + teachingfile.name + " 】" %></b>
+                      <% else %>
+                        <%= link_to '加入檔案', addfile_user_classroom_topic_teachingfile_path(@user, @classroom, @topic, teachingfile), method: :post, class: 'btn btn-outline-primary btn-sm', remote: true %> | 
+                        <b style="font-size: 20px;"><%= "【 " + teachingfile.name + " 】" %></b>
+                      <% end %>
+                    </li>
+                    <ul>
+                    <% teachingfile.attachments.each do |file| %>
+                      <li><i><%= file.file.filename %></i></li>
                     <% end %>
-                  </li>
-                  <ul>
-                  <% teachingfile.attachments.each do |file| %>
-                    <li><i><%= file.file.filename %></i></li>
+                    <br>
+                    </ul>
                   <% end %>
-                  <br>
-                  </ul>
                 <% end %>
               </ul>
             <% end %>

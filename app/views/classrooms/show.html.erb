@@ -1,4 +1,4 @@
-<div class="main-frame">
+<div class="container">
     <span class="text-center">
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mynewpost">
       新增教學計劃
@@ -42,31 +42,30 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
+            <h5 class="modal-title" id="myModalLabel">教學計劃</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
- 
-            <h5 class="modal-title" id="myModalLabel">反思／備註</h5>
           </div>
 
           <div class="modal-body">
             <%# modal-body %>
               <!--輸入主題日期開始-->
-              <div class="field">
+              <div class="form-group">
                 <%= f.label "開始日期" %>
-                <%= f.text_field :start_time, class: 'form-control post_theme', placeholder: "輸入開始日期 ex:9/14" %>
+                <%= f.text_field :start_time, class: 'datepicker form-control post_theme', placeholder: '點選日期' %>
               </div>
             
               <!--輸入主題日期結束-->
               
-              <div class="field">
+              <div class="form-group">
                 <%= f.label "結束日期" %>
-                <%= f.text_field :end_time, class: 'form-control post_theme', placeholder: "輸入結束日期 ex:9/20" %>
+                <%= f.text_field :end_time, class: 'datepicker form-control post_theme', placeholder: '點選日期' %>
               </div>
 
               <!--輸入教學主題-->
               
-              <div class="field">
+              <div class="form-group">
                 <%= f.label "教學單元主題" %>
                 <%= f.text_field :name, class: 'form-control post_theme', placeholder: "輸入教學主題" %>
               </div>
