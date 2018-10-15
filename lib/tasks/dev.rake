@@ -31,4 +31,39 @@ namespace :dev do
     puts "created fake users"
     puts "now you have #{User.count} users data"
   end
+
+
+  task fake_classroom: :environment do
+    Classroom.destroy_all
+
+    CLASSROOMS = { name: ["1年一班", "2年二班", "3年三班", "4年四班", "5年五班", "6年六班", "7年特班"], grade: ["1年", "2年", "3年", "4年", "5年", "6年", "7年"], room: ["一班", "二班", "三班", "四班", "五班", "六班", "特班"]}
+    for i in 0..2
+      user = User.where(name: "liberal").first
+      user.classrooms.create!(
+        name: CLASSROOMS[:name][i],
+        grade: CLASSROOMS[:grade][i],
+        room: CLASSROOMS[:room][i],
+        student: [*20..30].sample
+      )
+    end
+    for i in 3..5
+      user = User.where(name: "science").first
+      user.classrooms.create!(
+        name: CLASSROOMS[:name][i],
+        grade: CLASSROOMS[:grade][i],
+        room: CLASSROOMS[:room][i],
+        student: [*20..30].sample
+      )
+    end
+    user = User.where(name: "general").first
+    user.classrooms.create!(
+      name: CLASSROOMS[:name][6],
+      grade: CLASSROOMS[:grade][6],
+      room: CLASSROOMS[:room][6],
+      student: [*20..30].sample
+    )
+    puts "created fake classrooms"
+    puts "now you have #{Classroom.count} classrooms data"
+  end
+
 end
