@@ -17,10 +17,10 @@
 //= require jquery3
 //= require popper
 //= require bootstrap
+//= require jquery-ui/datepicker
 //
 $(function() {
   setTimeout(function(){
     $('.alert').slideUp(500);
   }, 4000);
-  $('[data-toggle="tooltip"]').tooltip();
 });

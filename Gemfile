@@ -52,6 +52,7 @@ gem 'jquery-rails'
 gem 'font-awesome-rails'
 gem 'kaminari'
 gem 'bootstrap4-kaminari-views'
+gem 'jquery-ui-rails', '5.0.5'
 #專案需求
 gem 'rest-client'
 gem 'ransack'

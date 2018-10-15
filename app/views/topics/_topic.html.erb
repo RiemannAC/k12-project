@@ -20,7 +20,7 @@
         <div class="col-md-12 prepare-detail">
           <!--教學單元主題-->
           <h5>
-            <span><%= topic.start_time.strftime("%Y/%m/%d") %> ~ <%= topic.end_time.strftime("%Y/%m/%d") %></span>
+            <span><%= topic.start_time %> ~ <%= topic.end_time %></span>
             <span style="margin-left: 15px;"><b><%= topic.name %></b></span> 
             <div class="button-set">
               <!--編輯教學主題計劃表--->
@@ -132,13 +132,13 @@
               <!--輸入主題日期開始-->
               <div class="field">
                 <%= f.label "開始日期" %>
-                <%= f.date_select :start_time, class: 'form-control post_theme', placeholder: "ex: 2018/9/14" %>
+                <%= f.text_field :start_time, id: 'datepicker-start',class: 'form-control post_theme', placeholder: "點選日期" %>
               </div>
 
               <!--輸入主題日期結束-->
               <div class="field">
                 <%= f.label "結束日期" %>
-                <%= f.date_select :end_time, class: 'form-control post_theme', placeholder: "ex:2018/9/21" %>
+                <%= f.text_field :end_time, id: 'datepicker-end', class: 'form-control post_theme', placeholder: "點選日期" %>
               </div>
 
               <!--輸入教學主題-->
@@ -151,7 +151,7 @@
 
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal" id="mypostclose">close</button>
-            <%= submit_tag "Update",class:"btn btn-primary" %>
+            <%= submit_tag "Update",class: "btn btn-primary" %>
           </div>
         </div>
       </div>
