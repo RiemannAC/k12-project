@@ -7,7 +7,21 @@ namespace :dev do
     "db:create",
     "db:migrate",
     "db:seed",
-    :fake_user
+    :fake_user,
+    :fake_classroom,
+    :fake_subject,
+    :fake_lesson_00,
+    :fake_lesson_01,
+    :fake_lesson_02,
+    :fake_lesson_10,
+    :fake_lesson_11,
+    :fake_lesson_12,
+    :fake_lesson_20,
+    :fake_lesson_21,
+    :fake_lesson_22,
+    :fake_lesson_23,
+    :fake_lesson_24,
+    :fake_lesson_25
     ]
 
   # Test in irb > require 'ffaker'
@@ -96,15 +110,136 @@ namespace :dev do
     puts "now you have #{Subject.count} subjects data"
   end
 
-  task fake_lesson: :environment do
+  task fake_lesson_00: :environment do
     # Lesson.destroy_all
 
     user = User.where(name: "liberal").first
     SUBJECTS = ["國文", "英文", "社會"]
     classrooms = [ user.classrooms[0], user.classrooms[1], user.classrooms[2] ]
-    classroom = classrooms[0]
+    # 參數
     subject_name = SUBJECTS[0]
+    # 時間不重疊
     start_time = Time.new(Time.now.year, 7, 2, 8)
+    # 參數
+    classroom = classrooms[0]
+    # 判斷 break point
+    if Time.now.month.between?(7,12)
+      semester = Time.new(Time.now.year,7,1)..Time.new(Time.now.year + 1,1,31).end_of_day
+    elsif  Time.now.month.between?(1,1)
+      semester = Time.new(Time.now.year - 1,7,1)..Time.new(Time.now.year,1,31).end_of_day
+    else
+      semester = Time.new(Time.now.year,2,1)..Time.new(Time.now.year,6,30).end_of_day
+    end
+
+     i = 0
+    loop do
+      @lesson = classroom.lessons.new(name: subject_name, grade: classroom.grade, room: classroom.room)
+      @lesson.start_time = start_time
+      @lesson.end_time = start_time + 1.hour
+      @lesson.save
+      start_time += 1.week
+      i += 1
+      break if start_time > semester.end
+    end
+    if @lesson.save
+
+      # Subject name 需保持唯一性，lesson name 編輯時需同步更換同名的 subject
+      subject = user.subjects.find_or_create_by(name: subject_name)
+      subject.classrooms << classroom unless subject.classrooms.exists?(classroom.id)
+    end
+
+    puts "created fake lessons"
+    puts "now you have #{Lesson.count} lessons data"
+  end
+
+  task fake_lesson_01: :environment do
+    # Lesson.destroy_all
+
+    user = User.where(name: "liberal").first
+    SUBJECTS = ["國文", "英文", "社會"]
+    classrooms = [ user.classrooms[0], user.classrooms[1], user.classrooms[2] ]
+    subject_name = SUBJECTS[1]
+    start_time = Time.new(Time.now.year, 7, 3, 8)
+
+    classroom = classrooms[1]
+    # 判斷 break point
+    if Time.now.month.between?(7,12)
+      semester = Time.new(Time.now.year,7,1)..Time.new(Time.now.year + 1,1,31).end_of_day
+    elsif  Time.now.month.between?(1,1)
+      semester = Time.new(Time.now.year - 1,7,1)..Time.new(Time.now.year,1,31).end_of_day
+    else
+      semester = Time.new(Time.now.year,2,1)..Time.new(Time.now.year,6,30).end_of_day
+    end
+
+     i = 0
+    loop do
+      @lesson = classroom.lessons.new(name: subject_name, grade: classroom.grade, room: classroom.room)
+      @lesson.start_time = start_time
+      @lesson.end_time = start_time + 1.hour
+      @lesson.save
+      start_time += 1.week
+      i += 1
+      break if start_time > semester.end
+    end
+    if @lesson.save
+
+      # Subject name 需保持唯一性，lesson name 編輯時需同步更換同名的 subject
+      subject = user.subjects.find_or_create_by(name: subject_name)
+      subject.classrooms << classroom unless subject.classrooms.exists?(classroom.id)
+    end
+
+    puts "created fake lessons"
+    puts "now you have #{Lesson.count} lessons data"
+  end
+
+  task fake_lesson_02: :environment do
+
+    user = User.where(name: "liberal").first
+    SUBJECTS = ["國文", "英文", "社會"]
+    classrooms = [ user.classrooms[0], user.classrooms[1], user.classrooms[2] ]
+    subject_name = SUBJECTS[2]
+    start_time = Time.new(Time.now.year, 7, 4, 8)
+
+    classroom = classrooms[2]
+    # 判斷 break point
+    if Time.now.month.between?(7,12)
+      semester = Time.new(Time.now.year,7,1)..Time.new(Time.now.year + 1,1,31).end_of_day
+    elsif  Time.now.month.between?(1,1)
+      semester = Time.new(Time.now.year - 1,7,1)..Time.new(Time.now.year,1,31).end_of_day
+    else
+      semester = Time.new(Time.now.year,2,1)..Time.new(Time.now.year,6,30).end_of_day
+    end
+
+     i = 0
+    loop do
+      @lesson = classroom.lessons.new(name: subject_name, grade: classroom.grade, room: classroom.room)
+      @lesson.start_time = start_time
+      @lesson.end_time = start_time + 1.hour
+      @lesson.save
+      start_time += 1.week
+      i += 1
+      break if start_time > semester.end
+    end
+    if @lesson.save
+
+      # Subject name 需保持唯一性，lesson name 編輯時需同步更換同名的 subject
+      subject = user.subjects.find_or_create_by(name: subject_name)
+      subject.classrooms << classroom unless subject.classrooms.exists?(classroom.id)
+    end
+
+    puts "created fake lessons"
+    puts "now you have #{Lesson.count} lessons data"
+  end
+
+  task fake_lesson_10: :environment do
+
+    user = User.where(name: "science").first
+    SUBJECTS = ["數學", "自然", "生活科技"]
+    classrooms = [ user.classrooms[0], user.classrooms[1], user.classrooms[2] ]
+    # 最後一位參數設定
+    subject_name = SUBJECTS[0]
+    start_time = Time.new(Time.now.year, 7, 2 + 0, 8)
+    classroom = classrooms[0]
 
     # 判斷 break point
     if Time.now.month.between?(7,12)
@@ -131,6 +266,337 @@ namespace :dev do
       subject = user.subjects.find_or_create_by(name: subject_name)
       subject.classrooms << classroom unless subject.classrooms.exists?(classroom.id)
     end
+
+    puts "created fake lessons"
+    puts "now you have #{Lesson.count} lessons data"
+  end
+
+  task fake_lesson_11: :environment do
+
+    # 第一位參數，使用者編號
+    user = User.where(name: "science").first
+    SUBJECTS = ["數學", "自然", "生活科技"]
+    classrooms = [ user.classrooms[0], user.classrooms[1], user.classrooms[2] ]
+
+    # 最後一位參數設定
+    subject_name = SUBJECTS[1]
+    classroom = classrooms[1]
+    start_time = Time.new(Time.now.year, 7, 2 + 1, 8)
+
+    # 判斷 break point
+    if Time.now.month.between?(7,12)
+      semester = Time.new(Time.now.year,7,1)..Time.new(Time.now.year + 1,1,31).end_of_day
+    elsif  Time.now.month.between?(1,1)
+      semester = Time.new(Time.now.year - 1,7,1)..Time.new(Time.now.year,1,31).end_of_day
+    else
+      semester = Time.new(Time.now.year,2,1)..Time.new(Time.now.year,6,30).end_of_day
+    end
+
+     i = 0
+    loop do
+      @lesson = classroom.lessons.new(name: subject_name, grade: classroom.grade, room: classroom.room)
+      @lesson.start_time = start_time
+      @lesson.end_time = start_time + 1.hour
+      @lesson.save
+      start_time += 1.week
+      i += 1
+      break if start_time > semester.end
+    end
+    if @lesson.save
+
+      # Subject name 需保持唯一性，lesson name 編輯時需同步更換同名的 subject
+      subject = user.subjects.find_or_create_by(name: subject_name)
+      subject.classrooms << classroom unless subject.classrooms.exists?(classroom.id)
+    end
+
+    puts "created fake lessons"
+    puts "now you have #{Lesson.count} lessons data"
+  end
+
+  task fake_lesson_12: :environment do
+
+    # 第一位參數，使用者編號
+    user = User.where(name: "science").first
+    SUBJECTS = ["數學", "自然", "生活科技"]
+    classrooms = [ user.classrooms[0], user.classrooms[1], user.classrooms[2] ]
+
+    # 最後一位參數設定
+    subject_name = SUBJECTS[2]
+    classroom = classrooms[2]
+    start_time = Time.new(Time.now.year, 7, 2 + 2, 8)
+
+    # 判斷 break point
+    if Time.now.month.between?(7,12)
+      semester = Time.new(Time.now.year,7,1)..Time.new(Time.now.year + 1,1,31).end_of_day
+    elsif  Time.now.month.between?(1,1)
+      semester = Time.new(Time.now.year - 1,7,1)..Time.new(Time.now.year,1,31).end_of_day
+    else
+      semester = Time.new(Time.now.year,2,1)..Time.new(Time.now.year,6,30).end_of_day
+    end
+
+     i = 0
+    loop do
+      @lesson = classroom.lessons.new(name: subject_name, grade: classroom.grade, room: classroom.room)
+      @lesson.start_time = start_time
+      @lesson.end_time = start_time + 1.hour
+      @lesson.save
+      start_time += 1.week
+      i += 1
+      break if start_time > semester.end
+    end
+    if @lesson.save
+
+      # Subject name 需保持唯一性，lesson name 編輯時需同步更換同名的 subject
+      subject = user.subjects.find_or_create_by(name: subject_name)
+      subject.classrooms << classroom unless subject.classrooms.exists?(classroom.id)
+    end
+
+    puts "created fake lessons"
+    puts "now you have #{Lesson.count} lessons data"
+  end
+
+  task fake_lesson_20: :environment do
+
+    # 第一位參數，使用者編號
+    user = User.where(name: "general").first
+    SUBJECTS = ["國文", "英文", "社會", "數學", "自然", "生活科技"]
+    classroom = user.classrooms[0]
+
+    # 最後一位參數設定：0..5
+    subject_name = SUBJECTS[0]
+    start_time = Time.new(Time.now.year, 7, 2 + 0, 8)
+
+    # 判斷 break point
+    if Time.now.month.between?(7,12)
+      semester = Time.new(Time.now.year,7,1)..Time.new(Time.now.year + 1,1,31).end_of_day
+    elsif  Time.now.month.between?(1,1)
+      semester = Time.new(Time.now.year - 1,7,1)..Time.new(Time.now.year,1,31).end_of_day
+    else
+      semester = Time.new(Time.now.year,2,1)..Time.new(Time.now.year,6,30).end_of_day
+    end
+
+     i = 0
+    loop do
+      @lesson = classroom.lessons.new(name: subject_name, grade: classroom.grade, room: classroom.room)
+      @lesson.start_time = start_time
+      @lesson.end_time = start_time + 1.hour
+      @lesson.save
+      start_time += 1.week
+      i += 1
+      break if start_time > semester.end
+    end
+    if @lesson.save
+
+      # Subject name 需保持唯一性，lesson name 編輯時需同步更換同名的 subject
+      subject = user.subjects.find_or_create_by(name: subject_name)
+      subject.classrooms << classroom unless subject.classrooms.exists?(classroom.id)
+    end
+
+    puts "created fake lessons"
+    puts "now you have #{Lesson.count} lessons data"
+  end
+
+  task fake_lesson_21: :environment do
+
+    # 第一位參數，使用者編號
+    user = User.where(name: "general").first
+    SUBJECTS = ["國文", "英文", "社會", "數學", "自然", "生活科技"]
+    classroom = user.classrooms[0]
+
+    # 最後一位參數設定：0..5
+    subject_name = SUBJECTS[1]
+    start_time = Time.new(Time.now.year, 7, 2 + 1, 8)
+
+    # 判斷 break point
+    if Time.now.month.between?(7,12)
+      semester = Time.new(Time.now.year,7,1)..Time.new(Time.now.year + 1,1,31).end_of_day
+    elsif  Time.now.month.between?(1,1)
+      semester = Time.new(Time.now.year - 1,7,1)..Time.new(Time.now.year,1,31).end_of_day
+    else
+      semester = Time.new(Time.now.year,2,1)..Time.new(Time.now.year,6,30).end_of_day
+    end
+
+     i = 0
+    loop do
+      @lesson = classroom.lessons.new(name: subject_name, grade: classroom.grade, room: classroom.room)
+      @lesson.start_time = start_time
+      @lesson.end_time = start_time + 1.hour
+      @lesson.save
+      start_time += 1.week
+      i += 1
+      break if start_time > semester.end
+    end
+    if @lesson.save
+
+      # Subject name 需保持唯一性，lesson name 編輯時需同步更換同名的 subject
+      subject = user.subjects.find_or_create_by(name: subject_name)
+      subject.classrooms << classroom unless subject.classrooms.exists?(classroom.id)
+    end
+
+    puts "created fake lessons"
+    puts "now you have #{Lesson.count} lessons data"
+  end
+
+  task fake_lesson_22: :environment do
+
+    # 第一位參數，使用者編號
+    user = User.where(name: "general").first
+    SUBJECTS = ["國文", "英文", "社會", "數學", "自然", "生活科技"]
+    classroom = user.classrooms[0]
+
+    # 最後一位參數設定：0..5
+    subject_name = SUBJECTS[2]
+    start_time = Time.new(Time.now.year, 7, 2 + 2, 8)
+
+    # 判斷 break point
+    if Time.now.month.between?(7,12)
+      semester = Time.new(Time.now.year,7,1)..Time.new(Time.now.year + 1,1,31).end_of_day
+    elsif  Time.now.month.between?(1,1)
+      semester = Time.new(Time.now.year - 1,7,1)..Time.new(Time.now.year,1,31).end_of_day
+    else
+      semester = Time.new(Time.now.year,2,1)..Time.new(Time.now.year,6,30).end_of_day
+    end
+
+     i = 0
+    loop do
+      @lesson = classroom.lessons.new(name: subject_name, grade: classroom.grade, room: classroom.room)
+      @lesson.start_time = start_time
+      @lesson.end_time = start_time + 1.hour
+      @lesson.save
+      start_time += 1.week
+      i += 1
+      break if start_time > semester.end
+    end
+    if @lesson.save
+
+      # Subject name 需保持唯一性，lesson name 編輯時需同步更換同名的 subject
+      subject = user.subjects.find_or_create_by(name: subject_name)
+      subject.classrooms << classroom unless subject.classrooms.exists?(classroom.id)
+    end
+
+    puts "created fake lessons"
+    puts "now you have #{Lesson.count} lessons data"
+  end
+
+  task fake_lesson_23: :environment do
+
+    # 第一位參數，使用者編號
+    user = User.where(name: "general").first
+    SUBJECTS = ["國文", "英文", "社會", "數學", "自然", "生活科技"]
+    classroom = user.classrooms[0]
+
+    # 最後一位參數設定：0..5
+    subject_name = SUBJECTS[3]
+    start_time = Time.new(Time.now.year, 7, 2 + 3, 8)
+
+    # 判斷 break point
+    if Time.now.month.between?(7,12)
+      semester = Time.new(Time.now.year,7,1)..Time.new(Time.now.year + 1,1,31).end_of_day
+    elsif  Time.now.month.between?(1,1)
+      semester = Time.new(Time.now.year - 1,7,1)..Time.new(Time.now.year,1,31).end_of_day
+    else
+      semester = Time.new(Time.now.year,2,1)..Time.new(Time.now.year,6,30).end_of_day
+    end
+
+     i = 0
+    loop do
+      @lesson = classroom.lessons.new(name: subject_name, grade: classroom.grade, room: classroom.room)
+      @lesson.start_time = start_time
+      @lesson.end_time = start_time + 1.hour
+      @lesson.save
+      start_time += 1.week
+      i += 1
+      break if start_time > semester.end
+    end
+    if @lesson.save
+
+      # Subject name 需保持唯一性，lesson name 編輯時需同步更換同名的 subject
+      subject = user.subjects.find_or_create_by(name: subject_name)
+      subject.classrooms << classroom unless subject.classrooms.exists?(classroom.id)
+    end
+
+    puts "created fake lessons"
+    puts "now you have #{Lesson.count} lessons data"
+  end
+
+  task fake_lesson_24: :environment do
+
+    # 第一位參數，使用者編號
+    user = User.where(name: "general").first
+    SUBJECTS = ["國文", "英文", "社會", "數學", "自然", "生活科技"]
+    classroom = user.classrooms[0]
+
+    # 最後一位參數設定：0..5
+    subject_name = SUBJECTS[4]
+    start_time = Time.new(Time.now.year, 7, 2 + 4, 8)
+
+    # 判斷 break point
+    if Time.now.month.between?(7,12)
+      semester = Time.new(Time.now.year,7,1)..Time.new(Time.now.year + 1,1,31).end_of_day
+    elsif  Time.now.month.between?(1,1)
+      semester = Time.new(Time.now.year - 1,7,1)..Time.new(Time.now.year,1,31).end_of_day
+    else
+      semester = Time.new(Time.now.year,2,1)..Time.new(Time.now.year,6,30).end_of_day
+    end
+
+     i = 0
+    loop do
+      @lesson = classroom.lessons.new(name: subject_name, grade: classroom.grade, room: classroom.room)
+      @lesson.start_time = start_time
+      @lesson.end_time = start_time + 1.hour
+      @lesson.save
+      start_time += 1.week
+      i += 1
+      break if start_time > semester.end
+    end
+    if @lesson.save
+
+      # Subject name 需保持唯一性，lesson name 編輯時需同步更換同名的 subject
+      subject = user.subjects.find_or_create_by(name: subject_name)
+      subject.classrooms << classroom unless subject.classrooms.exists?(classroom.id)
+    end
+
+    puts "created fake lessons"
+    puts "now you have #{Lesson.count} lessons data"
+  end
+
+  task fake_lesson_25: :environment do
+
+    # 第一位參數，使用者編號
+    user = User.where(name: "general").first
+    SUBJECTS = ["國文", "英文", "社會", "數學", "自然", "生活科技"]
+    classroom = user.classrooms[0]
+
+    # 最後一位參數設定：0..5
+    subject_name = SUBJECTS[5]
+    start_time = Time.new(Time.now.year, 7, 2 + 5, 8)
+
+    # 判斷 break point
+    if Time.now.month.between?(7,12)
+      semester = Time.new(Time.now.year,7,1)..Time.new(Time.now.year + 1,1,31).end_of_day
+    elsif  Time.now.month.between?(1,1)
+      semester = Time.new(Time.now.year - 1,7,1)..Time.new(Time.now.year,1,31).end_of_day
+    else
+      semester = Time.new(Time.now.year,2,1)..Time.new(Time.now.year,6,30).end_of_day
+    end
+
+     i = 0
+    loop do
+      @lesson = classroom.lessons.new(name: subject_name, grade: classroom.grade, room: classroom.room)
+      @lesson.start_time = start_time
+      @lesson.end_time = start_time + 1.hour
+      @lesson.save
+      start_time += 1.week
+      i += 1
+      break if start_time > semester.end
+    end
+    if @lesson.save
+
+      # Subject name 需保持唯一性，lesson name 編輯時需同步更換同名的 subject
+      subject = user.subjects.find_or_create_by(name: subject_name)
+      subject.classrooms << classroom unless subject.classrooms.exists?(classroom.id)
+    end
+
     puts "created fake lessons"
     puts "now you have #{Lesson.count} lessons data"
   end
