@@ -22,5 +22,7 @@ $(function() {
   setTimeout(function(){
     $('.alert').slideUp(500);
   }, 4000);
-  $('[data-toggle="tooltip"]').tooltip()
+  $('[data-toggle="tooltip"]').tooltip();
+  $( "#datepicker-start" ).datepicker();
+  $( "#datepicker-end" ).datepicker();
 });
