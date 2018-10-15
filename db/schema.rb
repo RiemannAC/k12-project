@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181014062714) do
+ActiveRecord::Schema.define(version: 20181015183641) do
 
   create_table "addfiles", force: :cascade do |t|
     t.integer "topic_id"
@@ -132,8 +132,8 @@ ActiveRecord::Schema.define(version: 20181014062714) do
     t.integer "subject_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "start_time"
-    t.datetime "end_time"
+    t.string "start_time"
+    t.string "end_time"
     t.integer "classroom_id"
   end
 
