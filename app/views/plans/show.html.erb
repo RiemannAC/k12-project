@@ -48,7 +48,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-3">
         <%= form_for [@user,@plan,@teachingfile], html:{multipart:true} do |f| %>
           <div class="form-group">
             <%= f.label :name, '檔案名稱' %>
@@ -58,13 +58,13 @@
           <div class="form-group">
             <%= f.label :attachments,'上傳附件' %>
             <%= f.file_field :attachments, multiple: true %>
-          </div>
+          </div><br>
 
           <%= f.submit "上傳", class: "btn btn-primary" %>
 
         <% end %>
       </div>
-      <div class="col-md-8">
+      <div class="col-md-9">
         <div class="table-card">
           <br>
           <h3 style="text-align: center;">《 上傳檔案列表 》</h3>
