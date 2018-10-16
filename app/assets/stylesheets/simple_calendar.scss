@@ -53,16 +53,21 @@
   .day_time {
     border: 1px solid #ddd;
     /*改 0.5 兩線合併為 1 無效*/
-    padding-top: 20px;
-    
+    padding-top:8px;
+  }
+
+  .day_time a{
+    font-size:20px;
+    font-weight:600;
   }
 
   .time_td {
-    width:  6%;
+    width: 6%;
   }
 
-  .day {
-    height: 9px;
+  .day_time .day_hour{
+    font-size:20px;
+    padding-top:19px;
   }
 
   .wday-0 {}
@@ -91,7 +96,7 @@
   .current-month {}
 
   .has-events {
-    
+    background:#fff;
   }
 
   .calendar-title{
