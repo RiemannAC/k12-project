@@ -337,3 +337,59 @@
   margin: 10px 10px;
   color: red;
 }
+
+.weekly-prepare{
+  padding: 0px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: white;
+  box-shadow: 0 10px 20px 0 rgba(0,0,0,0.3);
+}
+
+/* 用上分格線
+  .prepare-detail {
+    border-right: 1px solid #cdd4db;
+  }
+ */
+
+.prepare-edit {
+  text-align: right;
+  margin-bottom: 67px;
+  padding-right: 15px;
+}
+
+.prepare-edit-div {
+  margin-bottom: 20px;
+  margin-top: 8px;
+}
+
+.parent-absolute {
+  position: absolute;
+  bottom: 20px;
+  right: 32px;
+}
+
+.prepare-edit-div3 {
+  position: relative;
+}
+
+.button-set{
+  text-align: right;
+  margin-top: -30px;
+}
+
+.topic-title {
+  background-color: #aeeac6;
+  margin-bottom: 15px;
+  padding: 10px 20px;
+}
+
+.new-aim {
+  width: 60%!important;
+}
+
+.round-button {
+  background-color: #fff;
+  border: 1px solid #fff;
+  border-radius: 50%;
+}
