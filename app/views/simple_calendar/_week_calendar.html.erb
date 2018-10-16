@@ -44,15 +44,15 @@
           <td class="time_td text-center">
             <% 8.upto(18).each do |hour| %>
               <div class="day_time">
-                <span class="day_hour">
+                <div class="day_hour">
                   <%= Time.parse("#{hour}:00").strftime("%l %P") %>
-                </span>
+                </div>
               </div>
             <% end %>
           </td>
 
           <% week.each do |day| %>
-            <%= content_tag :td, class: calendar.td_classes_for(day) do %>
+            <%= content_tag :td ,class: calendar.td_classes_for(day) do %>
               <% if defined?(Haml) && respond_to?(:block_is_haml?) && block_is_haml?(block) %>
                 <% capture_haml(day, sorted_events.fetch(day, []), &block) %>
               <% else %>
