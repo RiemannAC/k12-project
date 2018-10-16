@@ -188,12 +188,16 @@
 /***** lessons/index/time_table *******/
 /*課表格子高度*/
 .time_table .day_time {
-  min-height: 125px !important;
+  min-height: 80px !important;
+
 }
+
 
 /*課堂時間垂直置中*/
 .day_time .day_hour {
-  line-height: 85px;
+  line-height: 20px;
+
+
 }
 
 /*井字號垂直置中*/
@@ -264,12 +268,13 @@
 /***** new button *****/
 
 #new_event_button i {
-  margin-top: 25px;
+  margin-top: 0px;
 }
 
 #new_event_button i:hover {
   transform: scale(1.2);
   transition-timing-function: cubic-bezier(.1,.7,.26,.21);
+  cursor:pointer;
 }
 
 #new_button a i:hover {
