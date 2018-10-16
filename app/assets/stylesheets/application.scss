@@ -8,14 +8,20 @@
 @import "bootstrap";
 @import "simple_calendar";
 @import url('https://fonts.googleapis.com/css?family=Kodchasan:400,500,700');
-@import url(https://fonts.googleapis.com/earlyaccess/notosanstc.css);
+@import url(https://fonts.googleapis.com/earlyaccess/cwtexyen.css);
+@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300');
 
 
 body {
   color: #5e5f5f;
-  font-family: 'Kodchasan', ‘Noto Sans TC’, sans-serif;
+  font-family: 'Open Sans Condensed','cwTeXYen', sans-serif;
   background-color: #f3f7f6;
 }
+
+h1, h2, h3, h4, h5 {
+  font-weight: 900;
+}
+
 
 a {
   color: #454545;
@@ -38,10 +44,6 @@ a:hover {
 
 .theme-font {
   color: #454545!important;
-}
-
-.theme-button {
-  
 }
 
 .green-hr {

@@ -1,12 +1,11 @@
 <div class="container">
   <div class="">
     <div class="float-left">
-      <h4 style="color:#9d586a">教材科目：<%= @material.subject_tag.name %></h4>
-      <h4 style="color:#9d586a">教學主題／單元：<%= @material.mtrial_folder_name %></h4>
+      <h1><%= @material.subject_tag.name %>：<%= @material.mtrial_folder_name %></h1>
       <%= link_to '<< 返回教材總覽', user_materials_path %>
     </div>
     <div class="float-right">
-      <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#exampleModal">
+      <button type="button" class="btn btn-outline-dark btn-sm" data-toggle="modal" data-target="#exampleModal">
       資料夾設定
       </button>
       <%= link_to '刪除資料夾', user_material_path(@material.user,@material), class: 'btn btn-danger btn-sm', style: 'color: #fff;', method: :delete, data: {confirm: "資料夾裡的檔案也會一併刪除，你確定嗎？"} %>
@@ -15,7 +14,8 @@
     <div class="clearfix"></div>
 
     
-    <hr class="orange-hr">
+    <hr>
+    <br>
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -71,12 +71,12 @@
     <div class="col-md-9">
       <div class="table-card">
         <br>
-        <h3 style="text-align: center;">《 上傳檔案列表 》</h3>
+        <h3 style="text-align: center;">上傳檔案列表</h3>
         <br>
         <table class="table table-hover">
           <% @material.teachingfiles.each do |teachingfile| %>
           <tr>
-            <td style="padding-right:20px;"><%= teachingfile.name %></td>
+            <td style="padding-right:20px;"><h5><%= teachingfile.name %></h5></td>
             <td style="padding-right:20px;">
               <% teachingfile.attachments.each_with_index do |file, index| %>
               <div>
@@ -90,8 +90,11 @@
               </div>
               <% end %>
             </td>
-            <td style="padding-right:20px;"><%= link_to '重新上傳',edit_user_material_teachingfile_path(@user, @material, teachingfile) %></td>
-            <td style="padding-right:20px;"> <%= link_to '全部刪除', user_material_teachingfile_path(@user,@material,teachingfile), method: :delete, data: { confirm: "Are you sure to delete ?"}, style: "color: red;" %></td>
+            <td style="margin-right: 20px;">
+              <div class="float-right">
+                <%= link_to '重新上傳',edit_user_material_teachingfile_path(@user, @material, teachingfile) %> | <%= link_to '全部刪除', user_material_teachingfile_path(@user,@material,teachingfile), method: :delete, data: { confirm: "Are you sure to delete ?"}, style: "color: red;" %>
+              </div>
+            </td>
           </tr>
           <% end %>
         </table>
