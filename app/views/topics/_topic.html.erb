@@ -1,35 +1,3 @@
-<style>
-  .weekly-prepare{
-    border:1px solid #ddd;
-    padding: 0px;
-    min-height: 200px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    background-color: white;
-    box-shadow: 0 10px 20px 0 rgba(0,0,0,0.3);
-  }
-
-  .prepare-detail, .prepare-edit {
-    border:1px solid #ddd;
-  }
-
-  .button-set{
-    text-align: right;
-    margin-top: -30px;
-  }
-
-  .topic-title {
-    background-color: #aeeac6;
-    margin-bottom: 15px;
-    padding: 10px 20px;
-  }
-  
-  .new-aim {
-    width: 60%!important;
-  }
-
-</style>
-
 <div id="post_<%= topic.id %>">
   
   <!--<div class="col-md-12">-->
@@ -41,14 +9,15 @@
         <div class="topic-title">
           <h3 class="float-left"><%= topic.name %></h3>
           <h3 class="float-right">
-            <%= topic.start_time.strftime("%Y/%m/%d") %> - <%= topic.end_time.strftime("%Y/%m/%d") %>
+            <%= topic.start_time.strftime("%Y/%m/%d") %> - <%= topic.end_time.strftime("%Y/%m/%d") %>&nbsp;
+            <button class="round-button" alt="重設日期／主題" type="button" class="btn btn-warning" data-toggle="modal" data-target="#myupdatepost_<%= topic.id  %>"><%= fa_icon 'calendar' %></button>
           </h3>
           <div class="clearfix"></div>
         </div>
 
         <div class="container">
           <div class="row">
-            <div class="col-md-10 prepare-detail">
+            <div class="col-10 prepare-detail">
               <!--教學單元主題下的教學目標-->
               <%= form_for [@user,@classroom,topic,Aim.new],remote: true do |f| %>
                 <h4><%= f.label :title, "教學目標" %></h4>
@@ -65,7 +34,24 @@
               </ol> 
                
             </div>
-          <div class="col-md-2 prepare-edit">
+          <div class="col-2">
+            <div class="prepare-edit">
+              
+              <div class="prepare-edit-div"><%= fa_icon 'file', style: 'font-size: 25px;' %></div>
+              <div class="prepare-edit-div"><%= fa_icon 'folder', style: 'font-size: 25px;' %></div>
+              
+              
+            </div>
+            
+            <div class="parent-absolute">
+              <div class="prepare-edit-div3"><%= fa_icon 'trash', style: 'font-size: 25px;' %></div>
+            </div>
+            
+            
+            
+            
+            
+            
             
           </div>
         </div>
@@ -89,11 +75,10 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
+            <h5 class="modal-title" id="myModalLabel">編輯教學主題</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
-
-            <h5 class="modal-title" id="myModalLabel">編輯教學主題</h5>
           </div>
 
           <div class="modal-body">
