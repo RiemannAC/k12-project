@@ -1,13 +1,33 @@
-<style>
+<style> 
 .navbar{
   background-color: #404040 ; 
+}
+.navbar a{
+  color: #fffcfc;
+  font-size: 17px;
+}
+.navbar .sub-menu a{
+  color: #000;
+}
+.navbar .sub-menu a:hover{
+  color: #a6a6a6;
+}
+.navbar .dropdown-menu .trigger{
+  cursor: pointer;
+}
+.navbar .dropdown-menu a:hover{
+  cursor: pointer;
+  color: #a6a6a6;
+}
+.navbar a:hover{
+  color: #ababab;
 }
 </style> 
 
 <nav class="navbar sticky-top">
   <%= link_to root_path, class: "navbar-brand" do %>
-    <%= image_tag "logo.svg", width:'45', height:'45', alt:'首頁', class: "d-inline-block" %>
-     <strong>K12 Project</strong>
+    <%= image_tag "logo.svg", width:'45', height:'45', alt:'首頁', class: "d-inline-block",style:"margin-left:18px;" %>
+     <strong style="margin-left: 15px;font-size: 20px;letter-spacing: 2px;">K12 Project</strong>
   <% end %>
 
   <% if user_signed_in? %>
@@ -50,7 +70,7 @@
         <li style="border-left: 2px solid #ebebeb; padding-top: 4px;"><%= link_to '教案資料夾', user_plans_path(@user) %></li>
 
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" style="" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" style="font-size: 20px;letter-spacing: 1px;" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <% if current_user.avatar? %>
               <%= image_tag current_user.avatar, width: '30', height: '30' %>
             <% else %>
