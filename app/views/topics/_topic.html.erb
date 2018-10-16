@@ -1,14 +1,16 @@
 <style>
   .weekly-prepare{
     border:1px solid #ddd;
-    padding: 20px;
+    padding: 0px;
     min-height: 200px;
     margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: white;
+    box-shadow: 0 10px 20px 0 rgba(0,0,0,0.3);
   }
 
   .prepare-detail, .prepare-edit {
     border:1px solid #ddd;
-    padding: 0 20px;
   }
 
   .button-set{
@@ -17,10 +19,9 @@
   }
 
   .topic-title {
-    border-radius: 25px;
     background-color: #aeeac6;
-    padding: 5px 20px;
     margin-bottom: 15px;
+    padding: 10px 20px;
   }
   
   .new-aim {
@@ -32,36 +33,45 @@
 <div id="post_<%= topic.id %>">
   
   <!--<div class="col-md-12">-->
-  <div class="weekly-prepare">
-    <div class="row">
-      <!--教學單元主題-->
-      <div class="col-md-12 topic-title">
-        <h3 class="float-left"><%= topic.name %></h3>
-        <h3 class="float-right">
-          <%= topic.start_time.strftime("%Y/%m/%d") %> - <%= topic.end_time.strftime("%Y/%m/%d") %>
-        </h3>
-        <div class="clearfix"></div>
-      </div>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-10 weekly-prepare">
+        
+          <!--教學單元主題-->
+        <div class="topic-title">
+          <h3 class="float-left"><%= topic.name %></h3>
+          <h3 class="float-right">
+            <%= topic.start_time.strftime("%Y/%m/%d") %> - <%= topic.end_time.strftime("%Y/%m/%d") %>
+          </h3>
+          <div class="clearfix"></div>
+        </div>
 
-      <div class="col-md-10 prepare-detail">
-        <!--教學單元主題下的教學目標-->
-        <%= form_for [@user,@classroom,topic,Aim.new],remote: true do |f| %>
-          <h4><%= f.label :title, "教學目標" %></h4>
-          <div class="form-group form-inline"> 
-            <%= f.text_field :name, placeholder:"新增教學目標", class: "form-control new-aim" %>
-            <%= f.submit "新增", class: "btn btn-outline-info" %>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-10 prepare-detail">
+              <!--教學單元主題下的教學目標-->
+              <%= form_for [@user,@classroom,topic,Aim.new],remote: true do |f| %>
+                <h4><%= f.label :title, "教學目標" %></h4>
+                <div class="form-group form-inline"> 
+                  <%= f.text_field :name, placeholder:"新增教學目標", class: "form-control new-aim" %>
+                  <%= f.submit "新增", class: "btn btn-outline-info" %>
+                </div>
+              <% end %>
+              
+              <ol id="aim_posts-<%= topic.id %>">
+                <% topic.aims.each do |aim| %> 
+                  <%= render :partial => 'aims/aim', locals: {aim: aim } %>               
+                <% end %> 
+              </ol> 
+               
+            </div>
+          <div class="col-md-2 prepare-edit">
+            
           </div>
-        <% end %>
-        <ol id="aim_posts-<%= topic.id %>">
-          <% topic.aims.each do |aim| %> 
-            <%= render :partial => 'aims/aim', locals: {aim: aim } %>               
-          <% end %> 
-        </ol> 
-         
-      </div>
-      <div class="col-md-2 prepare-edit"></div>
-    </div>
+        </div>
 
+      </div>
+    </div>
   </div>
   
   <!-------------------------->
