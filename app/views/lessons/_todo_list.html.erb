@@ -21,7 +21,7 @@
             <%- if todo.start_time.hour.between?(hour, hour + 0.9) %>
               <span id="edit_buttons">     
                 <%# 點擊todo 出現 popup 開始更新 ##################################%>  
-                <%= link_to "#{todo.title}", "#todoedit#{todo.id}", :class => "btn", "data-toggle" => "modal" %>
+                <%= link_to "#{todo.title}", "#todoedit#{todo.id}", :style => "display:inline-block", "data-toggle" => "modal" %>
                 <%= form_for [@user, todo], method: :put do |f| %>
                   <div class="modal fade" id="todoedit<%= todo.id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> 
                     <div class="modal-dialog" role="document">
