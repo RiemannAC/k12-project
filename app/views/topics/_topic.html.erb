@@ -48,25 +48,32 @@
                       <% if topic.added_files.count == 0 %>
                         <h5>按 + 號加入檔案至本計畫</h5>
                       <% else %>
-                      <ul>
-                        <% topic.added_files.each do |teachingfile| %>
-                        <li style="text-align: left;">
-                          <h5><%= "【 " + teachingfile.name + " 】"%></h5>
-                          <ul>
-                            <% teachingfile.attachments.each_with_index do |file, index| %>
-                            <li>
-                              <%= link_to file.url do %>
-                                <%= fa_icon 'download', class: 'theme-font' %>
-                                <%= file.file.filename %>
-                              <% end %>
-                            </li>
-                            <% end %>
-                          </ul>
-                        </li>
-                        <br>
+                        <div class="row">
+                          <div class="col-md-4 float-left">
+                            <% topic.added_files.each do |teachingfile| %>
+                              <div style="text-align: left; margin-left: 20px;">
+                                <h5>
+                                  <%= fa_icon 'folder' %>
+                                  <%= teachingfile.name %>
+                                    
+                                  </h5>
+                                
+                                  <% teachingfile.attachments.each_with_index do |file, index| %>
+                                  <li>
+                                    <%= link_to file.url do %>
+                                      <%= fa_icon 'download', class: 'theme-font'%>&nbsp;&nbsp;
+                                      <span style="color: blue;"><%= file.file.filename %></span>
+                                    <% end %>
+                                  </li>
+                                  <% end %>
+                                
+                              </div>
+                              <br>
 
-                        <% end %>
-                      </ul>
+                            <% end %>
+                          </div>
+                        </div>
+                        
                       <% end %>
                       
                         
