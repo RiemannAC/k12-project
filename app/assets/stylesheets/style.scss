@@ -208,12 +208,16 @@
 /***** lessons/index/time_table *******/
 /*課表格子高度*/
 .time_table .day_time {
-  min-height: 125px !important;
+  min-height: 80px !important;
+
 }
+
 
 /*課堂時間垂直置中*/
 .day_time .day_hour {
-  line-height: 85px;
+  line-height: 20px;
+
+
 }
 
 /*井字號垂直置中*/
@@ -283,21 +287,19 @@
 
 /***** new button *****/
 
- #new_event_button a i {
-  margin-top: 25px;
+#new_event_button i {
+  margin-top: 0px;
 }
- #new_event_button a i:hover {
+
+#new_event_button i:hover {
   /*background-color: #BADA55;*/
   /*box-shadow: 20px 15px rgba(0,0,0,0.15);  變直接陰影*/
   transform: scale(1.2);
   transition-timing-function: cubic-bezier(.1,.7,.26,.21);
-  /*-webkit-transition: all .3s linear;
-  -moz-transition: all .3s linear;
-  -ms-transition: all .3s linear;
-  -o-transition: all .3s linear;
-  transition: all .3s linear;*/
+  cursor:pointer;
 }
- #new_button a i:hover {
+
+#new_button a i:hover {
   transform: scale(1.2);
   transition-timing-function: cubic-bezier(.1,.7,.26,.21);
 }

@@ -1,6 +1,17 @@
+<style>
+  #todo_content{
+    margin-top: 40px;
+  }
+</style>
 <div class="to_do_body">
   <%# 客制化各項需以逗號分開 %>
-  <!--部分一：待辦清單-->
+  <!--部分一：新增待辦事項按鈕-->
+  <span id="new_event_button">
+    <i class="fa fa-plus-circle pull-right" data-toggle="modal" data-target="#todopost" style="font-size: 60px; color: #009FCC; padding-left: 10px;"></i>
+  <span>  
+
+  <!--部分二：待辦清單-->
+  <div id="todo_content">  
   <%= calendar partial: 'simple_calendar/to_do_list_v2', number_of_days: 1, events: todos do |date, todos| %>
     <% 8.upto(18).each do |hour| %>
       <div class="day_time">
@@ -61,12 +72,8 @@
         </span>
       </div>
     <% end %>
-  <% end %> 
-
-  <!--部分二：新增待辦事項按鈕-->
-  <span id="new_event_button">
-    <i class="fa fa-plus-circle pull-right" data-toggle="modal" data-target="#todopost" style="font-size: 60px; color: #009FCC; padding-left: 10px;"></i>
-  <span> 
+  <% end %>   
+  </div>
 </div> 
   
 <%# 以下為新增代辦事項的form#####################################################  %>
