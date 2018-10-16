@@ -73,15 +73,14 @@
   .wday-5 {}
   .wday-6 {}
  
-  .today {
-    background: #ffba99;
-    opacity:0.5;
+  .today{
+    background:#fff;
   }
 
   .past {}
   .future {}
 
-  .start-date {}
+  .start-date {} 
 
   .prev-month {
     opacity:1;
@@ -91,7 +90,9 @@
   }
   .current-month {}
 
-  .has-events {}
+  .has-events {
+    
+  }
 
   .calendar-title{
     font-size:30px; 

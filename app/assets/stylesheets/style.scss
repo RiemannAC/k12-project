@@ -100,7 +100,7 @@
   float: right;
 }
 
-/******** index month-calendar **********/
+/******** index month-calendar **********/ 
 .mon-calendar-box {
   width:270px; 
   background:#fff; 
@@ -166,15 +166,24 @@
 
 
 .to_do_body .day_time{ 
-  border:1px solid #ddd !important;
+  border:2px solid #ddd !important;
   border-radius: 10px;
-  padding: 10px;
+  padding: 17px;
   margin-top: 5px;
   background-color: #e6e6e6;
 }
 
+.to_do_body .day_time a{
+  font-size:20px;
+}
+
+.to_do_body .day_time .day_time_hour{
+  font-size:18px;
+}
+
+
 .to_do_body .today .day_time {
-  background-color: #ffc34d;
+  background-color: #ebf0fa;
 }
 
 .to_do_body .day_time{
@@ -212,7 +221,7 @@
 /***** lessons/index/todo_list *******/
 .time_box .day_time {
   border-radius: 8px !important;
-  background-color: #aaaaaa
+  background-color: #aaaaaa;
 }
 
 .todo_content {
