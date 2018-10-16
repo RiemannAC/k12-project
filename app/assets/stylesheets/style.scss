@@ -327,3 +327,13 @@
   transform: scale(1.2);
   transition-timing-function: cubic-bezier(.1,.7,.26,.21);
 }
+
+/****** aims setting ********/
+.aim-name {
+  font-size: 22px;
+  line-height: 2.5rem;
+}
+.aim-status {
+  margin: 10px 10px;
+  color: red;
+}
