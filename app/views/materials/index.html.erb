@@ -44,13 +44,11 @@
   
   <hr class="orange-hr">
   <div class="row justify-content-center">
-    <div class="col-md-8">
+    <div class="col-md-10 table-card">
       <% if @materials.count == 0 %>
         <h4>你還沒有任何教材資料！</h4>
       <% else %>
-        
-
-        <table class="table table-sm table-hover">
+        <table class="table table-hover">
           <thead>
             <tr>
               <th scope="col">科目</th>
@@ -67,8 +65,11 @@
                     <% subject.materials.each do |material| %>
                       <%= link_to user_material_path(@user,material) do %>  
                         <%= fa_icon 'folder', style: 'color:grey;' %>&nbsp;&nbsp;
-                        <span><%= material.mtrial_folder_name %></span> 
-                      <% end %><br>              
+                
+                        <span>
+                          <%= material.mtrial_folder_name %>
+                        </span><br>
+                      <% end %>           
                     <% end %>
                   </td>
                   <td>
@@ -84,7 +85,6 @@
         </table>
       <% end %>
     </div>
-
   </div>
 
 </div>
