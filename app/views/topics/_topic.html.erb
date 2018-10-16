@@ -3,122 +3,73 @@
     border:1px solid #ddd;
     padding: 20px;
     min-height: 200px;
-    margin-top: 10px;
+    margin-top: 20px;
+  }
+
+  .prepare-detail, .prepare-edit {
+    border:1px solid #ddd;
+    padding: 0 20px;
   }
 
   .button-set{
     text-align: right;
     margin-top: -30px;
   }
+
+  .topic-title {
+    border-radius: 25px;
+    background-color: #aeeac6;
+    padding: 5px 20px;
+    margin-bottom: 15px;
+  }
+  
+  .new-aim {
+    width: 60%!important;
+  }
+
 </style>
 
 <div id="post_<%= topic.id %>">
-  <div class="row">
-    <!--<div class="col-md-12">-->
-    <div class="col-md-12">
-      <div class="weekly-prepare">
-        <div class="col-md-12 prepare-detail">
-          <!--教學單元主題-->
-          <h5>
-            <span><%= topic.start_time.strftime("%Y/%m/%d") %> ~ <%= topic.end_time.strftime("%Y/%m/%d") %></span>
-            <span style="margin-left: 15px;"><b><%= topic.name %></b></span> 
-            <div class="button-set">
-              <!--編輯教學主題計劃表--->
-              <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myupdatepost_<%= topic.id  %>">編輯</button>
-
-              <!--刪除教學主題計劃表--->
-              <%= link_to "刪除",  user_classroom_topic_path(@user,@classroom,topic) ,method: :delete, data: { confirm: "Are you sure?"},class: "btn btn-danger", remote: true %>
-
-              <!--教學回饋-->
-              <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myupdatefeedback_<%= topic.id  %>">教學反思</button>
-
-              <!-- * FOLDER * Button trigger modal -->
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg"><%= fa_icon 'folder' %></button>
-
-              <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLongTitle">下載教學檔案</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <% if topic.added_files.count == 0 %>
-                        <h5>按 + 號加入檔案至本計畫</h5>
-                      <% else %>
-                        <div class="row">
-                          <div class="col-md-4 float-left">
-                            <% topic.added_files.each do |teachingfile| %>
-                              <div style="text-align: left; margin-left: 20px;">
-                                <h5>
-                                  <%= fa_icon 'folder' %>
-                                  <%= teachingfile.name %>
-                                    
-                                  </h5>
-                                
-                                  <% teachingfile.attachments.each_with_index do |file, index| %>
-                                  <li>
-                                    <%= link_to file.url do %>
-                                      <%= fa_icon 'download', class: 'theme-font'%>&nbsp;&nbsp;
-                                      <span style="color: blue;"><%= file.file.filename %></span>
-                                    <% end %>
-                                  </li>
-                                  <% end %>
-                                
-                              </div>
-                              <br>
-
-                            <% end %>
-                          </div>
-                        </div>
-                        
-                      <% end %>
-                      
-                        
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-
-
-
-              <%= link_to user_classroom_topic_path(@user, @classroom, topic) do %>
-                <span><%= fa_icon 'plus 2x' %></span>
-              <% end %>
-              
-            </div>  
-          <h5>
-          <!--教學單元主題下的教學目標-->
-          <%= form_for [@user,@classroom,topic,Aim.new],remote: true do |f| %>
-            <%= f.label :title, "教學目標" %>
-            <div class="form-inline col-md-7">
-              <div class="">
-                <%= f.text_field :name, placeholder:"新增教學目標", class: "form-control post_aim" %>
-                <%= f.submit "新增", class: "btn btn-primary" %>
-              </div>                           
-            </div>
-          <% end %>
-          
-          
-          <ol id="aim_posts-<%= topic.id %>">
-            <% topic.aims.each do |aim| %> 
-              <%= render :partial => 'aims/aim', locals: {aim: aim } %>               
-            <% end %> 
-          </ol> 
-           
-        </div>
-
-      </div>
-    </div>
-    <!-------------------------->
-    <div class="col">
-      
-    </div> 
   
+  <!--<div class="col-md-12">-->
+  <div class="weekly-prepare">
+    <div class="row">
+      <!--教學單元主題-->
+      <div class="col-md-12 topic-title">
+        <h3 class="float-left"><%= topic.name %></h3>
+        <h3 class="float-right">
+          <%= topic.start_time.strftime("%Y/%m/%d") %> - <%= topic.end_time.strftime("%Y/%m/%d") %>
+        </h3>
+        <div class="clearfix"></div>
+      </div>
+
+      <div class="col-md-10 prepare-detail">
+        <!--教學單元主題下的教學目標-->
+        <%= form_for [@user,@classroom,topic,Aim.new],remote: true do |f| %>
+          <h4><%= f.label :title, "教學目標" %></h4>
+          <div class="form-group form-inline"> 
+            <%= f.text_field :name, placeholder:"新增教學目標", class: "form-control new-aim" %>
+            <%= f.submit "新增", class: "btn btn-outline-info" %>
+          </div>
+        <% end %>
+        <ol id="aim_posts-<%= topic.id %>">
+          <% topic.aims.each do |aim| %> 
+            <%= render :partial => 'aims/aim', locals: {aim: aim } %>               
+          <% end %> 
+        </ol> 
+         
+      </div>
+      <div class="col-md-2 prepare-edit"></div>
+    </div>
+
   </div>
+  
+  <!-------------------------->
+  <div class="col">
+    
+  </div> 
+
+
 </div>
 
 
