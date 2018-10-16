@@ -1,45 +1,60 @@
-<div class="row">
-  <div id="lessons_calendar" class="col-9" style="padding-left:15px;">
-    <div class="index-right-container">
-      <%= link_to 'Listing lessons', list_user_lessons_path(@user) %> ||
-      <%= link_to '我的班級列表', user_classrooms_path(@user)  %>
+<style>
+.index-hr{
+  margin-top: -1px;
+  height: 1px;
+  border: none;
+  border-top: 3px groove #ffaa00 ;
+}
+.refer-column .grid{
+  padding-left: 10px;
+}
+</style> 
 
-      <div class="row">
-        <div class="col-12 m-auto">
-          <h2 class="text-center">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12" style="padding-left:60px;padding-right: 40px;">
+      <div class="refer-column">
+        <h2 style="font-size: 30px; display: inline-block;">本週教學行程</h2>
+        <i class="fa fa-caret-right grid" aria-hidden="true"> 位置</i>：
+        <%= link_to'課表首頁', user_lessons_path(@user),style:"font-size:20px;"%> 
+        <i class="fa fa-angle-right grid" aria-hidden="true"></i>
+        <%= link_to '我的班級列表', user_classrooms_path(@user)  %> ||
+        <%= link_to 'Listing lessons', list_user_lessons_path(@user) %> 
+      </div>
+      <hr class="index-hr">
+    </div> 
+
+
+    <div id="lessons_calendar" class="col-8" style="margin-left:60px;">
+      <div class="index-right-container">
+        <div class="row">
+          <div class="col-12 m-auto">
             <span id="today_link" class="pull-left">
-              <%= link_to '今天', user_lessons_path(@user), class: "btn btn-secondary" %>
+              <%= link_to '今天', user_lessons_path(@user), class: "btn",style:"padding:5px 20px;background:" %>
             </span>
-            <span>我的一週課表</span>
-            <span id="new_button">
-              <%= link_to new_user_lesson_path(@user) do %>
-                <i class="fa fa-plus-circle" style="font-size: 60px; color: #009FCC; padding-left: 10px;"></i>
-              <% end %>
-            <span>
-          </h2>
-          <hr>
-          <div id="events_calendar">
-            <%= render partial: "week_calendar", locals: {lessons: @lessons} %>
+            <div id="events_calendar">
+              <%= render partial: "week_calendar", locals: {lessons: @lessons} %>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div id="lessons_calendar_2" class="col-3" style="margin-top:-5px;">
-    <div class="index-left-container">
-      <div class="row">
-        <div class="col-12">
-          <%# 右上月曆 %>
-          <div id="month_calendar">
-            <%= render partial: "month_calendar", locals: {lessons: @lessons} %>
+    <div id="lessons_calendar_2" class="col-3" style="margin-left:20px;" >
+      <div class="index-left-container">
+        <div class="row">
+          <div class="col-12">
+            <%# 右上月曆 %>
+            <div id="month_calendar">
+              <%= render partial: "month_calendar", locals: {lessons: @lessons} %>
+            </div>
+            <%# ToDo List V2 %>
+            <div id="todo_list">
+              <%= render partial: "todo_list", locals: {todos: @todos} %>
+            </div>
           </div>
-          <%# ToDo List V2 %>
-          <div id="todo_list">
-            <%= render partial: "todo_list", locals: {todos: @todos} %>
-          </div>
-        </div>
-      </div>       
+        </div>       
+      </div>
     </div>
   </div>
 </div>

@@ -1,6 +1,6 @@
 .simple-calendar {
  
-  table {
+  table { 
     -webkit-border-horizontal-spacing: 0px;
     -webkit-border-vertical-spacing: 0px;
     background-color: rgba(0, 0, 0, 0);
@@ -10,6 +10,7 @@
     max-width: 100%;
     width: 100%;
     box-shadow: 5px 10px 18px #888888;
+    background-color:#fff;
   }
 
   tr {
@@ -17,7 +18,7 @@
   }
 
   th {
-    padding: 6px;
+    padding: 3px;
     border-bottom: 1px solid rgb(221, 221, 221);
     border-collapse: collapse;
     border-left: 1px solid rgb(221, 221, 221);
@@ -53,15 +54,15 @@
     border: 1px solid #ddd;
     /*改 0.5 兩線合併為 1 無效*/
     padding-top: 20px;
-    min-height: 70px;
+    
   }
 
   .time_td {
-    width: 7%;
+    width:  6%;
   }
 
   .day {
-    height: 80px;
+    height: 9px;
   }
 
   .wday-0 {}
@@ -73,8 +74,8 @@
   .wday-6 {}
  
   .today {
-    background: #ffff99;
-    opacity:0.6;
+    background: #ffba99;
+    opacity:0.5;
   }
 
   .past {}
