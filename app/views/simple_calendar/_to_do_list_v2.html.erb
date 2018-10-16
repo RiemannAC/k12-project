@@ -1,13 +1,14 @@
 <div class="simple-calendar">
   <div class="calendar-heading text-center">
-    <%= link_to t('simple_calendar.previous', default: 'Prev'), calendar.url_for_previous_view, remote: true %>
-    <span class="calendar-title"><%= start_date.month %> - <%= start_date.day %> 待辦事項</span>
-    <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view, remote: true %>
+    <%= link_to t('simple_calendar.previous', default: 'Prev'), calendar.url_for_previous_view,style:"padding-right:10px;font-size:20px;",remote: true %>
+    <span class="calendar-title"><%= start_date.month %>/<%= start_date.day %> 待辦事項</span>
+    <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view, style:"padding-left:10px;font-size:20px;",remote: true %>
   </div>
 
   <!--部分一：新增待辦事項按鈕-->
-  <div id="new_event_button" class="text-center">
+  <div id="new_event_button" style="text-align: center;">
     <i class="fa fa-list-alt" aria-hidden="true" data-toggle="modal" data-target="#todopost" style="font-size: 40px; color: #527a7a; margin-top:0px;"></i>
+    <span style="padding-left: 5px;">*新增待辦事項</span>
   <div>  
 
 

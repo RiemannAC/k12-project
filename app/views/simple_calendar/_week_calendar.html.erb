@@ -1,9 +1,14 @@
+<style>
+  .calendar-title{
+    letter-spacing: 2px;
+  }
+</style>
 <div class="simple-calendar"> 
   <div class="calendar-heading text-center">   
     <%# Ajax 版 link：Rails 5 後禁止直接 params.merge %>
-    <%= link_to "Prev", url_for(request.parameters.merge(start_date: date_range.first - 1.day)), remote: true %>
+    <%= link_to "Prev", url_for(request.parameters.merge(start_date: date_range.first - 1.day)),style:"padding-right:20px;font-size:20px;", remote: true %>
     <span class="calendar-title">Week <%= start_date.strftime("%U").to_i %></span>
-    <%= link_to "Next", url_for(request.parameters.merge(start_date: date_range.last + 1.day)), remote: true %> 
+    <%= link_to "Next", url_for(request.parameters.merge(start_date: date_range.last + 1.day)),style:"padding-left:20px;font-size:20px;", remote: true %> 
 
     <span class="pull-right">
       <span id="new_button">

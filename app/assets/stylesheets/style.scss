@@ -1,7 +1,7 @@
 /******* New Navbar Setting ********/
 
 .nav {
-  float: right;
+  float: right; 
 }
 
 .nav li {
@@ -133,8 +133,8 @@
 }
 
 .mon-calendar-body span {
-  font:11px ,'Roboto'; 
-  font-weight:400; 
+  font:30px ,'Roboto'; 
+  font-weight:800; 
   color:#f7f3eb; 
   text-align:center; 
   width:35px; 
@@ -143,6 +143,7 @@
   float:left; 
   overflow:hidden; 
   line-height:40px;
+  font-size:20px;
 }
 
 .today {
@@ -277,6 +278,9 @@
 /***** Month Calendar Link *****/
  #month_calendar a {
   color:#f7f3eb; 
+}
+#month_calendar a{
+  font-size:18px;
 }
 
 #month_calendar a:hover {
