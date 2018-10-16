@@ -114,10 +114,10 @@ namespace :dev do
     # Lesson.destroy_all
 
     user = User.where(name: "liberal").first
-    SUBJECTS = ["國文", "英文", "社會"]
+    SUBJECTS00 = ["國文", "英文", "社會"]
     classrooms = [ user.classrooms[0], user.classrooms[1], user.classrooms[2] ]
     # 參數
-    subject_name = SUBJECTS[0]
+    subject_name = SUBJECTS00[0]
     # 時間不重疊
     start_time = Time.new(Time.now.year, 7, 2, 8)
     # 參數
@@ -156,9 +156,9 @@ namespace :dev do
     # Lesson.destroy_all
 
     user = User.where(name: "liberal").first
-    SUBJECTS = ["國文", "英文", "社會"]
+    SUBJECTS01 = ["國文", "英文", "社會"]
     classrooms = [ user.classrooms[0], user.classrooms[1], user.classrooms[2] ]
-    subject_name = SUBJECTS[1]
+    subject_name = SUBJECTS01[1]
     start_time = Time.new(Time.now.year, 7, 3, 8)
 
     classroom = classrooms[1]
@@ -195,9 +195,9 @@ namespace :dev do
   task fake_lesson_02: :environment do
 
     user = User.where(name: "liberal").first
-    SUBJECTS = ["國文", "英文", "社會"]
+    SUBJECTS02 = ["國文", "英文", "社會"]
     classrooms = [ user.classrooms[0], user.classrooms[1], user.classrooms[2] ]
-    subject_name = SUBJECTS[2]
+    subject_name = SUBJECTS02[2]
     start_time = Time.new(Time.now.year, 7, 4, 8)
 
     classroom = classrooms[2]
@@ -234,10 +234,10 @@ namespace :dev do
   task fake_lesson_10: :environment do
 
     user = User.where(name: "science").first
-    SUBJECTS = ["數學", "自然", "生活科技"]
+    SUBJECTS10 = ["數學", "自然", "生活科技"]
     classrooms = [ user.classrooms[0], user.classrooms[1], user.classrooms[2] ]
     # 最後一位參數設定
-    subject_name = SUBJECTS[0]
+    subject_name = SUBJECTS10[0]
     start_time = Time.new(Time.now.year, 7, 2 + 0, 8)
     classroom = classrooms[0]
 
@@ -275,11 +275,11 @@ namespace :dev do
 
     # 第一位參數，使用者編號
     user = User.where(name: "science").first
-    SUBJECTS = ["數學", "自然", "生活科技"]
+    SUBJECTS11 = ["數學", "自然", "生活科技"]
     classrooms = [ user.classrooms[0], user.classrooms[1], user.classrooms[2] ]
 
     # 最後一位參數設定
-    subject_name = SUBJECTS[1]
+    subject_name = SUBJECTS11[1]
     classroom = classrooms[1]
     start_time = Time.new(Time.now.year, 7, 2 + 1, 8)
 
@@ -317,11 +317,11 @@ namespace :dev do
 
     # 第一位參數，使用者編號
     user = User.where(name: "science").first
-    SUBJECTS = ["數學", "自然", "生活科技"]
+    SUBJECTS12 = ["數學", "自然", "生活科技"]
     classrooms = [ user.classrooms[0], user.classrooms[1], user.classrooms[2] ]
 
     # 最後一位參數設定
-    subject_name = SUBJECTS[2]
+    subject_name = SUBJECTS12[2]
     classroom = classrooms[2]
     start_time = Time.new(Time.now.year, 7, 2 + 2, 8)
 
@@ -359,11 +359,11 @@ namespace :dev do
 
     # 第一位參數，使用者編號
     user = User.where(name: "general").first
-    SUBJECTS = ["國文", "英文", "社會", "數學", "自然", "生活科技"]
+    SUBJECTS20 = ["國文", "英文", "社會", "數學", "自然", "生活科技"]
     classroom = user.classrooms[0]
 
     # 最後一位參數設定：0..5
-    subject_name = SUBJECTS[0]
+    subject_name = SUBJECTS20[0]
     start_time = Time.new(Time.now.year, 7, 2 + 0, 8)
 
     # 判斷 break point
@@ -400,11 +400,11 @@ namespace :dev do
 
     # 第一位參數，使用者編號
     user = User.where(name: "general").first
-    SUBJECTS = ["國文", "英文", "社會", "數學", "自然", "生活科技"]
+    SUBJECTS21 = ["國文", "英文", "社會", "數學", "自然", "生活科技"]
     classroom = user.classrooms[0]
 
     # 最後一位參數設定：0..5
-    subject_name = SUBJECTS[1]
+    subject_name = SUBJECTS21[1]
     start_time = Time.new(Time.now.year, 7, 2 + 1, 8)
 
     # 判斷 break point
@@ -441,11 +441,11 @@ namespace :dev do
 
     # 第一位參數，使用者編號
     user = User.where(name: "general").first
-    SUBJECTS = ["國文", "英文", "社會", "數學", "自然", "生活科技"]
+    SUBJECTS22 = ["國文", "英文", "社會", "數學", "自然", "生活科技"]
     classroom = user.classrooms[0]
 
     # 最後一位參數設定：0..5
-    subject_name = SUBJECTS[2]
+    subject_name = SUBJECTS22[2]
     start_time = Time.new(Time.now.year, 7, 2 + 2, 8)
 
     # 判斷 break point
@@ -482,11 +482,11 @@ namespace :dev do
 
     # 第一位參數，使用者編號
     user = User.where(name: "general").first
-    SUBJECTS = ["國文", "英文", "社會", "數學", "自然", "生活科技"]
+    SUBJECTS23 = ["國文", "英文", "社會", "數學", "自然", "生活科技"]
     classroom = user.classrooms[0]
 
     # 最後一位參數設定：0..5
-    subject_name = SUBJECTS[3]
+    subject_name = SUBJECTS23[3]
     start_time = Time.new(Time.now.year, 7, 2 + 3, 8)
 
     # 判斷 break point
@@ -523,11 +523,11 @@ namespace :dev do
 
     # 第一位參數，使用者編號
     user = User.where(name: "general").first
-    SUBJECTS = ["國文", "英文", "社會", "數學", "自然", "生活科技"]
+    SUBJECTS24 = ["國文", "英文", "社會", "數學", "自然", "生活科技"]
     classroom = user.classrooms[0]
 
     # 最後一位參數設定：0..5
-    subject_name = SUBJECTS[4]
+    subject_name = SUBJECTS24[4]
     start_time = Time.new(Time.now.year, 7, 2 + 4, 8)
 
     # 判斷 break point
@@ -564,11 +564,11 @@ namespace :dev do
 
     # 第一位參數，使用者編號
     user = User.where(name: "general").first
-    SUBJECTS = ["國文", "英文", "社會", "數學", "自然", "生活科技"]
+    SUBJECTS25 = ["國文", "英文", "社會", "數學", "自然", "生活科技"]
     classroom = user.classrooms[0]
 
     # 最後一位參數設定：0..5
-    subject_name = SUBJECTS[5]
+    subject_name = SUBJECTS25[5]
     start_time = Time.new(Time.now.year, 7, 2 + 5, 8)
 
     # 判斷 break point
