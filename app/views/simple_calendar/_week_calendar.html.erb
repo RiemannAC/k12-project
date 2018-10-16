@@ -26,12 +26,12 @@
         <th><span class="th_head">#</span></th>
         <% date_range.slice(0, 7).each do |day| %>
           <th class="text-center">
-            <div>
+            <div style="font-size: 20px;letter-spacing: 2px;">
               <%= t('date.abbr_day_names')[day.wday] %>
             </div> 
   
             <div style="font-size:20px ">
-              <%= "#{day.month}" "/" "#{day.day}" %> 
+              <%= "#{day.month}" " / " "#{day.day}" %> 
             </div>   
           </th>
         <% end %>
