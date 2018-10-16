@@ -2,10 +2,13 @@
   <div id="topic-show-top">
     <span class="h1-font">上傳檔案總覽</span>
     <span class="right-link"> 
-      <%= link_to '>> 返回班級教學計劃', 'javascript:history.back()' %>
+      <%= link_to 'javascript:history.back()' do %>
+        返回班級教學計劃&nbsp;
+        <%= fa_icon 'caret-right' %>
+      <% end %>
+
     </span> 
   </div>
-  
 
   <hr>
   <div class="row"> 
