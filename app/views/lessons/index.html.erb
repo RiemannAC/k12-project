@@ -30,7 +30,7 @@
         <div class="row">
           <div class="col-12 m-auto">
             <span id="today_link" class="pull-left">
-              <%= link_to '今天', user_lessons_path(@user), class: "btn btn-warning",style:"padding:5px 20px;" %>
+              <%= link_to '今天', user_lessons_path(@user), class: "btn",style:"padding:5px 20px;background:" %>
             </span>
             <div id="events_calendar">
               <%= render partial: "week_calendar", locals: {lessons: @lessons} %>
