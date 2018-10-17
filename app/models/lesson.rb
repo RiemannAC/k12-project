@@ -9,7 +9,7 @@
 #  created_at    :datetime    not null
 #  updated_at    :datetime    not null
 #
-#  topic_id      :integer
+#  topic_id      :integer 
 
 class Lesson < ApplicationRecord
   attr_accessor :period, :frequency, :commit_button
@@ -17,7 +17,7 @@ class Lesson < ApplicationRecord
 
   belongs_to :classroom, optional: true
 
-  REPEATS = [ "Does not repeat", "Repeat weekly" ]
+  REPEATS = ["整個學期"]
 
   def lesson?
     self.event_type == "lesson"
