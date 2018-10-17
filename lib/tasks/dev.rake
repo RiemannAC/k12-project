@@ -22,7 +22,9 @@ namespace :dev do
     :fake_lesson_23,
     :fake_lesson_24,
     :fake_lesson_25,
-    :fake_topic
+    :fake_topic,
+    :fake_plan,
+    :fake_material
     ]
 
   # Test in irb > require 'ffaker'
@@ -634,6 +636,20 @@ namespace :dev do
     end
     puts "created fake plans"
     puts "now you have #{Plan.count} plans data"
+  end
+
+  task fake_material: :environment do
+    User.all.each do |user|
+      15.times do
+        user.materials.create(
+          mtrial_folder_name: FFaker::Book::genre,
+          # 全科隨機，有可是舊教案但本學年沒開課
+          subject_tag_id: rand(1..13)
+        )
+      end
+    end
+    puts "created fake materials"
+    puts "now you have #{Material.count} materials data"
   end
 
 end

@@ -2,9 +2,16 @@ class MaterialsController < ApplicationController
   before_action :set_material, only: [ :edit, :show, :update, :destroy]
   
   def index 
-    @user = current_user
+    # @user = current_user 用這個更換 user_id 看到的都是一樣的東西，有權限需求另外設定即可
+    @user = User.find_by_id(params[:user_id])
+
     @materials = @user.materials.order(created_at: :desc)
-    @material = @user.materials.new
+    # 瀏覽別人的頁面要把"新增按鈕"蓋掉
+    @material = current_user.materials.new
+
+
+    subject_tag_ids = @user.materials.pluck(:subject_tag_id)
+    @subject_tags = SubjectTag.where(id: subject_tag_ids)
   end
 
   def show
