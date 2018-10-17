@@ -26,7 +26,8 @@ namespace :dev do
     :fake_plan,
     :fake_material,
     :fake_teachingfile,
-    :fake_aim
+    :fake_aim,
+    :fake_addfile
     ]
 
   # Test in irb > require 'ffaker'
@@ -685,6 +686,23 @@ namespace :dev do
     end
     puts "created fake aims"
     puts "now you have #{Aim.count} aims data"
+  end
+
+  task fake_addfile: :environment do
+    User.all.each do |user|
+      plan_ids = user.plans.pluck(:id)
+      material_ids = user.materials.pluck(:id)
+      t_plans = Teachingfile.where(plan_id: plan_ids)
+      t_materials = Teachingfile.where(material_id: material_ids)
+      classroom_ids = user.classrooms.pluck(:id)
+      topics = Topic.where(classroom_id: classroom_ids)
+      topics.each do |topic|
+        topic.addfiles.create(teachingfile: t_plans.sample)
+        topic.addfiles.create(teachingfile: t_materials.sample)
+      end
+    end
+    puts "created fake addfiles"
+    puts "now you have #{Addfile.count} addfiles data"
   end
 
 end
