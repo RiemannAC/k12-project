@@ -52,7 +52,7 @@
       <div class="col-4">
         <div class="devise-card">
           <div class="login-container theme-color">
-            <h1 class="text-center">Sign up</h1>
+            <h1 class="text-center">註冊</h1>
           </div>
 
           <div class="login-container-in">
@@ -60,7 +60,7 @@
               <%= devise_error_messages! %>
 
               <div class="field">
-                <%= f.label :name %><br />
+                <%= f.label '名字' %><br />
                 <%= f.text_field :name, autofocus: true, class: 'login-input' %>
               </div>
 
@@ -70,21 +70,28 @@
               </div>
 
               <div class="field">
-                <%= f.label :password %>
+                <%= f.label '密碼' %>
                 <% if @minimum_password_length %>
-                <em>(<%= @minimum_password_length %> characters minimum)</em>
+                <em>(至少 <%= @minimum_password_length %> 個字元)</em>
                 <% end %><br />
                 <%= f.password_field :password, autocomplete: "new-password", class: 'login-inupt' %>
               </div>
 
               <div class="field">
-                <%= f.label :password_confirmation %><br />
+                <%= f.label '密碼再次確認' %><br />
                 <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'login-input' %>
               </div>
               <br>
               <div class="actions">
-                <%= f.submit "Sign up", class: 'btn btn-lg theme-color' %>
-                <%= link_to "Log in", new_session_path(resource_name),class: 'btn btn-lg btn-primary' %>
+                <div class="text-center">
+                  <%= f.submit "註冊", class: 'btn btn-lg theme-color' %>
+                </div>
+                <div class="text-center" style='margin-top: 10px;'>
+                  <span style="font-size: 22px">已有帳號？</span>
+                  <%= link_to new_session_path(resource_name), style: 'border-bottom: 1px solid blue; font-size: 22px; color: blue;' do %>
+                    去登入
+                  <% end %>
+                </div>  
               </div>
             <% end %>
           </div>
