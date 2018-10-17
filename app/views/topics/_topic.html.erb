@@ -10,7 +10,7 @@
           <h3 class="float-left"><%= topic.name %></h3>
           <h3 class="float-right">
             <%= topic.start_time.strftime("%Y/%m/%d") %> - <%= topic.end_time.strftime("%Y/%m/%d") %>&nbsp;
-            <button class="round-button" alt="重設日期／主題" type="button" class="btn btn-warning" data-toggle="modal" data-target="#myupdatepost_<%= topic.id  %>"><%= fa_icon 'calendar' %></button>
+            <button class="round-button" alt="重設日期／主題" type="button" class="btn btn-warning" data-toggle="modal" data-target="#myupdatepost_<%= topic.id  %>"><%= fa_icon 'calendar', style: 'cursor: pointer;'%></button>
           </h3>
           <div class="clearfix"></div>
         </div>
@@ -42,12 +42,12 @@
 
               <div class="prepare-edit-div" data-toggle="tooltip" data-placement="left" title="查看現有教學檔案">
                 <div data-toggle="modal" data-target="#bd-example-modal-lg-<%= topic.id %>">
-                  <%= fa_icon 'folder', style: 'font-size: 25px;' %>
+                  <%= fa_icon 'folder', style: 'font-size: 25px; cursor: pointer;' %>
                 </div>
               </div>
               <div class="prepare-edit-div" data-toggle="tooltip" data-placement="left" title="填寫教學反思">
                 <div data-toggle="modal" data-target="#myupdatefeedback_<%= topic.id  %>">
-                  <%= fa_icon 'edit', style: 'font-size: 25px;' %>
+                  <%= fa_icon 'edit', style: 'font-size: 25px; cursor: pointer;' %>
                 </div>
               </div>
 
