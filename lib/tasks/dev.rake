@@ -24,7 +24,8 @@ namespace :dev do
     :fake_lesson_25,
     :fake_topic,
     :fake_plan,
-    :fake_material
+    :fake_material,
+    :fake_teachingfile
     ]
 
   # Test in irb > require 'ffaker'
@@ -650,6 +651,29 @@ namespace :dev do
     end
     puts "created fake materials"
     puts "now you have #{Material.count} materials data"
+  end
+
+  task fake_teachingfile: :environment do
+    Teachingfile.destroy_all
+
+    User.all.each do |user|
+      materials = user.materials
+      content_1 = Pathname.new("/Users/riemann/k12-project/public/materials/material.pdf").open
+      materials.all.each do |material|
+        teachingfile = material.teachingfiles.new(name: "教材範例")
+        teachingfile.attachments = [content_1]
+        teachingfile.save
+      end
+      plans = user.plans
+      content_2 = File.open("#{Rails.root}/public/plans/plan.pdf")
+      plans.all.each do |plan|
+        teachingfile_p = plan.teachingfiles.new(name: "教案範例")
+        teachingfile_p.attachments = [content_2]
+        teachingfile_p.save
+      end
+    end
+    puts "created fake teachingfiles"
+    puts "now you have #{Teachingfile.count} teachingfiles data"
   end
 
 end
