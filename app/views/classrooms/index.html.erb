@@ -1,84 +1,99 @@
-<div class="main-frame">
-  <h1>我的班級管理列表</h1>
-  <h4><%= link_to '<<以首頁課表檢視', user_lessons_path(@user)  %></h4>
-  <hr class="blue-hr">
-  
-  <% if @classrooms.count == 0 %>
-    <h3>你還未建立任何班級，趕快來 <%= link_to '建立班級新增課表', new_user_lesson_path(@user) %>！</h3> 
-  <% else %> 
+<style>
+  table th{
+    font-size:25px;
+  }
+  table td{
+    font-size:25px;
+  }
+  table td a{
+    font-size:20px;
+  }
+</style>
+<div class="container-fluid">
+  <div class="col-12"> 
+    <h1 style="display: inline-block;">我的班級管理列表</h1>
+    <i class="fa fa-caret-right grid" aria-hidden="true" style="padding:0px 10px;
+  "></i> 
+    <%= link_to '回到課表首頁', user_lessons_path(@user),style:"font-size:22px;"  %>  
 
-    <table class="table">
-      <thead class="thead-light">
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">科目</th>
-          <th scope="col">班級</th>
-          <th scope="col">學生人數</th>
-          <!--th scope="col">學年度</th-->
-          <th scope="col">#</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @classrooms.each do |classroom| %>
-        <tr>
-          <td><%= link_to '教學進度管理', user_classroom_path(@user, classroom) %></td>
-          <td><%= classroom.subjects.pluck(:name).join() %></td>
-          <td><%= classroom.name %></td>
-          <td><%= classroom.student %></td> 
-          
-          <%#= subject.classrooms.pluck(:name).join(', ') %>
-          <!--td><%#= subject.start_time.strftime('%Y-%m') %> 學年開始</td-->
-      
-          <td>
-            <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#myupdateclass">
-              修改班級人數
-            </button>
-            <%= link_to '刪除班級資料', user_classroom_path(@user, classroom), class: 'btn btn-danger btn-sm', method: :delete, data: {confirm: "此為永久刪除，確定要執行嗎？"} %>
-          </td>
-        </tr> 
-
+    <hr>
+    
+    <% if @classrooms.count == 0 %>
+      <h3>你還未建立任何班級，趕快來 <%= link_to '建立班級新增課表', new_user_lesson_path(@user) %>！</h3>  
+    <% else %> 
+      <table class="table" style="margin-top: 20px;">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">科目</th>
+            <th scope="col">班級</th>
+            <th scope="col">學生人數</th>
+            <!--th scope="col">學年度</th-->
+            <th scope="col">#</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @classrooms.each do |classroom| %>
+          <tr>
+            <td><%= link_to '教學進度管理', user_classroom_path(@user, classroom) %></td>
+            <td><%= classroom.subjects.pluck(:name).join() %></td>
+            <td><%= classroom.name %></td>
+            <td><%= classroom.student %></td> 
+            
+            <%#= subject.classrooms.pluck(:name).join(', ') %>
+            <!--td><%#= subject.start_time.strftime('%Y-%m') %> 學年開始</td-->
         
-        <%= form_for [@user,classroom] do |f| %>
-          <div class="modal fade" id="myupdateclass" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-         
-                    <h5 class="modal-title" id="myModalLabel"><%= classroom.name %>的班級人數</h5>
-                  </div>
+            <td>
+              <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#myupdateclass-<%= classroom.id %>">
+                修改班級人數
+              </button>
+              <%= link_to '刪除班級資料', user_classroom_path(@user, classroom), class: 'btn btn-outline-danger', method: :delete, data: {confirm: "此為永久刪除，確定要執行嗎？"} %>
+            </td>
+          </tr> 
 
-                  <div class="modal-body">
-                    <%# modal-body %>
-                    <div class="form-group">
-                      <%#= f.label :name, "科目" %>
-                      <%#= f.text_field :name, placeholder: "ex. 國文" %>
+          
+          <%= form_for [@user,classroom],method: :put do |f| %>
+            <div class="modal fade" id="myupdateclass-<%= classroom.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+           
+                      <h5 class="modal-title" id="myModalLabel"><%= classroom.name %>的班級人數</h5>
                     </div>
-                    <div class="form-group">
-                      <%#= f.label :name, "年班級" %>
-                      <%#= f.text_field :name ,class:"form-control" %>  
-                    </div>
-                    <div class="form-group">
-                      <%= f.label :student, "班級人數" %>
-                      <%= f.number_field :student ,class:"form-control" %>
-                    </div>
-                  </div>
 
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" id="mynewpostclose">close</button>
-                    <%= submit_tag "完成班級設定",class:"btn btn-info" %>
+                    <div class="modal-body">
+                      <%# modal-body %>
+                      <div class="form-group">
+                        <%#= f.label :name, "科目" %>
+                        <%#= f.text_field :name, placeholder: "ex. 國文" %>
+                      </div>
+                      <div class="form-group">
+                        <%#= f.label :name, "年班級" %>
+                        <%#= f.text_field :name ,class:"form-control" %>  
+                      </div>
+                      <div class="form-group">
+                        <%= f.label :student, "班級人數" %>
+                        <%= f.number_field :student ,class:"form-control" %>
+                      </div>
+                    </div>
+
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal" id="mynewpostclose">close</button>
+                      <%= submit_tag "完成班級設定",class:"btn btn-info" %>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-        <% end %>
+          <% end %>
 
-        <% end %>
-      </tbody>
-    </table>
-  <% end %>
-   
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+     
+  </div>
 </div>
 
