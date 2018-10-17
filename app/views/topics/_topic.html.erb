@@ -55,7 +55,7 @@
             
             <div class="parent-absolute">
               <div class="prepare-edit-div3" data-toggle="tooltip" data-placement="left" title="刪除教學計劃">
-                <%= link_to user_classroom_topic_path(@user,@classroom,topic) ,method: :delete, data: { confirm: "Are you sure?"}, remote: true do %>
+                <%= link_to user_classroom_topic_path(@user,@classroom,topic) ,method: :delete, data: { confirm: "確定要刪除此教學單元嗎?"}, remote: true do %>
                   <%= fa_icon 'trash', style: 'font-size: 25px;' %>
                 <% end %>
                   
