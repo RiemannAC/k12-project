@@ -176,14 +176,22 @@
 .next-month {
   opacity: 0.3;
 }
+/******** classroom index view **********/
+table th{
+  font-size:25px;
+}
+table td{
+  font-size:25px;
+}
+table td a{
+  font-size:20px;
+}
 
 /******** index to-do-list **********/
 .to_do_head{
   margin-top: 15px;
   text-align: center;
 }
-
-
 
 .to_do_body .day_time{ 
   border:2px solid #ddd !important;
