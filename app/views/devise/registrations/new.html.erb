@@ -1,45 +1,97 @@
-<div class="row">
-  <div class="col-md-10 col-md-offset-2">
-    <div class="devise-card">
-      <div class="login-container theme-color">
-        <h1 class="text-center">Sign up</h1>
+<style>
+.nav_margin {
+  height: 0px;
+}
+
+.container-fluid{
+  padding: 0;
+}
+</style>
+
+<section>
+  <div class="home-bg">
+    <%= image_tag ("register-image.png"), alt: 'avatar' %>  
+     
+    <div class="row">
+      <div class="col-5 offset-2">
+        <div class="register-info">
+          <h2>最好用的教師教學計畫管理平台</h2> 
+
+          <div class="register-content">
+            <div class="register-left-item">
+              <i class="fa fa-calendar" aria-hidden="true" style="font-size:50px;margin-right: 10px;"></i> 
+            </div> 
+            
+            <div class="register-right-item">
+              <h4 style="padding-top: 10px;">結合日曆功能，課程安排一目了然</h4> 
+            </div>
+          </div>
+          
+          <div class="register-content">
+            <div class="register-left-item">
+              <i class="fa fa-files-o" aria-hidden="true" style="font-size:50px;margin-right: 10px;"></i>        
+            </div>
+            
+            <div class="register-right-item">
+              <h4>線上完整功能管理教學進度表<br>上傳各種檔案：教材及教案</h4>
+            </div>
+          </div>
+
+          <div class="register-content">
+            <div class="register-left-item">
+              <i class="fa fa-list-alt" aria-hidden="true" style="font-size:50px;margin-right: 10px;"></i>
+            </div>
+
+            <div class="register-right-item">
+              <h4>老師可在教學後進行反思<br>進行有效的課後教學進度管理</h4>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="login-container-in">
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-          <%= devise_error_messages! %>
-
-          <div class="field">
-            <%= f.label :name %><br />
-            <%= f.text_field :name, autofocus: true, class: 'login-input' %>
+      <div class="col-4">
+        <div class="devise-card">
+          <div class="login-container theme-color">
+            <h1 class="text-center">Sign up</h1>
           </div>
 
-          <div class="field">
-            <%= f.label :email %><br />
-            <%= f.email_field :email, autocomplete: "email", class: 'login-input' %>
-          </div>
+          <div class="login-container-in">
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+              <%= devise_error_messages! %>
 
-          <div class="field">
-            <%= f.label :password %>
-            <% if @minimum_password_length %>
-            <em>(<%= @minimum_password_length %> characters minimum)</em>
-            <% end %><br />
-            <%= f.password_field :password, autocomplete: "new-password", class: 'login-inupt' %>
-          </div>
+              <div class="field">
+                <%= f.label :name %><br />
+                <%= f.text_field :name, autofocus: true, class: 'login-input' %>
+              </div>
 
-          <div class="field">
-            <%= f.label :password_confirmation %><br />
-            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'login-input' %>
-          </div>
-          <br>
-          <div class="actions">
-            <%= f.submit "Sign up", class: 'btn btn-lg theme-color' %>
-          </div>
-        <% end %>
+              <div class="field">
+                <%= f.label :email %><br />
+                <%= f.email_field :email, autocomplete: "email", class: 'login-input' %>
+              </div>
 
-        <%= render "devise/shared/links" %>            
+              <div class="field">
+                <%= f.label :password %>
+                <% if @minimum_password_length %>
+                <em>(<%= @minimum_password_length %> characters minimum)</em>
+                <% end %><br />
+                <%= f.password_field :password, autocomplete: "new-password", class: 'login-inupt' %>
+              </div>
+
+              <div class="field">
+                <%= f.label :password_confirmation %><br />
+                <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'login-input' %>
+              </div>
+              <br>
+              <div class="actions">
+                <%= f.submit "Sign up", class: 'btn btn-lg theme-color' %>
+                <%= link_to "Log in", new_session_path(resource_name),class: 'btn btn-lg btn-primary' %>
+              </div>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
+
   </div>
-</div>
+</section>   
 
