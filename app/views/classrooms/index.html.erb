@@ -36,7 +36,7 @@
               <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#myupdateclass-<%= classroom.id %>">
                 修改班級人數
               </button>
-              <%= link_to '刪除班級資料', user_classroom_path(@user, classroom), class: 'btn btn-outline-danger', method: :delete, data: {confirm: "此為永久刪除，確定要執行嗎？"} %>
+              <%= link_to '刪除班級資料', user_classroom_path(@user, classroom), class: 'btn btn-danger', method: :delete, data: {confirm: "此為永久刪除，確定要執行嗎？"} %>
             </td>
           </tr> 
 
