@@ -3,9 +3,11 @@
     教材資料夾 
     <!-- Button trigger modal -->
     <% if @user == current_user %>
-      <a href="" data-toggle="modal" data-target="#exampleModal">
-        <%= fa_icon "plus-circle 3x", style: 'color: #83c867' %>
-      </a>
+      <div id="new_event_button" style="display: inline;">
+        <a href="" data-toggle="modal" data-target="#exampleModal">
+          <%= fa_icon "plus-circle 3x", style: 'color: #83c867' %>
+        </a>
+      <div>  
     <% end %>
   </h1>
 
