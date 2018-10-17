@@ -54,6 +54,10 @@
     border: 1px solid #ddd;
     /*改 0.5 兩線合併為 1 無效*/
     padding-top:8px;
+  } 
+
+  td .today{
+    background:green;
   }
 
   .day_time a{
@@ -76,10 +80,10 @@
   .wday-3 {}
   .wday-4 {}
   .wday-5 {}
-  .wday-6 {}
+  .wday-6 {} 
  
   .today{
-    background:#fff;
+    background:#f5faff;
   }
 
   .past {}
@@ -95,9 +99,14 @@
   }
   .current-month {}
 
-  .has-events {
-    background:#fff;
+  .has-events .lesson-content a{
+    color:#1f7ae0;
   }
+
+  .has-events .lesson-content a:hover{
+    color:#0091a8;
+  }
+
 
   .calendar-title{
     font-size:30px; 
