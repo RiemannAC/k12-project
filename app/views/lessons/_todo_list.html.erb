@@ -2,7 +2,6 @@
   #todo_content{
     margin-top: 20px;
   }
-  
 </style>
 <div class="to_do_body">
   <%# 客制化各項需以逗號分開 %>
@@ -43,7 +42,7 @@
                           <div class="form-group">
                             <%= f.label '開始時間' %>
                             <%= f.datetime_select :start_time, start_year: Date.today.year, end_year: Date.today.year+1, start_hour: 8, end_hour: 18, ampm: true, discard_minute: true, default: Date.today.beginning_of_day + 8.hour %>
-                          </div>          
+                          </div>           
                         </div> 
                         <%# modal-body 結束  %>
 

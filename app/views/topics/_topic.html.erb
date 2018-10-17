@@ -10,7 +10,7 @@
           <h3 class="float-left"><%= topic.name %></h3>
           <h3 class="float-right">
             <%= topic.start_time.strftime("%Y/%m/%d") %> - <%= topic.end_time.strftime("%Y/%m/%d") %>&nbsp;
-            <button class="round-button" alt="重設日期／主題" type="button" class="btn btn-warning" data-toggle="modal" data-target="#myupdatepost_<%= topic.id  %>"><%= fa_icon 'calendar' %></button>
+            <button class="round-button" alt="重設日期／主題" type="button" class="btn btn-warning" data-toggle="modal" data-target="#myupdatepost_<%= topic.id  %>"><%= fa_icon 'calendar', style: 'cursor: pointer;'%></button>
           </h3>
           <div class="clearfix"></div>
         </div>
@@ -42,12 +42,12 @@
 
               <div class="prepare-edit-div" data-toggle="tooltip" data-placement="left" title="查看現有教學檔案">
                 <div data-toggle="modal" data-target="#bd-example-modal-lg-<%= topic.id %>">
-                  <%= fa_icon 'folder', style: 'font-size: 25px;' %>
+                  <%= fa_icon 'folder', style: 'font-size: 25px; cursor: pointer;' %>
                 </div>
               </div>
               <div class="prepare-edit-div" data-toggle="tooltip" data-placement="left" title="填寫教學反思">
                 <div data-toggle="modal" data-target="#myupdatefeedback_<%= topic.id  %>">
-                  <%= fa_icon 'edit', style: 'font-size: 25px;' %>
+                  <%= fa_icon 'edit', style: 'font-size: 25px; cursor: pointer;' %>
                 </div>
               </div>
 
@@ -55,7 +55,7 @@
             
             <div class="parent-absolute">
               <div class="prepare-edit-div3" data-toggle="tooltip" data-placement="left" title="刪除教學計劃">
-                <%= link_to user_classroom_topic_path(@user,@classroom,topic) ,method: :delete, data: { confirm: "Are you sure?"}, remote: true do %>
+                <%= link_to user_classroom_topic_path(@user,@classroom,topic) ,method: :delete, data: { confirm: "確定要刪除此教學單元嗎?"}, remote: true do %>
                   <%= fa_icon 'trash', style: 'font-size: 25px;' %>
                 <% end %>
                   
@@ -76,9 +76,6 @@
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLongTitle">
             下載教學檔案
-            <%= link_to user_classroom_topic_path(@user, @classroom, topic) do %>
-              <span class="prepare-edit-div" data-toggle="tooltip" data-placement="right" title="取得教材／教案檔案"><%= fa_icon 'plus-circle 2x' %></span>
-            <% end %>
           </h5>
           
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -87,7 +84,7 @@
         </div>
         <div class="modal-body">
           <% if topic.added_files.count == 0 %>
-            <h5>按 <%= fa_icon 'plus-square-o' %> 將檔案加至本計畫</h5>
+            <h5>本計劃尚未放進任何教案／教材檔案，可點選計劃表上的 <%= fa_icon 'plus-square-o' %> 取得檔案 </h5>
           <% else %>
             <div class="row">
               <div class="col-md-4 float-left">

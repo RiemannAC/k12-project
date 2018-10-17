@@ -60,7 +60,7 @@ class TopicsController < ApplicationController
       #format.json{head :no_content}  
       #format.js
     #end
-    flash[:notice]= "成功刪除一個教學計劃"
+    flash[:notice]= "成功刪除一個教學單元"
     redirect_back fallback_location: root_path
   end
 

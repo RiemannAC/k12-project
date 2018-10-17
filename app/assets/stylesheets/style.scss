@@ -78,6 +78,10 @@
   height:100%;
 } 
 
+#user_password {
+  background-color: linen;
+}
+
 
 /******** user-profile nav-tabs page **********/
 .user-profile-navtab{
@@ -215,20 +219,6 @@ table td a{
   background-color: #ebf0fa;
 }
 
-.to_do_body .day_time{
-  position: relative; 
-  top: 0;
-  left: 0;
-  -webkit-transition: .2s linear;
-  -moz-transition: .2s linear;
-  -ms-transition: .2s linear;
-  -o-transition: .2s linear;
-  transition: .2s linear;
-}
-.to_do_body .day_time:hover{
-  box-shadow: 0 3px 22px 0 rgba(90,91,95,0.3);
-  top:-2px;
-}
 
 
 /******** plan/material page **********/
