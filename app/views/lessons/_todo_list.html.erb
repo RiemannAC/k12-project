@@ -15,12 +15,14 @@
         <span id="hour-<%= hour %>">
           <% todos.each do |todo| %> 
             <%- if todo.start_time.hour.between?(hour, hour + 0.9) %>
-              <span id="edit_buttons">     
-                <%# 點擊todo 出現 popup 開始更新 ##################################%>  
-                <%= link_to "#{todo.title}", "#todoedit#{todo.id}", "data-toggle" => "modal" %>
+              <span id="edit_buttons"> 
+                <%# 點擊todo 出現 popup 開始更新 ##################################%>
+                <%# 部分一：點擊todo   %>  
+                <%= link_to "#{todo.title}", "#todoedit#{todo.id}", "data-toggle" => "modal",style:"padding-left:10px;" %>
 
-                <%= form_for [@user, todo], method: :put, :class => "form-inline" do |f| %>
-                  <div class="modal fade" id="todoedit<%= todo.id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> 
+                <%# 部分二：出現popup form   %>
+                <div class="modal fade" id="todoedit<%= todo.id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> 
+                  <%= form_for [@user, todo], method: :put,style:"float:left;" do |f| %>
                     <div class="modal-dialog" role="document">
                       <div class="modal-content">
                         <!-- modal header -->
@@ -55,11 +57,12 @@
                       <!--modal content-->
                       </div>
                     </div>
-                  </div>
-                  <!--form edit todo end-->
-                <% end %>
+                  <% end %>
+                </div>
+                <!--form edit todo end-->     
               </span>
-            <% end -%>
+            <% end -%>         
+
           <% end %>
         </span>
       </div>
