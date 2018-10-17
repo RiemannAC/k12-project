@@ -12,13 +12,13 @@ class LessonsController < ApplicationController
   before_action :set_author, only: [:new, :create, :edit, :update, :destroy]
 
   def index
-    @user = current_user
-
     # _to_do_list
+    # 預設日期，重新整理回到今天
     @day = Date.today
 
-    @todos = @user.events.all
-    @todo = @user.events.new
+    # 隱私問題，使用者只能看到自己的待辦事項
+    @todos = current_user.events.all
+    @todo = current_user.events.new
   end
  
   def show
@@ -178,6 +178,7 @@ class LessonsController < ApplicationController
     end
 
     def set_user
+      # 使用者可以經路由看到別人的課表，分享課表功能
       @user = User.find_by_id(params[:user_id])
     end
 

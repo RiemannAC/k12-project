@@ -10,13 +10,15 @@
     <span class="calendar-title">Week <%= start_date.strftime("%U").to_i %></span>
     <%= link_to "Next", url_for(request.parameters.merge(start_date: date_range.last + 1.day)),style:"padding-left:20px;font-size:20px;", remote: true %> 
 
-    <span class="pull-right">
-      <span id="new_button">
-        <%= link_to new_user_lesson_path(@user) do %>
-          <i class="fa fa-calendar-plus-o" aria-hidden="true" style="font-size: 40px; color: #527a7a; padding-left: 10px;"></i>
-        <% end %>
-      <span>
-    </span> 
+    <% if @user == current_user %>
+      <span class="pull-right">
+        <span id="new_button">
+          <%= link_to new_user_lesson_path(@user) do %>
+            <i class="fa fa-calendar-plus-o" aria-hidden="true" style="font-size: 40px; color: #527a7a; padding-left: 10px;"></i>
+          <% end %>
+        <span>
+      </span>
+    <% end %>
   </div>
 
 
