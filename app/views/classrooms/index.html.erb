@@ -21,7 +21,7 @@
             <th scope="col">班級</th>
             <th scope="col">學生人數</th>
             <!--th scope="col">學年度</th-->
-            <th scope="col">#</th>
+            <th scope="col"> </th>
           </tr>
         </thead>
         <tbody>
@@ -36,10 +36,12 @@
             <!--td><%#= subject.start_time.strftime('%Y-%m') %> 學年開始</td-->
         
             <td>
-              <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#myupdateclass-<%= classroom.id %>">
-                修改班級人數
-              </button>
-              <%= link_to '刪除班級資料', user_classroom_path(@user, classroom), class: 'btn btn-danger', method: :delete, data: {confirm: "此為永久刪除，確定要執行嗎？"} %>
+              <div class="float-right">
+                <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#myupdateclass-<%= classroom.id %>">
+                  修改班級人數
+                </button>
+                <%= link_to '刪除班級資料', user_classroom_path(@user, classroom), class: 'btn btn-danger', method: :delete, data: {confirm: "此為永久刪除，確定要執行嗎？"}, style: 'color: #fff;' %>
+              </div>
             </td>
           </tr> 
 

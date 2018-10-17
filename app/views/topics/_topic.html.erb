@@ -76,9 +76,6 @@
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLongTitle">
             下載教學檔案
-            <%= link_to user_classroom_topic_path(@user, @classroom, topic) do %>
-              <span class="prepare-edit-div" data-toggle="tooltip" data-placement="right" title="取得教材／教案檔案"><%= fa_icon 'plus-circle 2x' %></span>
-            <% end %>
           </h5>
           
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -87,7 +84,7 @@
         </div>
         <div class="modal-body">
           <% if topic.added_files.count == 0 %>
-            <h5>按 <%= fa_icon 'plus-square-o' %> 將檔案加至本計畫</h5>
+            <h5>本計劃尚未放進任何教案／教材檔案，可點選計劃表上的 <%= fa_icon 'plus-square-o' %> 取得檔案 </h5>
           <% else %>
             <div class="row">
               <div class="col-md-4 float-left">
