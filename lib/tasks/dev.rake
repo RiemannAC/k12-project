@@ -27,7 +27,8 @@ namespace :dev do
     :fake_material,
     :fake_teachingfile,
     :fake_aim,
-    :fake_addfile
+    :fake_addfile,
+    :fake_todo
     ]
 
   # Test in irb > require 'ffaker'
@@ -712,6 +713,19 @@ namespace :dev do
     end
     puts "created fake feedbacks"
     puts "now you have #{Topic.count} feedbacks data"
+  end
+
+  task fake_todo: :environment do
+    User.all.each do |user|
+      3.times do
+        user.events.create(
+          title: FFaker::Book::genre,
+          start_time: Date.today + 8.hour + rand(0..10).hour
+        )
+      end
+    end
+    puts "created fake todos"
+    puts "now you have #{Event.count} todos data"
   end
 
 end
