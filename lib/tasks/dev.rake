@@ -25,7 +25,10 @@ namespace :dev do
     :fake_topic,
     :fake_plan,
     :fake_material,
-    :fake_teachingfile
+    :fake_teachingfile,
+    :fake_aim,
+    :fake_addfile,
+    :fake_todo
     ]
 
   # Test in irb > require 'ffaker'
@@ -674,6 +677,55 @@ namespace :dev do
     end
     puts "created fake teachingfiles"
     puts "now you have #{Teachingfile.count} teachingfiles data"
+  end
+
+  task fake_aim: :environment do
+    Topic.all.each do |topic|
+      3.times do
+        topic.aims.create(name: FFaker::Book::genre)
+      end
+    end
+    puts "created fake aims"
+    puts "now you have #{Aim.count} aims data"
+  end
+
+  task fake_addfile: :environment do
+    User.all.each do |user|
+      plan_ids = user.plans.pluck(:id)
+      material_ids = user.materials.pluck(:id)
+      t_plans = Teachingfile.where(plan_id: plan_ids)
+      t_materials = Teachingfile.where(material_id: material_ids)
+      classroom_ids = user.classrooms.pluck(:id)
+      topics = Topic.where(classroom_id: classroom_ids)
+      topics.each do |topic|
+        topic.addfiles.create(teachingfile: t_plans.sample)
+        topic.addfiles.create(teachingfile: t_materials.sample)
+      end
+    end
+    puts "created fake addfiles"
+    puts "now you have #{Addfile.count} addfiles data"
+  end
+
+  task fake_feedback: :environment do
+    Topic.all.each do |topic|
+      topic.feedback = FFaker::Lorem::paragraph
+      topic.save
+    end
+    puts "created fake feedbacks"
+    puts "now you have #{Topic.count} feedbacks data"
+  end
+
+  task fake_todo: :environment do
+    User.all.each do |user|
+      3.times do
+        user.events.create(
+          title: FFaker::Book::genre,
+          start_time: Date.today + 8.hour + rand(0..10).hour
+        )
+      end
+    end
+    puts "created fake todos"
+    puts "now you have #{Event.count} todos data"
   end
 
 end
