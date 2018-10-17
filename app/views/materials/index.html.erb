@@ -2,9 +2,11 @@
   <h1>
     教材資料夾 
     <!-- Button trigger modal -->
-    <a href="" data-toggle="modal" data-target="#exampleModal">
-      <%= fa_icon "plus-circle 3x", style: 'color: #83c867' %>
-    </a>
+    <% if @user == current_user %>
+      <a href="" data-toggle="modal" data-target="#exampleModal">
+        <%= fa_icon "plus-circle 3x", style: 'color: #83c867' %>
+      </a>
+    <% end %>
   </h1>
 
   <!-- Modal -->
@@ -58,28 +60,27 @@
           </thead>
           <tbody>
             <% @subject_tags.each do |subject| %>
-              <% if subject.materials.present? %>
-                <tr>
-                  <th><%= subject.name %></th>
-                  <td>
-                    <% subject.materials.each do |material| %>
+              <tr>
+                <th><%= subject.name %></th>
+                <td>
+                  <% @materials.each do |material| %>
+                    <% if material.subject_tag.name == subject.name %>
                       <%= link_to user_material_path(@user,material) do %>  
                         <%= fa_icon 'folder', style: 'color:grey;' %>&nbsp;&nbsp;
-                
                         <span>
                           <%= material.mtrial_folder_name %>
                         </span><br>
-                      <% end %>           
+                      <% end %>
                     <% end %>
-                  </td>
-                  <td>
-                    <% subject.materials.each do |material| %>
-                      <%= material.updated_at.strftime("%Y/%m/%d") %><br>
-                    <% end %>
-                  </td>
-                </tr>
-
-              <% end %>
+                  <% end %>
+                </td>
+                <td>
+                  <%# 分開跑會變成一筆資料對多筆更新時間 %>
+                  <%# subject.materials.each do |material| %>
+                    <%#= material.updated_at.strftime("%Y/%m/%d") %><br>
+                  <%# end %>
+                </td>
+              </tr>
             <% end %>
           </tbody>
         </table>

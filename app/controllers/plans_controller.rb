@@ -2,9 +2,13 @@ class PlansController < ApplicationController
   before_action :set_plan, only: [:edit, :show, :update, :destroy]
 
   def index
-    @user = current_user
+    # @user = current_user 用這個更換 user_id 看到的都是一樣的東西，有權限需求另外設定即可
+    @user = User.find_by_id(params[:user_id])
     @plans = @user.plans.order(created_at: :desc)
-    @plan = @user.plans.new
+    # 瀏覽別人的頁面要把"新增按鈕"蓋掉
+    @plan = current_user.plans.new
+    subject_tag_ids = @user.plans.pluck(:subject_tag_id)
+    @subject_tags = SubjectTag.where(id: subject_tag_ids)
   end 
 
   def create
@@ -14,7 +18,7 @@ class PlansController < ApplicationController
     @plan.user = current_user
     if @plan.save!
       flash[:notice] = "成功新增資料夾【#{@plan.plan_folder_name}】"
-      redirect_to user_plans_path(current_user,@plans)
+      redirect_to user_plans_path(current_user)# @plans 轉 index 不需要加這個，轉址後網址掛一包 active record，危險
     else
       flash[:alert] = "請確定選擇科目及填上主題／單元名稱！"
       render :new
@@ -64,7 +68,7 @@ class PlansController < ApplicationController
   end
 
   def set_user
-      @user = User.find_by_id(params[:user_id])
-    end
+    @user = User.find_by_id(params[:user_id])
+  end
 
 end

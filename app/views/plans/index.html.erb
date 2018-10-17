@@ -1,9 +1,11 @@
 <div class="container">
   <h1>
     教案資料夾
-    <a href="" data-toggle="modal" data-target="#exampleModal">
-      <%= fa_icon "plus-circle 3x", style: 'color: #83c867' %>
-    </a>
+    <% if @user == current_user %>
+      <a href="" data-toggle="modal" data-target="#exampleModal">
+        <%= fa_icon "plus-circle 3x", style: 'color: #83c867' %>
+      </a>
+    <% end %>
   </h1>
 
   <!-- Modal -->
@@ -57,25 +59,22 @@
           </thead>
           <tbody>
             <% @subject_tags.each do |subject| %>
-              <% if subject.plans.present? %>
-                <tr>
-                  <th><%= subject.name %></th>
-                  <td>
-                    <% subject.plans.each do |plan| %>
+              <%# if subject.plans.present? %> <%# 舊設定會包含別的使用者一起判斷，所以在別有人有 plan 自己沒有時，就會出現格內無 plan 的狀況。而且還會把別人的 plan 傳進來，點擊結結會出錯，plan_id 和 params 給入的 user_id 湊不起來 %>
+              <tr>
+                <th><%= subject.name %></th>
+                <td>
+                  <% @plans.each do |plan| %>
+                    <% if plan.subject_tag.name == subject.name %>
                       <%= link_to user_plan_path(@user,plan) do %>  
                         <%= fa_icon 'folder', style: 'color:grey;' %>&nbsp;&nbsp;
                         <span><%= plan.plan_folder_name %></span> 
-                      <% end %><br>              
+                      <% end %><br> 
                     <% end %>
-                  </td>
-                  <td>
-                    <% subject.plans.each do |plan| %>
-                      <%= plan.updated_at.strftime("%Y/%m/%d") %><br>
-                    <% end %>
-                  </td>
-                </tr>
-
-              <% end %>
+                  <% end %>
+                </td>
+                <td><%#= plan.updated_at.strftime("%Y/%m/%d") %><%# @plans block 包到這邊會跑版 %></td>
+              </tr>
+              <%# end %>
             <% end %>
           </tbody>
         </table>
