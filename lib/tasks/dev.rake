@@ -25,7 +25,8 @@ namespace :dev do
     :fake_topic,
     :fake_plan,
     :fake_material,
-    :fake_teachingfile
+    :fake_teachingfile,
+    :fake_aim
     ]
 
   # Test in irb > require 'ffaker'
@@ -674,6 +675,16 @@ namespace :dev do
     end
     puts "created fake teachingfiles"
     puts "now you have #{Teachingfile.count} teachingfiles data"
+  end
+
+  task fake_aim: :environment do
+    Topic.all.each do |topic|
+      3.times do
+        topic.aims.create(name: FFaker::Book::genre)
+      end
+    end
+    puts "created fake aims"
+    puts "now you have #{Aim.count} aims data"
   end
 
 end
