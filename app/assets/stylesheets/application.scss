@@ -15,7 +15,9 @@
 body {
   color: #5e5f5f;
   font-family: 'Open Sans Condensed','cwTeXYen', sans-serif;
-  background-color: #f3f7f6;
+  
+  background: #f3f7f6;
+
 }
 
 h1, h2, h3, h4, h5 {
@@ -44,22 +46,6 @@ a:hover {
 
 .theme-font {
   color: #454545!important;
-}
-
-.green-hr {
-  height:10px;
-  border:none;
-  border-top:10px groove #64b24494;
-}
-
-.orange-hr {
-  height: 10px;
-  border: none;
-  border-top: 10px groove #ec584d8f;
-}
-
-.main-frame {
-  padding-top: 25px;
 }
 
 .alert {

@@ -50,16 +50,17 @@ class LessonsController < ApplicationController
   
   # 此處 period 是 :commit 參數，不是 lesson table 的欄位
   def create
-    if params[:lesson][:period] == "Does not repeat"
+    #if params[:lesson][:period] == "單一節次"
 
       # 時間在資料庫的時區是 +0
-      @classroom = @user.classrooms.find_or_initialize_by(name: (params[:lesson][:grade] + params[:lesson][:room]), grade: params[:lesson][:grade], room: params[:lesson][:room], student: params[:lesson][:student])
+      #@classroom = @user.classrooms.find_or_initialize_by(name: (params[:lesson][:grade] + params[:lesson][:room]), grade: params[:lesson][:grade], room: params[:lesson][:room], student: params[:lesson][:student])
 
-      @lesson = @classroom.lessons.new(lesson_params)
-      @lesson.end_time = @lesson.start_time + 1.hour
+      #@lesson = @classroom.lessons.new(lesson_params)
+      #@lesson.end_time = @lesson.start_time + 1.hour
 
-    else # params[:lesson][:period] == "Repeat weekly"
+    #else # params[:lesson][:period] == "整個學期"
 
+      #直接預設新增就是整個學期
       @classroom = @user.classrooms.find_or_initialize_by(name: (params[:lesson][:grade] + params[:lesson][:room]), grade: params[:lesson][:grade], room: params[:lesson][:room], student: params[:lesson][:student])
 
       start = Time.new(params[:lesson]['start_time(1i)'],params[:lesson]['start_time(2i)'],params[:lesson]['start_time(3i)'],params[:lesson]['start_time(4i)'],params[:lesson]['start_time(5i)'])
@@ -86,7 +87,7 @@ class LessonsController < ApplicationController
         break if start > semester.end
       end
 
-    end
+    #end
 
     if @lesson.save
 

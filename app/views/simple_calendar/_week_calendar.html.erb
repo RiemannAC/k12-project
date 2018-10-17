@@ -1,9 +1,14 @@
+<style>
+  .calendar-title{
+    letter-spacing: 2px;
+  }
+</style>
 <div class="simple-calendar"> 
   <div class="calendar-heading text-center">   
     <%# Ajax 版 link：Rails 5 後禁止直接 params.merge %>
-    <%= link_to "Prev", url_for(request.parameters.merge(start_date: date_range.first - 1.day)), remote: true %>
+    <%= link_to "Prev", url_for(request.parameters.merge(start_date: date_range.first - 1.day)),style:"padding-right:20px;font-size:20px;", remote: true %>
     <span class="calendar-title">Week <%= start_date.strftime("%U").to_i %></span>
-    <%= link_to "Next", url_for(request.parameters.merge(start_date: date_range.last + 1.day)), remote: true %> 
+    <%= link_to "Next", url_for(request.parameters.merge(start_date: date_range.last + 1.day)),style:"padding-left:20px;font-size:20px;", remote: true %> 
 
     <span class="pull-right">
       <span id="new_button">
@@ -15,23 +20,23 @@
   </div>
 
 
-  <table class="table weekly-school-table">
+  <table class="table weekly-school-table" style="margin-top: 20px;">
     <thead>
       <tr>
         <th><span class="th_head">#</span></th>
         <% date_range.slice(0, 7).each do |day| %>
           <th class="text-center">
-            <div>
+            <div style="font-size: 20px;letter-spacing: 2px;">
               <%= t('date.abbr_day_names')[day.wday] %>
             </div> 
   
             <div style="font-size:20px ">
-              <%= "#{day.month}" "/" "#{day.day}" %> 
+              <%= "#{day.month}" " / " "#{day.day}" %> 
             </div>   
           </th>
         <% end %>
       </tr>
-    </thead>  
+    </thead>   
 
     <tbody>
       <% date_range.each_slice(7) do |week| %>
@@ -39,15 +44,15 @@
           <td class="time_td text-center">
             <% 8.upto(18).each do |hour| %>
               <div class="day_time">
-                <span class="day_hour">
+                <div class="day_hour">
                   <%= Time.parse("#{hour}:00").strftime("%l %P") %>
-                </span>
+                </div>
               </div>
             <% end %>
-          </td>
+          </td> 
 
           <% week.each do |day| %>
-            <%= content_tag :td, class: calendar.td_classes_for(day) do %>
+            <%= content_tag :td ,class: calendar.td_classes_for(day) do %>
               <% if defined?(Haml) && respond_to?(:block_is_haml?) && block_is_haml?(block) %>
                 <% capture_haml(day, sorted_events.fetch(day, []), &block) %>
               <% else %>

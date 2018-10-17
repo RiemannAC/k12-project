@@ -1,7 +1,7 @@
 /******* New Navbar Setting ********/
 
 .nav {
-  float: right;
+  float: right; 
 }
 
 .nav li {
@@ -26,7 +26,7 @@
 
 .devise-card {
   box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2), 0 4px 20px 0 rgba(0,0,0,0.19);
-  margin-top: 30px;
+  margin-top: 100px;
 }
 .devise-panel {
   margin-top: 15px;
@@ -57,10 +57,30 @@
   background-color: linen;
 }
 
+.register-info{  
+  margin-top: 130px;
+}
+.register-info .register-content h4{
+  margin-top: 60px;
+  letter-spacing: 1px;
+}
+.register-left-item{
+  float: left; 
+}
+.home-bg {
+  position: relative;
+  width: 100%;
+}
+.home-bg img{
+  position: absolute;
+  width: 100%;
+  max-height: 700px;
+} 
+
 
 /******** user-profile nav-tabs page **********/
 .user-profile-navtab{
-  margin-top: 100px;
+  margin-top: 15px;
 
 }
 
@@ -100,7 +120,7 @@
   float: right;
 }
 
-/******** index month-calendar **********/
+/******** index month-calendar **********/ 
 .mon-calendar-box {
   width:270px; 
   background:#fff; 
@@ -133,8 +153,8 @@
 }
 
 .mon-calendar-body span {
-  font:11px ,'Roboto'; 
-  font-weight:400; 
+  font:30px ,'Roboto'; 
+  font-weight:800; 
   color:#f7f3eb; 
   text-align:center; 
   width:35px; 
@@ -143,6 +163,7 @@
   float:left; 
   overflow:hidden; 
   line-height:40px;
+  font-size:20px;
 }
 
 .today {
@@ -155,6 +176,16 @@
 .next-month {
   opacity: 0.3;
 }
+/******** classroom index view **********/
+table th{
+  font-size:25px;
+}
+table td{
+  font-size:25px;
+}
+table td a{
+  font-size:20px;
+}
 
 /******** index to-do-list **********/
 .to_do_head{
@@ -162,18 +193,25 @@
   text-align: center;
 }
 
-
-
 .to_do_body .day_time{ 
-  border:1px solid #ddd !important;
+  border:2px solid #ddd !important;
   border-radius: 10px;
-  padding: 10px;
+  padding: 17px;
   margin-top: 5px;
   background-color: #e6e6e6;
 }
 
+.to_do_body .day_time a{
+  font-size:20px;
+}
+
+.to_do_body .day_time .day_time_hour{
+  font-size:18px;
+}
+ 
+
 .to_do_body .today .day_time {
-  background-color: #ffc34d;
+  background-color: #ebf0fa;
 }
 
 .to_do_body .day_time{
@@ -208,10 +246,34 @@
   height: 45px;
 }
 
+.navbar{
+  background-color: #404040 ; 
+}
+.navbar a{
+  color: #fffcfc;
+  font-size: 17px;
+}
+.navbar .sub-menu a{
+  color: #000;
+}
+.navbar .sub-menu a:hover{
+  color: #a6a6a6;
+}
+.navbar .dropdown-menu .trigger{
+  cursor: pointer;
+}
+.navbar .dropdown-menu a:hover{
+  cursor: pointer;
+  color: #a6a6a6;
+}
+.navbar a:hover{
+  color: #ababab;
+}
+
 /***** lessons/index/todo_list *******/
 .time_box .day_time {
   border-radius: 8px !important;
-  background-color: #aaaaaa
+  background-color: #aaaaaa;
 }
 
 .todo_content {
@@ -277,6 +339,9 @@
 /***** Month Calendar Link *****/
  #month_calendar a {
   color:#f7f3eb; 
+}
+#month_calendar a{
+  font-size:18px;
 }
 
 #month_calendar a:hover {

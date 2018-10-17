@@ -53,16 +53,25 @@
   .day_time {
     border: 1px solid #ddd;
     /*改 0.5 兩線合併為 1 無效*/
-    padding-top: 20px;
-    
+    padding-top:8px;
+  } 
+
+  td .today{
+    background:green;
+  }
+
+  .day_time a{
+    font-size:20px;
+    font-weight:600;
   }
 
   .time_td {
-    width:  6%;
+    width: 6%;
   }
 
-  .day {
-    height: 9px;
+  .day_time .day_hour{
+    font-size:20px;
+    padding-top:19px;
   }
 
   .wday-0 {}
@@ -71,17 +80,16 @@
   .wday-3 {}
   .wday-4 {}
   .wday-5 {}
-  .wday-6 {}
+  .wday-6 {} 
  
-  .today {
-    background: #ffba99;
-    opacity:0.5;
+  .today{
+    background:#f5faff;
   }
 
   .past {}
   .future {}
 
-  .start-date {}
+  .start-date {} 
 
   .prev-month {
     opacity:1;
@@ -91,7 +99,14 @@
   }
   .current-month {}
 
-  .has-events {}
+  .has-events .lesson-content a{
+    color:#1f7ae0;
+  }
+
+  .has-events .lesson-content a:hover{
+    color:#0091a8;
+  }
+
 
   .calendar-title{
     font-size:30px; 

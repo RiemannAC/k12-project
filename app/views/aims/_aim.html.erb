@@ -1,5 +1,6 @@
 <li id="post_<%= aim.id %>">
-  <span class="aim-name"><%= aim.name %></span>
+
+  <span class="aim-title"><%= aim.name %></span>
   <span class="aim-status"><%= aim.status %></span>
   <span class="">
     <%= link_to edit_user_classroom_topic_aim_path(aim.topic.classroom.user,aim.topic.classroom,aim.topic,aim),remote:true do %>&nbsp;&nbsp;
