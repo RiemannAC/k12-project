@@ -4,14 +4,14 @@
       <h1><%= @material.subject_tag.name %>：<%= @material.mtrial_folder_name %></h1>
       <%= link_to user_materials_path do %>
         <%= fa_icon 'caret-left' %> &nbsp;
-        返回教材總覽
+        <span style="font-size: 25px;">返回教材總覽</span>
       <% end %>
     </div>
     <div class="float-right">
-      <button type="button" class="btn btn-outline-dark btn-sm" data-toggle="modal" data-target="#exampleModal">
+      <button type="button" class="btn btn-outline-dark btn-md" data-toggle="modal" data-target="#exampleModal">
       資料夾設定
       </button>
-      <%= link_to '刪除資料夾', user_material_path(@material.user,@material), class: 'btn btn-danger btn-sm', style: 'color: #fff;', method: :delete, data: {confirm: "資料夾裡的檔案也會一併刪除，你確定嗎？"} %>
+      <%= link_to '刪除資料夾', user_material_path(@material.user,@material), class: 'btn btn-danger btn-md', style: 'color: #fff;', method: :delete, data: {confirm: "資料夾裡的檔案也會一併刪除，你確定嗎？"} %>
 
     </div>
     <div class="clearfix"></div>
