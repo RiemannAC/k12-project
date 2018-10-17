@@ -622,4 +622,18 @@ namespace :dev do
     puts "now you have #{Topic.count} topics data"
   end
 
+  task fake_plan: :environment do
+    User.all.each do |user|
+      15.times do
+        user.plans.create(
+          plan_folder_name: FFaker::Book::genre,
+          # 全科隨機，有可是舊教案但本學年沒開課
+          subject_tag_id: rand(1..13)
+        )
+      end
+    end
+    puts "created fake plans"
+    puts "now you have #{Plan.count} plans data"
+  end
+
 end
