@@ -122,7 +122,7 @@ class TeachingfilesController < ApplicationController
     #@topic = Topic.find_by(params[:topic_id])
     # 呼叫其他 model 要用 find_by 才找得到 id?
     @teachingfile.addfiles.create!(topic: @topic)
-    flash[:notice] = "已將檔案放進卡片"
+    flash[:notice] = "已將檔案放入「#{@topic.name}」教學單元"
     redirect_back fallback_location: root_path
   end 
 
@@ -135,7 +135,7 @@ class TeachingfilesController < ApplicationController
 
     addfile = Addfile.where(teachingfile: @teachingfile, topic: @topic)
     addfile.destroy_all
-    flash[:alert] = "已刪除卡片檔案"
+    flash[:alert] = "檔案已從「#{@topic.name}」教學單元中移除"
     redirect_back fallback_location: root_path
   end
 

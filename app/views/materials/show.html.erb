@@ -2,7 +2,10 @@
   <div class="">
     <div class="float-left">
       <h1><%= @material.subject_tag.name %>：<%= @material.mtrial_folder_name %></h1>
-      <%= link_to '<< 返回教材總覽', user_materials_path %>
+      <%= link_to user_materials_path do %>
+        <%= fa_icon 'caret-left' %> &nbsp;
+        返回教材總覽
+      <% end %>
     </div>
     <div class="float-right">
       <button type="button" class="btn btn-outline-dark btn-sm" data-toggle="modal" data-target="#exampleModal">
@@ -64,7 +67,7 @@
         </div><br>
         
         <div class="form-group">
-          <%= f.submit "上傳", class: "btn btn-primary" %>
+          <%= f.submit "上傳", class: "btn btn-outline-info" %>
         </div>
       <% end %>
     </div>

@@ -2,7 +2,10 @@
   <div class="">
     <div class="float-left">
       <h1><%= @plan.subject_tag.name %>：<%= @plan.plan_folder_name %></h1>
-      <%= link_to '<< 返回教案總覽', user_plans_path(@user) %>
+      <%= link_to user_plans_path(@user) do %>
+        <%= fa_icon 'caret-left' %> &nbsp;
+        返回教材總覽
+      <% end %>
     </div>
 
     <div class="float-right">
@@ -60,7 +63,7 @@
             <%= f.file_field :attachments, multiple: true %>
           </div><br>
 
-          <%= f.submit "上傳", class: "btn btn-primary" %>
+          <%= f.submit "上傳", class: "btn btn-outline-info" %>
 
         <% end %>
       </div>

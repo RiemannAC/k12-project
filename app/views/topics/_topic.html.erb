@@ -1,123 +1,120 @@
-<style>
-  .weekly-prepare{
-    border:1px solid #ddd;
-    padding: 20px;
-    min-height: 200px;
-    margin-top: 10px;
-  }
-
-  .button-set{
-    text-align: right;
-    margin-top: -30px;
-  }
-</style>
-
 <div id="post_<%= topic.id %>">
-  <div class="row">
-    <!--<div class="col-md-12">-->
-    <div class="col-md-12">
-      <div class="weekly-prepare">
-        <div class="col-md-12 prepare-detail">
+  
+  <!--<div class="col-md-12">-->
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-9 weekly-prepare">
+        
           <!--教學單元主題-->
-          <h5>
-            <span><%= topic.start_time.strftime("%Y/%m/%d") %> ~ <%= topic.end_time.strftime("%Y/%m/%d") %></span>
-            <span style="margin-left: 15px;"><b><%= topic.name %></b></span> 
-            <div class="button-set">
-              <!--編輯教學主題計劃表--->
-              <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myupdatepost_<%= topic.id  %>">編輯</button>
+        <div class="topic-title">
+          <h3 class="float-left"><%= topic.name %></h3>
+          <h3 class="float-right">
+            <%= topic.start_time.strftime("%Y/%m/%d") %> - <%= topic.end_time.strftime("%Y/%m/%d") %>&nbsp;
+            <button class="round-button" alt="重設日期／主題" type="button" class="btn btn-warning" data-toggle="modal" data-target="#myupdatepost_<%= topic.id  %>"><%= fa_icon 'calendar' %></button>
+          </h3>
+          <div class="clearfix"></div>
+        </div>
 
-              <!--刪除教學主題計劃表--->
-              <%= link_to "刪除",  user_classroom_topic_path(@user,@classroom,topic) ,method: :delete, data: { confirm: "Are you sure?"},class: "btn btn-danger", remote: true %>
+        <div class="container">
+          <div class="row">
+            <div class="col-10 prepare-detail">
+              <!--教學單元主題下的教學目標-->
+              <%= form_for [@user,@classroom,topic,Aim.new],remote: true do |f| %>
+                <h4><%= f.label :title, "教學目標" %></h4>
+                <div class="form-group form-inline"> 
+                  <%= f.text_field :name, placeholder:"新增教學目標", class: "form-control new-aim" %>
+                  <%= f.submit "新增", class: "btn btn-outline-info" %>
+                </div>
+              <% end %>
+              
+              <ol id="aim_posts-<%= topic.id %>">
+                <% topic.aims.each do |aim| %> 
+                  <%= render :partial => 'aims/aim', locals: {aim: aim } %>               
+                <% end %> 
+              </ol> 
+               
+            </div>
+          <div class="col-2">
+            <div class="prepare-edit">
+              <%= link_to user_classroom_topic_path(@user, @classroom, topic) do %>
+                <div class="prepare-edit-div" data-toggle="tooltip" data-placement="left" title="取得教材／教案檔案"><%= fa_icon 'plus-square-o', style: 'font-size: 25px;' %></div>
+              <% end %> 
 
-              <!--教學回饋-->
-              <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myupdatefeedback_<%= topic.id  %>">教學反思</button>
-
-              <!-- * FOLDER * Button trigger modal -->
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg"><%= fa_icon 'folder' %></button>
-
-              <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLongTitle">下載教學檔案</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <% if topic.added_files.count == 0 %>
-                        <h5>按 + 號加入檔案至本計畫</h5>
-                      <% else %>
-                        <div class="row">
-                          <div class="col-md-4 float-left">
-                            <% topic.added_files.each do |teachingfile| %>
-                              <div style="text-align: left; margin-left: 20px;">
-                                <h5>
-                                  <%= fa_icon 'folder' %>
-                                  <%= teachingfile.name %>
-                                    
-                                  </h5>
-                                
-                                  <% teachingfile.attachments.each_with_index do |file, index| %>
-                                  <li>
-                                    <%= link_to file.url do %>
-                                      <%= fa_icon 'download', class: 'theme-font'%>&nbsp;&nbsp;
-                                      <span style="color: blue;"><%= file.file.filename %></span>
-                                    <% end %>
-                                  </li>
-                                  <% end %>
-                                
-                              </div>
-                              <br>
-
-                            <% end %>
-                          </div>
-                        </div>
-                        
-                      <% end %>
-                      
-                        
-                    </div>
-                    
-                  </div>
+              <div class="prepare-edit-div" data-toggle="tooltip" data-placement="left" title="查看現有教學檔案">
+                <div data-toggle="modal" data-target="#bd-example-modal-lg-<%= topic.id %>">
+                  <%= fa_icon 'folder', style: 'font-size: 25px;' %>
+                </div>
+              </div>
+              <div class="prepare-edit-div" data-toggle="tooltip" data-placement="left" title="填寫教學反思">
+                <div data-toggle="modal" data-target="#myupdatefeedback_<%= topic.id  %>">
+                  <%= fa_icon 'edit', style: 'font-size: 25px;' %>
                 </div>
               </div>
 
-
-
-              <%= link_to user_classroom_topic_path(@user, @classroom, topic) do %>
-                <span><%= fa_icon 'plus 2x' %></span>
-              <% end %>
-              
-            </div>  
-          <h5>
-          <!--教學單元主題下的教學目標-->
-          <%= form_for [@user,@classroom,topic,Aim.new],remote: true do |f| %>
-            <%= f.label :title, "教學目標" %>
-            <div class="form-inline col-md-7">
-              <div class="">
-                <%= f.text_field :name, placeholder:"新增教學目標", class: "form-control post_aim" %>
-                <%= f.submit "新增", class: "btn btn-primary" %>
-              </div>                           
             </div>
-          <% end %>
-          
-          
-          <ol id="aim_posts-<%= topic.id %>">
-            <% topic.aims.each do |aim| %> 
-              <%= render :partial => 'aims/aim', locals: {aim: aim } %>               
-            <% end %> 
-          </ol> 
-           
+            
+            <div class="parent-absolute">
+              <div class="prepare-edit-div3" data-toggle="tooltip" data-placement="left" title="刪除教學計劃">
+                <%= link_to user_classroom_topic_path(@user,@classroom,topic) ,method: :delete, data: { confirm: "Are you sure?"}, remote: true do %>
+                  <%= fa_icon 'trash', style: 'font-size: 25px;' %>
+                <% end %>
+                  
+              </div>
+            </div>
+
+          </div>
         </div>
 
       </div>
     </div>
-    <!-------------------------->
-    <div class="col">
-      
-    </div> 
+  </div>
   
+  <!-- FILE DOWNDOAD MODAL-->
+  <div class="modal fade" id="bd-example-modal-lg-<%= topic.id %>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">
+            下載教學檔案
+            <%= link_to user_classroom_topic_path(@user, @classroom, topic) do %>
+              <span class="prepare-edit-div" data-toggle="tooltip" data-placement="right" title="取得教材／教案檔案"><%= fa_icon 'plus-circle 2x' %></span>
+            <% end %>
+          </h5>
+          
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <% if topic.added_files.count == 0 %>
+            <h5>按 <%= fa_icon 'plus-square-o' %> 將檔案加至本計畫</h5>
+          <% else %>
+            <div class="row">
+              <div class="col-md-4 float-left">
+                <% topic.added_files.each do |teachingfile| %>
+                  <div style="text-align: left; margin-left: 20px;">
+                    <h5>
+                      <%= fa_icon 'folder' %>
+                      <%= teachingfile.name %>
+                        
+                    </h5>
+                    <% teachingfile.attachments.each_with_index do |file, index| %>
+                      <li>
+                        <%= link_to file.url do %>
+                          <%= fa_icon 'download', class: 'theme-font'%>&nbsp;&nbsp;
+                          <span style="color: blue;"><%= file.file.filename %></span>
+                        <% end %>
+                      </li>
+                    <% end %>                    
+                  </div>
+                  <br>
+                <% end %>
+              </div>
+            </div>
+          <% end %>  
+        </div>       
+      </div>
+    </div>
   </div>
 </div>
 
@@ -128,11 +125,10 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
+            <h5 class="modal-title" id="myModalLabel">編輯教學主題</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
-
-            <h5 class="modal-title" id="myModalLabel">編輯教學主題</h5>
           </div>
 
           <div class="modal-body">
@@ -173,11 +169,10 @@
       <div class="modal-dialog modal-md modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
+            <h5 class="modal-title" id="myModalLabel">教學反思與紀錄</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
-
-            <h5 class="modal-title" id="myModalLabel">教學反思與紀錄</h5>
           </div>
 
           <div class="modal-body">
