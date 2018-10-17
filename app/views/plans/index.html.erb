@@ -54,7 +54,7 @@
             <tr>
               <th scope="col">科目</th>
               <th scope="col">主題／單元</th>
-              <th scope="col">上次修改日期</th>
+              <!--<th scope="col">上次修改日期</th>-->
             </tr>
           </thead>
           <tbody>
@@ -72,9 +72,9 @@
                     <% end %>
                   <% end %>
                 </td>
-                <td><%#= plan.updated_at.strftime("%Y/%m/%d") %><%# @plans block 包到這邊會跑版 %></td>
+                 <%#= plan.updated_at.strftime("%Y/%m/%d") %><%# @plans block 包到這邊會跑版 %>
+               
               </tr>
-              <%# end %>
             <% end %>
           </tbody>
         </table>
