@@ -41,7 +41,7 @@
               <% end %> 
 
               <div class="prepare-edit-div" data-toggle="tooltip" data-placement="left" title="查看現有教學檔案">
-                <div data-toggle="modal" data-target=".bd-example-modal-lg">
+                <div data-toggle="modal" data-target="#bd-example-modal-lg-<%= topic.id %>">
                   <%= fa_icon 'folder', style: 'font-size: 25px;' %>
                 </div>
               </div>
@@ -70,7 +70,7 @@
   </div>
   
   <!-- FILE DOWNDOAD MODAL-->
-  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal fade" id="bd-example-modal-lg-<%= topic.id %>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
