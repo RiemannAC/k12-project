@@ -705,4 +705,13 @@ namespace :dev do
     puts "now you have #{Addfile.count} addfiles data"
   end
 
+  task fake_feedback: :environment do
+    Topic.all.each do |topic|
+      topic.feedback = FFaker::Lorem::paragraph
+      topic.save
+    end
+    puts "created fake feedbacks"
+    puts "now you have #{Topic.count} feedbacks data"
+  end
+
 end
