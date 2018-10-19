@@ -7,6 +7,7 @@
 <div class="container">
   <div class="">
     <div class="float-left">
+      <h1>管理教學計劃與課程進度</h1>
       <h4>課程： <%= @classroom.subjects.pluck(:name).join() %></h4>  
       <h4>班級： <%= @classroom.name %>（<%= @classroom.student %> 人）</h4>
       <%= link_to '我的課表', user_lessons_path(@user),style:"font-size:18px;"  %> | <%= link_to '檢視班級列表', user_classrooms_path(@user),style:"font-size:18px;"  %>
