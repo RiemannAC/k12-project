@@ -59,17 +59,17 @@ class EventsController < ApplicationController
   # DELETE /events/1
   # DELETE /events/1.json
   def destroy
-    if @todo.destroy
-      flash[:alert] = "已成功刪除此待辦事項"
-      redirect_to root_path
-    else
-      flash[:alert] = "@todo.errors.full_messages.to_sentence"
-      redirect_to root_path
+    #if @todo.destroy
+      #flash[:alert] = "已成功刪除此待辦事項"
+      #redirect_to root_path
+    #else
+      #flash[:alert] = "@todo.errors.full_messages.to_sentence"
+      #redirect_to root_path
+    #end
+    @todo.destroy
+    respond_to do |format|
+      format.js   
     end
-    # respond_to do |format|
-    #   format.html { redirect_to user_lessons_url, notice: '成功刪除此待辦事項' }
-    #   format.json { head :no_content }
-    # end
   end
 
   private

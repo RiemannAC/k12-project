@@ -1,0 +1,4 @@
+$("#post_<%= @todo.id %> ").fadeOut(500,function(){
+  $(this).remove();
+});
+$("#todoedit<%= @todo.id %>").modal('hide');
