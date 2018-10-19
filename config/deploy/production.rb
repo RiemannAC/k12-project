@@ -1,3 +1,5 @@
+server '35.236.177.120', user: 'deploy', roles: %w{app db web}, my_property: :my_value
+
 # server-based syntax
 # ======================
 # Defines a single server with a list of roles and multiple properties.
