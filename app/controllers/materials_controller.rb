@@ -27,7 +27,7 @@ class MaterialsController < ApplicationController
   end
 
   def create
-    @user = User.find(params[:user_id])
+    @user = current_user
     @material = @user.materials.new(material_params)
     if @material.save
       flash[:notice] = "成功新增資料夾【#{@material.mtrial_folder_name}】"
@@ -39,7 +39,7 @@ class MaterialsController < ApplicationController
   end
 
   def update 
-    @user = User.find(params[:user_id])
+    @user = current_user
     @material = @user.materials.find(params[:id])  
     if @material.update(material_params)
       flash[:notice] = "更新教材資料夾設定"
@@ -51,7 +51,7 @@ class MaterialsController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:user_id])
+    @user = current_user
     @material = @user.materials.find(params[:id])    
     @material.destroy
     redirect_to user_materials_path
