@@ -10,9 +10,11 @@
       <div class="refer-column">
         <h1 style="display: inline-block;">本週教學行程</h1>
         <%#= link_to 'Listing lessons', list_user_lessons_path(@user) %> 
-        <i class="fa fa-caret-right grid" aria-hidden="true"></i> 
-        <%= link_to '以列表檢視班級', user_classrooms_path(@user),style:"font-size:22px;"  %>
-
+        <% if @user == current_user %>
+          <i class="fa fa-caret-right grid" aria-hidden="true"></i>
+          <%= link_to '以列表檢視班級', user_classrooms_path(@user),style:"font-size:22px;"  %>  
+        <% end %>
+        
         <h3 style="display: inline-block;float: right;">今天日期：
           <span style="letter-spacing: 2px;"><%= Time.now.strftime("%Y/%m/%d") %></span>
         </h3>
@@ -45,9 +47,11 @@
               <%= render partial: "month_calendar", locals: {lessons: @lessons} %>
             </div>
             <%# ToDo List V2 %>
-            <div id="todo_list">
-              <%= render partial: "todo_list", locals: {todos: @todos} %>
-            </div>
+            <% if @user == current_user %>
+              <div id="todo_list">
+                <%= render partial: "todo_list", locals: {todos: @todos} %>
+              </div>
+            <% end %>
           </div>
         </div>       
       </div>

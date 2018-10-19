@@ -7,13 +7,15 @@
         <span style="font-size: 25px;">返回教材總覽</span>
       <% end %> 
     </div>
-    <div class="float-right">
-      <button type="button" class="btn btn-outline-dark btn-md" data-toggle="modal" data-target="#exampleModal">
-      資料夾設定
-      </button>
-      <%= link_to '刪除資料夾', user_material_path(@material.user,@material), class: 'btn btn-danger btn-md', style: 'color: #fff;', method: :delete, data: {confirm: "資料夾裡的檔案也會一併刪除，你確定嗎？"} %>
+    <% if @user == current_user %>
+      <div class="float-right">
+        <button type="button" class="btn btn-outline-dark btn-md" data-toggle="modal" data-target="#exampleModal">
+        資料夾設定
+        </button>
+        <%= link_to '刪除資料夾', user_material_path(@material.user,@material), class: 'btn btn-danger btn-md', style: 'color: #fff;', method: :delete, data: {confirm: "資料夾裡的檔案也會一併刪除，你確定嗎？"} %>
 
-    </div>
+      </div>
+    <% end %>
     <div class="clearfix"></div>
 
     
@@ -53,26 +55,61 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-md-3">
-      <%= form_for [@material.user,@material,@teachingfile], html:{multipart:true} do |f| %>
-        <div class="form-group">
-          <%= f.label :name, '檔案名稱' %>
-          <%= f.text_field :name, class: 'form-control', placeholder: "自訂" %>
-        </div>
+  <% if @user == current_user %>
+    <div class="row">
+      <div class="col-md-3">
+        <%= form_for [@material.user,@material,@teachingfile], html:{multipart:true} do |f| %>
+          <div class="form-group">
+            <%= f.label :name, '檔案名稱' %>
+            <%= f.text_field :name, class: 'form-control', placeholder: "自訂" %>
+          </div>
 
-        <div class="form-group">
-          <%= f.label :attachments, '上傳附件' %>
-          <%= f.file_field :attachments, multiple: true %>
-        </div><br>
-        
-        <div class="form-group">
-          <%= f.submit "上傳", class: "btn btn-outline-info" %>
+          <div class="form-group">
+            <%= f.label :attachments, '上傳附件' %>
+            <%= f.file_field :attachments, multiple: true %>
+          </div><br>
+          
+          <div class="form-group">
+            <%= f.submit "上傳", class: "btn btn-outline-info" %>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-md-9">
+        <div class="table-card">
+          <br>
+          <h3 style="text-align: center;">上傳檔案列表</h3>
+          <br>
+          <table class="table table-hover">
+            <% @material.teachingfiles.each do |teachingfile| %>
+            <tr>
+              <td style="padding-right:20px;"><h5><%= teachingfile.name %></h5></td>
+              <td style="padding-right:20px;">
+                <% teachingfile.attachments.each_with_index do |file, index| %>
+                <div>
+                  <%= link_to file.url do %>
+                    <%= fa_icon 'download 1x', class: 'theme-font' %>&nbsp;&nbsp;
+                    <%= file.file.filename %>
+                  <% end %>
+                  <%= link_to user_material_teachingfile_attachment_path(@user, @material, teachingfile, index), :method => :delete, data: { confirm: "要刪除《#{file.file.filename}》檔案嗎？" } do %>
+                    &nbsp;&nbsp;<%= fa_icon 'trash', style: 'color: red;'%>
+                  <% end %>
+                </div>
+                <% end %>
+              </td>
+              <td style="margin-right: 20px;">
+                <div class="float-right">
+                  <%= link_to '重新上傳',edit_user_material_teachingfile_path(@user, @material, teachingfile) %> | <%= link_to '全部刪除', user_material_teachingfile_path(@user,@material,teachingfile), method: :delete, data: { confirm: "Are you sure to delete ?"}, style: "color: red;" %>
+                </div>
+              </td>
+            </tr>
+            <% end %>
+          </table>
         </div>
-      <% end %>
+      </div>
     </div>
-    <div class="col-md-9">
-      <div class="table-card">
+  <% else %>
+    <div class="row justify-content-center">
+      <div class="col-md-8 table-card">
         <br>
         <h3 style="text-align: center;">上傳檔案列表</h3>
         <br>
@@ -87,21 +124,25 @@
                   <%= fa_icon 'download 1x', class: 'theme-font' %>&nbsp;&nbsp;
                   <%= file.file.filename %>
                 <% end %>
-                <%= link_to user_material_teachingfile_attachment_path(@user, @material, teachingfile, index), :method => :delete, data: { confirm: "要刪除《#{file.file.filename}》檔案嗎？" } do %>
-                  &nbsp;&nbsp;<%= fa_icon 'trash', style: 'color: red;'%>
+                <% if @user == current_user %>
+                  <%= link_to user_material_teachingfile_attachment_path(@user, @material, teachingfile, index), :method => :delete, data: { confirm: "要刪除《#{file.file.filename}》檔案嗎？" } do %>
+                    &nbsp;&nbsp;<%= fa_icon 'trash', style: 'color: red;'%>
+                  <% end %>
                 <% end %>
               </div>
               <% end %>
             </td>
-            <td style="margin-right: 20px;">
-              <div class="float-right">
-                <%= link_to '重新上傳',edit_user_material_teachingfile_path(@user, @material, teachingfile) %> | <%= link_to '全部刪除', user_material_teachingfile_path(@user,@material,teachingfile), method: :delete, data: { confirm: "Are you sure to delete ?"}, style: "color: red;" %>
-              </div>
-            </td>
+            <% if @user == current_user %>
+              <td style="margin-right: 20px;">
+                <div class="float-right">
+                  <%= link_to '重新上傳',edit_user_material_teachingfile_path(@user, @material, teachingfile) %> | <%= link_to '全部刪除', user_material_teachingfile_path(@user,@material,teachingfile), method: :delete, data: { confirm: "Are you sure to delete ?"}, style: "color: red;" %>
+                </div>
+              </td>
+            <% end %>
           </tr>
           <% end %>
         </table>
       </div>
     </div>
-  </div>
+  <% end %>
 </div>

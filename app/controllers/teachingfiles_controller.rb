@@ -1,7 +1,7 @@
 class TeachingfilesController < ApplicationController
   
   def create
-    @user = User.find(params[:user_id])
+    @user = current_user
     # upon clicking on create, determine what param id is passed
     if params[:material_id]
       # if it is a material id, set instance of post id as @parent
@@ -44,7 +44,7 @@ class TeachingfilesController < ApplicationController
 
   def edit
     @subject_tags = SubjectTag.order(created_at: :desc)
-    @user = User.find(params[:user_id])
+    @user = current_user
     # upon clicking on create, determine what param id is passed
     if params[:material_id]
       # if it is a material id, set instance of post id as @parent
@@ -59,7 +59,7 @@ class TeachingfilesController < ApplicationController
   end
 
   def update 
-    @user = User.find(params[:user_id])
+    @user = current_user
     # upon clicking on create, determine what param id is passed
     if params[:material_id]
       # if it is a material id, set instance of post id as @parent
