@@ -7,6 +7,7 @@
 <div class="container">
   <div class="">
     <div class="float-left">
+      <h1>管理教學計劃與課程進度</h1>
       <h4>課程： <%= @classroom.subjects.pluck(:name).join() %></h4>  
       <h4>班級： <%= @classroom.name %>（<%= @classroom.student %> 人）</h4>
       <% if @user == current_user %>
