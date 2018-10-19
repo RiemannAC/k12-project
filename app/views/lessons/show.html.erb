@@ -37,7 +37,10 @@
     <div class="float-left">
       <h3>課程： <%= @subject.name %></h3>  
       <h3>班級： <%= @lesson.classroom.name %>（<%= @lesson.classroom.student %> 人）</h3>
-      <%= link_to '我的課表', user_lessons_path(@user),style:"font-size:18px;"  %> | <%= link_to '回到班級列表', user_classrooms_path(@user),style:"font-size:18px;"  %>
+      <% if @user == current_user %>
+        <%= link_to '我的課表', user_lessons_path(@user),style:"font-size:18px;"  %>
+         | <%= link_to '回到班級列表', user_classrooms_path(@user),style:"font-size:18px;"  %>
+      <% end %>
     </div>
     <div class="float-right">
       <%#= link_to '課程設定', edit_user_lesson_path(@user, @lesson), class: "btn btn-outline-dark" %>
@@ -52,12 +55,13 @@
   
   <%# 以下為新增的科目內容，只有 lesson 才顯示以下內容 %>
   <% if @lesson.event_type == "lesson" %>
-
-    <span class="text-center">
-      <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#mynewpost">
-        <h4><%= fa_icon 'plus' %>&nbsp;&nbsp;新增教學計劃</h4>
-      </button>  
-    </span>
+    <% if @user == current_user %>
+      <span class="text-center">
+        <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#mynewpost">
+          <h4><%= fa_icon 'plus' %>&nbsp;&nbsp;新增教學計劃</h4>
+        </button>  
+      </span>
+    <% end %>
     
     <div id="container_posts">
       <% if @classroom.topics.count < 1 %>
