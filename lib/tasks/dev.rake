@@ -661,7 +661,7 @@ namespace :dev do
 
     User.all.each do |user|
       materials = user.materials
-      content_1 = Pathname.new("/Users/riemann/k12-project/public/materials/material.pdf").open
+      content_1 = File.open("#{Rails.root}/public/materials/material.pdf")
       materials.all.each do |material|
         teachingfile = material.teachingfiles.new(name: "教材範例")
         teachingfile.attachments = [content_1]
