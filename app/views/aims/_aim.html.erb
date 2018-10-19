@@ -2,7 +2,7 @@
 
   <span class="aim-title"><%= aim.name %></span>
   <span class="aim-status"><%= aim.status %></span>
-  <span class="">
+  <span class="" data-toggle="tooltip" data-placement="top" title="編輯完成度">
     <%= link_to edit_user_classroom_topic_aim_path(aim.topic.classroom.user,aim.topic.classroom,aim.topic,aim),remote:true do %>&nbsp;&nbsp;
        <i class="material-icons">edit</i>
     <% end %>
