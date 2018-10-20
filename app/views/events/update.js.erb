@@ -1,0 +1,5 @@
+<% html = j( render :partial => "events/event",locals:{todo: @todo} ) %>
+$("#post_<%= @todo.id %>").fadeOut(500,function(){
+  $(this).replaceWith("<%= html %>");
+});
+$("#todoedit<%= @todo.id %>").modal('hide');

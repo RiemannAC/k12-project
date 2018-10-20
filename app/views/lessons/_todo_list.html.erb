@@ -14,56 +14,8 @@
         <span id="hour-<%= hour %>">
           <% todos.each do |todo| %> 
             <%- if todo.start_time.hour.between?(hour, hour + 0.9) %>
-              <span id="post_<%= todo.id %>"> 
-                <span id="edit_buttons"> 
-                  <%# 點擊todo 出現 popup 開始更新 ##################################%>
-                  <%# 部分一：點擊todo   %>  
-                  <%= link_to "#{todo.title}", "#todoedit#{todo.id}", "data-toggle" => "modal",style:"padding-left:10px;" %>
-
-                  <%# 部分二：出現popup form   %>
-                  <div class="modal fade" id="todoedit<%= todo.id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> 
-                    <%= form_for [@user, todo], method: :put,style:"float:left;" do |f| %>
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <!-- modal header -->
-                          <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                            <h5 class="modal-title" id="myModalLabel">待辦事項</h5>
-                          </div>
-                          
-                          <!--modal body-->
-                          <div class="modal-body">
-                            <div class="form-group">
-                              <%= f.label '待辦事項' %>
-                              <%= f.text_field :title, class: "form-control" %>
-                            </div>
-
-                            <div class="form-group">
-                              <%= f.label '開始時間' %>
-                              <%= f.datetime_select :start_time, start_year: Date.today.year, end_year: Date.today.year+1, start_hour: 8, end_hour: 18, ampm: true, discard_minute: true, default: Date.today.beginning_of_day + 8.hour %>
-                            </div>           
-                          </div> 
-                          <%# modal-body 結束  %>
-
-                          <!--modal footer-->
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal" id="mynewpostclose">取消</button>                                                          
-                            <%= f.submit '更新' ,class:"btn btn-outline-primary"%>
-
-                            <%= link_to '刪除',user_event_path(@user,todo), method: :delete, data: {confirm: "確定要刪除此待辦事項嗎？"} ,remote:true, class:"btn btn-outline-danger btn-sm" %>
-                          </div>
-                        <!--modal content-->
-                        </div>
-                      </div>
-                    <% end %>
-                  </div>
-                  <!--form edit todo end-->     
-                </span>
-              </span>
+              <%= render partial:'events/event',locals:{todo: todo} %>
             <% end -%>         
-
           <% end %>
         </span>
       </div>
