@@ -6,7 +6,7 @@
 
     <%# 部分二：出現popup form   %>
     <div class="modal fade" id="todoedit<%= todo.id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> 
-      <%= form_for [@user, todo], method: :put,remote:true,style:"float:left;" do |f| %>
+      <%= form_for [@user, todo], method: :put,style:"float:left;" do |f| %>
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <!-- modal header -->

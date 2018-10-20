@@ -47,9 +47,9 @@ class EventsController < ApplicationController
     @todo.save
     respond_to do |format|
        if @todo.update(event_params)
-         #format.html { redirect_to user_lessons_url, notice: '成功更新此待辦事項' }
-         #format.json { render :show, status: :ok, location: user_lessons_url }
-         format.js
+         format.html { redirect_to user_lessons_url, notice: '成功更新此待辦事項' }
+         format.json { render :show, status: :ok, location: user_lessons_url }
+         #format.js
        else
          format.html { redirect_to root_path }
          flash[:alert]="更新失敗，待辦事項的名稱不可空白"
