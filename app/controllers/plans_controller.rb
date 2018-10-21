@@ -12,10 +12,8 @@ class PlansController < ApplicationController
   end 
 
   def create
-    @user = User.find(params[:user_id])
+    @user = current_user
     @plan = @user.plans.new(plan_params)
-
-    @plan.user = current_user
     if @plan.save!
       flash[:notice] = "成功新增資料夾【#{@plan.plan_folder_name}】"
       redirect_to user_plans_path(current_user)# @plans 轉 index 不需要加這個，轉址後網址掛一包 active record，危險
@@ -38,7 +36,7 @@ class PlansController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:user_id])
+    @user = current_user
     @plan = @user.plans.find(params[:id]) 
     if @plan.update(plan_params)
       flash[:notice] = "更新教案資料夾設定"
@@ -50,7 +48,7 @@ class PlansController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:user_id])
+    @user = current_user
     @plan = @user.plans.find(params[:id])    
     @plan.destroy
     redirect_to user_plans_path

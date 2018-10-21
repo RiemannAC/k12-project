@@ -2,18 +2,20 @@
 
   <span class="aim-title"><%= aim.name %></span>
   <span class="aim-status"><%= aim.status %></span>
-  <span class="">
-    <%= link_to edit_user_classroom_topic_aim_path(aim.topic.classroom.user,aim.topic.classroom,aim.topic,aim),remote:true do %>&nbsp;&nbsp;
-       <i class="material-icons">edit</i>
-    <% end %>
-  </span>
-  <span class="">
-    
-    <%= link_to user_classroom_topic_aim_path(aim.topic.classroom.user,aim.topic.classroom,aim.topic,aim) , method: :delete, data: { confirm: "Are you sure?"},remote:true do%>
-      <i class="fa fa-trash-o" style="font-size:24px"></i>
-    <% end %>
-    
-  </span>
+  <% if @user == current_user %>
+    <span class="" data-toggle="tooltip" data-placement="top" title="編輯完成度">
+      <%= link_to edit_user_classroom_topic_aim_path(aim.topic.classroom.user,aim.topic.classroom,aim.topic,aim),remote:true do %>&nbsp;&nbsp;
+         <i class="material-icons">edit</i>
+      <% end %>
+    </span>
+    <span class="">
+      
+      <%= link_to user_classroom_topic_aim_path(aim.topic.classroom.user,aim.topic.classroom,aim.topic,aim) , method: :delete, data: { confirm: "Are you sure?"},remote:true do%>
+        <i class="fa fa-trash-o" style="font-size:24px"></i>
+      <% end %>
+      
+    </span>
+  <% end %>
 
 </li>
 
