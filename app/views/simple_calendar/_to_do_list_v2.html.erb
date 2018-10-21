@@ -1,8 +1,8 @@
 <div class="simple-calendar">
   <div class="calendar-heading text-center">
-    <%= link_to t('simple_calendar.previous', default: 'Prev'), calendar.url_for_previous_view,style:"padding-right:10px;font-size:20px;",remote: true %>
+    <%= link_to t('simple_calendar.previous', default: 'Prev'), calendar.url_for_previous_view,style:"padding-right:10px;font-size:20px;" %>
     <span class="calendar-title"><%= start_date.month %>/<%= start_date.day %> 待辦事項</span>
-    <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view, style:"padding-left:10px;font-size:20px;",remote: true %>
+    <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view, style:"padding-left:10px;font-size:20px;" %>
   </div>
 
   <!--部分一：新增待辦事項按鈕-->
