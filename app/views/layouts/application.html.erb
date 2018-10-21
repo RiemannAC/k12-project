@@ -21,13 +21,6 @@
       <%= render partial: "shared/alert" %>
       <% if @user == current_user %>
         <%= yield %>
-      <% else %>
-        <div class="text-center" style="margin-top:70px; ">
-          <h1>您沒有權限進入該教師的頁面進行瀏覽</h1>
-          <i class="fa fa-caret-right " aria-hidden="true" style="padding:0px 10px;
-    "></i> 
-          <%= link_to "按此回到我的課表首頁",user_lessons_path(current_user),style:"font-size:20px;" %>
-        </div>
       <% end %>
       
   
