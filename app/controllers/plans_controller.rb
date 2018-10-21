@@ -24,7 +24,7 @@ class PlansController < ApplicationController
   end 
 
   def show
-    @user = User.find(params[:user_id])
+    @user = current_user
     if params[:user_id]
       @plan = @user.plans.find(params[:id])
       if params[:plan_id]
