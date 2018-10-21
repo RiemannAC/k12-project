@@ -22,14 +22,13 @@
     <%= f.datetime_select :start_time, start_year: Date.today.year, end_year: Date.today.year+1, start_hour: 8, end_hour: 18, ampm: true, discard_minute: true, default: Date.today.beginning_of_day + 8.hour %>
   </div>
 
-  <div class="form-group col-8">
-    <%= f.label '結束時間' %>
-    <%= f.datetime_select :end_time, start_year: Date.today.year, end_year: Date.today.year+1, start_hour: 8, end_hour: 18, ampm: true, discard_minute: true, default: Date.today.beginning_of_day + 9.hour %>
-  </div>
+  <%# 待自動判定 boder height 再加回表單 %>  
+  <%#= f.label '結束時間' %>
+  <%#= f.datetime_select :end_time, start_year: Date.today.year, end_year: Date.today.year+1, start_hour: 8, end_hour: 18, ampm: true, discard_minute: true, default: Date.today.beginning_of_day + 9.hour %>
 
 
   <div class="actions col-8">
-    <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+    <%= link_to "取消", root_path, class: "btn btn-secondary" %>
 
     <%= link_to '刪除',user_event_path(@user,@todo), method: :delete, data: {confirm: "確定要刪除此待辦事項嗎？"} , class:"btn btn-danger" unless @todo.new_record? %>
       

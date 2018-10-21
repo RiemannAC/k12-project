@@ -33,44 +33,44 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
-    #if @todo.update(event_params)#params[:event][:commit_button] == "更新"
+    if @todo.update(event_params)#params[:event][:commit_button] == "更新"
       # redirect_to user_event_path(@user, @todo)
       #@todo.update.attributes = event_params
-      #@todo.save
-      #flash[:notice] = "已更新此待辦事項"
-      #redirect_to root_path
-    #else # "更新這堂課" 編輯完成
-      #flash.now[:alert] = "@todo.errors.full_messages.to_sentence"
-      #render :edit
-    #end
-
-    @todo.save
-    respond_to do |format|
-       if @todo.update(event_params)
-         format.html { redirect_to user_lessons_url, notice: '成功更新此待辦事項' }
-         format.json { render :show, status: :ok, location: user_lessons_url }
-         #format.js
-       else
-         format.html { redirect_to root_path }
-         flash[:alert]="更新失敗，待辦事項的名稱不可空白"
-       end
+      @todo.save
+      flash[:notice] = "已更新此待辦事項"
+      redirect_to root_path
+    else # "更新這堂課" 編輯完成
+      flash.now[:alert] = "@todo.errors.full_messages.to_sentence"
+      render :edit
     end
+
+    # @todo.save
+    # respond_to do |format|
+    #    if @todo.update(event_params)
+    #      format.html { redirect_to user_lessons_url, notice: '成功更新此待辦事項' }
+    #      format.json { render :show, status: :ok, location: user_lessons_url }
+    #      #format.js
+    #    else
+    #      format.html { redirect_to root_path }
+    #      flash[:alert]="更新失敗，待辦事項的名稱不可空白"
+    #    end
+    # end
   end
 
   # DELETE /events/1
   # DELETE /events/1.json
   def destroy
-    #if @todo.destroy
-      #flash[:alert] = "已成功刪除此待辦事項"
-      #redirect_to root_path
-    #else
-      #flash[:alert] = "@todo.errors.full_messages.to_sentence"
-      #redirect_to root_path
-    #end
-    @todo.destroy
-    respond_to do |format|
-      format.js   
+    if @todo.destroy
+      flash[:alert] = "已成功刪除此待辦事項"
+      redirect_to root_path
+    else
+      flash[:alert] = "@todo.errors.full_messages.to_sentence"
+      redirect_to root_path
     end
+    # @todo.destroy
+    # respond_to do |format|
+    #   format.js   
+    # end
   end
 
   private
