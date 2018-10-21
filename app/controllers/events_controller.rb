@@ -43,16 +43,17 @@ class EventsController < ApplicationController
       flash.now[:alert] = "@todo.errors.full_messages.to_sentence"
       render :edit
     end
+
+    # @todo.save
     # respond_to do |format|
-    #   if @event.update(event_params)
-    #     format.html { redirect_to user_lessons_url, notice: '成功更新此待辦事項' }
-    #     format.json { render :show, status: :ok, location: user_lessons_url }
-    #     #format.js
-    #   else
-    #     format.html { render :edit }
-    #     format.json { render json: @event.errors, status: :unprocessable_entity }
-    #     #format.js
-    #   end
+    #    if @todo.update(event_params)
+    #      format.html { redirect_to user_lessons_url, notice: '成功更新此待辦事項' }
+    #      format.json { render :show, status: :ok, location: user_lessons_url }
+    #      #format.js
+    #    else
+    #      format.html { redirect_to root_path }
+    #      flash[:alert]="更新失敗，待辦事項的名稱不可空白"
+    #    end
     # end
   end
 
@@ -66,9 +67,9 @@ class EventsController < ApplicationController
       flash[:alert] = "@todo.errors.full_messages.to_sentence"
       redirect_to root_path
     end
+    # @todo.destroy
     # respond_to do |format|
-    #   format.html { redirect_to user_lessons_url, notice: '成功刪除此待辦事項' }
-    #   format.json { head :no_content }
+    #   format.js   
     # end
   end
 

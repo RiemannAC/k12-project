@@ -1,7 +1,5 @@
-$('.calendar').fullCalendar('removeEvents', [<%= @event.id %>]);
-$('.calendar').fullCalendar(
-  'renderEvent',
-  $.parseJSON("<%= j render(@event,format: :json).html_safe %>"),
-  true
-);
-$('.modal').modal('hide');
+<% html = j( render :partial => "events/event",locals:{todo: @todo} ) %>
+$("#post_<%= @todo.id %>").fadeOut(500,function(){
+  $(this).replaceWith("<%= html %>");
+});
+$("#todoedit<%= @todo.id %>").modal('hide');
