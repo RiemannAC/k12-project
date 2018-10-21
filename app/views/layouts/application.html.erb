@@ -19,11 +19,9 @@
     <div class="nav_margin"></div>
     <div class="container-fluid">
       <%= render partial: "shared/alert" %>
-      <% if @user == current_user %>
-        <%= yield %>
-      <% end %>
       
-  
+      <%= yield %>
+      
     </div>
     <script>
       var dropdown = document.getElementsByClassName("dropdown-btn");
