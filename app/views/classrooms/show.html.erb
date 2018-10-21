@@ -10,7 +10,9 @@
       <h1>管理教學計劃與課程進度</h1>
       <h4>課程： <%= @classroom.subjects.pluck(:name).join() %></h4>  
       <h4>班級： <%= @classroom.name %>（<%= @classroom.student %> 人）</h4>
-      <%= link_to '我的課表', user_lessons_path(@user),style:"font-size:18px;"  %> | <%= link_to '檢視班級列表', user_classrooms_path(@user),style:"font-size:18px;"  %>
+      <% if @user == current_user %>
+        <%= link_to '我的課表', user_lessons_path(@user),style:"font-size:18px;"  %> | <%= link_to '檢視班級列表', user_classrooms_path(@user),style:"font-size:18px;"  %>
+      <% end %>
     </div>
     <div class="float-right">
       <%#= link_to '課程設定', edit_user_lesson_path(@user, @lesson), class: "btn btn-outline-dark" %>
@@ -22,11 +24,13 @@
 
   </div>
   <hr>
-  <span class="text-center">
-    <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#mynewpost">
-      <h4><%= fa_icon 'plus' %>&nbsp;&nbsp;新增教學計劃</h4>
-    </button>
-  </span>
+  <% if @user == current_user %>
+    <span class="text-center">
+      <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#mynewpost">
+        <h4><%= fa_icon 'plus' %>&nbsp;&nbsp;新增教學計劃</h4>
+      </button>
+    </span>
+  <% end %>
   
 
   <div id="container_posts">
