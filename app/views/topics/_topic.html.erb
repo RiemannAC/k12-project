@@ -32,6 +32,12 @@
                     <%= f.submit "新增", class: "btn btn-outline-info" %>
                   </div>
                 <% end %>
+              
+                <ol id="aim_posts-<%= topic.id %>">
+                  <% topic.aims.each do |aim| %> 
+                    <%= render :partial => 'aims/aim', locals: {aim: aim } %>               
+                  <% end %> 
+                </ol> 
               <% else %>
                 <h4>教學目標</h4>
               
@@ -40,8 +46,7 @@
                     <%= render :partial => 'aims/aim', locals: {aim: aim } %>               
                   <% end %> 
                 </ol> 
-              <% end %>
-               
+              <% end %>        
             </div>
             <div class="col-2">
               <div class="prepare-edit">
