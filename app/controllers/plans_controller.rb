@@ -12,7 +12,7 @@ class PlansController < ApplicationController
   end 
 
   def create
-    @user = User.find(params[:user_id])
+    @user = current_user
     @plan = @user.plans.new(plan_params)
 
     @plan.user = current_user
@@ -26,7 +26,7 @@ class PlansController < ApplicationController
   end 
 
   def show
-    @user = User.find(params[:user_id])
+    @user = current_user
     if params[:user_id]
       @plan = @user.plans.find(params[:id])
       if params[:plan_id]
@@ -38,7 +38,7 @@ class PlansController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:user_id])
+    @user = current_user
     @plan = @user.plans.find(params[:id]) 
     if @plan.update(plan_params)
       flash[:notice] = "更新教案資料夾設定"
