@@ -31,6 +31,34 @@ namespace :dev do
     :fake_todo
     ]
 
+
+  # Deploy 資料庫增刪要另外處理
+  task fake_data: [
+    "db:seed",
+    :fake_user,
+    :fake_classroom,
+    :fake_subject,
+    :fake_lesson_00,
+    :fake_lesson_01,
+    :fake_lesson_02,
+    :fake_lesson_10,
+    :fake_lesson_11,
+    :fake_lesson_12,
+    :fake_lesson_20,
+    :fake_lesson_21,
+    :fake_lesson_22,
+    :fake_lesson_23,
+    :fake_lesson_24,
+    :fake_lesson_25,
+    :fake_topic,
+    :fake_plan,
+    :fake_material,
+    :fake_teachingfile,
+    :fake_aim,
+    :fake_addfile,
+    :fake_todo
+    ]
+
   # Test in irb > require 'ffaker'
   task fake_user: :environment do
     # 尚未建立 child records 時，關聯刪除會報錯，對應方法如下
