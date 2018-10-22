@@ -14,7 +14,7 @@ class EventsController < ApplicationController
     @todo = @user.events.new(event_params)
     if @todo.save
       flash[:notice] = "已新增待辦事項"
-      redirect_to root_path
+      redirect_back fallback_location: root_path
     else
       flash.now[:alert] = "@todo.errors.full_messages.to_sentence"
       render :new
@@ -50,7 +50,7 @@ class EventsController < ApplicationController
     @todo.save
     respond_to do |format|
        if @todo.update(event_params)
-         format.html { redirect_to user_lessons_url, notice: '成功更新此待辦事項' }
+         format.html { redirect_back fallback_location: root_path, notice: '成功更新此待辦事項' }
          format.json { render :show, status: :ok, location: user_lessons_url }
          #format.js
        else
