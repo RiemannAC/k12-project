@@ -11,9 +11,7 @@
       <h4>課程： <%= @classroom.subjects.pluck(:name).join() %></h4>  
       <h4>班級： <%= @classroom.name %>（<%= @classroom.student %> 人）</h4>
       <% if @user == current_user %>
-        <%= link_to '我的課表', user_lessons_path(@user),style:"font-size:18px;"  %> | 
-    
-        <%= link_to '檢視班級列表', user_classrooms_path(@user),style:"font-size:18px;"  %>  
+        <%= link_to '我的課表', user_lessons_path(@user),style:"font-size:18px;"  %> | <%= link_to '檢視班級列表', user_classrooms_path(@user),style:"font-size:18px;"  %>
       <% end %>
     </div>
     <div class="float-right">

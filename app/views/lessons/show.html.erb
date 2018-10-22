@@ -36,11 +36,10 @@
   <div class="">
     <div class="float-left">
       <h1>管理教學計劃與課程進度</h1>
-      <h3>課程： <%= @subject.name %></h3>  
-      <h3>班級： <%= @lesson.classroom.name %>（<%= @lesson.classroom.student %> 人）</h3>
+      <h4>課程： <%= @subject.name %></h4>  
+      <h4>班級： <%= @lesson.classroom.name %>（<%= @lesson.classroom.student %> 人）</h4>
       <% if @user == current_user %>
-        <%= link_to '我的課表', user_lessons_path(@user),style:"font-size:18px;"  %>
-         | <%= link_to '回到班級列表', user_classrooms_path(@user),style:"font-size:18px;"  %>
+        <%= link_to '我的課表', user_lessons_path(@user),style:"font-size:18px;"  %> | <%= link_to '檢視班級列表', user_classrooms_path(@user),style:"font-size:18px;"  %>
       <% end %>
     </div>
     <div class="float-right">
@@ -63,7 +62,7 @@
         </button>  
       </span>
     <% end %>
-    
+
     <div id="container_posts">
       <% if @classroom.topics.count < 1 %>
         <h4 style="margin-top: 20px;">新增教學單元請點擊上方的「新增教學計畫」</h5>
