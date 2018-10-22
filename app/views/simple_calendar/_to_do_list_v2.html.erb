@@ -7,10 +7,14 @@
 
   <!--部分一：新增待辦事項按鈕-->
   <div id="new_event_button" style="text-align: center;">
-    <%= link_to new_user_event_path(@user) do %>
-      <i class="fa fa-list-ul"style="font-size: 40px; color: #527a7a; margin-top:0px;"></i>
-      <span style="padding-left: 5px;">*新增待辦事項</span>
-    <% end %>
+    <%# 一般版 %>
+    <%#= link_to new_user_event_path(@user) do %>
+      <%# i span 移過來，移除 aria data 屬性即可改回原版 %>
+    <%# end %>
+
+    <%# ajax 版，連結 modal new %>
+    <i class="fa fa-list-ul" aria-hidden="true" data-toggle="modal" data-target="#todopost" style="font-size: 40px; color: #527a7a; margin-top:0px;"></i>
+    <span style="padding-left: 5px;">*新增待辦事項</span>
   <div>
 
 
