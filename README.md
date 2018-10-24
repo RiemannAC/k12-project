@@ -11,14 +11,15 @@
  $ rails db:migrate
 ```
 
-## Generate seed data and fake user
+## Generate seed data and all fake data
 ```
- $ rails db:seed
- $ rails dev:fake_user
+ $ rails dev:fake_data
 ```
 
-## Heroku
-- https://k12-project.herokuapp.com
+## Demo 網址
+- http://35.236.177.120
+- 帳號：liberal, science, general 三個測試帳號
+- 密碼：12345678
 
 ## License Information
 - simple_calendar MIT License
