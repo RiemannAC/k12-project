@@ -1,26 +1,27 @@
 <div class="col" style="border-left: 1px solid #d9dedd;">
   <h2>教案檔案</h2>
   <br>
-  
+
   <% if @plans.count == 0 %>
     <p>尚未上傳任何<strong>教材</strong>檔案</p>
     <%= link_to "新增教材檔案", user_plans_path(@user) %>
   <% else %>
     <% @subject_tags.each do |subject| %>
       <% if SubjectTag.where(name: subject.name).first.plans.where(user_id: @user).present? %>
-        <h3><strong><%= subject.name %></strong></h3> 
-        
+        <h3><strong><%= subject.name %></strong></h3>
+
         <% @plans.each do |plan| %>
           <% if plan.subject_tag.name == subject.name %>
             <div class="table-card radius-20 margin-bottom-30">
               <h4><%= plan.plan_folder_name %></h4>
               <hr>
+
               <div class="col">
                 <% plan.teachingfiles.each do |teachingfile| %>
                   <h5>
                     <%= fa_icon 'folder' %>
                     <%= teachingfile.name %>
-                  
+
                     <div class="float-right">
                       <% if teachingfile.is_added?(@topic) %>
                         <%= link_to removefile_user_classroom_topic_teachingfile_path(@user,@classroom,@topic,teachingfile), method: :post, remote: true do %>
@@ -39,6 +40,7 @@
                   <br>
                 <% end %>
               </div>
+
             </div>
           <% end %>
         <% end %>
