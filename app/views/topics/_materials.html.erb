@@ -1,0 +1,62 @@
+<div class="col margin-right-10">
+  <h2>教材檔案</h2>
+  <br>
+  
+  <% if @materials.count == 0 %>
+    <p>尚未上傳任何<strong>教材</strong>檔案</p>
+    <%= link_to "新增教材檔案", user_materials_path(@user) %>
+  <% else %>
+    <% @subject_tags.each do |subject| %><%# 從已建立的教材/教案展開，讓課表端的課程可以選用，有些可以跨科跨年度重覆使用 %>
+    <%# @subjects.each do |subject| %><%# 從課表科目展開，已建立的教材教案有些不會秀出來 %>
+
+      <%# if subject.materials.present? %><%# 這個判定條件要修，不然全都無法顯示===== %>
+      <% if SubjectTag.where(name: subject.name).first.materials.where(user_id: @user).present? %>
+      <%# subject 與 subject_tags 雙邊對接，從 subject_tags 展開才能引用事件建立好的教材教案，別的科目教案也可以重覆引用 %>
+      <%# 第二段限定只抓取當前使用者的資料，避免別的使用者資料混入 %>
+
+        <h3><strong><%= subject.name %></strong></h3>
+
+        <% @materials.each do |material| %>
+          <% if material.subject_tag.name == subject.name %><%# material 過濾條件 %>
+            <%# if material.present? %>
+              <!-- <h3><strong><%#= subject.name %></strong></h3> --> <%# 這邊可以顯示，但同科顯示多次 %>
+            <%# end %>
+
+            <%# subject.materials.each do |m| %><!-- 上面已經跑 each do 了 -->
+            <div class="table-card radius-20 margin-bottom-30">
+              <h4><%= material.mtrial_folder_name %></h4>
+              <hr>
+              <div class="col">
+                
+                <% material.teachingfiles.each do |teachingfile| %>
+                <%# 這邊把其它使用者的東西都導進來了，待修 => 13 行 %>
+                  <h5>
+                    <%= fa_icon 'folder' %>
+                    <%= teachingfile.name %>
+                    <div class="float-right">
+                      <% if teachingfile.is_added?(@topic) %>
+                        <%= link_to removefile_user_classroom_topic_teachingfile_path(@user,@classroom,@topic,teachingfile), method: :post, remote: true do %>
+                          <%= fa_icon 'minus 2x', style: 'color: #6c757d;' %>
+                        <% end %>
+                      <% else %>
+                        <%= link_to addfile_user_classroom_topic_teachingfile_path(@user,@classroom,@topic,teachingfile), method: :post, remote: true do %>
+                          <%= fa_icon 'plus 2x', style: 'color: #6c757d;' %>
+                        <% end %>
+                      <% end %>
+                    </div>
+                  </h5>
+                  <% teachingfile.attachments.each do |file| %>
+                    <li><i><%= file.file.filename %></i></li>
+                  <% end %>
+                  <br>
+                <% end %>
+
+              </div>
+            </div>
+            <%# end %>
+          <% end %> <!-- 科名對齊 end -->
+        <% end %><!-- marerial end -->
+      <% end %><!-- if subject.materials.present? end -->
+    <% end %>
+  <% end %>
+</div>

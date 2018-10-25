@@ -2,6 +2,11 @@ class TopicsController < ApplicationController
   
   def show
     @user = current_user
+    @subjects = @user.subjects
+    @materials = @user.materials #.order(subject_tag_id: :asc)
+    @plans = @user.plans #.order(created_at: :desc)
+    # nested each do 下層有資料才顯示的判定條件？見 topics_show partial 兩端資料對接的條件設定
+    # @subject_tags navbar 有使用需求，設定在 application_controller 內
     @classroom = @user.classrooms.find(params[:classroom_id])
     @topic = @classroom.topics.find(params[:id])
     @addfiles = @topic.addfiles.all

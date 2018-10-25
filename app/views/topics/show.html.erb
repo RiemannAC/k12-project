@@ -1,130 +1,39 @@
 <div class="container">
   <div id="topic-show-top">
     <span class="h1-font">上傳檔案總覽</span>
-    <span class="right-link"> 
+    <span class="right-link">
       <%= link_to 'javascript:history.back()' do %>
         <h4>返回班級教學計劃&nbsp;
           <%= fa_icon 'caret-right' %>
         </h4>
       <% end %>
 
-    </span> 
+    </span>
   </div>
 
   <hr>
-  <div class="row"> 
-    <div class="col margin-right-10">
-      <h2>教材檔案</h2>
-      <br>
-      
-      <% if @materials.count == 0 %>
-        <p>尚未上傳任何<strong>教材</strong>檔案</p>
-        <%= link_to "新增教材檔案", user_materials_path(@user) %>
-      <% else %>
-        <% @subject_tags.each do |subject| %>
-          <% if subject.materials.present? %>
-            <h3><strong><%= subject.name %></strong></h3> 
-            
-            <% subject.materials.each do |m| %>
-              <div class="table-card radius-20 margin-bottom-30">
-                <h4><%= m.mtrial_folder_name %></h4>
-                <hr>
-                <div class="col">
-                  
-                  <% m.teachingfiles.each do |teachingfile| %>
-                    <h5>
-                      <%= fa_icon 'folder' %>
-                      <%= teachingfile.name %>
-                      <div class="float-right">
-                        <% if teachingfile.is_added?(@topic) %>
-                          <%= link_to removefile_user_classroom_topic_teachingfile_path(@user,@classroom,@topic,teachingfile), method: :post, remote: true do %>
-                            <%= fa_icon 'minus 2x', style: 'color: #6c757d;' %>
-                          <% end %>
-                        <% else %>
-                          <%= link_to addfile_user_classroom_topic_teachingfile_path(@user,@classroom,@topic,teachingfile), method: :post, remote: true do %>
-                            <%= fa_icon 'plus 2x', style: 'color: #6c757d;' %>
-                          <% end %>
-                        <% end %>
-                      </div>
-                    </h5>
-                    <% teachingfile.attachments.each do |file| %>
-                      <li><i><%= file.file.filename %></i></li>
-                    <% end %>
-                    <br>
-                  <% end %>                   
-                </div>
-              </div>
-            <% end %>          
-          <% end %>
-        <% end %>
-      <% end %>
-    </div>
-    
-    <div class="col" style="border-left: 1px solid #d9dedd;">
-      <h2>教案檔案</h2>
-      <br>
-      
-      <% if @plans.count == 0 %>
-        <p>尚未上傳任何<strong>教材</strong>檔案</p>
-        <%= link_to "新增教材檔案", user_plans_path(@user) %>
-      <% else %>
-        <% @subject_tags.each do |subject| %>
-          <% if subject.plans.present? %>
-            <h3><strong><%= subject.name %></strong></h3> 
-            
-            <% subject.plans.each do |p| %>
-              <div class="table-card radius-20 margin-bottom-30">
-                <h4><%= p.plan_folder_name %></h4>
-                <hr>
-                <div class="col">
-                  <% p.teachingfiles.each do |teachingfile| %>
-                    <h5>
-                      <%= fa_icon 'folder' %>
-                      <%= teachingfile.name %>
-                    
-                      <div class="float-right">
-                        <% if teachingfile.is_added?(@topic) %>
-                          <%= link_to removefile_user_classroom_topic_teachingfile_path(@user,@classroom,@topic,teachingfile), method: :post, remote: true do %>
-                            <%= fa_icon 'minus 2x', style: 'color: #6c757d;' %>
-                          <% end %>
-                        <% else %>
-                          <%= link_to addfile_user_classroom_topic_teachingfile_path(@user,@classroom,@topic,teachingfile), method: :post, remote: true do %>
-                            <%= fa_icon 'plus 2x', style: 'color: #6c757d;' %>
-                          <% end %>
-                        <% end %>
-                      </div>
-                    </h5>
-                    <% teachingfile.attachments.each do |file| %>
-                      <li><i><%= file.file.filename %></i></li>
-                    <% end %>
-                  <% end %>
-                </div>
-              </div>
-            <% end %>          
-          <% end %>
-        <% end %>
-      <% end %>
-      
-    </div>
-      
+  <div class="row">
+    <%= render partial: "materials" %>
+    <%= render partial: "plans" %>
   </div>
   <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
   <!--這裡可以用上 kaminari 分頁 -->
-  <script>
-    window.onscroll = function() {scrollFunction()};
-
-    function scrollFunction() {
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            document.getElementById("myBtn").style.display = "block";
-        } else {
-            document.getElementById("myBtn").style.display = "none";
-        }
-    }
-
-    // When the user clicks on the button, scroll to the top of the document
-    function topFunction() {
-        document.body.scrollTop = 0; // For Safari
-        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-    }
-  </script>
 </div>
+
+<script>
+  window.onscroll = function() {scrollFunction()};
+
+  function scrollFunction() {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+          document.getElementById("myBtn").style.display = "block";
+      } else {
+          document.getElementById("myBtn").style.display = "none";
+      }
+  }
+
+  // When the user clicks on the button, scroll to the top of the document
+  function topFunction() {
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+  }
+</script>
