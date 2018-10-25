@@ -2,6 +2,9 @@ class TopicsController < ApplicationController
   
   def show
     @user = current_user
+    @subjects = @user.subjects
+    @materials = @user.materials
+    @plans = @user.plans
     @classroom = @user.classrooms.find(params[:classroom_id])
     @topic = @classroom.topics.find(params[:id])
     @addfiles = @topic.addfiles.all
