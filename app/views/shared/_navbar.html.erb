@@ -19,7 +19,7 @@
               <% @subjects.each do |subject| %>
               
                 <li>     
-                  <a class="trigger right-caret"><%= subject.name %></a>
+                  <a class="trigger right-caret"><%= subject.name if subject.classrooms.exists? %></a>
                   <%# 設定第二層：科目下的班級 %>
                   <ul class="dropdown-menu sub-menu">
                   
