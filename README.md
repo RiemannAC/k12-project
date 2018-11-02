@@ -17,7 +17,7 @@
 ```
 
 ## Demo 網址
-- http://35.236.177.120
+- https://www.k12-project.org/
 - 帳號：liberal, science, general 三個測試帳號
 - 密碼：12345678
 
