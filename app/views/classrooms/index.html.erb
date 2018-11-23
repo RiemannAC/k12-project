@@ -29,7 +29,7 @@
           <% @classrooms.each do |classroom| %>
           <tr>
             <td><%= link_to '教學進度管理', user_classroom_path(@user, classroom) %></td>
-            <td><%= classroom.subjects.pluck(:name).join() %></td>
+            <td><%= classroom.subjects.pluck(:name).join(', ') %></td>
             <td><%= classroom.name %></td>
             <td><%= classroom.student %></td> 
             
