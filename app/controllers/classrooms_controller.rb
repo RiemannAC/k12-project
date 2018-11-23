@@ -1,14 +1,12 @@
 class ClassroomsController < ApplicationController
+  before_action :set_user, only: [:index, :show, :update, :edit, :destroy]
+  before_action :set_classroom, only: [:show, :update, :edit, :destroy]
+
   def index
-    @user = current_user
-    #@classrooms = @user.classrooms.order(grade: :asc,room: :asc)
     @classrooms = @user.classrooms.includes(:classrooms_subjects).order("classrooms_subjects.subject_id asc, classrooms.grade asc, classrooms.room asc")
   end
 
-  def show 
-    @user = current_user 
-    @classroom = @user.classrooms.find(params[:id])
-
+  def show
     @topic = Topic.new
     @topics = @classroom.topics.order(created_at: :desc)
 
@@ -17,7 +15,7 @@ class ClassroomsController < ApplicationController
       @aim = @topic.aims.find(params[:id])     
     end
   end
-  
+
   def create
     # @user = current_user
     # @subject = @user.subjects.find(params[:subject_id])
@@ -32,8 +30,6 @@ class ClassroomsController < ApplicationController
   end
 
   def update
-    @user = current_user
-    @classroom = @user.classrooms.find(params[:id])
     if @classroom.update(classroom_params)
       flash[:notice] = "更新班級設定"
       redirect_to user_classrooms_path
@@ -44,19 +40,23 @@ class ClassroomsController < ApplicationController
   end
 
   def edit 
-    @user = current_user
-    @classroom = @user.classrooms.find(params[:id])
   end
 
   def destroy
-    @user = current_user
-    @classroom = @user.classrooms.find(params[:id]) 
     @classroom.destroy
     redirect_to user_classrooms_path(@user)
     flash[:notice] = "#{@classroom.name}學期計劃已被刪除"
   end
 
   private
+  def set_user
+    @user = current_user
+  end
+
+  def set_classroom
+    @classroom = @user.classrooms.find(params[:id])
+  end
+
   def classroom_params
     params.require(:classroom).permit(:name, :grade, :room, :subject_id,:user_id, :start_time, :end_time, :student)
   end

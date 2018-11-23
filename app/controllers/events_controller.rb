@@ -1,15 +1,11 @@
 class EventsController < ApplicationController
-
   before_action :set_user, only: [:new, :edit, :create, :update, :destroy]
   before_action :set_todo, only: [:edit, :update, :destroy]
 
-  # GET /events/new
   def new
     @todo = @user.events.new
   end 
 
-  # POST /events
-  # POST /events.json
   def create
     @todo = @user.events.new(event_params)
     if @todo.save
@@ -33,8 +29,6 @@ class EventsController < ApplicationController
     # end
   end
 
-  # PATCH/PUT /events/1
-  # PATCH/PUT /events/1.json
   def update
     # 一般版
     # if @todo.update(event_params)
@@ -60,8 +54,6 @@ class EventsController < ApplicationController
     end
   end
 
-  # DELETE /events/1
-  # DELETE /events/1.json
   def destroy
     # 一般版
     # if @todo.destroy

@@ -1,21 +1,18 @@
 class MaterialsController < ApplicationController
-  before_action :set_material, only: [ :edit, :show, :update, :destroy]
+  before_action :find_user, only: [:index, :show]
+  before_action :set_user, only: [:create, :update, :destroy]
+  before_action :find_material, only: [:update, :destroy]
+  before_action :set_material, only: [:edit, :show, :update, :destroy]
   
   def index 
-    # @user = current_user 用這個更換 user_id 看到的都是一樣的東西，有權限需求另外設定即可
-    @user = User.find_by_id(params[:user_id])
-
     @materials = @user.materials.order(created_at: :desc)
     # 瀏覽別人的頁面要把"新增按鈕"蓋掉
     @material = current_user.materials.new
-
-
     subject_tag_ids = @user.materials.pluck(:subject_tag_id)
     @subject_tags = SubjectTag.where(id: subject_tag_ids)
   end
 
   def show
-    @user = User.find(params[:user_id])
     if params[:user_id]
       @material = @user.materials.find(params[:id])
       if params[:material_id]
@@ -27,7 +24,6 @@ class MaterialsController < ApplicationController
   end
 
   def create
-    @user = current_user
     @material = @user.materials.new(material_params)
     if @material.save
       flash[:notice] = "成功新增資料夾【#{@material.mtrial_folder_name}】"
@@ -39,8 +35,6 @@ class MaterialsController < ApplicationController
   end
 
   def update 
-    @user = current_user
-    @material = @user.materials.find(params[:id])  
     if @material.update(material_params)
       flash[:notice] = "更新教材資料夾設定"
       redirect_to user_material_path(@user, @material)
@@ -51,8 +45,6 @@ class MaterialsController < ApplicationController
   end
 
   def destroy
-    @user = current_user
-    @material = @user.materials.find(params[:id])    
     @material.destroy
     redirect_to user_materials_path
     flash[:alert] = "#{@material.mtrial_folder_name}資料夾已刪除"
@@ -60,11 +52,24 @@ class MaterialsController < ApplicationController
 
   private
 
-  def material_params
-    params.require(:material).permit(:mtrial_folder_name,:user_id,:subject_tag_id)
+  def find_user
+    @user = User.find_by_id(params[:user_id])
+  end
+
+  def set_user
+    @user = current_user
+  end
+
+  def find_material
+    @material = @user.materials.find(params[:id])
   end
 
   def set_material
     @material = Material.find_by(params[:material_id])
   end
+
+  def material_params
+    params.require(:material).permit(:mtrial_folder_name,:user_id,:subject_tag_id)
+  end
+
 end

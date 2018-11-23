@@ -1,8 +1,10 @@
 class AimsController < ApplicationController
+  before_action :set_user
+  before_action :set_classroom
+  before_action :set_topic
+  before_action :set_aim, only: [:edit, :update, :destroy]
+
   def create
-    @user = current_user
-    @classroom = @user.classrooms.find(params[:classroom_id])
-    @topic = @classroom.topics.find(params[:topic_id])
     @aim = @topic.aims.create(aim_params) 
 
     respond_to do |format|
@@ -19,17 +21,9 @@ class AimsController < ApplicationController
   end
 
   def edit
-    @user = current_user
-    @classroom = @user.classrooms.find(params[:classroom_id])
-    @topic = @classroom.topics.find(params[:topic_id])
-    @aim = @topic.aims.find(params[:id])
   end
 
   def update
-    @user = current_user
-    @classroom = @user.classrooms.find(params[:classroom_id])
-    @topic = @classroom.topics.find(params[:topic_id])
-    @aim = @topic.aims.find(params[:id])
     respond_to do |format|
       if @aim.update(aim_params)
         #format.html{redirect_to user_subject_url(@user,@subject),notice:"成功更新教學目標" }
@@ -43,11 +37,7 @@ class AimsController < ApplicationController
     end
   end
 
-  def destroy
-    @user = current_user
-    @classroom = @user.classrooms.find(params[:classroom_id])
-    @topic = @classroom.topics.find(params[:topic_id])
-    @aim = @topic.aims.find(params[:id])   
+  def destroy 
     @aim.destroy
     respond_to do |format|
       #format.html{redirect_to user_subject_url(@user,@subject),notice:"成功刪除教學目標" }
@@ -57,6 +47,22 @@ class AimsController < ApplicationController
   end
 
   private
+  def set_user
+    @user = current_user
+  end
+
+  def set_classroom
+    @classroom = @user.classrooms.find(params[:classroom_id])
+  end
+
+  def set_topic
+    @topic = @classroom.topics.find(params[:topic_id])
+  end
+
+  def set_aim
+    @aim = @topic.aims.find(params[:id])
+  end
+
   def aim_params
     params.require(:aim).permit(:name,:topic_id,:status)
   end

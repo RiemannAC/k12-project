@@ -1,18 +1,16 @@
 class TopicsController < ApplicationController
-  
+  before_action :set_user, only: [:show, :create, :update, :destroy]
+  before_action :set_classroom, only: [:show, :create, :update, :destroy]
+  before_action :set_topic, only: [:show, :update, :destroy]
+
   def show
-    @user = current_user
     @subjects = @user.subjects
     @materials = @user.materials
     @plans = @user.plans
-    @classroom = @user.classrooms.find(params[:classroom_id])
-    @topic = @classroom.topics.find(params[:id])
     @addfiles = @topic.addfiles.all
   end  
  
   def create
-    @user = current_user
-    @classroom = @user.classrooms.find(params[:classroom_id])
     @topic = @classroom.topics.create(topic_params)
 
     #respond_to do |format|
@@ -33,9 +31,6 @@ class TopicsController < ApplicationController
   end 
 
   def update
-    @user = current_user
-    @classroom = @user.classrooms.find(params[:classroom_id])
-    @topic = @classroom.topics.find(params[:id])
     #respond_to do |format|
       if @topic.update(topic_params)
         #format.html{redirect_to user_subject_url(@user,@subject),notice:"成功更新教學計劃" }
@@ -54,9 +49,6 @@ class TopicsController < ApplicationController
   end
 
   def destroy
-    @user = current_user
-    @classroom = @user.classrooms.find(params[:classroom_id])
-    @topic = @classroom.topics.find(params[:id])
     @topic.destroy
     #respond_to do |format|
       #format.html{redirect_to user_subject_url(@user,@subject),notice:"成功刪除一個教學計劃" }
@@ -69,6 +61,18 @@ class TopicsController < ApplicationController
 
 
   private
+  def set_user
+    @user = current_user
+  end
+
+  def set_classroom
+    @classroom = @user.classrooms.find(params[:classroom_id])
+  end
+
+  def set_topic
+    @topic = @classroom.topics.find(params[:id])
+  end
+
   def topic_params
     params.require(:topic).permit(:name,:subject_id,:classroom_id,:start_time,:end_time,:feedback)
   end
