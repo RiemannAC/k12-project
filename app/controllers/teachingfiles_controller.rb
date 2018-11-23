@@ -1,7 +1,8 @@
 class TeachingfilesController < ApplicationController
-  
+  before_action :set_user, only: [:create, :edit, :update, :destroy, :addfile, :removefile]
+  before_action :set_file, only: [:addfile, :removefile]
+
   def create
-    @user = current_user
     # upon clicking on create, determine what param id is passed
     if params[:material_id]
       # if it is a material id, set instance of post id as @parent
@@ -44,7 +45,6 @@ class TeachingfilesController < ApplicationController
 
   def edit
     @subject_tags = SubjectTag.order(created_at: :desc)
-    @user = current_user
     # upon clicking on create, determine what param id is passed
     if params[:material_id]
       # if it is a material id, set instance of post id as @parent
@@ -59,7 +59,6 @@ class TeachingfilesController < ApplicationController
   end
 
   def update 
-    @user = current_user
     # upon clicking on create, determine what param id is passed
     if params[:material_id]
       # if it is a material id, set instance of post id as @parent
@@ -111,14 +110,6 @@ class TeachingfilesController < ApplicationController
   end
  
   def addfile
-    @user = current_user
-    @classroom = @user.classrooms.find(params[:classroom_id])
-    @topic = @classroom.topics.find(params[:topic_id])
-  
-   
-    @teachingfile = Teachingfile.find(params[:id])
-    
-    
     #@topic = Topic.find_by(params[:topic_id])
     # 呼叫其他 model 要用 find_by 才找得到 id?
     @teachingfile.addfiles.create!(topic: @topic)
@@ -127,21 +118,23 @@ class TeachingfilesController < ApplicationController
   end 
 
   def removefile
-    @user = current_user
-    @classroom = @user.classrooms.find(params[:classroom_id])
-    @topic = @classroom.topics.find(params[:topic_id])
-
-    @teachingfile = Teachingfile.find(params[:id])
-
     addfile = Addfile.where(teachingfile: @teachingfile, topic: @topic)
     addfile.destroy_all
     flash[:alert] = "檔案已從「#{@topic.name}」教學單元中移除"
     redirect_back fallback_location: root_path
   end
 
-
-
   private
+
+  def set_user
+    @user = current_user
+  end
+
+  def set_file
+    @classroom = @user.classrooms.find(params[:classroom_id])
+    @topic = @classroom.topics.find(params[:topic_id])
+    @teachingfile = Teachingfile.find(params[:id])
+  end
 
   def teachingfile_params
     params.require(:teachingfile).permit(:name,:material_id,:plan_id, :user_id, {attachments: []})

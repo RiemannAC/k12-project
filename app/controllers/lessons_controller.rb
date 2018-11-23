@@ -141,53 +141,50 @@ class LessonsController < ApplicationController
   end
 
   private
+  # 設定使用者
+  def set_lesson
+    @lesson = Lesson.find_by_id(params[:id])
+  end
+  
+  # 顯示使用者所擁有的課表
+  def set_lessons
+    # pluck 方法，輸出 array，第一步就用 each do 展開的話，後面就難收拾了
+    subject_ids = Subject.where(user_id: @user).pluck(:id)
 
+    # 一個 id 可行，但塞兩個 id 進去 SQL 語法就爆了
+    # classroom_ids = Classroom.joins("join classrooms_subjects on classrooms.id = classrooms_subjects.classroom_id").where(["classrooms_subjects.subject_id = ?", subject_ids]).pluck(:id)
+    # 適用於 HABTM，外鍵被移掉需要合併 subjects 來撈資料
+    classroom_ids = Classroom.joins(:subjects).where(subjects: { id: subject_ids })
 
+    # classroom_id 欄位，輸入 id array，輸出 lessons 的 ActiveRecord，不需要用 id 各別宣告再收集起來。
+    @lessons = Lesson.where(classroom_id: classroom_ids, event_type: "lesson")
+  end
 
-    # 設定使用者
-    def set_lesson
-      @lesson = Lesson.find_by_id(params[:id])
-    end
- 
-    # 顯示使用者所擁有的課表
-    def set_lessons
-      # pluck 方法，輸出 array，第一步就用 each do 展開的話，後面就難收拾了
-      subject_ids = Subject.where(user_id: @user).pluck(:id)
+  def set_subject_of_lesson
+    lesson = Lesson.find_by_id(params[:id])
+    # 注意：不用路由 params 也可將 id 傳入，但括號內不可使用"實例變數"。此方法可避免巢狀路由過於複雜。
+    classroom_id = Classroom.find_by_id(lesson.classroom_id).id
+    # SQL 語法，只吃 id 不吃物件
+    subjects = Subject.joins("join classrooms_subjects on subjects.id = classrooms_subjects.subject_id").where(["classrooms_subjects.classroom_id = ?", classroom_id])
+    # 這個資料撈法要在 @subject name 唯一性，且 @subject 及其下的 @lessons 的名稱需同步 CRUD 才行！
+    # 若 .first 沒加，撈到的是 relation 無法使用關聯方法
+    @subject = subjects.where(name: lesson.name).first
 
-      # 一個 id 可行，但塞兩個 id 進去 SQL 語法就爆了
-      # classroom_ids = Classroom.joins("join classrooms_subjects on classrooms.id = classrooms_subjects.classroom_id").where(["classrooms_subjects.subject_id = ?", subject_ids]).pluck(:id)
-      # 適用於 HABTM，外鍵被移掉需要合併 subjects 來撈資料
-      classroom_ids = Classroom.joins(:subjects).where(subjects: { id: subject_ids })
+    
+    @classroom = Classroom.find(lesson.classroom_id)
+  end
 
-      # classroom_id 欄位，輸入 id array，輸出 lessons 的 ActiveRecord，不需要用 id 各別宣告再收集起來。
-      @lessons = Lesson.where(classroom_id: classroom_ids, event_type: "lesson")
-    end
+  def set_user
+    # 使用者可以經路由看到別人的課表，分享課表功能
+    @user = User.find_by_id(params[:user_id])
+  end
 
-    def set_subject_of_lesson
-      lesson = Lesson.find_by_id(params[:id])
-      # 注意：不用路由 params 也可將 id 傳入，但括號內不可使用"實例變數"。此方法可避免巢狀路由過於複雜。
-      classroom_id = Classroom.find_by_id(lesson.classroom_id).id
-      # SQL 語法，只吃 id 不吃物件
-      subjects = Subject.joins("join classrooms_subjects on subjects.id = classrooms_subjects.subject_id").where(["classrooms_subjects.classroom_id = ?", classroom_id])
-      # 這個資料撈法要在 @subject name 唯一性，且 @subject 及其下的 @lessons 的名稱需同步 CRUD 才行！
-      # 若 .first 沒加，撈到的是 relation 無法使用關聯方法
-      @subject = subjects.where(name: lesson.name).first
+  def set_author
+    @user = current_user
+  end
 
-      
-      @classroom = Classroom.find(lesson.classroom_id)
-    end
-
-    def set_user
-      # 使用者可以經路由看到別人的課表，分享課表功能
-      @user = User.find_by_id(params[:user_id])
-    end
-
-    def set_author
-      @user = current_user
-    end
-
-    def lesson_params
-      params.require(:lesson).permit(:name, :start_time,'start_time(1i)', 'start_time(2i)', 'start_time(3i)', 'start_time(4i)', 'start_time(5i)', 'end_time(1i)', 'end_time(2i)', 'end_time(3i)', 'end_time(4i)', 'end_time(5i)', :period, :frequency, :commit_button, :event_type, :grade, :room,:student)
-    end
+  def lesson_params
+    params.require(:lesson).permit(:name, :start_time,'start_time(1i)', 'start_time(2i)', 'start_time(3i)', 'start_time(4i)', 'start_time(5i)', 'end_time(1i)', 'end_time(2i)', 'end_time(3i)', 'end_time(4i)', 'end_time(5i)', :period, :frequency, :commit_button, :event_type, :grade, :room,:student)
+  end
 
 end
