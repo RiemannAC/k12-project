@@ -22,9 +22,9 @@
     </div>
   </div>
 
-  <div class="form-group col-8 font-24" style="margin-top: 20px;">
+  <div class="form-group col-8 font-20" style="margin-top: 20px;">
     <%= f.label :start_time, '課堂開始時間（一節）' %>
-    <span style="letter-spacing: 1px;">*如需新增多節課堂，請點擊首頁<i class="fa fa-calendar-plus-o font-24" aria-hidden="true" style="color: #527a7a;"></i>再次新增</span>
+    <span>*如需新增多節課堂，請點擊首頁 <i class="fa fa-calendar-plus-o font-20" aria-hidden="true" style="color: #527a7a;"></i> 再次新增</span>
     <br/>
     <%= f.datetime_select :start_time, discard_minute: true, start_hour: 8, end_hour: 18, ampm: true, default: Date.today.beginning_of_day + 8.hour %>
   </div>

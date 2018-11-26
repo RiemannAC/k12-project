@@ -60,8 +60,16 @@ a:hover {
   clear: both;
 }
 
+.font-20 {
+  font-size: 20px;
+}
+
 .font-24 {
   font-size: 24px;
+}
+
+.letter-sp-2 {
+  letter-spacing: 2px;
 }
 
 @import "style";
