@@ -1,20 +1,19 @@
 
 <div class="container-fluid">
   <div class="col-12"> 
-    <h1 style="display: inline-block;">我的班級管理列表</h1>
-    <i class="fa fa-caret-right grid" aria-hidden="true" style="padding:0px 10px;
-  "></i> 
-    <%= link_to '回到課表首頁', user_lessons_path(@user),style:"font-size:22px;"  %>  
+    <h1 class="inline-block">我的班級管理列表</h1>
+    <i class="fa fa-caret-right grid" aria-hidden="true"></i> 
+    <%= link_to '回到課表首頁', user_lessons_path(@user), class: "font-22" %>  
     
-    <h3 style="display: inline-block;float: right;">今天日期：
-      <span style="letter-spacing: 2px;"><%= Time.now.strftime("%Y/%m/%d") %></span>
+    <h3 class="inline-block pull-right">今天日期：
+      <span class="letter-sp-2"><%= Time.now.strftime("%Y/%m/%d") %></span>
     </h3>
     <hr>
     
     <% if @classrooms.count == 0 %>
-      <h3>你還未建立任何班級，趕快來 <%= link_to '建立班級新增課表', new_user_lesson_path(@user) ,style:"font-size:25px;" %>！</h3>  
+      <h3>你還未建立任何班級，趕快來 <%= link_to '建立班級新增課表', new_user_lesson_path(@user), class: "font-25" %>！</h3>  
     <% else %> 
-      <table class="table" style="margin-top: 20px;">
+      <table class="table mt-4">
         <thead class="thead-light">
           <tr>
             <th scope="col">#</th>
@@ -71,13 +70,13 @@
                       </div>
                       <div class="form-group">
                         <%= f.label :student, "班級人數" %>
-                        <%= f.number_field :student ,class:"form-control" %>
+                        <%= f.number_field :student ,class: "form-control" %>
                       </div>
                     </div>
 
                     <div class="modal-footer">
                       <button type="button" class="btn btn-default" data-dismiss="modal" id="mynewpostclose">close</button>
-                      <%= submit_tag "完成班級設定",class:"btn btn-info" %>
+                      <%= submit_tag "完成班級設定",class: "btn btn-info" %>
                     </div>
                   </div>
                 </div>

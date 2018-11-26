@@ -1,7 +1,4 @@
 <li id="post_<%= aim.id %>">
-  <span class="aim-title"><%= aim.name %></span>
-  <span class="aim-status"><%= aim.status %></span>
-
   <% if @user == current_user %>
     <span class="" data-toggle="tooltip" data-placement="top" title="編輯完成度">
       <%= link_to edit_user_classroom_topic_aim_path(aim.topic.classroom.user,aim.topic.classroom,aim.topic,aim),remote:true do %>&nbsp;&nbsp;
@@ -14,4 +11,7 @@
       <% end %> 
     </span>
   <% end %>
+  &nbsp;&nbsp;
+  <span class="aim-title font-20"><%= aim.name %></span>
+  <span class="aim-status font-20"><%= aim.status %></span>
 </li>

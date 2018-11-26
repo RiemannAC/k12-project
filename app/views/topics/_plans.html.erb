@@ -3,8 +3,8 @@
   <br>
 
   <% if @plans.count == 0 %>
-    <p>尚未上傳任何<strong>教材</strong>檔案</p>
-    <%= link_to "新增教材檔案", user_plans_path(@user) %>
+    <p class="font-22">尚未上傳任何<strong>教材</strong>檔案</p>
+    <%= link_to "新增教材檔案", user_plans_path(@user), class: "font-24" %>
   <% else %>
     <% @subject_tags.each do |subject| %>
       <% if SubjectTag.where(name: subject.name).first.plans.where(user_id: @user).present? %>

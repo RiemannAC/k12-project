@@ -4,7 +4,7 @@
       <h1><%= @plan.subject_tag.name %>：<%= @plan.plan_folder_name %></h1>
       <%= link_to user_plans_path(@user) do %>
         <%= fa_icon 'caret-left' %> &nbsp;
-        <span style="font-size: 25px;">返回教案總覽</span>
+        <span class="font-22">返回教案總覽</span>
       <% end %>
     </div>
     <% if @user == current_user %>
@@ -73,7 +73,7 @@
       <div class="col-md-9">
         <div class="table-card">
           <br>
-          <h3 style="text-align: center;">上傳檔案列表</h3>
+          <h3 class="text-center">上傳檔案列表</h3>
           <br>
           <table class="table table-hover">
             <% @plan.teachingfiles.each do |teachingfile| %>
@@ -92,8 +92,8 @@
                 </div>
                 <% end %>
               </td>
-              <td style="padding-right:20px;">
-                <div style="float: right;">
+              <td style="margin-right:20px;">
+                <div class="float-right">
                   <%= link_to '重新上傳',edit_user_plan_teachingfile_path(@user, @plan,teachingfile) %> | <%= link_to '全部刪除', user_plan_teachingfile_path(@user, @plan,teachingfile), method: :delete, data: { confirm: "確定要刪除這個檔案嗎？"}, style: "color: red;" %>
                 </div>
               </td>
@@ -108,7 +108,7 @@
       <div class="col-md-8">
         <div class="table-card">
           <br>
-          <h3 style="text-align: center;">上傳檔案列表</h3>
+          <h3 class="text-center">上傳檔案列表</h3>
           <br>
           <table class="table table-hover">
             <% @plan.teachingfiles.each do |teachingfile| %>
@@ -130,8 +130,8 @@
                 <% end %>
               </td>
               <% if @user == current_user %>
-                <td style="padding-right:20px;">
-                  <div style="float: right;">
+                <td style="margin-right:20px;">
+                  <div class="float-right">
                     <%= link_to '重新上傳',edit_user_plan_teachingfile_path(@user, @plan,teachingfile) %> | <%= link_to '全部刪除', user_plan_teachingfile_path(@user, @plan,teachingfile), method: :delete, data: { confirm: "確定要刪除這個檔案嗎？"}, style: "color: red;" %>
                   </div>
                 </td>
