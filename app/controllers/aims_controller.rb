@@ -15,7 +15,10 @@ class AimsController < ApplicationController
       else
         #format.html{render :new}
         #format.json{render json: @aim.errors,status: :unprocessable_entity}
-        format.js 
+        format.js
+        flash[:alert]= @aim.errors.full_messages.to_sentence
+        # 要重新整理頁面才會顯示 > 再加 redirect
+        redirect_back fallback_location: root_path
       end
     end 
   end
