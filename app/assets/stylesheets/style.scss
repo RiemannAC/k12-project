@@ -262,6 +262,10 @@ table td a{
 }
 
 /***** lessons/index/todo_list *******/
+.grid {
+  padding:0px 10px;
+}
+
 .time_box .day_time {
   border-radius: 8px !important;
   background-color: #aaaaaa;
@@ -389,6 +393,15 @@ table td a{
 }
 
 /****** aims setting ********/
+
+.aim-group{
+  margin-right: 10px;
+}  
+
+.undone{
+  color: blue;
+}
+
 .aim-name {
   font-size: 22px;
   line-height: 2.5rem;

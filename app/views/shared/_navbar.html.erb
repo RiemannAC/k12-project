@@ -14,7 +14,7 @@
           <%# 設定第一層：科目 %>
           <ul class="dropdown-menu">
             <% if @subjects.count == 0 %>
-              <li><%= link_to '請新增班級', new_user_lesson_path(@user) %></li>
+              <li><%= link_to '請先新增課表', new_user_lesson_path(@user) %></li>
             <% else %>
               <% @subjects.each do |subject| %>
               

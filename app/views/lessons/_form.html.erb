@@ -1,40 +1,35 @@
-<style> 
-  label{
-    font-size: 25px;
-  }
-</style>
 <%= form_for [@user, @lesson], url: {action: "create"}  do |f| %>
 
-  <div class="form-group col-8">
+  <div class="form-group col-8 font-24">
     <%= f.label :name, "課程科目" %>
     <br/>
     <%= f.select :name, Subject::SUBJECT,{}, class: "form-control" %>
   </div>
 
   <div class="form-row col-8">
-    <div class="col">
+    <div class="col font-24">
       <%= f.label :grade, "年級" %>
       <% grade_array = Classroom::GRADE.map { |grade| grade + "年"} %>
       <%= f.select :grade, grade_array,{}, class: "form-control" %>
     </div>
-    <div class="col">
+    <div class="col font-24">
       <%= f.label :room, "班級" %>
       <%= f.text_field :room, class: "form-control", placeholder: "ex. 1班" %>
     </div> 
-    <div class="col">
+    <div class="col font-24">
       <%= f.label :student, "學生人數" %>
       <%= f.text_field :student, class: "form-control" %>
     </div>
   </div>
 
-  <div class="form-group col-8" style="margin-top: 20px;">
+  <div class="form-group col-8 font-24" style="margin-top: 20px;">
     <%= f.label :start_time, '課堂開始時間（一節）' %>
-    <span style="letter-spacing: 1px;">*如需新增多節課堂，請點擊首頁<i class="fa fa-calendar-plus-o" aria-hidden="true" style="font-size: 25px; color: #527a7a;"></i>再次新增</span>
+    <span style="letter-spacing: 1px;">*如需新增多節課堂，請點擊首頁<i class="fa fa-calendar-plus-o font-24" aria-hidden="true" style="color: #527a7a;"></i>再次新增</span>
     <br/>
     <%= f.datetime_select :start_time, discard_minute: true, start_hour: 8, end_hour: 18, ampm: true, default: Date.today.beginning_of_day + 8.hour %>
   </div>
 
-  <div class="actions col-8" style="margin-top: 20px;">
+  <div class="actions col-8 mt-4">
     <%= f.submit "新增", class: "btn btn-outline-info" %>
     <%= link_to "取消",user_lessons_path(@user) ,class: "btn btn-outline-dark" %>
   </div>
